@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+<title>S2 Grammar Challenge – K S Lo English</title>
+<meta name="description" content="S2 Grammar Challenge – Interactive grammar exercises for S2 students at HKMA K S Lo College.">
+<meta property="og:title" content="S2 Grammar Challenge – K S Lo English">
+<meta property="og:description" content="Practise grammar with multiple-choice questions. Track your progress and beat your best!">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- ========== TOP BAR ========== -->
+<header class="topbar">
+  <div class="topbar-left">
+    <img src="KSLoEnglish(Blue).png" alt="K S Lo English" class="topbar-logo">
+    <span class="topbar-title">S2 Grammar Challenge</span>
+  </div>
+  <div class="topbar-right">
+    <div class="streak-badge" id="streak-badge" title="Current session streak">
+      <span class="streak-icon">&#x1F525;</span>
+      <span id="streak-count">0</span>
+    </div>
+    <button class="theme-btn" id="theme-btn" title="Toggle dark mode" aria-label="Toggle theme">
+      <span id="theme-icon">&#x1F319;</span>
+    </button>
+  </div>
+</header>
+
+<!-- ========== HOME SCREEN ========== -->
+<main id="screen-home" class="screen active">
+  <!-- Decorative background particles -->
+  <div class="bg-particles" aria-hidden="true">
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+    <div class="particle p5"></div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-badge">LEVEL UP YOUR GRAMMAR</div>
+    <h1 class="hero-title">S2 Grammar Challenge</h1>
+    <p class="hero-sub" id="hero-sub"></p>
+  </section>
+
+  <!-- XP / Stats Bar -->
+  <section class="xp-bar">
+    <div class="xp-item">
+      <div class="xp-icon">&#x1F3AF;</div>
+      <div class="xp-info">
+        <div class="xp-val" id="stat-attempts">0</div>
+        <div class="xp-lbl">Attempts</div>
+      </div>
+    </div>
+    <div class="xp-item">
+      <div class="xp-icon">&#x1F3C6;</div>
+      <div class="xp-info">
+        <div class="xp-val" id="stat-best">&mdash;</div>
+        <div class="xp-lbl">Best Score</div>
+      </div>
+    </div>
+    <div class="xp-item">
+      <div class="xp-icon">&#x26A1;</div>
+      <div class="xp-info">
+        <div class="xp-val" id="stat-time">&mdash;</div>
+        <div class="xp-lbl">Best Time</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Config Panel -->
+  <section class="config-panel">
+    <!-- Term Selection -->
+    <div class="config-step">
+      <div class="config-label"><span class="step-num">1</span>School Term</div>
+      <div class="btn-group" id="term-group"></div>
+    </div>
+
+    <!-- Grammar Topic Selection -->
+    <div class="config-step">
+      <div class="config-label"><span class="step-num">2</span>Choose Your Quest</div>
+      <div class="topic-grid" id="topic-grid"></div>
+    </div>
+
+    <!-- Question Count (conditional) -->
+    <div class="config-step hidden" id="qcount-section">
+      <div class="config-label"><span class="step-num">3</span>Number of Questions</div>
+      <div class="btn-group" id="qcount-group"></div>
+    </div>
+  </section>
+
+  <button class="btn-start" id="btn-start" disabled>
+    <span class="btn-start-text">Select a Quest to Begin</span>
+    <span class="btn-start-glow"></span>
+  </button>
+</main>
+
+<!-- ========== EXERCISE SCREEN ========== -->
+<main id="screen-exercise" class="screen">
+  <div class="hud">
+    <div class="hud-left">
+      <div class="hud-cell">
+        <span class="hud-lbl">Q</span>
+        <span class="hud-val" id="hud-progress">1/10</span>
+      </div>
+      <div class="hud-cell">
+        <span class="hud-lbl">&#x23F1;</span>
+        <span class="hud-val mono" id="hud-timer">00:00.00</span>
+      </div>
+    </div>
+    <div class="hud-score-wrap">
+      <div class="hud-score-badge" id="hud-score-badge">
+        <span class="hud-score-star">&#x2B50;</span>
+        <span class="hud-score-num" id="hud-score">0</span>
+      </div>
+    </div>
+    <div class="hud-right">
+      <button class="hud-quit" id="hud-quit">&#x2715; Quit</button>
+    </div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="question-card" id="question-card"></div>
+  <button class="btn-next hidden" id="btn-next">Next Question &rarr;</button>
+</main>
+
+<!-- ========== RESULTS SCREEN ========== -->
+<main id="screen-results" class="screen">
+  <section class="results-wrap">
+    <div class="results-trophy">&#x1F3C6;</div>
+    <h1 class="results-title">Challenge Complete!</h1>
+    <div class="results-card">
+      <div class="results-score-lbl">Your Score</div>
+      <div class="results-score" id="res-score">&mdash;</div>
+      <div class="results-remark" id="res-remark"></div>
+      <div class="results-stats">
+        <div class="res-stat"><div class="res-icon">&#x23F1;</div><div class="res-val" id="res-time">&mdash;</div><div class="res-lbl">Time</div></div>
+        <div class="res-stat"><div class="res-icon">&#x1F525;</div><div class="res-val" id="res-streak">&mdash;</div><div class="res-lbl">Best Streak</div></div>
+      </div>
+    </div>
+    <div class="review-panel" id="review-panel">
+      <h3 class="review-heading">&#x1F4CB; Review</h3>
+      <div class="review-list" id="review-list"></div>
+    </div>
+    <button class="btn-again" id="btn-again">Play Again &#x21BA;</button>
+  </section>
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer">
+  &copy; <span id="yr"></span> K S Lo English. All Rights Reserved.
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
