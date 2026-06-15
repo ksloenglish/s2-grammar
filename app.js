@@ -863,14 +863,29 @@
   function renderAssembled() {
     if (!bChecked) clauseAssembled.classList.remove('fb-ok', 'fb-no');
     if (bClause.length === 0) {
-      clauseAssembled.innerHTML = '<span class="clause-placeholder">Tap the words below in order…</span>';
+      clauseAssembled.innerHTML = '<span class="clause-placeholder">Tap the words below in order (tap a chosen word to remove it)…</span>';
       clauseAssembled.dataset.empty = 'true';
       return;
     }
     clauseAssembled.dataset.empty = 'false';
     clauseAssembled.innerHTML = bClause.map(x =>
-      `<span class="assembled-tok">${escapeHtml(displayTile(x.tok))}</span>`
+      `<button type="button" class="assembled-tok" data-id="${x.id}" title="Tap to remove">${escapeHtml(displayTile(x.tok))}</button>`
     ).join(' ');
+    if (!bChecked) {
+      clauseAssembled.querySelectorAll('.assembled-tok').forEach(btn => {
+        btn.addEventListener('click', () => removeAssembledTok(Number(btn.dataset.id)));
+      });
+    }
+  }
+
+  // Remove a single chosen word from the assembled clause and free its tile.
+  function removeAssembledTok(id) {
+    if (bChecked) return;
+    bClause = bClause.filter(x => x.id !== id);
+    const tile = clauseTiles.querySelector(`.word-tile[data-tileid="${id}"]`);
+    if (tile) tile.classList.remove('used');
+    renderAssembled();
+    updateBuilderNext();
   }
 
   // Proper nouns that must keep their capital letter when shown as tiles.
@@ -895,8 +910,20 @@
 
   function renderPlaceLine(q) {
     placeLine.innerHTML = '';
+    const lastIdx = q.segs.length - 1;
+    // Detach any sentence-final punctuation (. ! ?) from the last segment so the
+    // final insertion gap sits BEFORE the full stop, e.g. "This is the room [+] ."
+    let trailingPunct = '';
+    const segs = q.segs.map((seg, i) => {
+      if (i === lastIdx) {
+        const m = seg.match(/([.!?]+)\s*$/);
+        if (m) { trailingPunct = m[1]; return seg.slice(0, m.index).replace(/\s+$/, ''); }
+      }
+      return seg;
+    });
+
     // segs[] are the sentence-1 segments; a gap is offered AFTER each segment.
-    q.segs.forEach((seg, i) => {
+    segs.forEach((seg, i) => {
       const segSpan = document.createElement('span');
       segSpan.className = 'place-seg';
       segSpan.textContent = seg;
@@ -920,6 +947,14 @@
       });
       placeLine.appendChild(gap);
     });
+
+    // Re-attach the full stop after the final gap.
+    if (trailingPunct) {
+      const punctSpan = document.createElement('span');
+      punctSpan.className = 'place-seg place-punct';
+      punctSpan.textContent = trailingPunct;
+      placeLine.appendChild(punctSpan);
+    }
   }
 
   // Show the Check button once all three steps are answered (before checking).

@@ -1239,9 +1239,24 @@ body {
   background: var(--primary);
   color: #fff;
   font-weight: 700;
+  font-family: inherit;
+  font-size: 1rem;
   padding: 6px 12px;
+  border: none;
   border-radius: var(--radius-xs);
   box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s ease;
+}
+.assembled-tok:hover {
+  background: var(--danger, #ef4444);
+  transform: translateY(-2px);
+}
+.assembled-tok:hover::after {
+  content: '\00d7';
+  margin-left: 6px;
+  font-weight: 800;
 }
 .clause-tiles {
   display: flex;
