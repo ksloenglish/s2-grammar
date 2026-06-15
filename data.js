@@ -23,7 +23,7 @@ const GRAMMAR_DATA = {
       //                     The repeated word/phrase is added as a distractor that must NOT be used.
       //   Step 3 (place):   tap the gap in sentence 1 where the clause belongs.
       // No repeats within an exercise; the app draws unique questions at random.
-      instructions: "Combine the two sentences into one using a relative clause. Choose the relative pronoun, build the clause, then place it correctly.",
+      instructions: "Combine the following sentences into one sentence by turning the second sentence into a relative clause.",
       pronouns: ["who", "which", "whose", "when", "where"],
       questions: [
         {"s1":"I like Ms Lo.","s2":"Her designs are casual but stylish.","pronoun":"whose","clause":["designs","are","casual","but","stylish"],"distractor":"Her","segs":["I","like Ms Lo."],"correctGap":1,"combined":"I like Ms Lo, whose designs are casual but stylish."},
@@ -273,7 +273,7 @@ const GRAMMAR_DATA = {
       //   Step 3 (time):   pick the correct reported time expression (3 options;
       //                    more than one may be accepted). Omitted when no time word changes.
       // No repeats within an exercise; the app draws unique questions at random.
-      instructions: "Rewrite the sentence in reported speech. Choose the reporting frame, build the reported clause, then choose the time expression.",
+      instructions: "Rewrite the sentence in reported speech. Choose the reporting verb, build the reported clause, then choose the time expression.",
       questions: [
         {"prompt": "Tom said, ‘I am doing my homework now.’", "frameCorrect": "Tom said", "frameWrong": ["Tom said me", "Tom told"], "clauseCorrect": ["he", ["was doing", "had been doing"], "his", "homework"], "clauseWrong": ["I", "is doing"], "timeCorrect": ["then", "at that moment"], "timeWrong": ["now", "today"], "type": "statement", "combined": "Tom said that he [was doing / had been doing] his homework [then / at that moment]."},
         {"prompt": "Susan said, ‘We may visit our grandparents tomorrow.’", "frameCorrect": "Susan said", "frameWrong": ["Susan said us", "Susan told"], "clauseCorrect": ["they", "might visit", "their", "grandparents"], "clauseWrong": ["we", "may visit"], "timeCorrect": ["the next day", "the following day"], "timeWrong": ["tomorrow", "yesterday"], "type": "statement", "combined": "Susan said that they might visit their grandparents the [next / following] day."},
