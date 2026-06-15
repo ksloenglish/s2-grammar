@@ -172,8 +172,8 @@ body {
   animation: float 8s ease-in-out infinite;
 }
 
-.p1 { width: 120px; height: 120px; background: var(--primary); top: 5%; left: -30px; animation-delay: 0s; }
-.p2 { width: 80px; height: 80px; background: var(--accent); top: 30%; right: -20px; animation-delay: 2s; }
+.p1 { width: 120px; height: 120px; background: var(--primary); top: 8%; left: 2%; animation-delay: 0s; }
+.p2 { width: 80px; height: 80px; background: var(--accent); top: 30%; right: 2%; animation-delay: 2s; }
 .p3 { width: 60px; height: 60px; background: var(--secondary); bottom: 20%; left: 10%; animation-delay: 4s; }
 .p4 { width: 100px; height: 100px; background: var(--success); bottom: 5%; right: 5%; animation-delay: 1s; }
 .p5 { width: 40px; height: 40px; background: var(--primary); top: 50%; left: 50%; animation-delay: 3s; }
