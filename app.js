@@ -61,6 +61,27 @@
   const btnBuilderNext = $('btn-builder-next');
   const builderScore = $('builder-score');
   const builderQuit = $('builder-quit');
+  const builderFull = $('builder-full');
+
+  // Reported Speech builder
+  const screenBuilderRS = $('screen-builder-rs');
+  const rsProgress = $('rs-progress');
+  const rsTimer = $('rs-timer');
+  const rsProgressFill = $('rs-progress-fill');
+  const rsQuote = $('rs-quote');
+  const rsSpeakerNum = $('rs-speaker-num');
+  const rsFrameChips = $('rs-frame-chips');
+  const rsClauseAssembled = $('rs-clause-assembled');
+  const rsClauseTiles = $('rs-clause-tiles');
+  const rsClauseClear = $('rs-clause-clear');
+  const rsTimeChips = $('rs-time-chips');
+  const rsStep3 = $('rsstep-3');
+  const rsInstr = $('rs-instr');
+  const btnRSCheck = $('btn-rs-check');
+  const btnRSNext = $('btn-rs-next');
+  const rsScore = $('rs-score');
+  const rsQuit = $('rs-quit');
+  const rsFull = $('rs-full');
 
   // Results
   const resScore = $('res-score');
@@ -100,6 +121,16 @@
   let bPlace = null;                // chosen gap index for current question
   let bScore = 0;                   // cumulative marks across the builder exercise
   let bChecked = false;             // whether the current question has been checked (locked)
+
+  // Reported Speech builder state
+  let rsTopic = null;               // the reported-speech topic data
+  let rsResults = [];               // per-question results for the summary
+  let rsFrame = null;               // chosen reporting frame for current question
+  let rsClause = [];                // chosen clause tokens (in order): {tok, id}
+  let rsTime = null;                // chosen time expression for current question
+  let rsScoreVal = 0;               // cumulative marks across the RS exercise
+  let rsChecked = false;            // whether the current RS question is checked (locked)
+  let rsHasTime = false;            // whether current question uses Step 3
 
   // --- GREETINGS ---
   const GREETINGS = [
@@ -237,7 +268,7 @@
 
     // Check topic type — show/hide question count
     const topicData = GRAMMAR_DATA[selectedTerm][key];
-    if (topicData.type === 'mc' || topicData.type === 'builder') {
+    if (topicData.type === 'mc' || topicData.type === 'builder' || topicData.type === 'builder-rs') {
       // Builder & MC both let students choose how many questions.
       // Builder draws UNIQUE questions, so cap options at the pool size.
       showQCountSection(topicData);
@@ -264,7 +295,7 @@
     let counts = [10, 20, 30, 40, 50];
     // For builder (no repeats), don't offer more than the available pool,
     // but do NOT add the exact pool size as an option.
-    if (topicData && topicData.type === 'builder') {
+    if (topicData && (topicData.type === 'builder' || topicData.type === 'builder-rs')) {
       const max = (topicData.questions || []).length;
       counts = counts.filter(n => n <= max);
     }
@@ -294,7 +325,7 @@
     } else if (selectedTopic && selectedCount) {
       btnStart.disabled = false;
       btnStartText.textContent = 'Start Challenge →';
-    } else if (selectedTopic && topicData && (topicData.type === 'mc' || topicData.type === 'builder') && !selectedCount) {
+    } else if (selectedTopic && topicData && (topicData.type === 'mc' || topicData.type === 'builder' || topicData.type === 'builder-rs') && !selectedCount) {
       btnStart.disabled = true;
       btnStartText.textContent = 'Choose Number of Questions';
     } else {
@@ -315,6 +346,11 @@
 
     if (topicData.type === 'builder') {
       startBuilderExercise(topicData);
+      return;
+    }
+
+    if (topicData.type === 'builder-rs') {
+      startRSExercise(topicData);
       return;
     }
 
@@ -481,6 +517,7 @@
       hudTimer.textContent = t;
       passageTimer.textContent = t;
       builderTimer.textContent = t;
+      rsTimer.textContent = t;
     }, 50);
   }
 
@@ -497,12 +534,13 @@
 
   // --- SCREEN NAVIGATION ---
   function showScreen(name) {
-    [screenHome, screenExercise, screenPassage, screenBuilder, screenResults].forEach(s => s.classList.remove('active'));
+    [screenHome, screenExercise, screenPassage, screenBuilder, screenBuilderRS, screenResults].forEach(s => s.classList.remove('active'));
     const map = {
       home: screenHome,
       exercise: screenExercise,
       passage: screenPassage,
       builder: screenBuilder,
+      'builder-rs': screenBuilderRS,
       results: screenResults
     };
     (map[name] || screenHome).classList.add('active');
@@ -811,6 +849,8 @@
     bChecked = false;
     closeAllPopovers();
     clauseAssembled.classList.remove('fb-ok', 'fb-no');
+    builderFull.classList.add('hidden');
+    builderFull.innerHTML = '';
     btnBuilderNext.classList.add('hidden');
     btnBuilderCheck.classList.add('hidden');
 
@@ -1012,6 +1052,10 @@
 
     revealBuilderFeedback(q, pronounMark, clauseMark, placeMark);
 
+    // Full correct sentence, shown immediately after checking.
+    builderFull.innerHTML = `<span class="full-answer-lbl">Full sentence:</span> ${highlightCombined(q)}`;
+    builderFull.classList.remove('hidden');
+
     btnBuilderCheck.classList.add('hidden');
     clauseClear.classList.add('hidden');
     btnBuilderNext.classList.remove('hidden');
@@ -1211,6 +1255,387 @@
     showScreen('home');
   }
 
+  // ============================================================
+  // REPORTED SPEECH BUILDER — 3-step builder
+  //   Step 1 (frame):  choose the reporting frame (3 options, 1 correct).
+  //   Step 2 (clause): tap tiles to build the reported clause.
+  //                    `clauseCorrect` items are strings (fixed tiles) OR arrays
+  //                    of acceptable alternatives (e.g. ["saw","had seen"]); the
+  //                    leading `that` tile is optional. Wrong distractors come
+  //                    from `clauseWrong`.
+  //   Step 3 (time):   choose the time expression (omitted when no time word).
+  // Up to 3 marks per question (2 when no Step 3). Immediate per-step feedback.
+  // ============================================================
+  function startRSExercise(topicData) {
+    rsTopic = topicData;
+    const n = Math.min(selectedCount, topicData.questions.length);
+    currentQuestions = [...topicData.questions].sort(() => Math.random() - 0.5).slice(0, n);
+    currentIndex = 0;
+    elapsed = 0;
+    rsScoreVal = 0;
+    rsResults = [];
+    rsScore.textContent = '0';
+    showScreen('builder-rs');
+    startTimer();
+    renderRSQuestion();
+  }
+
+  // The optional leading connector that may appear in a statement report.
+  const RS_OPTIONAL = 'that';
+
+  // Expected clause as a list of accepted-token arrays (each slot = list of
+  // acceptable strings). Strings become single-element arrays.
+  function rsExpectedSlots(q) {
+    return q.clauseCorrect.map(item => Array.isArray(item) ? item : [item]);
+  }
+
+  // All distinct tiles to display in the bank: every accepted token (incl.
+  // alternatives), every wrong distractor, plus the optional `that` for
+  // statement-type questions.
+  function rsTileList(q) {
+    const tiles = [];
+    rsExpectedSlots(q).forEach(slot => slot.forEach(t => tiles.push(t)));
+    (q.clauseWrong || []).forEach(t => tiles.push(t));
+    if (q.type === 'statement') tiles.push(RS_OPTIONAL);
+    return tiles;
+  }
+
+  function renderRSQuestion() {
+    const q = currentQuestions[currentIndex];
+    rsFrame = null;
+    rsClause = [];
+    rsTime = null;
+    rsChecked = false;
+    rsHasTime = (q.timeCorrect && q.timeCorrect.length > 0);
+    closeAllPopovers();
+    rsClauseAssembled.classList.remove('fb-ok', 'fb-no');
+    rsFull.classList.add('hidden');
+    rsFull.innerHTML = '';
+    btnRSNext.classList.add('hidden');
+    btnRSCheck.classList.add('hidden');
+
+    rsInstr.textContent = rsTopic.instructions || '';
+    rsProgress.textContent = `${currentIndex + 1} / ${currentQuestions.length}`;
+    rsProgressFill.style.width = `${(currentIndex / currentQuestions.length) * 100}%`;
+
+    // Direct-speech prompt: the exact original sentence
+    rsQuote.textContent = q.prompt || q.s1;
+
+    // Step 1: frame chips (correct + wrong), shuffled.
+    const frames = [q.frameCorrect, ...(q.frameWrong || [])].sort(() => Math.random() - 0.5);
+    rsFrameChips.innerHTML = '';
+    frames.forEach(f => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'pronoun-chip rs-frame-chip';
+      chip.textContent = f;
+      chip.dataset.f = f;
+      chip.addEventListener('click', () => {
+        if (rsChecked) return;
+        rsFrame = f;
+        rsFrameChips.querySelectorAll('.pronoun-chip').forEach(c => c.classList.remove('selected'));
+        chip.classList.add('selected');
+        updateRSNext();
+      });
+      rsFrameChips.appendChild(chip);
+    });
+
+    // Step 2: clause tiles, shuffled.
+    const tilePool = rsTileList(q).sort(() => Math.random() - 0.5);
+    renderRSAssembled();
+    rsClauseTiles.innerHTML = '';
+    tilePool.forEach((tok, i) => {
+      const tile = document.createElement('button');
+      tile.type = 'button';
+      tile.className = 'word-tile';
+      tile.textContent = displayTile(tok);
+      tile.dataset.tok = tok;
+      tile.dataset.tileid = i;
+      tile.addEventListener('click', () => rsToggleTile(tile, tok, i));
+      rsClauseTiles.appendChild(tile);
+    });
+    rsClauseClear.classList.remove('hidden');
+
+    // Step 3: time chips, or hide the step entirely.
+    if (rsHasTime) {
+      rsStep3.style.display = '';
+      const times = [...q.timeCorrect, ...(q.timeWrong || [])].sort(() => Math.random() - 0.5);
+      rsTimeChips.innerHTML = '';
+      times.forEach(t => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'pronoun-chip rs-time-chip';
+        chip.textContent = t;
+        chip.dataset.t = t;
+        chip.addEventListener('click', () => {
+          if (rsChecked) return;
+          rsTime = t;
+          rsTimeChips.querySelectorAll('.pronoun-chip').forEach(c => c.classList.remove('selected'));
+          chip.classList.add('selected');
+          updateRSNext();
+        });
+        rsTimeChips.appendChild(chip);
+      });
+    } else {
+      rsStep3.style.display = 'none';
+      rsTimeChips.innerHTML = '';
+    }
+  }
+
+  function rsToggleTile(tile, tok, id) {
+    if (rsChecked) return;
+    if (tile.classList.contains('used')) return;
+    rsClause.push({ tok, id });
+    tile.classList.add('used');
+    renderRSAssembled();
+    updateRSNext();
+  }
+
+  function renderRSAssembled() {
+    if (!rsChecked) rsClauseAssembled.classList.remove('fb-ok', 'fb-no');
+    if (rsClause.length === 0) {
+      rsClauseAssembled.innerHTML = '<span class="clause-placeholder">Tap the words below in order (tap a chosen word to remove it)\u2026</span>';
+      rsClauseAssembled.dataset.empty = 'true';
+      return;
+    }
+    rsClauseAssembled.dataset.empty = 'false';
+    rsClauseAssembled.innerHTML = rsClause.map(x =>
+      `<button type="button" class="assembled-tok" data-id="${x.id}" title="Tap to remove">${escapeHtml(displayTile(x.tok))}</button>`
+    ).join(' ');
+    if (!rsChecked) {
+      rsClauseAssembled.querySelectorAll('.assembled-tok').forEach(btn => {
+        btn.addEventListener('click', () => rsRemoveTok(Number(btn.dataset.id)));
+      });
+    }
+  }
+
+  function rsRemoveTok(id) {
+    if (rsChecked) return;
+    rsClause = rsClause.filter(x => x.id !== id);
+    const tile = rsClauseTiles.querySelector(`.word-tile[data-tileid="${id}"]`);
+    if (tile) tile.classList.remove('used');
+    renderRSAssembled();
+    updateRSNext();
+  }
+
+  function rsClearClause() {
+    if (rsChecked) return;
+    rsClause = [];
+    rsClauseTiles.querySelectorAll('.word-tile.used').forEach(t => t.classList.remove('used'));
+    renderRSAssembled();
+    updateRSNext();
+  }
+
+  // Check the chosen clause against the expected slots. The leading `that` is
+  // optional: if present as the first chosen token, it is skipped before
+  // matching the remaining tokens to the expected slots (each slot accepts any
+  // one of its alternatives). Case-insensitive.
+  function rsClauseCorrect(q) {
+    let toks = rsClause.map(x => x.tok);
+    if (toks.length && toks[0].trim().toLowerCase() === RS_OPTIONAL) {
+      toks = toks.slice(1);
+    }
+    const slots = rsExpectedSlots(q);
+    if (toks.length !== slots.length) return false;
+    for (let i = 0; i < slots.length; i++) {
+      const ok = slots[i].some(opt => opt.trim().toLowerCase() === toks[i].trim().toLowerCase());
+      if (!ok) return false;
+    }
+    return true;
+  }
+
+  function updateRSNext() {
+    if (rsChecked) return;
+    const ready = rsFrame !== null && rsClause.length > 0 && (!rsHasTime || rsTime !== null);
+    btnRSCheck.classList.toggle('hidden', !ready);
+  }
+
+  function rsCheck() {
+    if (rsChecked) return;
+    const q = currentQuestions[currentIndex];
+    const frameMark = (rsFrame === q.frameCorrect) ? 1 : 0;
+    const clauseMark = rsClauseCorrect(q) ? 1 : 0;
+    const timeMark = rsHasTime
+      ? ((q.timeCorrect || []).some(t => t.trim().toLowerCase() === (rsTime || '').trim().toLowerCase()) ? 1 : 0)
+      : null;
+    const total = frameMark + clauseMark + (timeMark === null ? 0 : timeMark);
+
+    rsChecked = true;
+    rsScoreVal += total;
+    rsScore.textContent = String(rsScoreVal);
+    rsScoreBadgePulse();
+
+    rsResults.push({
+      q,
+      chosenFrame: rsFrame,
+      chosenClause: rsClause.map(x => x.tok),
+      chosenTime: rsTime,
+      frameMark, clauseMark, timeMark,
+      hasTime: rsHasTime,
+      total,
+      maxMarks: rsHasTime ? 3 : 2
+    });
+
+    revealRSFeedback(q, frameMark, clauseMark, timeMark);
+
+    // Full correct sentence, shown immediately after checking.
+    rsFull.innerHTML = `<span class="full-answer-lbl">Full sentence:</span> ${rsHighlightCombined(q)}`;
+    rsFull.classList.remove('hidden');
+
+    btnRSCheck.classList.add('hidden');
+    rsClauseClear.classList.add('hidden');
+    btnRSNext.classList.remove('hidden');
+    btnRSNext.textContent = currentIndex === currentQuestions.length - 1 ? 'Finish' : 'Next Question \u2192';
+    rsProgressFill.style.width = `${((currentIndex + 1) / currentQuestions.length) * 100}%`;
+  }
+
+  function revealRSFeedback(q, frameMark, clauseMark, timeMark) {
+    // Step 1: frame chips — tick the correct one, red the wrong chosen one.
+    rsFrameChips.querySelectorAll('.pronoun-chip').forEach(c => {
+      const val = c.dataset.f;
+      c.classList.add('locked');
+      if (val === q.frameCorrect) {
+        c.classList.add('correct');
+        c.innerHTML = `${escapeHtml(val)} <span class="chip-tick">\u2713</span>`;
+      } else if (c.classList.contains('selected')) {
+        c.classList.add('wrong');
+      }
+    });
+
+    // Step 2: clause — mark whole step; show an accepted version when wrong.
+    rsClauseAssembled.classList.add(clauseMark ? 'fb-ok' : 'fb-no');
+    if (clauseMark) {
+      rsClauseAssembled.innerHTML += ` <span class="clause-tick">\u2713</span>`;
+    } else {
+      rsClauseAssembled.innerHTML += ` <span class="fb-correct">\u2192 ${escapeHtml(rsAcceptedClauseStr(q))}</span>`;
+    }
+    rsClauseTiles.querySelectorAll('.word-tile').forEach(t => t.classList.add('locked'));
+
+    // Step 3: time chips — tick the accepted one(s), red the wrong chosen one.
+    if (rsHasTime) {
+      rsTimeChips.querySelectorAll('.pronoun-chip').forEach(c => {
+        const val = c.dataset.t;
+        c.classList.add('locked');
+        const accepted = (q.timeCorrect || []).some(t => t.trim().toLowerCase() === val.trim().toLowerCase());
+        if (accepted) {
+          c.classList.add('correct');
+          c.innerHTML = `${escapeHtml(val)} <span class="chip-tick">\u2713</span>`;
+        } else if (c.classList.contains('selected')) {
+          c.classList.add('wrong');
+        }
+      });
+    }
+  }
+
+  // A single accepted clause string (uses the first alternative of each slot),
+  // including the optional `that` for statement reports.
+  function rsAcceptedClauseStr(q) {
+    const parts = rsExpectedSlots(q).map(slot => slot[0]);
+    const lead = q.type === 'statement' ? (RS_OPTIONAL + ' ') : '';
+    return (lead + parts.map(displayTile).join(' '));
+  }
+
+  function rsScoreBadgePulse() {
+    const badge = document.getElementById('rs-score-badge');
+    if (!badge) return;
+    badge.classList.remove('pulse');
+    void badge.offsetWidth;
+    badge.classList.add('pulse');
+  }
+
+  function rsNext() {
+    currentIndex++;
+    if (currentIndex >= currentQuestions.length) {
+      endRSExercise();
+    } else {
+      renderRSQuestion();
+    }
+  }
+
+  function endRSExercise() {
+    stopTimer();
+    const maxMarks = rsResults.reduce((s, r) => s + r.maxMarks, 0);
+    const gained = rsResults.reduce((s, r) => s + r.total, 0);
+    const pct = maxMarks ? Math.round((gained / maxMarks) * 100) : 0;
+    const scoreStr = `${gained}/${maxMarks} (${pct}%)`;
+    const timeStr = formatTime(elapsed);
+
+    resScoreLbl.textContent = 'Your Marks';
+    resStatStreak.style.display = 'none';
+    reviewHeading.innerHTML = '\u{1F4CB} Answer Key';
+
+    resScore.textContent = scoreStr;
+    resRemark.textContent = getRemark(pct);
+    resTime.textContent = timeStr;
+
+    reviewList.innerHTML = buildRSReview();
+    bindExplainIcons();
+
+    saveStats(scoreStr, timeStr);
+    showScreen('results');
+  }
+
+  function buildRSReview() {
+    return rsResults.map((r, i) => {
+      const q = r.q;
+      const studentSentence = rsComposeStudentSentence(q, r);
+      const stepBadge = (label, mark) =>
+        `<span class="bm ${mark ? 'bm-ok' : 'bm-no'}">${mark ? '\u2713' : '\u2717'} ${label}</span>`;
+      const badges = [
+        stepBadge('Frame', r.frameMark),
+        stepBadge('Clause', r.clauseMark)
+      ];
+      if (r.hasTime) badges.push(stepBadge('Time', r.timeMark));
+      return `
+        <div class="review-item builder-review">
+          <div class="br-head">
+            <span class="br-num">${i + 1}</span>
+            <span class="br-marks">${r.total}/${r.maxMarks}</span>
+          </div>
+          <div class="br-source">
+            <span class="br-s">${escapeHtml(q.prompt || q.s1)}</span>
+          </div>
+          <div class="br-badges">
+            ${badges.join('')}
+          </div>
+          ${r.total < r.maxMarks ? `<div class="br-yours"><span class="br-lbl">Your answer:</span> ${escapeHtml(studentSentence)}</div>` : ''}
+          <div class="br-correct"><span class="br-lbl">Correct:</span> ${rsHighlightCombined(q)}</div>
+        </div>`;
+    }).join('');
+  }
+
+  // The sentence the student actually built (frame + chosen clause + chosen time).
+  function rsComposeStudentSentence(q, r) {
+    const clause = (r.chosenClause || []).join(' ');
+    let s = `${r.chosenFrame || '?'} ${clause}`;
+    if (r.hasTime) s += ` ${r.chosenTime || '?'}`;
+    return s.replace(/\s+([.,])/g, '$1') + '.';
+  }
+
+  // Render q.combined with the reported clause (everything after the frame)
+  // emphasised. The frame is q.frameCorrect; we highlight the remainder.
+  function rsHighlightCombined(q) {
+    const combined = q.combined;
+    const frame = q.frameCorrect;
+    const idx = combined.toLowerCase().indexOf(frame.toLowerCase());
+    if (idx === -1) return escapeHtml(combined);
+    const frameEnd = idx + frame.length;
+    let hlStart = frameEnd;
+    while (hlStart < combined.length && combined[hlStart] === ' ') hlStart++;
+    let hlEnd = combined.length;
+    if (/[.!?]/.test(combined[hlEnd - 1])) hlEnd -= 1;
+    return wrapSpans(combined, [{ start: hlStart, end: hlEnd }]);
+  }
+
+  function quitRSToHome() {
+    stopTimer();
+    rsResults = [];
+    rsTopic = null;
+    rsScoreVal = 0;
+    rsScore.textContent = '0';
+    showScreen('home');
+  }
+
   // --- EVENTS ---
   function bindEvents() {
     themeBtn.addEventListener('click', toggleTheme);
@@ -1224,6 +1649,10 @@
     btnBuilderNext.addEventListener('click', builderNext);
     builderQuit.addEventListener('click', quitBuilderToHome);
     clauseClear.addEventListener('click', clearClause);
+    btnRSCheck.addEventListener('click', rsCheck);
+    btnRSNext.addEventListener('click', rsNext);
+    rsQuit.addEventListener('click', quitRSToHome);
+    rsClauseClear.addEventListener('click', rsClearClause);
     // Close explanation popovers when clicking elsewhere
     document.addEventListener('click', e => {
       if (!e.target.closest('.rev-info') && !e.target.closest('.rev-popover')) {

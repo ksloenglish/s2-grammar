@@ -1,0 +1,806 @@
+[
+  {
+    "s1": "Sophie said",
+    "s2": "We are designing our costumes now.",
+    "frameCorrect": "Sophie said",
+    "frameWrong": [
+      "Sophie said me",
+      "Sophie told"
+    ],
+    "clauseCorrect": [
+      "they",
+      [
+        "were designing",
+        "had been designing"
+      ],
+      "their",
+      "costumes"
+    ],
+    "clauseWrong": [
+      "we",
+      "are designing"
+    ],
+    "timeCorrect": [
+      "then",
+      "at that moment"
+    ],
+    "timeWrong": [
+      "now",
+      "today"
+    ],
+    "type": "statement",
+    "combined": "Sophie said that they [were designing / had been designing] their costumes [then / at that moment]."
+  },
+  {
+    "s1": "Mr Lee reminded the class",
+    "s2": "Submit your reflection forms by next Friday.",
+    "frameCorrect": "Mr Lee reminded the class",
+    "frameWrong": [
+      "Mr Lee reminded",
+      "Mr Lee said the class"
+    ],
+    "clauseCorrect": [
+      "to submit",
+      "their",
+      "reflection forms by"
+    ],
+    "clauseWrong": [
+      "submit",
+      "your"
+    ],
+    "timeCorrect": [
+      "the next Friday",
+      "the following Friday"
+    ],
+    "timeWrong": [
+      "next Friday",
+      "last Friday"
+    ],
+    "type": "command",
+    "combined": "Mr Lee reminded the class to submit their reflection forms by the [next / following] Friday."
+  },
+  {
+    "s1": "Lucas said to Emma",
+    "s2": "I found your USB drive in the library yesterday.",
+    "frameCorrect": "Lucas said to Emma",
+    "frameWrong": [
+      "Lucas said",
+      "Lucas said Emma"
+    ],
+    "clauseCorrect": [
+      "he",
+      [
+        "found",
+        "had found"
+      ],
+      "her",
+      "USB drive in the library"
+    ],
+    "clauseWrong": [
+      "I",
+      "find"
+    ],
+    "timeCorrect": [
+      "the day before",
+      "the previous day"
+    ],
+    "timeWrong": [
+      "yesterday",
+      "tomorrow"
+    ],
+    "type": "statement",
+    "combined": "Lucas said to Emma that he [found / had found] her USB drive in the library the [day before / previous day]."
+  },
+  {
+    "s1": "Leo told his sister",
+    "s2": "Meet me outside the hall at five o\u2019clock.",
+    "frameCorrect": "Leo told his sister",
+    "frameWrong": [
+      "Leo told",
+      "Leo said his sister"
+    ],
+    "clauseCorrect": [
+      "to meet",
+      "him",
+      "outside the hall at five o\u2019clock"
+    ],
+    "clauseWrong": [
+      "meet",
+      "me"
+    ],
+    "timeCorrect": [],
+    "timeWrong": [],
+    "type": "command",
+    "combined": "Leo told his sister to meet him outside the hall at five o\u2019clock."
+  },
+  {
+    "s1": "Chloe said",
+    "s2": "My team will set up the booth next week.",
+    "frameCorrect": "Chloe said",
+    "frameWrong": [
+      "Chloe said me",
+      "Chloe told"
+    ],
+    "clauseCorrect": [
+      "her",
+      "team",
+      "would set up",
+      "the booth"
+    ],
+    "clauseWrong": [
+      "my",
+      "will set up"
+    ],
+    "timeCorrect": [
+      "the next week",
+      "the following week"
+    ],
+    "timeWrong": [
+      "next week",
+      "last week"
+    ],
+    "type": "statement",
+    "combined": "Chloe said that her team would set up the booth the [next / following] week."
+  },
+  {
+    "s1": "said the singers",
+    "s2": "These microphones are too loud for us.",
+    "frameCorrect": "The singers said",
+    "frameWrong": [
+      "The singers said me",
+      "The singers told"
+    ],
+    "clauseCorrect": [
+      "those",
+      "microphones",
+      [
+        "were",
+        "had been"
+      ],
+      "too loud for",
+      "them"
+    ],
+    "clauseWrong": [
+      "these",
+      "are"
+    ],
+    "timeCorrect": [],
+    "timeWrong": [],
+    "type": "statement",
+    "combined": "The singers said that those microphones [were / had been] too loud for them."
+  },
+  {
+    "s1": "Harry told me",
+    "s2": "I may join the debate club tomorrow.",
+    "frameCorrect": "Harry told me",
+    "frameWrong": [
+      "Harry said me",
+      "Harry told"
+    ],
+    "clauseCorrect": [
+      "he",
+      "might join",
+      "the debate club"
+    ],
+    "clauseWrong": [
+      "I",
+      "may join"
+    ],
+    "timeCorrect": [
+      "the next day",
+      "the following day"
+    ],
+    "timeWrong": [
+      "tomorrow",
+      "yesterday"
+    ],
+    "type": "statement",
+    "combined": "Harry told me that he might join the debate club the [next / following] day."
+  },
+  {
+    "s1": "the teacher asked the prefect",
+    "s2": "Please check the projector before the presentation.",
+    "frameCorrect": "The teacher asked the prefect",
+    "frameWrong": [
+      "The teacher asked",
+      "The teacher said the prefect"
+    ],
+    "clauseCorrect": [
+      "to check",
+      "the projector before the presentation"
+    ],
+    "clauseWrong": [
+      "check",
+      "checking"
+    ],
+    "timeCorrect": [],
+    "timeWrong": [],
+    "type": "command",
+    "combined": "The teacher asked the prefect to check the projector before the presentation."
+  },
+  {
+    "s1": "Mia said",
+    "s2": "I am not going to read this article.",
+    "frameCorrect": "Mia said",
+    "frameWrong": [
+      "Mia said me",
+      "Mia told"
+    ],
+    "clauseCorrect": [
+      "she",
+      [
+        "was not going",
+        "had not been going"
+      ],
+      "to read",
+      "that",
+      "article"
+    ],
+    "clauseWrong": [
+      "I",
+      "am not going"
+    ],
+    "timeCorrect": [],
+    "timeWrong": [],
+    "type": "statement",
+    "combined": "Mia said that she [was not going / had not been going] to read that article."
+  },
+  {
+    "s1": "Mum said",
+    "s2": "You should finish your drawing before the class tomorrow.",
+    "frameCorrect": "Mum said",
+    "frameWrong": [
+      "Mum said me",
+      "Mum told"
+    ],
+    "clauseCorrect": [
+      "I",
+      "should finish",
+      "my",
+      "drawing before the class"
+    ],
+    "clauseWrong": [
+      "you",
+      "shall finish"
+    ],
+    "timeCorrect": [
+      "the next day",
+      "the following day"
+    ],
+    "timeWrong": [
+      "tomorrow",
+      "yesterday"
+    ],
+    "type": "statement",
+    "combined": "Mum said that I should finish my drawing before the class the [next / following] day."
+  },
+  {
+    "s1": "Zoe said",
+    "s2": "Our group is editing the video now.",
+    "frameCorrect": "Zoe said",
+    "frameWrong": [
+      "Zoe said me",
+      "Zoe told"
+    ],
+    "clauseCorrect": [
+      "their",
+      "group",
+      [
+        "was editing",
+        "had been editing"
+      ],
+      "the video"
+    ],
+    "clauseWrong": [
+      "our",
+      "is editing"
+    ],
+    "timeCorrect": [
+      "then",
+      "at that moment"
+    ],
+    "timeWrong": [
+      "now",
+      "today"
+    ],
+    "type": "statement",
+    "combined": "Zoe said that their group [was editing / had been editing] the video [then / at that moment]."
+  },
+  {
+    "s1": "Leo asked Emma",
+    "s2": "Please send me the link tonight.",
+    "frameCorrect": "Leo asked Emma",
+    "frameWrong": [
+      "Leo asked",
+      "Leo said Emma"
+    ],
+    "clauseCorrect": [
+      "to send",
+      "him",
+      "the link"
+    ],
+    "clauseWrong": [
+      "send",
+      "me"
+    ],
+    "timeCorrect": [
+      "that night"
+    ],
+    "timeWrong": [
+      "tonight",
+      "last night"
+    ],
+    "type": "command",
+    "combined": "Leo asked Emma to send him the link that night."
+  },
+  {
+    "s1": "The teacher reminded the students",
+    "s2": "Charge your tablets before the test tomorrow.",
+    "frameCorrect": "The teacher reminded the students",
+    "frameWrong": [
+      "The teacher reminded",
+      "The teacher said the students"
+    ],
+    "clauseCorrect": [
+      "to charge",
+      "their",
+      "tablets before the test"
+    ],
+    "clauseWrong": [
+      "charge",
+      "your"
+    ],
+    "timeCorrect": [
+      "the next day",
+      "the following day"
+    ],
+    "timeWrong": [
+      "tomorrow",
+      "yesterday"
+    ],
+    "type": "command",
+    "combined": "The teacher reminded the students to charge their tablets before the test the [next / following] day."
+  },
+  {
+    "s1": "Chloe told me",
+    "s2": "I will print the notes next week.",
+    "frameCorrect": "Chloe told me",
+    "frameWrong": [
+      "Chloe said me",
+      "Chloe told"
+    ],
+    "clauseCorrect": [
+      "she",
+      "would print",
+      "the notes"
+    ],
+    "clauseWrong": [
+      "I",
+      "will print"
+    ],
+    "timeCorrect": [
+      "the next week",
+      "the following week"
+    ],
+    "timeWrong": [
+      "next week",
+      "last week"
+    ],
+    "type": "statement",
+    "combined": "Chloe told me that she would print the notes the [next / following] week."
+  },
+  {
+    "s1": "warned the librarian",
+    "s2": "Do not leave your bags on the floor, students!",
+    "frameCorrect": "The librarian warned the students",
+    "frameWrong": [
+      "The librarian warned",
+      "The librarian said the students"
+    ],
+    "clauseCorrect": [
+      "not to leave",
+      "their",
+      "bags on the floor"
+    ],
+    "clauseWrong": [
+      "do not leave",
+      "your"
+    ],
+    "timeCorrect": [],
+    "timeWrong": [],
+    "type": "command",
+    "combined": "The librarian warned the students not to leave their bags on the floor."
+  },
+  {
+    "s1": "Max said",
+    "s2": "I have already finished my meal.",
+    "frameCorrect": "Max said",
+    "frameWrong": [
+      "Max said me",
+      "Max told"
+    ],
+    "clauseCorrect": [
+      "he",
+      "had already finished",
+      "his",
+      "meal"
+    ],
+    "clauseWrong": [
+      "I",
+      "have already finished"
+    ],
+    "timeCorrect": [],
+    "timeWrong": [],
+    "type": "statement",
+    "combined": "Max said that he had already finished his meal."
+  },
+  {
+    "s1": "Ella said to Ryan",
+    "s2": "I watched your performance yesterday.",
+    "frameCorrect": "Ella said to Ryan",
+    "frameWrong": [
+      "Ella said",
+      "Ella said Ryan"
+    ],
+    "clauseCorrect": [
+      "she",
+      [
+        "watched",
+        "had watched"
+      ],
+      "his",
+      "performance"
+    ],
+    "clauseWrong": [
+      "I",
+      "watch"
+    ],
+    "timeCorrect": [
+      "the day before",
+      "the previous day"
+    ],
+    "timeWrong": [
+      "yesterday",
+      "tomorrow"
+    ],
+    "type": "statement",
+    "combined": "Ella said to Ryan that she [watched / had watched] his performance the [day before / previous day]."
+  },
+  {
+    "s1": "the teacher told the class",
+    "s2": "Read the next chapter after this lesson.",
+    "frameCorrect": "The teacher told the class",
+    "frameWrong": [
+      "The teacher told",
+      "The teacher said the class"
+    ],
+    "clauseCorrect": [
+      "to read",
+      "the next chapter after",
+      "that",
+      "lesson"
+    ],
+    "clauseWrong": [
+      "read",
+      "this"
+    ],
+    "timeCorrect": [],
+    "timeWrong": [],
+    "type": "command",
+    "combined": "The teacher told the class to read the next chapter after that lesson."
+  },
+  {
+    "s1": "Liam said",
+    "s2": "These chairs are too low for me.",
+    "frameCorrect": "Liam said",
+    "frameWrong": [
+      "Liam said me",
+      "Liam told"
+    ],
+    "clauseCorrect": [
+      "those",
+      "chairs",
+      [
+        "were",
+        "had been"
+      ],
+      "too low for",
+      "him"
+    ],
+    "clauseWrong": [
+      "these",
+      "are"
+    ],
+    "timeCorrect": [],
+    "timeWrong": [],
+    "type": "statement",
+    "combined": "Liam said that those chairs [were / had been] too low for him."
+  },
+  {
+    "s1": "Ruby told me",
+    "s2": "I may invite my friend to join tomorrow.",
+    "frameCorrect": "Ruby told me",
+    "frameWrong": [
+      "Ruby said me",
+      "Ruby told"
+    ],
+    "clauseCorrect": [
+      "she",
+      "might invite",
+      "her",
+      "friend to join"
+    ],
+    "clauseWrong": [
+      "I",
+      "may invite"
+    ],
+    "timeCorrect": [
+      "the next day",
+      "the following day"
+    ],
+    "timeWrong": [
+      "tomorrow",
+      "yesterday"
+    ],
+    "type": "statement",
+    "combined": "Ruby told me that she might invite her friend to join the [next / following] day."
+  },
+  {
+    "s1": "the coach warned the players",
+    "s2": "Don\u2019t leave your boots here.",
+    "frameCorrect": "The coach warned the players",
+    "frameWrong": [
+      "The coach warned",
+      "The coach said the players"
+    ],
+    "clauseCorrect": [
+      "not to leave",
+      "their",
+      "boots",
+      "there"
+    ],
+    "clauseWrong": [
+      "don\u2019t leave",
+      "here"
+    ],
+    "timeCorrect": [],
+    "timeWrong": [],
+    "type": "command",
+    "combined": "The coach warned the players not to leave their boots there."
+  },
+  {
+    "s1": "Noah said",
+    "s2": "I cannot join the meeting today.",
+    "frameCorrect": "Noah said",
+    "frameWrong": [
+      "Noah said me",
+      "Noah told"
+    ],
+    "clauseCorrect": [
+      "he",
+      "could not join",
+      "the meeting"
+    ],
+    "clauseWrong": [
+      "I",
+      "cannot join"
+    ],
+    "timeCorrect": [
+      "that day"
+    ],
+    "timeWrong": [
+      "today",
+      "yesterday"
+    ],
+    "type": "statement",
+    "combined": "Noah said that he could not join the meeting that day."
+  },
+  {
+    "s1": "Dad asked Lily",
+    "s2": "Please help your brother clean the table.",
+    "frameCorrect": "Dad asked Lily",
+    "frameWrong": [
+      "Dad asked",
+      "Dad said Lily"
+    ],
+    "clauseCorrect": [
+      "to help",
+      "her",
+      "brother clean the table"
+    ],
+    "clauseWrong": [
+      "help",
+      "your"
+    ],
+    "timeCorrect": [],
+    "timeWrong": [],
+    "type": "command",
+    "combined": "Dad asked Lily to help her brother clean the table."
+  },
+  {
+    "s1": "Grace said",
+    "s2": "I am not going to watch this film again.",
+    "frameCorrect": "Grace said",
+    "frameWrong": [
+      "Grace said me",
+      "Grace told"
+    ],
+    "clauseCorrect": [
+      "she",
+      [
+        "was not going",
+        "had not been going"
+      ],
+      "to watch",
+      "that",
+      "film again"
+    ],
+    "clauseWrong": [
+      "I",
+      "am not going"
+    ],
+    "timeCorrect": [],
+    "timeWrong": [],
+    "type": "statement",
+    "combined": "Grace said that she [was not going / had not been going] to watch that film again."
+  },
+  {
+    "s1": "Jake said",
+    "s2": "We should review our notes tomorrow.",
+    "frameCorrect": "Jake said",
+    "frameWrong": [
+      "Jake said me",
+      "Jake told"
+    ],
+    "clauseCorrect": [
+      "they",
+      "should review",
+      "their",
+      "notes"
+    ],
+    "clauseWrong": [
+      "we",
+      "shall review"
+    ],
+    "timeCorrect": [
+      "the next day",
+      "the following day"
+    ],
+    "timeWrong": [
+      "tomorrow",
+      "yesterday"
+    ],
+    "type": "statement",
+    "combined": "Jake said that they should review their notes the [next / following] day."
+  },
+  {
+    "s1": "Mia said",
+    "s2": "I will bake some cookies for the party next week.",
+    "frameCorrect": "Mia said",
+    "frameWrong": [
+      "Mia said me",
+      "Mia told"
+    ],
+    "clauseCorrect": [
+      "she",
+      "would bake",
+      "some cookies for the party"
+    ],
+    "clauseWrong": [
+      "I",
+      "will bake"
+    ],
+    "timeCorrect": [
+      "the next week",
+      "the following week"
+    ],
+    "timeWrong": [
+      "next week",
+      "last week"
+    ],
+    "type": "statement",
+    "combined": "Mia said that she would bake some cookies for the party the [next / following] week."
+  },
+  {
+    "s1": "Mr Chan asked the monitors",
+    "s2": "Please lock the door after school today.",
+    "frameCorrect": "Mr Chan asked the monitors",
+    "frameWrong": [
+      "Mr Chan asked",
+      "Mr Chan said the monitors"
+    ],
+    "clauseCorrect": [
+      "to lock",
+      "the door after school"
+    ],
+    "clauseWrong": [
+      "lock",
+      "locking"
+    ],
+    "timeCorrect": [
+      "that day"
+    ],
+    "timeWrong": [
+      "today",
+      "yesterday"
+    ],
+    "type": "command",
+    "combined": "Mr Chan asked the monitors to lock the door after school that day."
+  },
+  {
+    "s1": "Ethan told me",
+    "s2": "We are setting up a new display here now.",
+    "frameCorrect": "Ethan told me",
+    "frameWrong": [
+      "Ethan said me",
+      "Ethan told"
+    ],
+    "clauseCorrect": [
+      "they",
+      [
+        "were setting up",
+        "had been setting up"
+      ],
+      "a new display",
+      "there"
+    ],
+    "clauseWrong": [
+      "we",
+      "are setting up"
+    ],
+    "timeCorrect": [
+      "then",
+      "at that moment"
+    ],
+    "timeWrong": [
+      "now",
+      "today"
+    ],
+    "type": "statement",
+    "combined": "Ethan told me that they [were setting up / had been setting up] a new display there [then / at that moment]."
+  },
+  {
+    "s1": "The principal warned the students",
+    "s2": "Do not run in the corridors.",
+    "frameCorrect": "The principal warned the students",
+    "frameWrong": [
+      "The principal warned",
+      "The principal said the students"
+    ],
+    "clauseCorrect": [
+      "not to run",
+      "in the corridors"
+    ],
+    "clauseWrong": [
+      "do not run",
+      "run"
+    ],
+    "timeCorrect": [],
+    "timeWrong": [],
+    "type": "command",
+    "combined": "The principal warned the students not to run in the corridors."
+  },
+  {
+    "s1": "Ava said",
+    "s2": "My sister has already bought the tickets.",
+    "frameCorrect": "Ava said",
+    "frameWrong": [
+      "Ava said me",
+      "Ava told"
+    ],
+    "clauseCorrect": [
+      "her",
+      "sister",
+      "had already bought",
+      "the tickets"
+    ],
+    "clauseWrong": [
+      "my",
+      "has already bought"
+    ],
+    "timeCorrect": [],
+    "timeWrong": [],
+    "type": "statement",
+    "combined": "Ava said that her sister had already bought the tickets."
+  }
+]

@@ -439,6 +439,7 @@ body {
 .topic-icon.c-amber { background: var(--secondary-light); }
 .topic-icon.c-green { background: var(--success-light); }
 .topic-icon.c-purple { background: var(--accent-light); }
+.topic-icon.c-rose { background: #ffe4ee; }
 
 .topic-name {
   font-size: 0.93rem;
@@ -1233,7 +1234,29 @@ body {
   gap: 8px;
   align-items: center;
 }
-.clause-placeholder { color: var(--text-muted); font-style: italic; }
+.clause-placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.full-answer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--bg);
+  border-radius: 0.5rem;
+  border-left: 4px solid var(--primary);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+.full-answer-lbl {
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
 .assembled-tok {
   display: inline-block;
   background: var(--primary);

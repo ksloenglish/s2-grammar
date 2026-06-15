@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=16">
+<link rel="stylesheet" href="style.css?v=17">
 </head>
 <body>
 <!-- ========== TOP BAR ========== -->
@@ -178,10 +178,70 @@
       <div class="builder-step-label"><span class="bstep-num">3</span>Tap where the clause belongs</div>
       <div class="place-line" id="place-line"></div>
     </div>
+
+    <!-- Full correct sentence (shown after Check Answer) -->
+    <div class="full-answer hidden" id="builder-full"></div>
   </div>
 
   <button class="btn-check hidden" id="btn-builder-check">Check Answer</button>
   <button class="btn-next hidden" id="btn-builder-next">Next Question &rarr;</button>
+</main>
+
+<!-- ========== REPORTED SPEECH BUILDER SCREEN ========== -->
+<main id="screen-builder-rs" class="screen">
+  <div class="hud">
+    <div class="hud-left">
+      <div class="hud-cell">
+        <span class="hud-lbl">Q</span>
+        <span class="hud-val" id="rs-progress">1/10</span>
+      </div>
+      <div class="hud-cell">
+        <span class="hud-lbl">&#x23F1;</span>
+        <span class="hud-val mono" id="rs-timer">00:00.00</span>
+      </div>
+    </div>
+    <div class="hud-right">
+      <div class="score-badge" id="rs-score-badge"><span class="sb-star">&#x2B50;</span><span id="rs-score">0</span></div>
+      <button class="hud-quit" id="rs-quit">&#x2715; Quit</button>
+    </div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="rs-progress-fill"></div></div>
+
+  <div class="builder-card">
+    <p class="builder-instr" id="rs-instr"></p>
+    <!-- Direct-speech source -->
+    <div class="builder-source">
+      <div class="src-line"><span class="src-num" id="rs-speaker-num">&#x201C;</span><span id="rs-quote"></span></div>
+    </div>
+
+    <!-- Step 1: reporting frame -->
+    <div class="builder-step" id="rsstep-1">
+      <div class="builder-step-label"><span class="bstep-num">1</span>Choose the reporting frame</div>
+      <div class="pronoun-chips" id="rs-frame-chips"></div>
+    </div>
+
+    <!-- Step 2: build reported clause -->
+    <div class="builder-step" id="rsstep-2">
+      <div class="builder-step-label"><span class="bstep-num">2</span>Build the reported clause</div>
+      <div class="clause-build">
+        <div class="clause-assembled" id="rs-clause-assembled" aria-label="Your reported clause"></div>
+        <div class="clause-tiles" id="rs-clause-tiles"></div>
+        <button class="clause-clear" id="rs-clause-clear" type="button">&#x21BA; Clear</button>
+      </div>
+    </div>
+
+    <!-- Step 3: time expression -->
+    <div class="builder-step" id="rsstep-3">
+      <div class="builder-step-label"><span class="bstep-num">3</span>Choose the time expression</div>
+      <div class="pronoun-chips" id="rs-time-chips"></div>
+    </div>
+
+    <!-- Full correct sentence (shown after Check Answer) -->
+    <div class="full-answer hidden" id="rs-full"></div>
+  </div>
+
+  <button class="btn-check hidden" id="btn-rs-check">Check Answer</button>
+  <button class="btn-next hidden" id="btn-rs-next">Next Question &rarr;</button>
 </main>
 
 <!-- ========== RESULTS SCREEN ========== -->
@@ -211,7 +271,7 @@
   &copy; <span id="yr"></span> K S Lo English. All Rights Reserved.
 </footer>
 
-<script src="data.js?v=16"></script>
-<script src="app.js?v=16"></script>
+<script src="data.js?v=17"></script>
+<script src="app.js?v=17"></script>
 </body>
 </html>
