@@ -993,12 +993,25 @@
     // Each segment+gap pair is wrapped in a no-break inline-flex unit so the
     // gap button never orphans onto its own line on narrow (mobile) screens.
     segs.forEach((seg, i) => {
+      // Split the segment so the leading words can wrap freely while only the
+      // LAST word stays glued to its gap button (prevents an orphaned '+').
+      const words = seg.split(' ');
+      const lastWord = words.pop();
+      const leadWords = words.join(' ');
+
+      if (leadWords) {
+        const leadSpan = document.createElement('span');
+        leadSpan.className = 'place-seg';
+        leadSpan.textContent = leadWords + ' ';
+        placeLine.appendChild(leadSpan);
+      }
+
       const unit = document.createElement('span');
       unit.className = 'place-unit';
 
       const segSpan = document.createElement('span');
       segSpan.className = 'place-seg';
-      segSpan.textContent = seg;
+      segSpan.textContent = lastWord;
       unit.appendChild(segSpan);
 
       const gap = document.createElement('button');
