@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <!-- ========== TOP BAR ========== -->
@@ -154,6 +154,58 @@
   <button class="btn-next hidden" id="btn-submit-passage">Submit Answers &#x2713;</button>
 </main>
 
+<!-- ========== BUILDER EXERCISE SCREEN (Relative Clauses) ========== -->
+<main id="screen-builder" class="screen">
+  <div class="hud">
+    <div class="hud-left">
+      <div class="hud-cell">
+        <span class="hud-lbl">Q</span>
+        <span class="hud-val" id="builder-progress">1/10</span>
+      </div>
+      <div class="hud-cell">
+        <span class="hud-lbl">&#x23F1;</span>
+        <span class="hud-val mono" id="builder-timer">00:00.00</span>
+      </div>
+    </div>
+    <div class="hud-right">
+      <button class="hud-quit" id="builder-quit">&#x2715; Quit</button>
+    </div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="builder-progress-fill"></div></div>
+
+  <div class="builder-card">
+    <!-- Source sentences -->
+    <div class="builder-source">
+      <div class="src-line"><span class="src-num">1</span><span id="builder-s1"></span></div>
+      <div class="src-line"><span class="src-num">2</span><span id="builder-s2"></span></div>
+    </div>
+
+    <!-- Step 1: pronoun -->
+    <div class="builder-step" id="bstep-1">
+      <div class="builder-step-label"><span class="bstep-num">1</span>Choose the relative pronoun</div>
+      <div class="pronoun-chips" id="pronoun-chips"></div>
+    </div>
+
+    <!-- Step 2: build clause -->
+    <div class="builder-step" id="bstep-2">
+      <div class="builder-step-label"><span class="bstep-num">2</span>Build the relative clause</div>
+      <div class="clause-build">
+        <div class="clause-assembled" id="clause-assembled" aria-label="Your relative clause"></div>
+        <div class="clause-tiles" id="clause-tiles"></div>
+        <button class="clause-clear" id="clause-clear" type="button">&#x21BA; Clear</button>
+      </div>
+    </div>
+
+    <!-- Step 3: placement -->
+    <div class="builder-step" id="bstep-3">
+      <div class="builder-step-label"><span class="bstep-num">3</span>Tap where the clause belongs</div>
+      <div class="place-line" id="place-line"></div>
+    </div>
+  </div>
+
+  <button class="btn-next hidden" id="btn-builder-next">Next Question &rarr;</button>
+</main>
+
 <!-- ========== RESULTS SCREEN ========== -->
 <main id="screen-results" class="screen">
   <section class="results-wrap">
@@ -181,7 +233,7 @@
   &copy; <span id="yr"></span> K S Lo English. All Rights Reserved.
 </footer>
 
-<script src="data.js?v=3"></script>
-<script src="app.js?v=3"></script>
+<script src="data.js?v=5"></script>
+<script src="app.js?v=5"></script>
 </body>
 </html>

@@ -44,6 +44,21 @@
   const btnSubmitPassage = $('btn-submit-passage');
   const passageQuit = $('passage-quit');
 
+  // Builder exercise (Relative Clauses)
+  const screenBuilder = $('screen-builder');
+  const builderProgress = $('builder-progress');
+  const builderTimer = $('builder-timer');
+  const builderProgressFill = $('builder-progress-fill');
+  const builderS1 = $('builder-s1');
+  const builderS2 = $('builder-s2');
+  const pronounChips = $('pronoun-chips');
+  const clauseAssembled = $('clause-assembled');
+  const clauseTiles = $('clause-tiles');
+  const clauseClear = $('clause-clear');
+  const placeLine = $('place-line');
+  const btnBuilderNext = $('btn-builder-next');
+  const builderQuit = $('builder-quit');
+
   // Results
   const resScore = $('res-score');
   const resScoreLbl = $('res-score-lbl');
@@ -73,6 +88,13 @@
   let currentPassage = null;   // the chosen exercise object
   let passageBlanks = [];      // [{ answer, alternatives, explanation, inputEl|selectEl, index }]
   let passageBlankType = 'select'; // 'select' (articles) or 'input' (passive voice)
+
+  // Builder state
+  let builderTopic = null;          // the relative-clauses topic data
+  let builderResults = [];          // per-question results for the summary
+  let bPronoun = null;              // chosen pronoun for current question
+  let bClause = [];                 // chosen clause tokens (in order) for current question
+  let bPlace = null;                // chosen gap index for current question
 
   // --- GREETINGS ---
   const GREETINGS = [
@@ -214,8 +236,10 @@
 
     // Check topic type — show/hide question count
     const topicData = GRAMMAR_DATA[selectedTerm][key];
-    if (topicData.type === 'mc') {
-      showQCountSection();
+    if (topicData.type === 'mc' || topicData.type === 'builder') {
+      // Builder & MC both let students choose how many questions.
+      // Builder draws UNIQUE questions, so cap options at the pool size.
+      showQCountSection(topicData);
     } else {
       // Passage type — no count selection; ready to start straight away
       hideQCountSection();
@@ -224,9 +248,9 @@
     updateStartBtn();
   }
 
-  function showQCountSection() {
+  function showQCountSection(topicData) {
     qcountSection.classList.remove('hidden');
-    renderQCountButtons();
+    renderQCountButtons(topicData);
   }
 
   function hideQCountSection() {
@@ -235,8 +259,16 @@
     if (qcountGroup) qcountGroup.innerHTML = '';
   }
 
-  function renderQCountButtons() {
-    const counts = [10, 20, 30, 40, 50, 100];
+  function renderQCountButtons(topicData) {
+    let counts = [10, 20, 30, 40, 50];
+    // For builder (no repeats), don't offer more than the available pool.
+    if (topicData && topicData.type === 'builder') {
+      const max = (topicData.questions || []).length;
+      counts = counts.filter(n => n <= max);
+      if (counts.length === 0 || counts[counts.length - 1] < max) counts.push(max);
+      // de-dupe
+      counts = [...new Set(counts)];
+    }
     qcountGroup.innerHTML = '';
     counts.forEach(n => {
       const btn = document.createElement('button');
@@ -259,11 +291,11 @@
 
     if (selectedTopic && topicData && topicData.type === 'passage') {
       btnStart.disabled = false;
-      btnStartText.textContent = 'Start Exercise \u2192';
+      btnStartText.textContent = 'Start Exercise →';
     } else if (selectedTopic && selectedCount) {
       btnStart.disabled = false;
-      btnStartText.textContent = 'Start Challenge \u2192';
-    } else if (selectedTopic && topicData && topicData.type === 'mc' && !selectedCount) {
+      btnStartText.textContent = 'Start Challenge →';
+    } else if (selectedTopic && topicData && (topicData.type === 'mc' || topicData.type === 'builder') && !selectedCount) {
       btnStart.disabled = true;
       btnStartText.textContent = 'Choose Number of Questions';
     } else {
@@ -279,6 +311,11 @@
 
     if (topicData.type === 'passage') {
       startPassageExercise(topicData);
+      return;
+    }
+
+    if (topicData.type === 'builder') {
+      startBuilderExercise(topicData);
       return;
     }
 
@@ -442,6 +479,7 @@
       const t = formatTime(elapsed);
       hudTimer.textContent = t;
       passageTimer.textContent = t;
+      builderTimer.textContent = t;
     }, 50);
   }
 
@@ -458,11 +496,12 @@
 
   // --- SCREEN NAVIGATION ---
   function showScreen(name) {
-    [screenHome, screenExercise, screenPassage, screenResults].forEach(s => s.classList.remove('active'));
+    [screenHome, screenExercise, screenPassage, screenBuilder, screenResults].forEach(s => s.classList.remove('active'));
     const map = {
       home: screenHome,
       exercise: screenExercise,
       passage: screenPassage,
+      builder: screenBuilder,
       results: screenResults
     };
     (map[name] || screenHome).classList.add('active');
@@ -725,6 +764,257 @@
     showScreen('home');
   }
 
+  // ============================================================
+  // BUILDER EXERCISE (Relative Clauses) — 3-step sentence builder
+  // 3 marks per question: pronoun (1) + clause (1) + placement (1)
+  // Deferred scoring: no feedback during play.
+  // ============================================================
+  function startBuilderExercise(topicData) {
+    builderTopic = topicData;
+    const n = Math.min(selectedCount, topicData.questions.length);
+    // Draw UNIQUE, non-repeating questions at random.
+    currentQuestions = [...topicData.questions].sort(() => Math.random() - 0.5).slice(0, n);
+    currentIndex = 0;
+    elapsed = 0;
+    builderResults = [];
+    showScreen('builder');
+    startTimer();
+    renderBuilderQuestion();
+  }
+
+  function renderBuilderQuestion() {
+    const q = currentQuestions[currentIndex];
+    // reset per-question state
+    bPronoun = null;
+    bClause = [];
+    bPlace = null;
+    closeAllPopovers();
+    btnBuilderNext.classList.add('hidden');
+
+    // HUD
+    builderProgress.textContent = `${currentIndex + 1} / ${currentQuestions.length}`;
+    builderProgressFill.style.width = `${(currentIndex / currentQuestions.length) * 100}%`;
+
+    // Source sentences
+    builderS1.textContent = q.s1;
+    builderS2.textContent = q.s2;
+
+    // Step 1: pronoun chips (shuffled)
+    const prons = [...(builderTopic.pronouns || ['who','which','whose','when','where'])].sort(() => Math.random() - 0.5);
+    pronounChips.innerHTML = '';
+    prons.forEach(p => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'pronoun-chip';
+      chip.textContent = p;
+      chip.addEventListener('click', () => {
+        bPronoun = p;
+        pronounChips.querySelectorAll('.pronoun-chip').forEach(c => c.classList.remove('selected'));
+        chip.classList.add('selected');
+        updateBuilderNext();
+      });
+      pronounChips.appendChild(chip);
+    });
+
+    // Step 2: clause tiles = correct tokens + the distractor, shuffled.
+    const tilePool = [...q.clause, q.distractor].sort(() => Math.random() - 0.5);
+    renderAssembled();
+    clauseTiles.innerHTML = '';
+    tilePool.forEach((tok, i) => {
+      const tile = document.createElement('button');
+      tile.type = 'button';
+      tile.className = 'word-tile';
+      tile.textContent = tok;
+      tile.dataset.tok = tok;
+      tile.dataset.tileid = i;
+      tile.addEventListener('click', () => toggleTile(tile, tok, i));
+      clauseTiles.appendChild(tile);
+    });
+
+    // Step 3: placement gaps (rendered as gaps in sentence 1)
+    renderPlaceLine(q);
+  }
+
+  function toggleTile(tile, tok, id) {
+    if (tile.classList.contains('used')) {
+      bClause = bClause.filter(x => x.id !== id);
+      tile.classList.remove('used');
+    } else {
+      bClause.push({ tok, id });
+      tile.classList.add('used');
+    }
+    renderAssembled();
+    updateBuilderNext();
+  }
+
+  function renderAssembled() {
+    if (bClause.length === 0) {
+      clauseAssembled.innerHTML = '<span class="clause-placeholder">Tap the words below in order…</span>';
+      clauseAssembled.dataset.empty = 'true';
+      return;
+    }
+    clauseAssembled.dataset.empty = 'false';
+    clauseAssembled.innerHTML = bClause.map(x =>
+      `<span class="assembled-tok">${escapeHtml(x.tok)}</span>`
+    ).join(' ');
+  }
+
+  function clearClause() {
+    bClause = [];
+    clauseTiles.querySelectorAll('.word-tile.used').forEach(t => t.classList.remove('used'));
+    renderAssembled();
+    updateBuilderNext();
+  }
+
+  function renderPlaceLine(q) {
+    placeLine.innerHTML = '';
+    // Build: slot0 [gap0] slot1 [gap1] ... A gap AFTER each slot (indices 0..slots.length-1).
+    q.slots.forEach((slot, i) => {
+      const segSpan = document.createElement('span');
+      segSpan.className = 'place-seg';
+      segSpan.textContent = slot;
+      placeLine.appendChild(segSpan);
+
+      const gap = document.createElement('button');
+      gap.type = 'button';
+      gap.className = 'place-gap';
+      gap.dataset.gap = i;
+      gap.innerHTML = '<span class="gap-dot">+</span>';
+      gap.addEventListener('click', () => {
+        bPlace = i;
+        placeLine.querySelectorAll('.place-gap').forEach(g => {
+          g.classList.remove('selected');
+          g.innerHTML = '<span class="gap-dot">+</span>';
+        });
+        gap.classList.add('selected');
+        gap.innerHTML = '<span class="gap-dot">▼</span>';
+        updateBuilderNext();
+      });
+      placeLine.appendChild(gap);
+    });
+  }
+
+  function updateBuilderNext() {
+    const ready = bPronoun !== null && bClause.length > 0 && bPlace !== null;
+    if (ready) {
+      btnBuilderNext.classList.remove('hidden');
+      btnBuilderNext.textContent = currentIndex === currentQuestions.length - 1 ? 'Finish 🏁' : 'Next Question →';
+    } else {
+      btnBuilderNext.classList.add('hidden');
+    }
+  }
+
+  function builderNext() {
+    const q = currentQuestions[currentIndex];
+    // Grade this question (3 marks)
+    const chosenClauseToks = bClause.map(x => x.tok);
+    const pronounMark = (bPronoun === q.pronoun) ? 1 : 0;
+    const clauseMark = arraysEqual(chosenClauseToks, q.clause) ? 1 : 0;
+    const placeMark = (bPlace === q.correctGap) ? 1 : 0;
+
+    builderResults.push({
+      q,
+      chosenPronoun: bPronoun,
+      chosenClause: chosenClauseToks,
+      chosenPlace: bPlace,
+      pronounMark, clauseMark, placeMark,
+      total: pronounMark + clauseMark + placeMark
+    });
+
+    currentIndex++;
+    if (currentIndex >= currentQuestions.length) {
+      endBuilderExercise();
+    } else {
+      renderBuilderQuestion();
+    }
+  }
+
+  function arraysEqual(a, b) {
+    if (a.length !== b.length) return false;
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) return false;
+    }
+    return true;
+  }
+
+  function endBuilderExercise() {
+    stopTimer();
+    const maxMarks = currentQuestions.length * 3;
+    const gained = builderResults.reduce((s, r) => s + r.total, 0);
+    const pct = Math.round((gained / maxMarks) * 100);
+    const scoreStr = `${gained}/${maxMarks} (${pct}%)`;
+    const timeStr = formatTime(elapsed);
+
+    // Results layout: hide streak (not used here), set labels
+    resScoreLbl.textContent = 'Your Marks';
+    resStatStreak.style.display = 'none';
+    reviewHeading.innerHTML = '📋 Answer Key';
+
+    resScore.textContent = scoreStr;
+    resRemark.textContent = getRemark(pct);
+    resTime.textContent = timeStr;
+
+    reviewList.innerHTML = buildBuilderReview();
+    bindExplainIcons();
+
+    saveStats(scoreStr, timeStr);
+    showScreen('results');
+  }
+
+  function buildBuilderReview() {
+    return builderResults.map((r, i) => {
+      const q = r.q;
+      const studentSentence = composeStudentSentence(q, r);
+      const stepBadge = (label, mark) =>
+        `<span class="bm ${mark ? 'bm-ok' : 'bm-no'}">${mark ? '✓' : '✗'} ${label}</span>`;
+      return `
+        <div class="review-item builder-review">
+          <div class="br-head">
+            <span class="br-num">${i + 1}</span>
+            <span class="br-marks">${r.total}/3</span>
+          </div>
+          <div class="br-source">
+            <span class="br-s">${escapeHtml(q.s1)}</span>
+            <span class="br-s">${escapeHtml(q.s2)}</span>
+          </div>
+          <div class="br-badges">
+            ${stepBadge('Pronoun', r.pronounMark)}
+            ${stepBadge('Clause', r.clauseMark)}
+            ${stepBadge('Position', r.placeMark)}
+          </div>
+          ${r.total < 3 ? `<div class="br-yours"><span class="br-lbl">Your answer:</span> ${escapeHtml(studentSentence)}</div>` : ''}
+          <div class="br-correct"><span class="br-lbl">Correct:</span> ${highlightCombined(q)}</div>
+        </div>`;
+    }).join('');
+  }
+
+  // Compose the sentence the student actually built (for the 'your answer' line)
+  function composeStudentSentence(q, r) {
+    const clauseStr = [r.chosenPronoun || '?', ...(r.chosenClause || [])].join(' ');
+    const place = (r.chosenPlace === null || r.chosenPlace === undefined) ? q.correctGap : r.chosenPlace;
+    const parts = [];
+    q.slots.forEach((slot, idx) => {
+      parts.push(slot);
+      if (idx === place) parts.push('[' + clauseStr + ']');
+    });
+    return parts.join(' ').replace(/\s+([.,])/g, '$1');
+  }
+
+  // Render the correct combined sentence with the relative clause emphasised
+  function highlightCombined(q) {
+    const clauseStr = [q.pronoun, ...q.clause].join(' ');
+    const esc = escapeHtml(q.combined);
+    const escClause = escapeHtml(clauseStr);
+    return esc.replace(escClause, `<span class="br-hl">${escClause}</span>`);
+  }
+
+  function quitBuilderToHome() {
+    stopTimer();
+    builderResults = [];
+    builderTopic = null;
+    showScreen('home');
+  }
+
   // --- EVENTS ---
   function bindEvents() {
     themeBtn.addEventListener('click', toggleTheme);
@@ -734,6 +1024,9 @@
     btnAgain.addEventListener('click', playAgain);
     btnSubmitPassage.addEventListener('click', submitPassage);
     passageQuit.addEventListener('click', quitPassageToHome);
+    btnBuilderNext.addEventListener('click', builderNext);
+    builderQuit.addEventListener('click', quitBuilderToHome);
+    clauseClear.addEventListener('click', clearClause);
     // Close explanation popovers when clicking elsewhere
     document.addEventListener('click', e => {
       if (!e.target.closest('.rev-info') && !e.target.closest('.rev-popover')) {

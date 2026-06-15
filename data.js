@@ -15,59 +15,72 @@ const GRAMMAR_DATA = {
       label: "Relative Clauses",
       icon: "\u{1F517}",
       iconClass: "c-blue",
-      desc: "who, which, that, whose, where",
-      type: "mc",
+      desc: "who, which, whose, when, where",
+      type: "builder",
+      // 3-step sentence builder. 3 marks per question:
+      //   Step 1 (pronoun): pick the correct relative pronoun.
+      //   Step 2 (clause):  tap word-tiles in order to build the relative clause.
+      //                     The repeated word/phrase is added as a distractor that must NOT be used.
+      //   Step 3 (place):   tap the gap in sentence 1 where the clause belongs.
+      // No repeats within an exercise; the app draws unique questions at random.
+      instructions: "Combine the two sentences into one using a relative clause. Choose the relative pronoun, build the clause, then place it correctly.",
+      pronouns: ["who", "which", "whose", "when", "where"],
       questions: [
-        {
-          question: "The man ___ lives next door is a doctor.",
-          options: ["who", "which", "whose", "where"],
-          answer: "who"
-        },
-        {
-          question: "This is the book ___ I told you about.",
-          options: ["who", "which", "whose", "where"],
-          answer: "which"
-        },
-        {
-          question: "She is the teacher ___ class is always full.",
-          options: ["who", "which", "whose", "where"],
-          answer: "whose"
-        },
-        {
-          question: "That is the park ___ we used to play.",
-          options: ["who", "which", "that", "where"],
-          answer: "where"
-        },
-        {
-          question: "The film ___ we watched last night was exciting.",
-          options: ["who", "which", "whose", "where"],
-          answer: "which"
-        },
-        {
-          question: "I know the girl ___ won the prize.",
-          options: ["which", "who", "where", "whose"],
-          answer: "who"
-        },
-        {
-          question: "The house ___ roof is red belongs to my uncle.",
-          options: ["who", "which", "whose", "where"],
-          answer: "whose"
-        },
-        {
-          question: "Is this the restaurant ___ you had dinner?",
-          options: ["which", "who", "whose", "where"],
-          answer: "where"
-        },
-        {
-          question: "The dog ___ is barking belongs to our neighbour.",
-          options: ["who", "that", "whose", "where"],
-          answer: "that"
-        },
-        {
-          question: "She showed me the letter ___ she had received.",
-          options: ["who", "whose", "where", "that"],
-          answer: "that"
-        }
+        { s1: "I like Ms Lo.", s2: "Her designs are casual but stylish.", pronoun: "whose", clause: ["designs", "are", "casual", "but", "stylish"], distractor: "Her", slots: ["I like Ms Lo"], correctGap: 0, combined: "I like Ms Lo, whose designs are casual but stylish." },
+        { s1: "Yesterday, we visited a museum.", s2: "It has a collection of rare coins.", pronoun: "which", clause: ["has", "a", "collection", "of", "rare", "coins"], distractor: "It", slots: ["Yesterday, we visited a museum"], correctGap: 0, combined: "Yesterday, we visited a museum which has a collection of rare coins." },
+        { s1: "The boy is my cousin.", s2: "He won the science competition.", pronoun: "who", clause: ["won", "the", "science", "competition"], distractor: "He", slots: ["The boy", "is my cousin."], correctGap: 0, combined: "The boy who won the science competition is my cousin." },
+        { s1: "I know a girl.", s2: "Her father is a famous chef.", pronoun: "whose", clause: ["father", "is", "a", "famous", "chef"], distractor: "Her", slots: ["I know a girl"], correctGap: 0, combined: "I know a girl whose father is a famous chef." },
+        { s1: "This is the park.", s2: "We first met there.", pronoun: "where", clause: ["we", "first", "met"], distractor: "there", slots: ["This is the park"], correctGap: 0, combined: "This is the park where we first met." },
+        { s1: "The laptop is very expensive.", s2: "It was stolen from the office.", pronoun: "which", clause: ["was", "stolen", "from", "the", "office"], distractor: "It", slots: ["The laptop", "is very expensive."], correctGap: 0, combined: "The laptop which was stolen from the office is very expensive." },
+        { s1: "My uncle lives in Bangkok.", s2: "He is a doctor.", pronoun: "who", clause: ["is", "a", "doctor"], distractor: "He", slots: ["My uncle", "lives in Bangkok."], correctGap: 0, combined: "My uncle, who is a doctor, lives in Bangkok." },
+        { s1: "They stayed at a hotel.", s2: "The hotel was close to the beach.", pronoun: "which", clause: ["was", "close", "to", "the", "beach"], distractor: "The hotel", slots: ["They stayed at a hotel"], correctGap: 0, combined: "They stayed at a hotel which was close to the beach." },
+        { s1: "The woman teaches us English.", s2: "Her daughter studies at my school.", pronoun: "whose", clause: ["daughter", "studies", "at", "my", "school"], distractor: "Her", slots: ["The woman", "teaches us English."], correctGap: 0, combined: "The woman whose daughter studies at my school teaches us English." },
+        { s1: "Summer is the season.", s2: "Many people travel then.", pronoun: "when", clause: ["many", "people", "travel"], distractor: "then", slots: ["Summer is the season"], correctGap: 0, combined: "Summer is the season when many people travel." },
+        { s1: "My dad took me to visit a village.", s2: "My grandfather grew up there.", pronoun: "where", clause: ["my", "grandfather", "grew", "up"], distractor: "there", slots: ["My dad took me to visit a village"], correctGap: 0, combined: "My dad took me to visit a village where my grandfather grew up." },
+        { s1: "The girl is the captain of our basketball team.", s2: "She scored the final point.", pronoun: "who", clause: ["scored", "the", "final", "point"], distractor: "She", slots: ["The girl", "is the captain of our basketball team."], correctGap: 0, combined: "The girl who scored the final point is the captain of our basketball team." },
+        { s1: "Last Friday, we joined a workshop.", s2: "It taught students how to make short videos.", pronoun: "which", clause: ["taught", "students", "how", "to", "make", "short", "videos"], distractor: "It", slots: ["Last Friday, we joined a workshop"], correctGap: 0, combined: "Last Friday, we joined a workshop which taught students how to make short videos." },
+        { s1: "This is the café.", s2: "My friends and I often study there after school.", pronoun: "where", clause: ["my", "friends", "and", "I", "often", "study", "after", "school"], distractor: "there", slots: ["This is the café"], correctGap: 0, combined: "This is the café where my friends and I often study after school." },
+        { s1: "I borrowed a comic book from Leo.", s2: "Its cover was designed by a local artist.", pronoun: "whose", clause: ["cover", "was", "designed", "by", "a", "local", "artist"], distractor: "Its", slots: ["I borrowed a comic book", "from Leo."], correctGap: 0, combined: "I borrowed a comic book whose cover was designed by a local artist from Leo." },
+        { s1: "The teacher gave a prize to the student.", s2: "The student's robot cleaned the classroom floor.", pronoun: "whose", clause: ["robot", "cleaned", "the", "classroom", "floor"], distractor: "The student's", slots: ["The teacher gave a prize to the student"], correctGap: 0, combined: "The teacher gave a prize to the student whose robot cleaned the classroom floor." },
+        { s1: "April is the month.", s2: "Our school usually holds its music festival then.", pronoun: "when", clause: ["our", "school", "usually", "holds", "its", "music", "festival"], distractor: "then", slots: ["April is the month"], correctGap: 0, combined: "April is the month when our school usually holds its music festival." },
+        { s1: "My sister follows a blogger.", s2: "Her travel photos are very creative.", pronoun: "whose", clause: ["travel", "photos", "are", "very", "creative"], distractor: "Her", slots: ["My sister follows a blogger"], correctGap: 0, combined: "My sister follows a blogger whose travel photos are very creative." },
+        { s1: "The headphones are mine.", s2: "They were left in the computer room.", pronoun: "which", clause: ["were", "left", "in", "the", "computer", "room"], distractor: "They", slots: ["The headphones", "are mine."], correctGap: 0, combined: "The headphones which were left in the computer room are mine." },
+        { s1: "At the sports day, we met a photographer.", s2: "He works for a popular online magazine.", pronoun: "who", clause: ["works", "for", "a", "popular", "online", "magazine"], distractor: "He", slots: ["At the sports day, we met a photographer"], correctGap: 0, combined: "At the sports day, we met a photographer who works for a popular online magazine." },
+        { s1: "They chose a quiet library.", s2: "The library had comfortable reading corners.", pronoun: "which", clause: ["had", "comfortable", "reading", "corners"], distractor: "The library", slots: ["They chose a quiet library"], correctGap: 0, combined: "They chose a quiet library which had comfortable reading corners." },
+        { s1: "The coach introduced us to a new player.", s2: "The new player moved here from Canada.", pronoun: "who", clause: ["moved", "here", "from", "Canada"], distractor: "The new player", slots: ["The coach introduced us to a new player"], correctGap: 0, combined: "The coach introduced us to a new player who moved here from Canada." },
+        { s1: "Yesterday, I downloaded a puzzle game.", s2: "It helps players practise problem-solving.", pronoun: "which", clause: ["helps", "players", "practise", "problem-solving"], distractor: "It", slots: ["Yesterday, I downloaded a puzzle game"], correctGap: 0, combined: "Yesterday, I downloaded a puzzle game which helps players practise problem-solving." },
+        { s1: "The boy is in my coding club.", s2: "His app won first prize.", pronoun: "whose", clause: ["app", "won", "first", "prize"], distractor: "His", slots: ["The boy", "is in my coding club."], correctGap: 0, combined: "The boy whose app won first prize is in my coding club." },
+        { s1: "We watched a livestream on Saturday.", s2: "A famous gamer answered questions then.", pronoun: "when", clause: ["a", "famous", "gamer", "answered", "questions"], distractor: "then", slots: ["We watched a livestream on Saturday"], correctGap: 0, combined: "We watched a livestream on Saturday, when a famous gamer answered questions." },
+        { s1: "This is the room.", s2: "Our team practises e-sports there.", pronoun: "where", clause: ["our", "team", "practises", "e-sports"], distractor: "there", slots: ["This is the room"], correctGap: 0, combined: "This is the room where our team practises e-sports." },
+        { s1: "Mia invited a friend to the tournament.", s2: "The friend had just moved to our school.", pronoun: "who", clause: ["had", "just", "moved", "to", "our", "school"], distractor: "The friend", slots: ["Mia invited a friend", "to the tournament."], correctGap: 0, combined: "Mia invited a friend who had just moved to our school to the tournament." },
+        { s1: "The tablet belongs to my brother.", s2: "It was repaired last week.", pronoun: "which", clause: ["was", "repaired", "last", "week"], distractor: "It", slots: ["The tablet", "belongs to my brother."], correctGap: 0, combined: "The tablet which was repaired last week belongs to my brother." },
+        { s1: "On social media, I follow an artist.", s2: "Her drawings are used in many mobile games.", pronoun: "whose", clause: ["drawings", "are", "used", "in", "many", "mobile", "games"], distractor: "Her", slots: ["On social media, I follow an artist"], correctGap: 0, combined: "On social media, I follow an artist whose drawings are used in many mobile games." },
+        { s1: "The café has free Wi-Fi.", s2: "Many students meet there after lessons.", pronoun: "where", clause: ["many", "students", "meet", "after", "lessons"], distractor: "there", slots: ["The café", "has free Wi-Fi."], correctGap: 0, combined: "The café where many students meet after lessons has free Wi-Fi." },
+        { s1: "The girl helped me fix my controller.", s2: "She sits next to me in maths class.", pronoun: "who", clause: ["sits", "next", "to", "me", "in", "maths", "class"], distractor: "She", slots: ["The girl", "helped me fix my controller."], correctGap: 0, combined: "The girl who helped me fix my controller sits next to me in maths class." },
+        { s1: "December is the time of year.", s2: "Many gaming companies release new updates then.", pronoun: "when", clause: ["many", "gaming", "companies", "release", "new", "updates"], distractor: "then", slots: ["December is the time of year"], correctGap: 0, combined: "December is the time of year when many gaming companies release new updates." },
+        { s1: "Our teacher showed us a website.", s2: "It explains how to stay safe online.", pronoun: "which", clause: ["explains", "how", "to", "stay", "safe", "online"], distractor: "It", slots: ["Our teacher showed us a website"], correctGap: 0, combined: "Our teacher showed us a website which explains how to stay safe online." },
+        { s1: "After the race, the coach praised a runner.", s2: "The runner had trained every morning.", pronoun: "who", clause: ["had", "trained", "every", "morning"], distractor: "The runner", slots: ["After the race, the coach praised a runner"], correctGap: 0, combined: "After the race, the coach praised a runner who had trained every morning." },
+        { s1: "Last month, we visited a stadium.", s2: "It can hold fifty thousand fans.", pronoun: "which", clause: ["can", "hold", "fifty", "thousand", "fans"], distractor: "It", slots: ["Last month, we visited a stadium"], correctGap: 0, combined: "Last month, we visited a stadium which can hold fifty thousand fans." },
+        { s1: "This is the gym.", s2: "Our volleyball team practises there.", pronoun: "where", clause: ["our", "volleyball", "team", "practises"], distractor: "there", slots: ["This is the gym"], correctGap: 0, combined: "This is the gym where our volleyball team practises." },
+        { s1: "At the competition, I met a swimmer.", s2: "Her brother is an Olympic athlete.", pronoun: "whose", clause: ["brother", "is", "an", "Olympic", "athlete"], distractor: "Her", slots: ["At the competition, I met a swimmer"], correctGap: 0, combined: "At the competition, I met a swimmer whose brother is an Olympic athlete." },
+        { s1: "The bicycle is too small for me now.", s2: "It was a birthday present from my parents.", pronoun: "which", clause: ["was", "a", "birthday", "present", "from", "my", "parents"], distractor: "It", slots: ["The bicycle", "is too small for me now."], correctGap: 0, combined: "The bicycle which was a birthday present from my parents is too small for me now." },
+        { s1: "Saturday is the day.", s2: "Our school usually has football practice then.", pronoun: "when", clause: ["our", "school", "usually", "has", "football", "practice"], distractor: "then", slots: ["Saturday is the day"], correctGap: 0, combined: "Saturday is the day when our school usually has football practice." },
+        { s1: "The student helped me stretch properly.", s2: "He is also in my science class.", pronoun: "who", clause: ["is", "also", "in", "my", "science", "class"], distractor: "He", slots: ["The student", "helped me stretch properly."], correctGap: 0, combined: "The student who helped me stretch properly is also in my science class." },
+        { s1: "They bought sports shoes from a shop.", s2: "The shop offers discounts to students.", pronoun: "which", clause: ["offers", "discounts", "to", "students"], distractor: "The shop", slots: ["They bought sports shoes from a shop"], correctGap: 0, combined: "They bought sports shoes from a shop which offers discounts to students." },
+        { s1: "My cousin joined a fitness club.", s2: "Its trainers are very friendly.", pronoun: "whose", clause: ["trainers", "are", "very", "friendly"], distractor: "Its", slots: ["My cousin joined a fitness club"], correctGap: 0, combined: "My cousin joined a fitness club whose trainers are very friendly." },
+        { s1: "The field was closed for repairs.", s2: "We played our first match there.", pronoun: "where", clause: ["we", "played", "our", "first", "match"], distractor: "there", slots: ["The field", "was closed for repairs."], correctGap: 0, combined: "The field where we played our first match was closed for repairs." },
+        { s1: "The girl won a gold medal.", s2: "Her team practised in the rain for weeks.", pronoun: "whose", clause: ["team", "practised", "in", "the", "rain", "for", "weeks"], distractor: "Her", slots: ["The girl", "won a gold medal."], correctGap: 0, combined: "The girl whose team practised in the rain for weeks won a gold medal." },
+        { s1: "Last night, I watched a school band.", s2: "It played three original songs.", pronoun: "which", clause: ["played", "three", "original", "songs"], distractor: "It", slots: ["Last night, I watched a school band"], correctGap: 0, combined: "Last night, I watched a school band which played three original songs." },
+        { s1: "The singer is in my art class.", s2: "Her voice won the audience's attention.", pronoun: "whose", clause: ["voice", "won", "the", "audience's", "attention"], distractor: "Her", slots: ["The singer", "is in my art class."], correctGap: 0, combined: "The singer whose voice won the audience's attention is in my art class." },
+        { s1: "This is the hall.", s2: "We had our drama rehearsal there.", pronoun: "where", clause: ["we", "had", "our", "drama", "rehearsal"], distractor: "there", slots: ["This is the hall"], correctGap: 0, combined: "This is the hall where we had our drama rehearsal." },
+        { s1: "The student forgot his guitar at school.", s2: "He performed first in the concert.", pronoun: "who", clause: ["performed", "first", "in", "the", "concert"], distractor: "He", slots: ["The student", "forgot his guitar at school."], correctGap: 0, combined: "The student who performed first in the concert forgot his guitar at school." },
+        { s1: "June is the month.", s2: "Our class usually prepares for the talent show then.", pronoun: "when", clause: ["our", "class", "usually", "prepares", "for", "the", "talent", "show"], distractor: "then", slots: ["June is the month"], correctGap: 0, combined: "June is the month when our class usually prepares for the talent show." },
+        { s1: "My brother bought a keyboard.", s2: "It connects easily to a laptop.", pronoun: "which", clause: ["connects", "easily", "to", "a", "laptop"], distractor: "It", slots: ["My brother bought a keyboard"], correctGap: 0, combined: "My brother bought a keyboard which connects easily to a laptop." },
+        { s1: "We met a dancer after the show.", s2: "Her costume was made from recycled materials.", pronoun: "whose", clause: ["costume", "was", "made", "from", "recycled", "materials"], distractor: "Her", slots: ["We met a dancer", "after the show."], correctGap: 0, combined: "After the show, we met a dancer whose costume was made from recycled materials." },
+        { s1: "The teacher introduced us to a composer.", s2: "The composer writes music for films.", pronoun: "who", clause: ["writes", "music", "for", "films"], distractor: "The composer", slots: ["The teacher introduced us to a composer"], correctGap: 0, combined: "The teacher introduced us to a composer who writes music for films." },
+        { s1: "They practised in a small studio.", s2: "The studio was near the bus stop.", pronoun: "which", clause: ["was", "near", "the", "bus", "stop"], distractor: "The studio", slots: ["They practised in a small studio"], correctGap: 0, combined: "They practised in a small studio which was near the bus stop." },
+        { s1: "The microphone stopped working during the song.", s2: "It had been borrowed from the music room.", pronoun: "which", clause: ["had", "been", "borrowed", "from", "the", "music", "room"], distractor: "It", slots: ["The microphone", "stopped working during the song."], correctGap: 0, combined: "The microphone which had been borrowed from the music room stopped working during the song." },
+        { s1: "I thanked the classmate.", s2: "The classmate's playlist helped us choose the final song.", pronoun: "whose", clause: ["playlist", "helped", "us", "choose", "the", "final", "song"], distractor: "The classmate's", slots: ["I thanked the classmate"], correctGap: 0, combined: "I thanked the classmate whose playlist helped us choose the final song." }
       ]
     },
     "passive-voice": {
