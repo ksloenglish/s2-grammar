@@ -896,6 +896,22 @@ body {
   .screen { padding: 20px 16px 32px; }
   .hud-score-badge { padding: 5px 12px; }
   .hud-score-num { font-size: 1rem; }
+
+  /* Compact builder layout on mobile (Reported Speech + Relative Clauses):
+     reduce vertical padding and tighten gaps so the question and options
+     fit on one screen with less scrolling. */
+  .builder-card { padding: 16px 14px; }
+  .builder-source { padding: 12px 14px; margin-bottom: 14px; }
+  .builder-step { margin-bottom: 14px; }
+  .builder-step-label { margin-bottom: 8px; }
+  .builder-instr { margin: 4px 0 12px; padding: 8px 12px; }
+  .pronoun-chips { gap: 7px; }
+  .pronoun-chip { padding: 7px 16px; }
+  .clause-build { gap: 10px; }
+  .clause-assembled { min-height: 44px; padding: 8px 10px; gap: 7px; }
+  .clause-tiles { gap: 7px; }
+  .word-tile { padding: 6px 13px; }
+  .assembled-tok { padding: 5px 11px; }
 }
 
 @media (min-width: 601px) and (max-width: 900px) {
