@@ -866,13 +866,11 @@
 
   function toggleTile(tile, tok, id) {
     if (bChecked) return;
-    if (tile.classList.contains('used')) {
-      bClause = bClause.filter(x => x.id !== id);
-      tile.classList.remove('used');
-    } else {
-      bClause.push({ tok, id });
-      tile.classList.add('used');
-    }
+    // Bank tiles are add-only: tapping an already-used tile does nothing.
+    // Removal is handled exclusively by tapping the assembled word above.
+    if (tile.classList.contains('used')) return;
+    bClause.push({ tok, id });
+    tile.classList.add('used');
     renderAssembled();
     updateBuilderNext();
   }
