@@ -745,6 +745,23 @@
         pop.textContent = icon.dataset.exp;
         icon.parentElement.appendChild(pop);
         icon.classList.add('open');
+        // Clamp the popover so it never overflows the viewport on narrow screens.
+        // After initial paint, measure and nudge left/right as needed, then
+        // shift the caret (::after pseudo) to compensate.
+        requestAnimationFrame(() => {
+          const MARGIN = 8; // px gap from screen edge
+          const rect = pop.getBoundingClientRect();
+          const vw = window.innerWidth;
+          let shift = 0;
+          if (rect.left < MARGIN) shift = MARGIN - rect.left;
+          else if (rect.right > vw - MARGIN) shift = (vw - MARGIN) - rect.right;
+          if (shift !== 0) {
+            // Adjust the translateX by `shift` px.
+            pop.style.transform = `translateX(calc(-50% + ${shift}px))`;
+            // Move the caret in the opposite direction so it still points at the icon.
+            pop.style.setProperty('--caret-shift', `calc(50% - ${shift}px)`);
+          }
+        });
       });
     });
   }
@@ -923,11 +940,16 @@
     });
 
     // segs[] are the sentence-1 segments; a gap is offered AFTER each segment.
+    // Each segment+gap pair is wrapped in a no-break inline-flex unit so the
+    // gap button never orphans onto its own line on narrow (mobile) screens.
     segs.forEach((seg, i) => {
+      const unit = document.createElement('span');
+      unit.className = 'place-unit';
+
       const segSpan = document.createElement('span');
       segSpan.className = 'place-seg';
       segSpan.textContent = seg;
-      placeLine.appendChild(segSpan);
+      unit.appendChild(segSpan);
 
       const gap = document.createElement('button');
       gap.type = 'button';
@@ -945,7 +967,9 @@
         gap.innerHTML = '<span class="gap-dot">▼</span>';
         updateBuilderNext();
       });
-      placeLine.appendChild(gap);
+      unit.appendChild(gap);
+
+      placeLine.appendChild(unit);
     });
 
     // Re-attach the full stop after the final gap.

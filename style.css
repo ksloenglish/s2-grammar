@@ -1106,7 +1106,7 @@ body {
   content: "";
   position: absolute;
   top: 100%;
-  left: 50%;
+  left: var(--caret-shift, 50%);
   transform: translateX(-50%);
   border: 7px solid transparent;
   border-top-color: var(--text);
@@ -1304,12 +1304,19 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px;
+  gap: 4px 0;
   font-size: 1.06rem;
   line-height: 1.8;
   color: var(--text);
 }
 .place-seg { padding: 2px 0; }
+/* Keeps each segment + its gap button together on one line (no orphan gaps). */
+.place-unit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
 .place-gap {
   font-family: inherit;
   border: none;
