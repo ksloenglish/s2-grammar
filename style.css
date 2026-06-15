@@ -300,6 +300,22 @@ body {
   margin-bottom: 14px;
 }
 
+/* Soft tinted info bar below the label */
+.quest-info-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 18%, transparent);
+  border-radius: 12px;
+}
+.qib-icon { font-size: 1rem; }
+
 .step-num {
   width: 26px; height: 26px;
   border-radius: 50%;
