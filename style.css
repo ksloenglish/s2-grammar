@@ -1382,3 +1382,120 @@ body {
   padding: 1px 5px;
   border-radius: 5px;
 }
+
+/* ============================================================ */
+/* BUILDER v3 ADDITIONS: instructions, score badge, check btn,  */
+/* and immediate per-step feedback states                       */
+/* ============================================================ */
+
+/* Per-question instructions */
+.builder-instr {
+  margin: 4px 0 18px;
+  padding: 10px 14px;
+  background: var(--primary-light);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-xs);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Cumulative score badge in the builder HUD (gold, like MC) */
+.score-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+  border: 2px solid #F59E0B;
+  border-radius: 24px;
+  padding: 6px 16px;
+  margin-right: 10px;
+  box-shadow: 0 3px 12px rgba(245, 158, 11, 0.3);
+  transition: transform 0.2s ease;
+}
+[data-theme="dark"] .score-badge {
+  background: linear-gradient(135deg, #78350F, #92400E);
+  border-color: #FBBF24;
+  box-shadow: 0 3px 12px rgba(251, 191, 36, 0.2);
+}
+.score-badge.pulse { animation: scorePulse 0.4s ease; }
+.sb-star { font-size: 1rem; }
+.score-badge #builder-score {
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #92400E;
+}
+[data-theme="dark"] .score-badge #builder-score { color: #FBBF24; }
+
+/* Check Answer button */
+.btn-check {
+  display: block;
+  margin: 22px auto 0;
+  padding: 14px 40px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--shadow-glow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-check:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(59,130,246,0.4); }
+.btn-check.hidden, .btn-next.hidden { display: none; }
+.clause-clear.hidden { display: none; }
+
+/* ---- Step 1 feedback: pronoun chips ---- */
+.pronoun-chip.locked { cursor: default; pointer-events: none; }
+.pronoun-chip.correct {
+  background: var(--success);
+  border-color: var(--success);
+  color: #fff;
+  box-shadow: 0 0 0 3px var(--success-light);
+}
+.pronoun-chip.wrong {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #fff;
+  text-decoration: line-through;
+}
+.pronoun-chip.locked:not(.correct):not(.wrong) { opacity: 0.5; }
+
+/* ---- Step 2 feedback: assembled clause ---- */
+.clause-assembled.fb-ok {
+  border-style: solid;
+  border-color: var(--success);
+  background: var(--success-light);
+}
+.clause-assembled.fb-no {
+  border-style: solid;
+  border-color: var(--danger);
+  background: var(--danger-light);
+}
+.fb-correct {
+  display: inline-block;
+  font-weight: 800;
+  color: var(--success);
+  margin-left: 4px;
+}
+.word-tile.locked { cursor: default; pointer-events: none; }
+
+/* ---- Step 3 feedback: placement gaps ---- */
+.place-gap.locked { cursor: default; pointer-events: none; }
+.place-gap.gap-correct .gap-dot {
+  background: var(--success);
+  color: #fff;
+  border-style: solid;
+  border-color: var(--success);
+  box-shadow: 0 0 0 3px var(--success-light);
+}
+.place-gap.gap-wrong .gap-dot {
+  background: var(--danger);
+  color: #fff;
+  border-style: solid;
+  border-color: var(--danger);
+}

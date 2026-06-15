@@ -56,7 +56,10 @@
   const clauseTiles = $('clause-tiles');
   const clauseClear = $('clause-clear');
   const placeLine = $('place-line');
+  const builderInstr = $('builder-instr');
+  const btnBuilderCheck = $('btn-builder-check');
   const btnBuilderNext = $('btn-builder-next');
+  const builderScore = $('builder-score');
   const builderQuit = $('builder-quit');
 
   // Results
@@ -95,6 +98,8 @@
   let bPronoun = null;              // chosen pronoun for current question
   let bClause = [];                 // chosen clause tokens (in order) for current question
   let bPlace = null;                // chosen gap index for current question
+  let bScore = 0;                   // cumulative marks across the builder exercise
+  let bChecked = false;             // whether the current question has been checked (locked)
 
   // --- GREETINGS ---
   const GREETINGS = [
@@ -261,13 +266,11 @@
 
   function renderQCountButtons(topicData) {
     let counts = [10, 20, 30, 40, 50];
-    // For builder (no repeats), don't offer more than the available pool.
+    // For builder (no repeats), don't offer more than the available pool,
+    // but do NOT add the exact pool size as an option.
     if (topicData && topicData.type === 'builder') {
       const max = (topicData.questions || []).length;
       counts = counts.filter(n => n <= max);
-      if (counts.length === 0 || counts[counts.length - 1] < max) counts.push(max);
-      // de-dupe
-      counts = [...new Set(counts)];
     }
     qcountGroup.innerHTML = '';
     counts.forEach(n => {
@@ -776,7 +779,9 @@
     currentQuestions = [...topicData.questions].sort(() => Math.random() - 0.5).slice(0, n);
     currentIndex = 0;
     elapsed = 0;
+    bScore = 0;
     builderResults = [];
+    builderScore.textContent = '0';
     showScreen('builder');
     startTimer();
     renderBuilderQuestion();
@@ -788,8 +793,14 @@
     bPronoun = null;
     bClause = [];
     bPlace = null;
+    bChecked = false;
     closeAllPopovers();
+    clauseAssembled.classList.remove('fb-ok', 'fb-no');
     btnBuilderNext.classList.add('hidden');
+    btnBuilderCheck.classList.add('hidden');
+
+    // Instructions
+    builderInstr.textContent = builderTopic.instructions || '';
 
     // HUD
     builderProgress.textContent = `${currentIndex + 1} / ${currentQuestions.length}`;
@@ -807,7 +818,9 @@
       chip.type = 'button';
       chip.className = 'pronoun-chip';
       chip.textContent = p;
+      chip.dataset.p = p;
       chip.addEventListener('click', () => {
+        if (bChecked) return;
         bPronoun = p;
         pronounChips.querySelectorAll('.pronoun-chip').forEach(c => c.classList.remove('selected'));
         chip.classList.add('selected');
@@ -830,12 +843,14 @@
       tile.addEventListener('click', () => toggleTile(tile, tok, i));
       clauseTiles.appendChild(tile);
     });
+    clauseClear.classList.remove('hidden');
 
     // Step 3: placement gaps (rendered as gaps in sentence 1)
     renderPlaceLine(q);
   }
 
   function toggleTile(tile, tok, id) {
+    if (bChecked) return;
     if (tile.classList.contains('used')) {
       bClause = bClause.filter(x => x.id !== id);
       tile.classList.remove('used');
@@ -848,6 +863,7 @@
   }
 
   function renderAssembled() {
+    if (!bChecked) clauseAssembled.classList.remove('fb-ok', 'fb-no');
     if (bClause.length === 0) {
       clauseAssembled.innerHTML = '<span class="clause-placeholder">Tap the words below in order…</span>';
       clauseAssembled.dataset.empty = 'true';
@@ -860,6 +876,7 @@
   }
 
   function clearClause() {
+    if (bChecked) return;
     bClause = [];
     clauseTiles.querySelectorAll('.word-tile.used').forEach(t => t.classList.remove('used'));
     renderAssembled();
@@ -868,11 +885,11 @@
 
   function renderPlaceLine(q) {
     placeLine.innerHTML = '';
-    // Build: slot0 [gap0] slot1 [gap1] ... A gap AFTER each slot (indices 0..slots.length-1).
-    q.slots.forEach((slot, i) => {
+    // segs[] are the sentence-1 segments; a gap is offered AFTER each segment.
+    q.segs.forEach((seg, i) => {
       const segSpan = document.createElement('span');
       segSpan.className = 'place-seg';
-      segSpan.textContent = slot;
+      segSpan.textContent = seg;
       placeLine.appendChild(segSpan);
 
       const gap = document.createElement('button');
@@ -881,6 +898,7 @@
       gap.dataset.gap = i;
       gap.innerHTML = '<span class="gap-dot">+</span>';
       gap.addEventListener('click', () => {
+        if (bChecked) return;
         bPlace = i;
         placeLine.querySelectorAll('.place-gap').forEach(g => {
           g.classList.remove('selected');
@@ -894,23 +912,27 @@
     });
   }
 
+  // Show the Check button once all three steps are answered (before checking).
   function updateBuilderNext() {
+    if (bChecked) return;
     const ready = bPronoun !== null && bClause.length > 0 && bPlace !== null;
-    if (ready) {
-      btnBuilderNext.classList.remove('hidden');
-      btnBuilderNext.textContent = currentIndex === currentQuestions.length - 1 ? 'Finish 🏁' : 'Next Question →';
-    } else {
-      btnBuilderNext.classList.add('hidden');
-    }
+    btnBuilderCheck.classList.toggle('hidden', !ready);
   }
 
-  function builderNext() {
+  // Grade the current question, reveal per-step feedback, update the score badge.
+  function builderCheck() {
+    if (bChecked) return;
     const q = currentQuestions[currentIndex];
-    // Grade this question (3 marks)
     const chosenClauseToks = bClause.map(x => x.tok);
     const pronounMark = (bPronoun === q.pronoun) ? 1 : 0;
     const clauseMark = arraysEqual(chosenClauseToks, q.clause) ? 1 : 0;
     const placeMark = (bPlace === q.correctGap) ? 1 : 0;
+    const total = pronounMark + clauseMark + placeMark;
+
+    bChecked = true;
+    bScore += total;
+    builderScore.textContent = String(bScore);
+    builderScoreBadgePulse();
 
     builderResults.push({
       q,
@@ -918,9 +940,59 @@
       chosenClause: chosenClauseToks,
       chosenPlace: bPlace,
       pronounMark, clauseMark, placeMark,
-      total: pronounMark + clauseMark + placeMark
+      total
     });
 
+    revealBuilderFeedback(q, pronounMark, clauseMark, placeMark);
+
+    btnBuilderCheck.classList.add('hidden');
+    clauseClear.classList.add('hidden');
+    btnBuilderNext.classList.remove('hidden');
+    btnBuilderNext.textContent = currentIndex === currentQuestions.length - 1 ? 'Finish \u{1F3C1}' : 'Next Question \u2192';
+  }
+
+  // Mark each step green/red and show the correct answer where wrong.
+  function revealBuilderFeedback(q, pronounMark, clauseMark, placeMark) {
+    // Step 1: pronoun chips
+    pronounChips.querySelectorAll('.pronoun-chip').forEach(c => {
+      const val = c.dataset.p;
+      c.classList.add('locked');
+      if (val === q.pronoun) c.classList.add('correct');
+      else if (c.classList.contains('selected') && val !== q.pronoun) c.classList.add('wrong');
+    });
+
+    // Step 2: clause — colour assembled tokens; mark whole step
+    const correctStr = q.clause.join(' ');
+    const chosenStr = bClause.map(x => x.tok).join(' ');
+    clauseAssembled.classList.add(clauseMark ? 'fb-ok' : 'fb-no');
+    if (!clauseMark) {
+      clauseAssembled.innerHTML += ` <span class="fb-correct">\u2192 ${escapeHtml(correctStr)}</span>`;
+    }
+    clauseTiles.querySelectorAll('.word-tile').forEach(t => t.classList.add('locked'));
+
+    // Step 3: placement gaps — highlight chosen (red if wrong) and the correct gap (green)
+    placeLine.querySelectorAll('.place-gap').forEach(g => {
+      const gi = parseInt(g.dataset.gap, 10);
+      g.classList.add('locked');
+      if (gi === q.correctGap) {
+        g.classList.add('gap-correct');
+        g.innerHTML = '<span class="gap-dot">\u2713</span>';
+      } else if (gi === bPlace) {
+        g.classList.add('gap-wrong');
+        g.innerHTML = '<span class="gap-dot">\u2715</span>';
+      }
+    });
+  }
+
+  function builderScoreBadgePulse() {
+    const badge = document.getElementById('builder-score-badge');
+    if (!badge) return;
+    badge.classList.remove('pulse');
+    void badge.offsetWidth;
+    badge.classList.add('pulse');
+  }
+
+  function builderNext() {
     currentIndex++;
     if (currentIndex >= currentQuestions.length) {
       endBuilderExercise();
@@ -993,8 +1065,8 @@
     const clauseStr = [r.chosenPronoun || '?', ...(r.chosenClause || [])].join(' ');
     const place = (r.chosenPlace === null || r.chosenPlace === undefined) ? q.correctGap : r.chosenPlace;
     const parts = [];
-    q.slots.forEach((slot, idx) => {
-      parts.push(slot);
+    q.segs.forEach((seg, idx) => {
+      parts.push(seg);
       if (idx === place) parts.push('[' + clauseStr + ']');
     });
     return parts.join(' ').replace(/\s+([.,])/g, '$1');
@@ -1012,6 +1084,8 @@
     stopTimer();
     builderResults = [];
     builderTopic = null;
+    bScore = 0;
+    builderScore.textContent = '0';
     showScreen('home');
   }
 
@@ -1024,6 +1098,7 @@
     btnAgain.addEventListener('click', playAgain);
     btnSubmitPassage.addEventListener('click', submitPassage);
     passageQuit.addEventListener('click', quitPassageToHome);
+    btnBuilderCheck.addEventListener('click', builderCheck);
     btnBuilderNext.addEventListener('click', builderNext);
     builderQuit.addEventListener('click', quitBuilderToHome);
     clauseClear.addEventListener('click', clearClause);
