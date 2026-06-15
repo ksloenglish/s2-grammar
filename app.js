@@ -837,7 +837,7 @@
       const tile = document.createElement('button');
       tile.type = 'button';
       tile.className = 'word-tile';
-      tile.textContent = tok;
+      tile.textContent = displayTile(tok);
       tile.dataset.tok = tok;
       tile.dataset.tileid = i;
       tile.addEventListener('click', () => toggleTile(tile, tok, i));
@@ -871,8 +871,20 @@
     }
     clauseAssembled.dataset.empty = 'false';
     clauseAssembled.innerHTML = bClause.map(x =>
-      `<span class="assembled-tok">${escapeHtml(x.tok)}</span>`
+      `<span class="assembled-tok">${escapeHtml(displayTile(x.tok))}</span>`
     ).join(' ');
+  }
+
+  // Proper nouns that must keep their capital letter when shown as tiles.
+  const PROPER_NOUNS = new Set(['Canada', 'Olympic']);
+  // Lowercase the first letter of a token for display, unless it is a proper
+  // noun or the standalone pronoun "I". Multi-word tokens (e.g. "The shop")
+  // only have their leading word lowercased.
+  function displayTile(tok) {
+    if (tok === 'I') return tok;
+    const firstWord = tok.split(' ')[0];
+    if (PROPER_NOUNS.has(firstWord) || PROPER_NOUNS.has(tok)) return tok;
+    return tok.charAt(0).toLowerCase() + tok.slice(1);
   }
 
   function clearClause() {
@@ -925,7 +937,7 @@
     const q = currentQuestions[currentIndex];
     const chosenClauseToks = bClause.map(x => x.tok);
     const pronounMark = (bPronoun === q.pronoun) ? 1 : 0;
-    const clauseMark = arraysEqual(chosenClauseToks, q.clause) ? 1 : 0;
+    const clauseMark = arraysEqualCI(chosenClauseToks, q.clause) ? 1 : 0;
     const placeMark = (bPlace === q.correctGap) ? 1 : 0;
     const total = pronounMark + clauseMark + placeMark;
 
@@ -953,19 +965,24 @@
 
   // Mark each step green/red and show the correct answer where wrong.
   function revealBuilderFeedback(q, pronounMark, clauseMark, placeMark) {
-    // Step 1: pronoun chips
+    // Step 1: pronoun chips — add a tick beside the correct one
     pronounChips.querySelectorAll('.pronoun-chip').forEach(c => {
       const val = c.dataset.p;
       c.classList.add('locked');
-      if (val === q.pronoun) c.classList.add('correct');
-      else if (c.classList.contains('selected') && val !== q.pronoun) c.classList.add('wrong');
+      if (val === q.pronoun) {
+        c.classList.add('correct');
+        c.innerHTML = `${escapeHtml(val)} <span class="chip-tick">\u2713</span>`;
+      } else if (c.classList.contains('selected') && val !== q.pronoun) {
+        c.classList.add('wrong');
+      }
     });
 
     // Step 2: clause — colour assembled tokens; mark whole step
-    const correctStr = q.clause.join(' ');
-    const chosenStr = bClause.map(x => x.tok).join(' ');
+    const correctStr = q.clause.map(displayTile).join(' ');
     clauseAssembled.classList.add(clauseMark ? 'fb-ok' : 'fb-no');
-    if (!clauseMark) {
+    if (clauseMark) {
+      clauseAssembled.innerHTML += ` <span class="clause-tick">\u2713</span>`;
+    } else {
       clauseAssembled.innerHTML += ` <span class="fb-correct">\u2192 ${escapeHtml(correctStr)}</span>`;
     }
     clauseTiles.querySelectorAll('.word-tile').forEach(t => t.classList.add('locked'));
@@ -1005,6 +1022,15 @@
     if (a.length !== b.length) return false;
     for (let i = 0; i < a.length; i++) {
       if (a[i] !== b[i]) return false;
+    }
+    return true;
+  }
+
+  // Case-insensitive, space-normalised array comparison (for clause marking).
+  function arraysEqualCI(a, b) {
+    if (a.length !== b.length) return false;
+    for (let i = 0; i < a.length; i++) {
+      if (a[i].trim().toLowerCase() !== b[i].trim().toLowerCase()) return false;
     }
     return true;
   }
