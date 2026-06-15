@@ -87,7 +87,7 @@ const GRAMMAR_DATA = {
       label: "Passive Voice",
       icon: "\u{1F504}",
       iconClass: "c-amber",
-      desc: "Be + past participle",
+      desc: "be + past participle",
       type: "passage",
       blankType: "input",
       instructions: "Complete the passage with the correct form of the verbs in brackets.",
@@ -263,7 +263,7 @@ const GRAMMAR_DATA = {
       label: "Reported Speech",
       icon: "\u{1F4AC}",
       iconClass: "c-rose",
-      desc: "say, tell, ask; tense, pronoun & time shifts",
+      desc: "said, told, asked; tense, pronoun & time shifts",
       type: "builder-rs",
       // 3-step reported-speech builder. Up to 3 marks per question:
       //   Step 1 (frame):  pick the correct reporting frame (3 options, 1 correct).
