@@ -141,12 +141,8 @@
 
   // --- STATS (localStorage) ---
   function loadStats() {
-    const attempts = localStorage.getItem('kslo_grammar_attempts') || '0';
-    const best = localStorage.getItem('kslo_grammar_best_score') || '\u2014';
-    const time = localStorage.getItem('kslo_grammar_best_time') || '\u2014';
-    $('stat-attempts').textContent = attempts;
-    $('stat-best').textContent = best;
-    $('stat-time').textContent = time;
+    // Homepage stats bar removed (scores differ per exercise type).
+    // Kept as a no-op so existing call sites remain valid.
   }
 
   function saveStats(scoreStr, timeStr) {
@@ -411,7 +407,9 @@
       }
       // Show next button
       btnNext.classList.remove('hidden');
-      btnNext.textContent = currentIndex === currentQuestions.length - 1 ? 'Finish \u{1F3C1}' : 'Next Question \u2192';
+      btnNext.textContent = currentIndex === currentQuestions.length - 1 ? 'Finish' : 'Next Question \u2192';
+      // Advance the progress bar now that this question is answered correctly
+      progressFill.style.width = `${((currentIndex + 1) / currentQuestions.length) * 100}%`;
     } else {
       btn.classList.add('wrong');
       if (firstAttempt) {
@@ -960,7 +958,10 @@
     btnBuilderCheck.classList.add('hidden');
     clauseClear.classList.add('hidden');
     btnBuilderNext.classList.remove('hidden');
-    btnBuilderNext.textContent = currentIndex === currentQuestions.length - 1 ? 'Finish \u{1F3C1}' : 'Next Question \u2192';
+    btnBuilderNext.textContent = currentIndex === currentQuestions.length - 1 ? 'Finish' : 'Next Question \u2192';
+
+    // Advance the progress bar now that this question is answered
+    builderProgressFill.style.width = `${((currentIndex + 1) / currentQuestions.length) * 100}%`;
   }
 
   // Mark each step green/red and show the correct answer where wrong.
@@ -1098,12 +1099,50 @@
     return parts.join(' ').replace(/\s+([.,])/g, '$1');
   }
 
-  // Render the correct combined sentence with the relative clause emphasised
+  // Render the correct combined sentence (q.combined, authoritatively
+  // punctuated) with the relative clause emphasised. Highlights the pronoun
+  // and the clause words wherever they appear, so it works even when the
+  // relative clause is split around the main clause (case-insensitive).
   function highlightCombined(q) {
-    const clauseStr = [q.pronoun, ...q.clause].join(' ');
-    const esc = escapeHtml(q.combined);
-    const escClause = escapeHtml(clauseStr);
-    return esc.replace(escClause, `<span class="br-hl">${escClause}</span>`);
+    const fullClause = [q.pronoun, ...q.clause].join(' ');
+    const combined = q.combined;
+
+    // 1) Try the whole relative clause as one contiguous run.
+    let span = findRun(combined, fullClause);
+    if (span) return wrapSpans(combined, [span]);
+
+    // 2) Split case: highlight the pronoun run and the longest clause-word run.
+    const spans = [];
+    const pronounSpan = findRun(combined, q.pronoun);
+    if (pronounSpan) spans.push(pronounSpan);
+    const clauseStr = q.clause.join(' ');
+    const clauseSpan = findRun(combined, clauseStr, pronounSpan ? pronounSpan.end : 0);
+    if (clauseSpan) spans.push(clauseSpan);
+
+    if (spans.length === 0) return escapeHtml(combined); // safe fallback
+    return wrapSpans(combined, spans);
+  }
+
+  // Find a case-insensitive run of `needle` in `hay` at or after `from`.
+  function findRun(hay, needle, from = 0) {
+    if (!needle) return null;
+    const i = hay.toLowerCase().indexOf(needle.toLowerCase(), from);
+    if (i === -1) return null;
+    return { start: i, end: i + needle.length };
+  }
+
+  // Wrap one or more [start,end) spans of `text` in highlight markup.
+  function wrapSpans(text, spans) {
+    spans.sort((a, b) => a.start - b.start);
+    let out = '';
+    let cursor = 0;
+    spans.forEach(s => {
+      out += escapeHtml(text.slice(cursor, s.start));
+      out += `<span class="br-hl">${escapeHtml(text.slice(s.start, s.end))}</span>`;
+      cursor = s.end;
+    });
+    out += escapeHtml(text.slice(cursor));
+    return out;
   }
 
   function quitBuilderToHome() {
