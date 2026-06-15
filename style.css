@@ -1298,7 +1298,7 @@ body {
   cursor: pointer;
   transition: all 0.15s ease;
 }
-.word-tile:hover {
+.word-tile:not(.used):hover {
   border-color: var(--accent);
   transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
@@ -1307,7 +1307,13 @@ body {
   opacity: 0.35;
   background: var(--bg);
   border-style: dashed;
-  pointer-events: auto;
+  cursor: default;
+  pointer-events: none;
+}
+.word-tile.used:hover {
+  border-color: var(--border);
+  transform: none;
+  box-shadow: none;
 }
 .clause-clear {
   align-self: flex-start;

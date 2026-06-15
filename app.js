@@ -21,7 +21,7 @@
   const themeBtn = $('theme-btn');
   const themeIcon = $('theme-icon');
   const heroSub = $('hero-sub');
-  const streakCount = $('streak-count');
+  const streakCount = $('streak-count') || { textContent: '' }; // badge removed; keep safe no-op
 
   // Exercise
   const hudProgress = $('hud-progress');
@@ -242,7 +242,19 @@
     topicGrid.innerHTML = '';
     if (!selectedTerm) return;
     const topics = GRAMMAR_DATA[selectedTerm];
-    Object.keys(topics).forEach((key, i) => {
+    // Explicit display order for quest cards (falls back to natural key order)
+    const DISPLAY_ORDER = {
+      "Second Term": ["passive-voice", "relative-clauses", "reported-speech", "articles"]
+    };
+    const order = DISPLAY_ORDER[selectedTerm] || [];
+    const orderedKeys = Object.keys(topics).slice().sort((a, b) => {
+      const ia = order.indexOf(a); const ib = order.indexOf(b);
+      if (ia === -1 && ib === -1) return 0;
+      if (ia === -1) return 1;
+      if (ib === -1) return -1;
+      return ia - ib;
+    });
+    orderedKeys.forEach((key, i) => {
       const t = topics[key];
       const card = document.createElement('div');
       card.className = 'topic-card';
