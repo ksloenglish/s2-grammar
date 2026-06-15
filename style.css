@@ -878,6 +878,11 @@ body {
   margin-top: auto;
   flex-shrink: 0;
 }
+.app-version {
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
 
 /* === RESPONSIVE === */
 @media (max-width: 600px) {
