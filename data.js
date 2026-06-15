@@ -75,57 +75,85 @@ const GRAMMAR_DATA = {
       icon: "\u{1F504}",
       iconClass: "c-amber",
       desc: "Be + past participle",
-      type: "mc",
-      questions: [
+      type: "passage",
+      blankType: "input",
+      instructions: "Complete the passage with the correct form of the verbs in brackets.",
+      // blankType "input": each blank is a text field.
+      // A blank object: { prompt: "(verb)", answer: "...", alternatives: [], explanation: "..." }
+      // `alternatives` lets additional accepted answers be added per blank in future.
+      // The system randomly assigns one exercise each time this topic is played.
+      exercises: [
         {
-          question: "The cake ___ by my mother every Sunday.",
-          options: ["is baked", "bakes", "is baking", "baked"],
-          answer: "is baked"
+          title: "Green Day Event",
+          segments: [
+            "Last month, our school held a Green Day event. Normally, the classrooms ",
+            { prompt: "(clean)", answer: "are cleaned", alternatives: [], explanation: "Present simple passive: a routine action done to the classrooms every morning." },
+            " every morning by the cleaning staff, but on that day, students ",
+            { prompt: "(decorate)", answer: "decorated", alternatives: [], explanation: "Active voice (past simple): the students did the action themselves." },
+            " them by themselves. A lot of posters ",
+            { prompt: "(make)", answer: "were made", alternatives: [], explanation: "Past simple passive: a plural subject (posters) receives the action in the past." },
+            " by the art club before the event started. Our teacher told us that plastic bottles should ",
+            { prompt: "(not use)", answer: "not be used", alternatives: [], explanation: "Passive with a modal (should): use 'be' + past participle; 'not' goes after the modal." },
+            " at school. Also, more trees ",
+            { prompt: "(plant)", answer: "will be planted", alternatives: [], explanation: "Future passive: 'will be' + past participle for an action that will happen." },
+            " in the future if we want a cleaner environment.\n\nDuring the event, some students picked up rubbish while others ",
+            { prompt: "(plant)", answer: "planted", alternatives: [], explanation: "Active voice (past simple): the students performed the action of planting." },
+            " flowers in the garden. Snacks ",
+            { prompt: "(provide)", answer: "were provided", alternatives: [], explanation: "Past simple passive: a plural subject (snacks) receives the action in the past." },
+            " by the canteen because the event lasted all day, but soft drinks ",
+            { prompt: "(not allow)", answer: "were not allowed", alternatives: [], explanation: "Past simple passive (negative): a plural subject with 'were not' + past participle." },
+            " because the school wanted everyone to be healthy. At noon, a short speech ",
+            { prompt: "(give)", answer: "was given", alternatives: [], explanation: "Past simple passive: a singular subject (speech) receives the action in the past." },
+            " by the principal, and all students ",
+            { prompt: "(listen)", answer: "listened", alternatives: [], explanation: "Active voice (past simple): the students did the listening themselves." },
+            " carefully.\n\nAfter the event, the playground was very clean. The rubbish ",
+            { prompt: "(put)", answer: "was put", alternatives: [], explanation: "Past simple passive: a singular subject (rubbish) receives the action; 'put' is unchanged as a past participle." },
+            " into large bags, and the bags ",
+            { prompt: "(send)", answer: "were sent", alternatives: [], explanation: "Past simple passive: a plural subject (bags) receives the action in the past." },
+            " to the recycling center later that afternoon. Our class teacher was proud because we ",
+            { prompt: "(put)", answer: "put", alternatives: [], explanation: "Active voice (past simple): 'we' performed the action; 'put' is unchanged in the past simple." },
+            " a lot of effort into the activity. She says that another Green Day ",
+            { prompt: "(hold)", answer: "will be held", alternatives: [], explanation: "Future passive: 'will be' + past participle for a future event." },
+            " next year, and even more parents ",
+            { prompt: "(invite)", answer: "will be invited", alternatives: [], explanation: "Future passive: 'will be' + past participle; the parents receive the action." },
+            " to join."
+          ]
         },
         {
-          question: "The window ___ by the storm last night.",
-          options: ["broke", "was broken", "is broken", "has broken"],
-          answer: "was broken"
-        },
-        {
-          question: "English ___ in many countries around the world.",
-          options: ["speaks", "is speaking", "is spoken", "spoke"],
-          answer: "is spoken"
-        },
-        {
-          question: "The homework ___ before the deadline tomorrow.",
-          options: ["must finish", "must be finished", "must finishing", "must be finishing"],
-          answer: "must be finished"
-        },
-        {
-          question: "The new bridge ___ next year.",
-          options: ["will build", "will be built", "is building", "builds"],
-          answer: "will be built"
-        },
-        {
-          question: "These photos ___ during our trip to Japan.",
-          options: ["took", "were taken", "are taking", "have took"],
-          answer: "were taken"
-        },
-        {
-          question: "The report ___ by the time you arrive.",
-          options: ["will have been completed", "will complete", "is completing", "completes"],
-          answer: "will have been completed"
-        },
-        {
-          question: "Many trees ___ in the park every spring.",
-          options: ["plant", "are planted", "is planted", "planting"],
-          answer: "are planted"
-        },
-        {
-          question: "The suspect ___ by the police yesterday.",
-          options: ["arrested", "was arrested", "is arrested", "has arrested"],
-          answer: "was arrested"
-        },
-        {
-          question: "This song ___ by millions of people.",
-          options: ["loves", "is loved", "loving", "was loving"],
-          answer: "is loved"
+          title: "Class Video Channel",
+          segments: [
+            "Every Friday, short videos ",
+            { prompt: "(upload)", answer: "are uploaded", alternatives: [], explanation: "Present simple passive: a routine action; a plural subject (videos) takes 'are' + past participle." },
+            " to our class channel. Two weeks ago, Mina suggested a mini-documentary about interesting places in our town. The main idea ",
+            { prompt: "(discuss)", answer: "was discussed", alternatives: [], explanation: "Past simple passive: a singular subject (idea) receives the action in the past." },
+            " during lunch, and everyone ",
+            { prompt: "(give)", answer: "gave", alternatives: [], explanation: "Active voice (past simple): 'everyone' performed the action of giving." },
+            " one suggestion. We agreed that private messages should ",
+            { prompt: "(not show)", answer: "not be shown", alternatives: [], explanation: "Passive with a modal (should): use 'be' + past participle; 'not' follows the modal." },
+            " in the video. Also, students\u2019 faces ",
+            { prompt: "(blur)", answer: "will be blurred", alternatives: [], explanation: "Future passive: 'will be' + past participle for an action that may happen later." },
+            " in the future if they ask for privacy.\n\nOn Saturday morning, our group met near the old library. Some clips ",
+            { prompt: "(film)", answer: "were filmed", alternatives: [], explanation: "Past simple passive: a plural subject (clips) receives the action in the past." },
+            " by the river, while Leo ",
+            { prompt: "(record)", answer: "recorded", alternatives: [], explanation: "Active voice (past simple): Leo performed the action of recording." },
+            " background sounds on his phone. The drone ",
+            { prompt: "(not use)", answer: "was not used", alternatives: [], explanation: "Past simple passive (negative): a singular subject with 'was not' + past participle." },
+            " because the park was too crowded. Later, all the phones ",
+            { prompt: "(charge)", answer: "were charged", alternatives: [], explanation: "Past simple passive: a plural subject (phones) receives the action in the past." },
+            " at a caf\u00e9, and Sara ",
+            { prompt: "(edit)", answer: "edited", alternatives: [], explanation: "Active voice (past simple): Sara performed the action of editing." },
+            " the first part of the video there.\n\nBefore the final version went online, the captions ",
+            { prompt: "(add)", answer: "were added", alternatives: [], explanation: "Past simple passive: a plural subject (captions) receives the action in the past." },
+            " by Tom, and all the facts ",
+            { prompt: "(check)", answer: "were checked", alternatives: [], explanation: "Past simple passive: a plural subject (facts) receives the action in the past." },
+            " carefully. By Monday morning, the video ",
+            { prompt: "(watch)", answer: "was watched", alternatives: [], explanation: "Past simple passive: a singular subject (video) receives the action in the past." },
+            " by hundreds of students. Our teacher says that another episode ",
+            { prompt: "(produce)", answer: "will be produced", alternatives: [], explanation: "Future passive: 'will be' + past participle for a future event." },
+            " next month, and a behind-the-scenes clip ",
+            { prompt: "(share)", answer: "will be shared", alternatives: [], explanation: "Future passive: 'will be' + past participle; the clip receives the action." },
+            " on the school website."
+          ]
         }
       ]
     },

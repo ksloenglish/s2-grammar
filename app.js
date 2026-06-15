@@ -71,7 +71,8 @@
 
   // Passage state
   let currentPassage = null;   // the chosen exercise object
-  let passageBlanks = [];      // [{ answer, selectEl, index }]
+  let passageBlanks = [];      // [{ answer, alternatives, explanation, inputEl|selectEl, index }]
+  let passageBlankType = 'select'; // 'select' (articles) or 'input' (passive voice)
 
   // --- GREETINGS ---
   const GREETINGS = [
@@ -497,6 +498,7 @@
     // Randomly assign an exercise
     currentPassage = exercises[Math.floor(Math.random() * exercises.length)];
     passageBlanks = [];
+    passageBlankType = topicData.blankType === 'input' ? 'input' : 'select';
     elapsed = 0;
 
     // Instructions
@@ -532,7 +534,6 @@
           passageBody.appendChild(document.createTextNode(part));
         });
       } else {
-        // It's a blank — create a dropdown
         const idx = blankIndex++;
         const wrap = document.createElement('span');
         wrap.className = 'blank-wrap';
@@ -540,42 +541,92 @@
         const num = document.createElement('span');
         num.className = 'blank-num';
         num.textContent = `(${idx + 1})`;
-
-        const sel = document.createElement('select');
-        sel.className = 'blank-select';
-        sel.dataset.index = idx;
-
-        const placeholder = document.createElement('option');
-        placeholder.value = '';
-        placeholder.textContent = '\u2014';
-        placeholder.disabled = true;
-        placeholder.selected = true;
-        sel.appendChild(placeholder);
-
-        ARTICLE_OPTIONS.forEach(opt => {
-          const o = document.createElement('option');
-          o.value = opt;
-          o.textContent = opt;
-          sel.appendChild(o);
-        });
-
-        sel.addEventListener('change', () => {
-          sel.classList.add('filled');
-          updatePassageProgress();
-        });
-
         wrap.appendChild(num);
-        wrap.appendChild(sel);
-        passageBody.appendChild(wrap);
 
-        passageBlanks.push({ answer: seg.answer, selectEl: sel, index: idx });
+        const blankObj = { answer: seg.answer, alternatives: seg.alternatives || [], explanation: seg.explanation || '', index: idx };
+
+        if (passageBlankType === 'input') {
+          // Text input blank with the bracketed verb prompt
+          const inp = document.createElement('input');
+          inp.type = 'text';
+          inp.className = 'blank-input';
+          inp.dataset.index = idx;
+          inp.autocomplete = 'off';
+          inp.autocapitalize = 'off';
+          inp.spellcheck = false;
+          inp.setAttribute('aria-label', `Blank ${idx + 1}`);
+          inp.addEventListener('input', () => {
+            inp.classList.toggle('filled', inp.value.trim() !== '');
+            updatePassageProgress();
+          });
+          wrap.appendChild(inp);
+
+          if (seg.prompt) {
+            const pr = document.createElement('span');
+            pr.className = 'blank-prompt';
+            pr.textContent = seg.prompt;
+            wrap.appendChild(pr);
+          }
+          blankObj.inputEl = inp;
+        } else {
+          // Dropdown blank (articles)
+          const sel = document.createElement('select');
+          sel.className = 'blank-select';
+          sel.dataset.index = idx;
+
+          const placeholder = document.createElement('option');
+          placeholder.value = '';
+          placeholder.textContent = '\u2014';
+          placeholder.disabled = true;
+          placeholder.selected = true;
+          sel.appendChild(placeholder);
+
+          ARTICLE_OPTIONS.forEach(opt => {
+            const o = document.createElement('option');
+            o.value = opt;
+            o.textContent = opt;
+            sel.appendChild(o);
+          });
+
+          sel.addEventListener('change', () => {
+            sel.classList.add('filled');
+            updatePassageProgress();
+          });
+          wrap.appendChild(sel);
+          blankObj.selectEl = sel;
+        }
+
+        passageBody.appendChild(wrap);
+        passageBlanks.push(blankObj);
       }
     });
   }
 
+  // Normalise an answer for comparison: trim, collapse inner spaces, lowercase
+  function normaliseAns(str) {
+    return (str || '').trim().replace(/\s+/g, ' ').toLowerCase();
+  }
+
+  // Get the current raw value of a blank (input or select)
+  function blankValue(b) {
+    return b.inputEl ? b.inputEl.value : b.selectEl.value;
+  }
+
+  // Is the blank filled in?
+  function blankFilled(b) {
+    return blankValue(b).trim() !== '';
+  }
+
+  // Is the blank's value correct? (case-insensitive, space-normalised, accepts alternatives)
+  function blankIsCorrect(b) {
+    const val = normaliseAns(blankValue(b));
+    if (val === normaliseAns(b.answer)) return true;
+    return (b.alternatives || []).some(alt => normaliseAns(alt) === val);
+  }
+
   function updatePassageProgress() {
     const total = passageBlanks.length;
-    const filled = passageBlanks.filter(b => b.selectEl.value !== '').length;
+    const filled = passageBlanks.filter(b => blankFilled(b)).length;
     passageFilled.textContent = `${filled} / ${total}`;
     passageProgressFill.style.width = `${(filled / total) * 100}%`;
 
@@ -590,7 +641,7 @@
     stopTimer();
     let correct = 0;
     passageBlanks.forEach(b => {
-      if (b.selectEl.value === b.answer) correct++;
+      if (blankIsCorrect(b)) correct++;
     });
     const total = passageBlanks.length;
     const pct = Math.round((correct / total) * 100);
@@ -608,6 +659,7 @@
 
     // Build annotated passage review
     reviewList.innerHTML = buildPassageReview();
+    bindExplainIcons();
 
     saveStats(scoreStr, timeStr);
     showScreen('results');
@@ -622,12 +674,16 @@
         html += escapeHtml(seg).replace(/\n\n/g, '<br><br>');
       } else {
         const b = passageBlanks[blankIndex++];
-        const chosen = b.selectEl.value;
-        const isCorrect = chosen === b.answer;
+        const chosen = blankValue(b);
+        const chosenDisp = chosen.trim() === '' ? '\u2014' : chosen;
+        const isCorrect = blankIsCorrect(b);
+        const info = b.explanation
+          ? `<button class="rev-info" type="button" data-exp="${escapeAttr(b.explanation)}" aria-label="Show explanation">i</button>`
+          : '';
         if (isCorrect) {
-          html += `<span class="rev-blank correct"><span class="rev-mark">\u2713</span><span class="rev-ans">${escapeHtml(displayArticle(chosen))}</span></span>`;
+          html += `<span class="rev-blank correct"><span class="rev-mark">\u2713</span><span class="rev-ans">${escapeHtml(chosenDisp)}</span>${info}</span>`;
         } else {
-          html += `<span class="rev-blank wrong"><span class="rev-mark">\u2717</span><span class="rev-ans rev-wrong">${escapeHtml(displayArticle(chosen))}</span><span class="rev-correct">${escapeHtml(displayArticle(b.answer))}</span></span>`;
+          html += `<span class="rev-blank wrong"><span class="rev-mark">\u2717</span><span class="rev-ans rev-wrong">${escapeHtml(chosenDisp)}</span><span class="rev-correct">${escapeHtml(b.answer)}</span>${info}</span>`;
         }
       }
     });
@@ -635,9 +691,27 @@
     return html;
   }
 
-  function displayArticle(val) {
-    // Show X as 'X' (no article)
-    return val;
+  // Bind explanation popovers in the review
+  function bindExplainIcons() {
+    const icons = reviewList.querySelectorAll('.rev-info');
+    icons.forEach(icon => {
+      icon.addEventListener('click', e => {
+        e.stopPropagation();
+        const alreadyOpen = icon.classList.contains('open');
+        closeAllPopovers();
+        if (alreadyOpen) return;
+        const pop = document.createElement('span');
+        pop.className = 'rev-popover';
+        pop.textContent = icon.dataset.exp;
+        icon.parentElement.appendChild(pop);
+        icon.classList.add('open');
+      });
+    });
+  }
+
+  function closeAllPopovers() {
+    reviewList.querySelectorAll('.rev-popover').forEach(p => p.remove());
+    reviewList.querySelectorAll('.rev-info.open').forEach(i => i.classList.remove('open'));
   }
 
   function escapeHtml(str) {
@@ -660,6 +734,12 @@
     btnAgain.addEventListener('click', playAgain);
     btnSubmitPassage.addEventListener('click', submitPassage);
     passageQuit.addEventListener('click', quitPassageToHome);
+    // Close explanation popovers when clicking elsewhere
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.rev-info') && !e.target.closest('.rev-popover')) {
+        closeAllPopovers();
+      }
+    });
   }
 
   // --- GO ---

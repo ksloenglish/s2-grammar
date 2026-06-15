@@ -969,6 +969,38 @@ body {
   border-color: var(--primary);
 }
 
+/* Text-input blanks (e.g. Passive Voice) */
+.blank-input {
+  font-family: var(--font, 'Inter', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary);
+  padding: 4px 10px;
+  border: 2px solid var(--border-active);
+  border-radius: 8px;
+  background: var(--bg2);
+  transition: all 0.15s ease;
+  width: 120px;
+  text-align: center;
+}
+.blank-input:hover { border-color: var(--primary); }
+.blank-input:focus { outline: none; box-shadow: 0 0 0 3px var(--accent-light); }
+.blank-input.filled {
+  background-color: var(--accent-light);
+  border-color: var(--primary);
+}
+.blank-prompt {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-style: italic;
+}
+/* Input blanks may be wide, so allow the wrap to break onto a new line */
+.passage-body .blank-wrap:has(.blank-input) {
+  white-space: normal;
+}
+
 /* ============================================================
    PASSAGE REVIEW (results)
    ============================================================ */
@@ -1025,6 +1057,61 @@ body {
   color: var(--text-muted);
   font-weight: 700;
 }
+
+/* Explanation info icon + popover */
+.rev-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 4px;
+  border: none;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.74rem;
+  line-height: 1;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+.rev-info:hover { transform: scale(1.15); }
+.rev-info.open { background: var(--text); }
+
+.rev-popover {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 280px;
+  white-space: normal;
+  background: var(--text);
+  color: var(--bg2);
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: left;
+  padding: 9px 12px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+  z-index: 50;
+}
+.rev-popover::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: var(--text);
+}
+/* The review blank must be the positioning context for the popover */
+.rev-blank { position: relative; }
 
 /* Responsive: passage on mobile */
 @media (max-width: 600px) {
