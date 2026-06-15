@@ -1003,8 +1003,12 @@ body {
   border-radius: 8px;
   background: var(--bg2);
   transition: all 0.15s ease;
-  width: 120px;
+  width: 175px;
+  max-width: 100%;
   text-align: center;
+}
+@media (max-width: 600px) {
+  .blank-input { width: 150px; }
 }
 .blank-input:hover { border-color: var(--primary); }
 .blank-input:focus { outline: none; box-shadow: 0 0 0 3px var(--accent-light); }
