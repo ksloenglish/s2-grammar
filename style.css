@@ -881,3 +881,154 @@ body {
 
 /* === UTILITY === */
 .hidden { display: none !important; }
+
+
+/* ============================================================
+   PASSAGE EXERCISE
+   ============================================================ */
+.passage-instructions {
+  max-width: 760px;
+  margin: 0 auto 16px;
+  padding: 14px 20px;
+  background: var(--accent-light);
+  border: 1px solid var(--border-active);
+  border-left: 4px solid var(--primary);
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.passage-card {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.passage-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+
+.passage-body {
+  font-size: 1.05rem;
+  line-height: 2.4;
+  color: var(--text);
+  text-align: left;
+}
+
+.blank-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0 2px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.blank-num {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.blank-select {
+  font-family: var(--font, 'Inter', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary);
+  padding: 4px 8px;
+  border: 2px solid var(--border-active);
+  border-radius: 8px;
+  background: var(--bg2);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-width: 56px;
+  text-align: center;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%232563EB' stroke-width='2' fill='none' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 24px;
+}
+
+.blank-select:hover { border-color: var(--primary); }
+.blank-select:focus { outline: none; box-shadow: 0 0 0 3px var(--accent-light); }
+.blank-select.filled {
+  background-color: var(--accent-light);
+  border-color: var(--primary);
+}
+
+/* ============================================================
+   PASSAGE REVIEW (results)
+   ============================================================ */
+.passage-review {
+  font-size: 1.02rem;
+  line-height: 2.6;
+  color: var(--text);
+  text-align: left;
+}
+
+.rev-blank {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0 3px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  vertical-align: middle;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.rev-blank.correct {
+  background: var(--success-light);
+  border: 1.5px solid var(--success);
+}
+.rev-blank.wrong {
+  background: var(--danger-light);
+  border: 1.5px solid var(--danger);
+}
+
+.rev-mark {
+  font-size: 0.85rem;
+  font-weight: 900;
+}
+.rev-blank.correct .rev-mark { color: var(--success); }
+.rev-blank.wrong .rev-mark { color: var(--danger); }
+
+.rev-ans { color: var(--success); }
+.rev-blank.correct .rev-ans { color: var(--success); }
+.rev-wrong {
+  color: var(--danger);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+.rev-correct {
+  color: var(--success);
+  font-weight: 800;
+  padding-left: 2px;
+}
+.rev-correct::before {
+  content: "\2192";
+  margin-right: 3px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+/* Responsive: passage on mobile */
+@media (max-width: 600px) {
+  .passage-card { padding: 20px 18px; }
+  .passage-body { font-size: 0.98rem; line-height: 2.3; }
+  .passage-review { font-size: 0.95rem; }
+}

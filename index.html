@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 <!-- ========== TOP BAR ========== -->
@@ -128,25 +128,51 @@
   <button class="btn-next hidden" id="btn-next">Next Question &rarr;</button>
 </main>
 
+<!-- ========== PASSAGE EXERCISE SCREEN ========== -->
+<main id="screen-passage" class="screen">
+  <div class="hud">
+    <div class="hud-left">
+      <div class="hud-cell">
+        <span class="hud-lbl">&#x270F;</span>
+        <span class="hud-val" id="passage-filled">0 / 0</span>
+      </div>
+      <div class="hud-cell">
+        <span class="hud-lbl">&#x23F1;</span>
+        <span class="hud-val mono" id="passage-timer">00:00.00</span>
+      </div>
+    </div>
+    <div class="hud-right">
+      <button class="hud-quit" id="passage-quit">&#x2715; Quit</button>
+    </div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="passage-progress-fill"></div></div>
+  <div class="passage-instructions" id="passage-instructions"></div>
+  <div class="passage-card">
+    <h2 class="passage-title" id="passage-title"></h2>
+    <div class="passage-body" id="passage-body"></div>
+  </div>
+  <button class="btn-next hidden" id="btn-submit-passage">Submit Answers &#x2713;</button>
+</main>
+
 <!-- ========== RESULTS SCREEN ========== -->
 <main id="screen-results" class="screen">
   <section class="results-wrap">
     <div class="results-trophy">&#x1F3C6;</div>
     <h1 class="results-title">Challenge Complete!</h1>
     <div class="results-card">
-      <div class="results-score-lbl">Your Score</div>
+      <div class="results-score-lbl" id="res-score-lbl">Your Score</div>
       <div class="results-score" id="res-score">&mdash;</div>
       <div class="results-remark" id="res-remark"></div>
       <div class="results-stats">
         <div class="res-stat"><div class="res-icon">&#x23F1;</div><div class="res-val" id="res-time">&mdash;</div><div class="res-lbl">Time</div></div>
-        <div class="res-stat"><div class="res-icon">&#x1F525;</div><div class="res-val" id="res-streak">&mdash;</div><div class="res-lbl">Best Streak</div></div>
+        <div class="res-stat" id="res-stat-streak"><div class="res-icon">&#x1F525;</div><div class="res-val" id="res-streak">&mdash;</div><div class="res-lbl">Best Streak</div></div>
       </div>
     </div>
     <div class="review-panel" id="review-panel">
-      <h3 class="review-heading">&#x1F4CB; Review</h3>
+      <h3 class="review-heading" id="review-heading">&#x1F4CB; Review</h3>
       <div class="review-list" id="review-list"></div>
     </div>
-    <button class="btn-again" id="btn-again">Play Again &#x21BA;</button>
+    <button class="btn-again" id="btn-again">Back to Home &#x21BA;</button>
   </section>
 </main>
 
@@ -155,7 +181,7 @@
   &copy; <span id="yr"></span> K S Lo English. All Rights Reserved.
 </footer>
 
-<script src="data.js"></script>
-<script src="app.js"></script>
+<script src="data.js?v=2"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>

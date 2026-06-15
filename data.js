@@ -194,56 +194,86 @@ const GRAMMAR_DATA = {
       iconClass: "c-purple",
       desc: "a, an, the, or zero article",
       type: "passage",
-      questions: [
+      instructions: "Complete the passage with the correct articles. Select \u2018X\u2019 if no article is needed.",
+      // Each exercise: title (internal), and `segments` array.
+      // A segment is either a plain text string, or a blank object { answer: "..." }.
+      // The system randomly assigns one exercise each time this topic is played.
+      exercises: [
         {
-          question: "She plays ___ piano every evening.",
-          options: ["a", "an", "the", "\u2014"],
-          answer: "the"
+          title: "A Day at the Beach",
+          segments: [
+            "Last Saturday, my family and I went to ",
+            { answer: "the" },
+            " only beach near our home. It was ",
+            { answer: "a" },
+            " sunny day, so many people were swimming in ",
+            { answer: "the" },
+            " sea. My sister wanted to build ",
+            { answer: "a" },
+            " sandcastle, while I looked for shells on ",
+            { answer: "the" },
+            " sand.\n\nAfter that, we had ",
+            { answer: "X" },
+            " lunch at ",
+            { answer: "a" },
+            " small restaurant near the beach. My father ordered ",
+            { answer: "a" },
+            " plate of fish and chips, and my mother had ",
+            { answer: "a" },
+            " bowl of salad. I chose ",
+            { answer: "a" },
+            " glass of orange juice and ",
+            { answer: "a" },
+            " hamburger. The waiter at the restaurant was very friendly, and he gave us ",
+            { answer: "a" },
+            " useful map of the area.\n\nIn the afternoon, we went for a walk in ",
+            { answer: "the" },
+            " only park beside the beach. We saw children flying kites and feeding ",
+            { answer: "X" },
+            " hungry birds. Before going home, we took ",
+            { answer: "X" },
+            " beautiful photos of the view. It was ",
+            { answer: "an" },
+            " enjoyable day for everyone."
+          ]
         },
         {
-          question: "He wants to be ___ engineer when he grows up.",
-          options: ["a", "an", "the", "\u2014"],
-          answer: "an"
-        },
-        {
-          question: "I love ___ chocolate.",
-          options: ["a", "an", "the", "\u2014"],
-          answer: "\u2014"
-        },
-        {
-          question: "___ sun rises in the east.",
-          options: ["A", "An", "The", "\u2014"],
-          answer: "The"
-        },
-        {
-          question: "Can you pass me ___ salt, please?",
-          options: ["a", "an", "the", "\u2014"],
-          answer: "the"
-        },
-        {
-          question: "She goes to ___ school by bus.",
-          options: ["a", "an", "the", "\u2014"],
-          answer: "\u2014"
-        },
-        {
-          question: "We saw ___ elephant at the zoo.",
-          options: ["a", "an", "the", "\u2014"],
-          answer: "an"
-        },
-        {
-          question: "___ water is essential for life.",
-          options: ["A", "An", "The", "\u2014"],
-          answer: "\u2014"
-        },
-        {
-          question: "He is ___ tallest boy in the class.",
-          options: ["a", "an", "the", "\u2014"],
-          answer: "the"
-        },
-        {
-          question: "I had ___ egg for breakfast.",
-          options: ["a", "an", "the", "\u2014"],
-          answer: "an"
+          title: "A School Trip to Europe",
+          segments: [
+            "Last winter, my cousins and I went on ",
+            { answer: "a" },
+            " school trip to ",
+            { answer: "the" },
+            " Netherlands. Before we left, our teacher gave us ",
+            { answer: "a" },
+            " useful booklet about the places we would visit. On the first day, we stayed at ",
+            { answer: "the" },
+            " only Hilton Hotel near the city centre. After lunch, we visited ",
+            { answer: "the" },
+            " Rijksmuseum, where we saw ",
+            { answer: "an" },
+            " amazing painting by Rembrandt.\n\nThe next morning, our guide told us that ",
+            { answer: "X" },
+            " Europe has many famous rivers, and he showed us pictures of ",
+            { answer: "the" },
+            " Rhine. Later, we travelled south and learned about ",
+            { answer: "the" },
+            " Alps and ",
+            { answer: "X" },
+            " Mont Blanc. During the trip, we visited ",
+            { answer: "a" },
+            " university called Erasmus University Rotterdam. Some students thought Mont Blanc was in ",
+            { answer: "the" },
+            " United States, but of course it is not.\n\nOn the last day, we wrote ",
+            { answer: "a" },
+            " short report in our notebooks before leaving ",
+            { answer: "the" },
+            " hotel. At the airport, I bought ",
+            { answer: "an" },
+            " umbrella and ",
+            { answer: "a" },
+            " box of chocolates for my family."
+          ]
         }
       ]
     }

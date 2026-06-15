@@ -33,12 +33,26 @@
   const btnNext = $('btn-next');
   const hudQuit = $('hud-quit');
 
+  // Passage exercise
+  const screenPassage = $('screen-passage');
+  const passageFilled = $('passage-filled');
+  const passageTimer = $('passage-timer');
+  const passageProgressFill = $('passage-progress-fill');
+  const passageInstructions = $('passage-instructions');
+  const passageTitle = $('passage-title');
+  const passageBody = $('passage-body');
+  const btnSubmitPassage = $('btn-submit-passage');
+  const passageQuit = $('passage-quit');
+
   // Results
   const resScore = $('res-score');
+  const resScoreLbl = $('res-score-lbl');
   const resRemark = $('res-remark');
   const resTime = $('res-time');
   const resStreak = $('res-streak');
+  const resStatStreak = $('res-stat-streak');
   const reviewList = $('review-list');
+  const reviewHeading = $('review-heading');
   const btnAgain = $('btn-again');
 
   // --- STATE ---
@@ -54,6 +68,10 @@
   let timerInterval = null;
   let startTime = 0;
   let elapsed = 0;
+
+  // Passage state
+  let currentPassage = null;   // the chosen exercise object
+  let passageBlanks = [];      // [{ answer, selectEl, index }]
 
   // --- GREETINGS ---
   const GREETINGS = [
@@ -198,9 +216,9 @@
     if (topicData.type === 'mc') {
       showQCountSection();
     } else {
-      // Passage type — preset count (all questions)
+      // Passage type — no count selection; ready to start straight away
       hideQCountSection();
-      selectedCount = topicData.questions.length;
+      selectedCount = 'passage';
     }
     updateStartBtn();
   }
@@ -238,7 +256,10 @@
   function updateStartBtn() {
     const topicData = selectedTopic ? GRAMMAR_DATA[selectedTerm][selectedTopic] : null;
 
-    if (selectedTopic && selectedCount) {
+    if (selectedTopic && topicData && topicData.type === 'passage') {
+      btnStart.disabled = false;
+      btnStartText.textContent = 'Start Exercise \u2192';
+    } else if (selectedTopic && selectedCount) {
       btnStart.disabled = false;
       btnStartText.textContent = 'Start Challenge \u2192';
     } else if (selectedTopic && topicData && topicData.type === 'mc' && !selectedCount) {
@@ -253,8 +274,15 @@
   // --- EXERCISE ---
   function startExercise() {
     if (!selectedTerm || !selectedTopic || !selectedCount) return;
-    const pool = GRAMMAR_DATA[selectedTerm][selectedTopic].questions;
-    if (pool.length === 0) { alert('No questions available for this topic yet.'); return; }
+    const topicData = GRAMMAR_DATA[selectedTerm][selectedTopic];
+
+    if (topicData.type === 'passage') {
+      startPassageExercise(topicData);
+      return;
+    }
+
+    const pool = topicData.questions;
+    if (!pool || pool.length === 0) { alert('No questions available for this topic yet.'); return; }
 
     // Build question set
     currentQuestions = buildQuestionSet(pool, selectedCount);
@@ -374,6 +402,11 @@
     const scoreStr = `${score}/${currentQuestions.length} (${pct}%)`;
     const timeStr = formatTime(elapsed);
 
+    // MC results layout
+    resScoreLbl.textContent = 'Your Score';
+    resStatStreak.style.display = '';
+    reviewHeading.innerHTML = '\u{1F4CB} Review';
+
     resScore.textContent = scoreStr;
     resRemark.textContent = getRemark(pct);
     resTime.textContent = timeStr;
@@ -405,7 +438,9 @@
     startTime = Date.now();
     timerInterval = setInterval(() => {
       elapsed = (Date.now() - startTime) / 1000;
-      hudTimer.textContent = formatTime(elapsed);
+      const t = formatTime(elapsed);
+      hudTimer.textContent = t;
+      passageTimer.textContent = t;
     }, 50);
   }
 
@@ -422,9 +457,14 @@
 
   // --- SCREEN NAVIGATION ---
   function showScreen(name) {
-    [screenHome, screenExercise, screenResults].forEach(s => s.classList.remove('active'));
-    const target = name === 'home' ? screenHome : name === 'exercise' ? screenExercise : screenResults;
-    target.classList.add('active');
+    [screenHome, screenExercise, screenPassage, screenResults].forEach(s => s.classList.remove('active'));
+    const map = {
+      home: screenHome,
+      exercise: screenExercise,
+      passage: screenPassage,
+      results: screenResults
+    };
+    (map[name] || screenHome).classList.add('active');
     window.scrollTo(0, 0);
   }
 
@@ -432,6 +472,8 @@
     stopTimer();
     streak = 0;
     streakCount.textContent = '0';
+    currentPassage = null;
+    passageBlanks = [];
     showScreen('home');
   }
 
@@ -443,6 +485,172 @@
     showScreen('home');
   }
 
+  // ============================================================
+  // PASSAGE EXERCISE
+  // ============================================================
+  function startPassageExercise(topicData) {
+    const exercises = topicData.exercises;
+    if (!exercises || exercises.length === 0) {
+      alert('No exercises available for this topic yet.');
+      return;
+    }
+    // Randomly assign an exercise
+    currentPassage = exercises[Math.floor(Math.random() * exercises.length)];
+    passageBlanks = [];
+    elapsed = 0;
+
+    // Instructions
+    passageInstructions.textContent = topicData.instructions || '';
+    passageTitle.textContent = currentPassage.title || '';
+
+    // Build passage body with dropdowns
+    renderPassage();
+
+    btnSubmitPassage.classList.add('hidden');
+    btnSubmitPassage.textContent = 'Submit Answers \u2713';
+    updatePassageProgress();
+
+    showScreen('passage');
+    startTimer();
+  }
+
+  const ARTICLE_OPTIONS = ['a', 'an', 'the', 'X'];
+
+  function renderPassage() {
+    passageBody.innerHTML = '';
+    let blankIndex = 0;
+
+    currentPassage.segments.forEach(seg => {
+      if (typeof seg === 'string') {
+        // Split on paragraph breaks to render proper paragraphs
+        const parts = seg.split('\n\n');
+        parts.forEach((part, pIdx) => {
+          if (pIdx > 0) {
+            passageBody.appendChild(document.createElement('br'));
+            passageBody.appendChild(document.createElement('br'));
+          }
+          passageBody.appendChild(document.createTextNode(part));
+        });
+      } else {
+        // It's a blank — create a dropdown
+        const idx = blankIndex++;
+        const wrap = document.createElement('span');
+        wrap.className = 'blank-wrap';
+
+        const num = document.createElement('span');
+        num.className = 'blank-num';
+        num.textContent = `(${idx + 1})`;
+
+        const sel = document.createElement('select');
+        sel.className = 'blank-select';
+        sel.dataset.index = idx;
+
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = '\u2014';
+        placeholder.disabled = true;
+        placeholder.selected = true;
+        sel.appendChild(placeholder);
+
+        ARTICLE_OPTIONS.forEach(opt => {
+          const o = document.createElement('option');
+          o.value = opt;
+          o.textContent = opt;
+          sel.appendChild(o);
+        });
+
+        sel.addEventListener('change', () => {
+          sel.classList.add('filled');
+          updatePassageProgress();
+        });
+
+        wrap.appendChild(num);
+        wrap.appendChild(sel);
+        passageBody.appendChild(wrap);
+
+        passageBlanks.push({ answer: seg.answer, selectEl: sel, index: idx });
+      }
+    });
+  }
+
+  function updatePassageProgress() {
+    const total = passageBlanks.length;
+    const filled = passageBlanks.filter(b => b.selectEl.value !== '').length;
+    passageFilled.textContent = `${filled} / ${total}`;
+    passageProgressFill.style.width = `${(filled / total) * 100}%`;
+
+    if (filled === total) {
+      btnSubmitPassage.classList.remove('hidden');
+    } else {
+      btnSubmitPassage.classList.add('hidden');
+    }
+  }
+
+  function submitPassage() {
+    stopTimer();
+    let correct = 0;
+    passageBlanks.forEach(b => {
+      if (b.selectEl.value === b.answer) correct++;
+    });
+    const total = passageBlanks.length;
+    const pct = Math.round((correct / total) * 100);
+    const scoreStr = `${correct}/${total} (${pct}%)`;
+    const timeStr = formatTime(elapsed);
+
+    // Configure results layout for passage (no streak)
+    resScoreLbl.textContent = 'Your Marks';
+    resStatStreak.style.display = 'none';
+    reviewHeading.innerHTML = '\u{1F4D6} Passage with Answers';
+
+    resScore.textContent = scoreStr;
+    resRemark.textContent = getRemark(pct);
+    resTime.textContent = timeStr;
+
+    // Build annotated passage review
+    reviewList.innerHTML = buildPassageReview();
+
+    saveStats(scoreStr, timeStr);
+    showScreen('results');
+  }
+
+  function buildPassageReview() {
+    let html = '<div class="passage-review">';
+    let blankIndex = 0;
+
+    currentPassage.segments.forEach(seg => {
+      if (typeof seg === 'string') {
+        html += escapeHtml(seg).replace(/\n\n/g, '<br><br>');
+      } else {
+        const b = passageBlanks[blankIndex++];
+        const chosen = b.selectEl.value;
+        const isCorrect = chosen === b.answer;
+        if (isCorrect) {
+          html += `<span class="rev-blank correct"><span class="rev-mark">\u2713</span><span class="rev-ans">${escapeHtml(displayArticle(chosen))}</span></span>`;
+        } else {
+          html += `<span class="rev-blank wrong"><span class="rev-mark">\u2717</span><span class="rev-ans rev-wrong">${escapeHtml(displayArticle(chosen))}</span><span class="rev-correct">${escapeHtml(displayArticle(b.answer))}</span></span>`;
+        }
+      }
+    });
+    html += '</div>';
+    return html;
+  }
+
+  function displayArticle(val) {
+    // Show X as 'X' (no article)
+    return val;
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function quitPassageToHome() {
+    stopTimer();
+    currentPassage = null;
+    passageBlanks = [];
+    showScreen('home');
+  }
+
   // --- EVENTS ---
   function bindEvents() {
     themeBtn.addEventListener('click', toggleTheme);
@@ -450,6 +658,8 @@
     btnNext.addEventListener('click', nextQuestion);
     hudQuit.addEventListener('click', quitToHome);
     btnAgain.addEventListener('click', playAgain);
+    btnSubmitPassage.addEventListener('click', submitPassage);
+    passageQuit.addEventListener('click', quitPassageToHome);
   }
 
   // --- GO ---
