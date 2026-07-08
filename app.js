@@ -659,7 +659,7 @@
           }
           blankObj.inputEl = inp;
         } else {
-          // Dropdown blank (articles)
+          // Dropdown blank (articles or passive voice MC)
           const sel = document.createElement('select');
           sel.className = 'blank-select';
           sel.dataset.index = idx;
@@ -671,7 +671,20 @@
           placeholder.selected = true;
           sel.appendChild(placeholder);
 
-          ARTICLE_OPTIONS.forEach(opt => {
+          // If the segment has distractors, use them + answer, otherwise fallback to ARTICLE_OPTIONS
+          let options = [];
+          if (seg.distractors) {
+             options = [seg.answer, ...seg.distractors];
+             // Shuffle options
+             for (let i = options.length - 1; i > 0; i--) {
+                 const j = Math.floor(Math.random() * (i + 1));
+                 [options[i], options[j]] = [options[j], options[i]];
+             }
+          } else {
+             options = ARTICLE_OPTIONS;
+          }
+
+          options.forEach(opt => {
             const o = document.createElement('option');
             o.value = opt;
             o.textContent = opt;
