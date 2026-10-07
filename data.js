@@ -39,7 +39,7 @@ const GRAMMAR_DATA = {
             " steps of all three trails, which is great news for anyone who hates stairs! When my brother's class hiked it last year, his group was ",
             {"prompt":"(fast)","answer":"the fastest","distractors":["fastest","more fast","the faster"],"explanation":"Use 'the fastest' for the required superlative form in this topic. 'Fast' takes -est, not 'more'."},
             " group of all, finishing in under two hours.\n\nIn the end, most of my classmates voted for Dragon's Back because it is ",
-            {"prompt":"(suitable)","answer":"the most suitable","distractors":["most suitable","the suitableest","the more suitable"],"explanation":"Use 'the most suitable' with this longer adjective to compare all three trails."},
+            {"prompt":"(suitable)","answer":"the most suitable","distractors":["most suitable","the suitablest","the more suitable"],"explanation":"Use 'the most suitable' with this longer adjective to compare all three trails. Do not add -st to form 'suitablest'."},
             " trail for beginners like us. A few sporty boys wanted Lantau Peak, but Miss Chan said it would be ",
             {"prompt":"(well)","answer":"better","distractors":["well","more better","the better"],"explanation":"The irregular forms are well → better → best. 'Better' compares saving the challenge for later with attempting it now."},
             " to save that challenge for Form 4, when we are fitter. Personally, I think we chose ",
