@@ -16,6 +16,9 @@ const GRAMMAR_DATA = {
       type: "passage",
       blankType: "select",
       instructions: "Select the best complete phrase for each blank. The option includes any necessary word such as ‘than’ or ‘the’.",
+      // Distractor rules for future passages:
+      // - When a comparative has no following comparison target, include a dangling "... than" option where possible.
+      // - For long adjectives ending in -le, include an incorrect -r or -st form when it fits the blank.
       exercises: [
         {
           title: "Form 2 Hiking Day",
@@ -31,17 +34,17 @@ const GRAMMAR_DATA = {
             " getting to Lantau Peak, because you can take the MTR to Wong Tai Sin and start walking right away. My cousin says the night view of Kowloon from the top is ",
             {"prompt":"(good)","answer":"the best","distractors":["best","the goodest","better than"],"explanation":"The irregular forms are good → better → best. This topic requires 'the best' for a superlative."},
             " in the whole of Hong Kong. The only problem is that the trail gets ",
-            {"prompt":"(busy)","answer":"busier","distractors":["busyier","more busy","busier than"],"explanation":"For an adjective ending in consonant + y, change y to i and add -er: busy → busier. Do not add 'than' because no comparison target follows."},
+            {"prompt":"(busy)","answer":"busier","distractors":["busyier","more busier","busier than"],"explanation":"For an adjective ending in consonant + y, change y to i and add -er: busy → busier. Do not use 'more' with the -er form or add 'than' when no comparison target follows."},
             " on Sundays. On weekday mornings, it is much quieter.\n\nFinally, we read about Dragon's Back. Of the three trails, it is the easiest. It is short and mostly gentle, so it is ",
             {"prompt":"(tiring)","answer":"less tiring than","distractors":["less tiring","least tiring than","less tireder than"],"explanation":"Use 'less + base adjective + than' to make this comparison: less tiring than the other two."},
             " the other two. It also has ",
             {"prompt":"(few)","answer":"the fewest","distractors":["fewest","the less","the most few"],"explanation":"Use few → fewer → fewest for countable nouns. 'The fewest' compares the number of steps among all three trails."},
             " steps of all three trails, which is great news for anyone who hates stairs! When my brother's class hiked it last year, his group was ",
-            {"prompt":"(fast)","answer":"the fastest","distractors":["fastest","more fast","the faster"],"explanation":"Use 'the fastest' for the required superlative form in this topic. 'Fast' takes -est, not 'more'."},
+            {"prompt":"(fast)","answer":"the fastest","distractors":["fastest","more fast","faster than"],"explanation":"Use 'the fastest' for the required superlative form in this topic. 'Fast' takes -est, not 'more'; do not use the comparative 'faster than' without a comparison target."},
             " group of all, finishing in under two hours.\n\nIn the end, most of my classmates voted for Dragon's Back because it is ",
-            {"prompt":"(suitable)","answer":"the most suitable","distractors":["most suitable","the suitablest","the more suitable"],"explanation":"Use 'the most suitable' with this longer adjective to compare all three trails. Do not add -st to form 'suitablest'."},
+            {"prompt":"(suitable)","answer":"the most suitable","distractors":["most suitable","the suitablest","the more suitable than"],"explanation":"Use 'the most suitable' with this longer adjective to compare all three trails. Do not add -st to form 'suitablest' or use a dangling 'than' without a comparison target."},
             " trail for beginners like us. A few sporty boys wanted Lantau Peak, but Miss Chan said it would be ",
-            {"prompt":"(well)","answer":"better","distractors":["well","more better","the better"],"explanation":"The irregular forms are well → better → best. 'Better' compares saving the challenge for later with attempting it now."},
+            {"prompt":"(well)","answer":"better","distractors":["better than","more better","the better"],"explanation":"The irregular forms are well → better → best. 'Better' compares saving the challenge for later with attempting it now; do not add 'than' when no comparison target follows."},
             " to save that challenge for Form 4, when we are fitter. Personally, I think we chose ",
             {"prompt":"(wisely)","answer":"more wisely than","distractors":["wisely than","more wise than","the most wisely"],"explanation":"'Wisely' is an -ly adverb, so use 'more wisely than' to compare the two decisions."},
             " the students in 2C did. They picked Lantau Peak and had to turn back halfway because of the heat!"
