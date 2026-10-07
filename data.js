@@ -31,7 +31,7 @@ const GRAMMAR_DATA = {
             " getting to Lantau Peak, because you can take the MTR to Wong Tai Sin and start walking right away. My cousin says the night view of Kowloon from the top is ",
             {"prompt":"(good)","answer":"the best","distractors":["best","the goodest","better than"],"explanation":"The irregular forms are good → better → best. This topic requires 'the best' for a superlative."},
             " in the whole of Hong Kong. The only problem is that the trail gets ",
-            {"prompt":"(busy)","answer":"busier","distractors":["busyier","more busy","busiest"],"explanation":"For an adjective ending in consonant + y, change y to i and add -er: busy → busier."},
+            {"prompt":"(busy)","answer":"busier","distractors":["busyier","more busy","busier than"],"explanation":"For an adjective ending in consonant + y, change y to i and add -er: busy → busier. Do not add 'than' because no comparison target follows."},
             " on Sundays. On weekday mornings, it is much quieter.\n\nFinally, we read about Dragon's Back. Of the three trails, it is the easiest. It is short and mostly gentle, so it is ",
             {"prompt":"(tiring)","answer":"less tiring than","distractors":["less tiring","least tiring than","less tireder than"],"explanation":"Use 'less + base adjective + than' to make this comparison: less tiring than the other two."},
             " the other two. It also has ",
