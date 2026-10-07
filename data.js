@@ -8,7 +8,47 @@
 
 const GRAMMAR_DATA = {
   "First Term": {
-    // No exercises yet — term button will be greyed out
+    "comparatives-superlatives": {
+      label: "Comparatives & Superlatives",
+      icon: "\u{1F4C8}",
+      iconClass: "c-green",
+      desc: "higher than, the best, less tiring",
+      type: "passage",
+      blankType: "select",
+      instructions: "Select the best complete phrase for each blank. The option includes any necessary word such as ‘than’ or ‘the’.",
+      exercises: [
+        {
+          title: "Form 2 Hiking Day",
+          segments: [
+            "Last month, Miss Chan, our class teacher, asked us to help plan our Form 2 Hiking Day. We had to choose between three famous trails, so my group spent a week doing research online and asking older students for advice.\n\nFirst, we looked at Lantau Peak. At 934 metres, it is much ",
+            {"prompt":"(high)","answer":"higher than","distractors":["high than","more high than","the highest"],"explanation":"Use -er with the short adjective 'high'. A comparison between two things also needs 'than': higher than Lion Rock."},
+            " Lion Rock, which is only 495 metres tall. The path is steep and full of loose rocks, so many hikers say it is ",
+            {"prompt":"(dangerous)","answer":"the most dangerous","distractors":["most dangerous","the dangerouser","the dangerousest"],"explanation":"Use 'the most' with the longer adjective 'dangerous' to compare all three trails."},
+            " trail of the three. You also have to walk ",
+            {"prompt":"(slowly)","answer":"more slowly than","distractors":["slowlier than","more slow than","the most slowly"],"explanation":"'Slowly' is an -ly adverb, so use 'more slowly'. The comparison also needs 'than'."},
+            " you would on a flat path, or you might slip and twist your ankle.\n\nLion Rock was next on our list. Getting there is ",
+            {"prompt":"(convenient)","answer":"more convenient than","distractors":["convenienter than","the most convenient","more convenient"],"explanation":"Use 'more convenient than' with this longer adjective to compare the two journeys."},
+            " getting to Lantau Peak, because you can take the MTR to Wong Tai Sin and start walking right away. My cousin says the night view of Kowloon from the top is ",
+            {"prompt":"(good)","answer":"the best","distractors":["best","the goodest","better than"],"explanation":"The irregular forms are good → better → best. This topic requires 'the best' for a superlative."},
+            " in the whole of Hong Kong. The only problem is that the trail gets ",
+            {"prompt":"(busy)","answer":"busier","distractors":["busyier","more busy","busiest"],"explanation":"For an adjective ending in consonant + y, change y to i and add -er: busy → busier."},
+            " on Sundays. On weekday mornings, it is much quieter.\n\nFinally, we read about Dragon's Back. Of the three trails, it is the easiest. It is short and mostly gentle, so it is ",
+            {"prompt":"(tiring)","answer":"less tiring than","distractors":["less tiring","least tiring than","less tireder than"],"explanation":"Use 'less + base adjective + than' to make this comparison: less tiring than the other two."},
+            " the other two. It also has ",
+            {"prompt":"(few)","answer":"the fewest","distractors":["fewest","the less","the most few"],"explanation":"Use few → fewer → fewest for countable nouns. 'The fewest' compares the number of steps among all three trails."},
+            " steps of all three trails, which is great news for anyone who hates stairs! When my brother's class hiked it last year, his group was ",
+            {"prompt":"(fast)","answer":"the fastest","distractors":["fastest","more fast","the faster"],"explanation":"Use 'the fastest' for the required superlative form in this topic. 'Fast' takes -est, not 'more'."},
+            " group of all, finishing in under two hours.\n\nIn the end, most of my classmates voted for Dragon's Back because it is ",
+            {"prompt":"(suitable)","answer":"the most suitable","distractors":["most suitable","the suitableest","the more suitable"],"explanation":"Use 'the most suitable' with this longer adjective to compare all three trails."},
+            " trail for beginners like us. A few sporty boys wanted Lantau Peak, but Miss Chan said it would be ",
+            {"prompt":"(well)","answer":"better","distractors":["well","more better","the better"],"explanation":"The irregular forms are well → better → best. 'Better' compares saving the challenge for later with attempting it now."},
+            " to save that challenge for Form 4, when we are fitter. Personally, I think we chose ",
+            {"prompt":"(wisely)","answer":"more wisely than","distractors":["wisely than","more wise than","the most wisely"],"explanation":"'Wisely' is an -ly adverb, so use 'more wisely than' to compare the two decisions."},
+            " the students in 2C did. They picked Lantau Peak and had to turn back halfway because of the heat!"
+          ]
+        }
+      ]
+    }
   },
   "Second Term": {
     "relative-clauses": {
