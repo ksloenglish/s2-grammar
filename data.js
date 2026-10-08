@@ -79,6 +79,36 @@ const GRAMMAR_DATA = {
             {"prompt":"(amazing)","answer":"the most amazing","distractors":["most amazing","an most amazing","the amazingest"],"explanation":"Use 'the most amazing' before the singular noun 'view'. The other options omit the required determiner, use an invalid article, or use an invalid superlative form."},
             " view you'll ever see!\n\nWrite back soon,\n\nMandy"
           ]
+        },
+        {
+          title: "Kayla's Sports Day",
+          segments: [
+            "Dear Diary,\n\nToday was ",
+            {"prompt":"(exciting)","answer":"the most exciting","distractors":["most exciting","the most exciting than","the most exciting as"],"explanation":"Use 'the most exciting' before the singular count noun 'day'. The other options omit the determiner or attach an invalid comparison linker to a superlative."},
+            " day of my first term at secondary school! It was our annual Sports Day. When I walked into Tin Shui Wai Sports Ground this morning, I felt like ",
+            {"prompt":"(small)","answer":"the smallest","distractors":["smallest","the smallest than","the smallest as"],"explanation":"Use 'the smallest person' for the superlative. The other options omit the determiner or attach an invalid comparison linker before the noun phrase."},
+            " person in the whole stadium. Some of the Secondary 6 boys were even ",
+            {"prompt":"(tall)","answer":"taller than","distractors":["tall than","more taller than","the tallest than"],"explanation":"Use 'taller than' to compare the boys with Mr Wong. The other options lack a comparative form, use a double comparative, or mix a superlative with 'than'."},
+            " Mr Wong, our PE teacher, and he's 1.85 metres!\n\nMy first event was the 100-metre race for Form 2 girls. I came fourth, but I was happy because I ran ",
+            {"prompt":"(fast)","answer":"faster than","distractors":["fast than","fastest than","more faster than"],"explanation":"Use 'faster than' to compare this run with the practice last week. The other options lack comparative marking, misuse a superlative, or use a double comparative."},
+            " I did at our practice last week. My time was 15.1 seconds instead of 15.9! Mr Wong said my start was steadier this time because I didn't look around at the other runners.\n\nSadly, the long jump went much ",
+            {"prompt":"(badly)","answer":"worse than","distractors":["worst than","more worse than","as worse than"],"explanation":"Use the irregular comparative 'worse than' to compare the long jump with the race. The other options mix a superlative or an incompatible comparison pattern with 'than'."},
+            " the race. I slipped on my first try, and my best jump was only 2.7 metres. That was ",
+            {"prompt":"(short)","answer":"the shortest","distractors":["shortest","the shortest than","the shortest as"],"explanation":"Use 'the shortest distance' for the minimum distance in the group. The other options omit the determiner or attach an invalid comparison linker to a superlative."},
+            " distance in my group. I was so embarrassed that I hid in the stand for twenty minutes!\n\nThe best part of the day was the 4 × 100-metre relay. Our team from Red House wasn't ",
+            {"prompt":"(experienced)","answer":"as experienced as","distractors":["as experienced than","more experienced than as","the most experienced than"],"explanation":"Use the equality-comparison pattern 'as + adjective + as': wasn't as experienced as the other teams. The other options mismatch or misorder the comparison markers."},
+            " the other teams, because three of us were only in Form 2. But we had practised ",
+            {"prompt":"(hard)","answer":"harder than","distractors":["more harder than","as hard than","the hardest than"],"explanation":"Use 'harder than' to compare how much the team practised. The other options are a double comparative, a mismatched as/than pattern, or a superlative with 'than'."},
+            " anyone else, and we stayed behind every Tuesday and Thursday after school for a month. I was the last runner. Surprisingly, I felt much ",
+            {"prompt":"(nervous)","answer":"less nervous than","distractors":["more nervous","less nervous","as nervous as"],"explanation":"Use 'much less nervous than I had expected'. The first two options omit the required 'than' before the following clause, and 'much as nervous as' is not a grammatical equality comparison."},
+            " I had expected. With my whole House cheering my name, I felt calm and focused. In the end, we finished second, just 0.4 seconds behind Blue House. They are ",
+            {"prompt":"(successful)","answer":"the most successful","distractors":["most successful","the most successful than","the most successful as"],"explanation":"Use 'the most successful House' for the superlative. The other options omit the determiner or attach an invalid comparison linker before the noun phrase."},
+            " House in our school's history, so coming second to them is nothing to be ashamed of!\n\nAt the closing ceremony, our Principal announced that Red House had come second overall. That's our ",
+            {"prompt":"(good)","answer":"best","distractors":["the best","better than","as good as"],"explanation":"Use the irregular superlative 'best': our best result in ten years. Do not add 'the' because 'our' is already the determiner; the other options form invalid phrases here."},
+            " result in ten years! The House Captain gave each of us a sticker with the Red House logo on it, and I've already stuck mine on my pencil case.\n\nI've made up my mind. Next year, I'm going to train ",
+            {"prompt":"(seriously)","answer":"more seriously","distractors":["seriouslyer","more serious than","less seriously than"],"explanation":"Use 'more seriously' to describe how Kayla will train. 'Seriouslyer' is invalid, while the other options use the wrong word class or add a dangling 'than'."},
+            " and go for gold in the long jump!\n\nKayla"
+          ]
         }
       ]
     }
