@@ -49,6 +49,36 @@ const GRAMMAR_DATA = {
             {"prompt":"(wisely)","answer":"more wisely than","distractors":["wisely than","more wise than","the most wisely"],"explanation":"'Wisely' is an -ly adverb, so use 'more wisely than' to compare the two decisions."},
             " the students in 2C did. They picked Lantau Peak and had to turn back halfway because of the heat!"
           ]
+        },
+        {
+          title: "Mandy's New Flat",
+          segments: [
+            "Hi Tom,\n\nSorry I haven't written for so long, but life has been crazy. We finally moved house last month! Our new flat in Tseung Kwan O is on the 32nd floor and has huge windows, so it is much ",
+            {"prompt":"(bright)","answer":"brighter than","distractors":["bright than","more brighter than","brightest than"],"explanation":"Use the comparative phrase 'brighter than' to compare the new flat with the old flat. The other options lack a comparative form, use a double comparative, or combine a superlative with 'than'."},
+            " our old flat in Sham Shui Po. We also have a small balcony now. I think it's ",
+            {"prompt":"(nice)","answer":"the nicest","distractors":["nice than","the niceest","the nicest than"],"explanation":"Use the regular superlative phrase 'the nicest' for the home the family has ever had. The other options have no valid comparative form, misspell the superlative, or add a dangling 'than'."},
+            " home my family has ever had.\n\nThere is one big problem, though. I'm still studying at the same secondary school in Sham Shui Po, so I now live a lot ",
+            {"prompt":"(far)","answer":"farther","alternatives":["further"],"distractors":["far","farther than","the farthest"],"explanation":"Both 'farther' and 'further' are accepted for physical distance here. The sentence needs a comparative after 'a lot'; 'far' is not comparative, 'farther than' lacks a comparison target, and 'the farthest' is a superlative."},
+            " from it. To get to school on time, I have to wake up ",
+            {"prompt":"(early)","answer":"earlier than","distractors":["early than","earliest than","most early than"],"explanation":"Use 'earlier than' to compare the current wake-up time with the time in the past. The other options do not form a valid comparative with 'than'."},
+            " I used to, at 6:15 every morning! Then I have to squeeze onto the MTR with hundreds of office workers. Honestly, standing on that packed train for 50 minutes is ",
+            {"prompt":"(bad)","answer":"the worst","distractors":["worst","the worse than","the worstest"],"explanation":"Use the irregular superlative form 'the worst' to describe the worst part of the whole day. The other options omit the required article, mix a comparative with 'than', or use an invalid double-superlative form."},
+            " part of my whole day.\n\nStill, there are lots of good things about Tseung Kwan O. There's a long promenade by the sea, and the air here feels fresher. My little sister cycles there every weekend. She's only six, but she rides ",
+            {"prompt":"(confidently)","answer":"more confidently than","distractors":["confidently than","most confidently than","confidentlier than"],"explanation":"Use 'more confidently than' to compare how she rides now with how she rode a month ago. The other options lack a comparative form, misuse a superlative, or use an invalid inflected adverb."},
+            " she did a month ago, and she no longer needs Dad to hold the back of her bike. Our new neighbourhood is also ",
+            {"prompt":"(noisy)","answer":"less noisy than","distractors":["less noisiest than","least noisy than","less noisily than"],"explanation":"Use the comparative pattern 'less + adjective + than': less noisy than the old neighbourhood. The other options misuse superlative marking or use an adverb after the linking verb 'is'."},
+            " the old one. There are no street hawkers shouting outside our window, so I can concentrate ",
+            {"prompt":"(easily)","answer":"more easily","distractors":["more easier","easilier","easilest"],"explanation":"'Easily' is a multi-syllable adverb, so use 'more easily'. The other options are a double comparative or invalid forms of the adverb."},
+            " when I do my homework at night.\n\nOf course, I miss some things about Sham Shui Po. There are far ",
+            {"prompt":"(few)","answer":"fewer","distractors":["few","fewest","fewer than"],"explanation":"Use 'far fewer' with the plural countable noun 'street-food stalls'. 'Few' is not comparative, 'fewest' is a superlative, and 'fewer than' leaves the comparison incomplete."},
+            " street-food stalls here, so I can't buy curry fishballs on my way home any more. ",
+            {"prompt":"(sad)","answer":"The saddest","distractors":["The sadest","The saddest than","Saddest"],"explanation":"Use 'The saddest' because 'of all' requires a superlative. The other options misspell the word, add an unnecessary 'than', or omit the required article."},
+            " thing of all is that I can't hang out with my best friend Jason after school. Luckily, we video-call almost every night, so we still chat just ",
+            {"prompt":"(often)","answer":"as often as","distractors":["as often","as often than","more often as"],"explanation":"Use the equality comparison pattern 'as + adverb + as': as often as we did. The other options omit or misuse the second 'as' or combine comparison patterns incorrectly."},
+            " we did when we lived five minutes apart!\n\nAnyway, you must visit next summer. I promise the sunset from our balcony is ",
+            {"prompt":"(amazing)","answer":"the most amazing","distractors":["most amazing","an most amazing","the amazingest"],"explanation":"Use 'the most amazing' before the singular noun 'view'. The other options omit the required determiner, use an invalid article, or use an invalid superlative form."},
+            " view you'll ever see!\n\nWrite back soon,\nMandy"
+          ]
         }
       ]
     }

@@ -671,13 +671,14 @@
           placeholder.selected = true;
           sel.appendChild(placeholder);
 
-          // If the segment has distractors, use them + answer, otherwise fallback to ARTICLE_OPTIONS
+          // If the segment has distractors, show the answer, any accepted alternatives,
+          // and the distractors. Alternatives are all marked correct by blankIsCorrect.
           let options = [];
           if (seg.distractors) {
-             options = [seg.answer, ...seg.distractors];
+             options = [...new Set([seg.answer, ...(seg.alternatives || []), ...seg.distractors])];
              // Shuffle options
              for (let i = options.length - 1; i > 0; i--) {
-                 const j = Math.floor(Math.random() * (i + 1));
+               const j = Math.floor(Math.random() * (i + 1));
                  [options[i], options[j]] = [options[j], options[i]];
              }
           } else {
