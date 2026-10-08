@@ -77,7 +77,7 @@ const GRAMMAR_DATA = {
             {"prompt":"(often)","answer":"as often as","distractors":["as often","as often than","more often as"],"explanation":"Use the equality comparison pattern 'as + adverb + as': as often as we did. The other options omit or misuse the second 'as' or combine comparison patterns incorrectly."},
             " we did when we lived five minutes apart!\n\nAnyway, you must visit next summer. I promise the sunset from our balcony is ",
             {"prompt":"(amazing)","answer":"the most amazing","distractors":["most amazing","an most amazing","the amazingest"],"explanation":"Use 'the most amazing' before the singular noun 'view'. The other options omit the required determiner, use an invalid article, or use an invalid superlative form."},
-            " view you'll ever see!\n\nWrite back soon,\nMandy"
+            " view you'll ever see!\n\nWrite back soon,\n\nMandy"
           ]
         }
       ]
