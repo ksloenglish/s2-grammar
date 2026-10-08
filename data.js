@@ -20,6 +20,7 @@ const GRAMMAR_DATA = {
       // - When a comparative has no following comparison target, include a dangling "... than" option where possible.
       // - For long adjectives ending in -le, include an incorrect -r or -st form when it fits the blank.
       // - Never use duplicated connectors such as "than than", whether inside an option or across the option/passage boundary.
+      // - Every dropdown must contain exactly four answer choices. With one accepted alternative, use two distractors.
       exercises: [
         {
           title: "Form 2 Hiking Day",
@@ -59,7 +60,7 @@ const GRAMMAR_DATA = {
             " our old flat in Sham Shui Po. We also have a small balcony now. I think it's ",
             {"prompt":"(nice)","answer":"the nicest","distractors":["nice than","the niceest","the nicest than"],"explanation":"Use the regular superlative phrase 'the nicest' for the home the family has ever had. The other options have no valid comparative form, misspell the superlative, or add a dangling 'than'."},
             " home my family has ever had.\n\nThere is one big problem, though. I'm still studying at the same secondary school in Sham Shui Po, so I now live a lot ",
-            {"prompt":"(far)","answer":"farther","alternatives":["further"],"distractors":["far","farther than","the farthest"],"explanation":"Both 'farther' and 'further' are accepted for physical distance here. The sentence needs a comparative after 'a lot'; 'far' is not comparative, 'farther than' lacks a comparison target, and 'the farthest' is a superlative."},
+            {"prompt":"(far)","answer":"farther","alternatives":["further"],"distractors":["far","the farthest"],"explanation":"Both 'farther' and 'further' are accepted for physical distance here. The sentence needs a comparative after 'a lot'; 'far' is not comparative, while 'the farthest' is a superlative."},
             " from it. To get to school on time, I have to wake up ",
             {"prompt":"(early)","answer":"earlier than","distractors":["early than","earliest than","most early than"],"explanation":"Use 'earlier than' to compare the current wake-up time with the time in the past. The other options do not form a valid comparative with 'than'."},
             " I used to, at 6:15 every morning! Then I have to squeeze onto the MTR with hundreds of office workers. Honestly, standing on that packed train for 50 minutes is ",
@@ -129,7 +130,7 @@ const GRAMMAR_DATA = {
             " Robotics Club?\n\nIvan: Not really. In fact, I'd say it's a lot ",
             {"prompt":"(stressful)","answer":"less stressful","distractors":["less stressfully","least stressful","less stressful than"],"explanation":"Use the comparative adjective phrase 'less stressful' after 'a lot'. The other options use an adverb, an incompatible superlative, or a dangling 'than'."},
             ". There are no tight deadlines and nobody shouts at you when you make a mistake.\n\nChloe: But I've never even touched a Chinese instrument. I'm sure I'd learn ",
-            {"prompt":"(slowly)","answer":"the most slowly","alternatives":["the slowest"],"distractors":["more slowly than","the most slower","the most slowlier"],"explanation":"Both 'the most slowly' and 'the slowest' are accepted here. The sentence compares Chloe with all the beginners; the distractors use an incomplete comparative or invalid double-degree forms."},
+            {"prompt":"(slowly)","answer":"the most slowly","alternatives":["the slowest"],"distractors":["more slowly than","the most slower"],"explanation":"Both 'the most slowly' and 'the slowest' are accepted here. The sentence compares Chloe with all the beginners; the distractors use a dangling comparative or an invalid double-degree form."},
             " of all the beginners.\n\nIvan: Don't be silly! Ms Lam, our conductor, is just ",
             {"prompt":"(patient)","answer":"as patient as","distractors":["as patient as than","more patient as","the most patiently"],"explanation":"Use the equality-comparison pattern 'as + adjective + as': as patient as a saint. The other options break the required comparison structure."},
             " a saint. Also, the orchestra really needs new members. Right now it has ",

@@ -711,11 +711,14 @@
           placeholder.selected = true;
           sel.appendChild(placeholder);
 
-          // If the segment has distractors, show the answer, any accepted alternatives,
-          // and the distractors. Alternatives are all marked correct by blankIsCorrect.
+          // Show exactly four answer choices: normally one answer plus three distractors;
+          // with one accepted alternative, use two distractors. Alternatives are correct.
           let options = [];
           if (seg.distractors) {
              options = [...new Set([seg.answer, ...(seg.alternatives || []), ...seg.distractors])];
+             if (options.length !== 4) {
+               throw new Error(`Dropdown blank ${idx + 1} must offer exactly four unique answer choices; found ${options.length}.`);
+             }
              // Shuffle options
              for (let i = options.length - 1; i > 0; i--) {
                const j = Math.floor(Math.random() * (i + 1));
@@ -723,6 +726,9 @@
              }
           } else {
              options = ARTICLE_OPTIONS;
+             if (options.length !== 4) {
+               throw new Error(`Article dropdown blank ${idx + 1} must offer exactly four answer choices; found ${options.length}.`);
+             }
           }
 
           options.forEach(opt => {
