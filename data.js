@@ -19,6 +19,7 @@ const GRAMMAR_DATA = {
       // Distractor rules for future passages:
       // - When a comparative has no following comparison target, include a dangling "... than" option where possible.
       // - For long adjectives ending in -le, include an incorrect -r or -st form when it fits the blank.
+      // - Never use duplicated connectors such as "than than", whether inside an option or across the option/passage boundary.
       exercises: [
         {
           title: "Form 2 Hiking Day",
@@ -28,17 +29,17 @@ const GRAMMAR_DATA = {
             " Lion Rock, which is only 495 metres tall. The path is steep and full of loose rocks, so many hikers say it is ",
             {"prompt":"(dangerous)","answer":"the most dangerous","distractors":["most dangerous","the dangerouser","the dangerousest"],"explanation":"Use 'the most' with the longer adjective 'dangerous' to compare all three trails."},
             " trail of the three. You also have to walk ",
-            {"prompt":"(slowly)","answer":"more slowly than","distractors":["slowlier than","more slow than","the most slowly"],"explanation":"'Slowly' is an -ly adverb, so use 'more slowly'. The comparison also needs 'than'."},
+            {"prompt":"(slowly)","answer":"more slowly than","distractors":["slowly than","more slower than","as slowly than"],"explanation":"'Slowly' is an -ly adverb, so use 'more slowly'. The comparison also needs 'than'."},
             " you would on a flat path, or you might slip and twist your ankle.\n\nLion Rock was next on our list. Getting there is ",
             {"prompt":"(convenient)","answer":"more convenient than","distractors":["convenienter than","the most convenient","more convenient"],"explanation":"Use 'more convenient than' with this longer adjective to compare the two journeys."},
             " getting to Lantau Peak, because you can take the MTR to Wong Tai Sin and start walking right away. My cousin says the night view of Kowloon from the top is ",
-            {"prompt":"(good)","answer":"the best","distractors":["best","the goodest","better than"],"explanation":"The irregular forms are good → better → best. This topic requires 'the best' for a superlative."},
+            {"prompt":"(good)","answer":"the best","distractors":["the gooder","more better","gooder than"],"explanation":"The irregular forms are good → better → best. This topic requires 'the best' for a superlative."},
             " in the whole of Hong Kong. The only problem is that the trail gets ",
-            {"prompt":"(busy)","answer":"busier","distractors":["busyier","more busier","busier than"],"explanation":"For an adjective ending in consonant + y, change y to i and add -er: busy → busier. Do not use 'more' with the -er form or add 'than' when no comparison target follows."},
+            {"prompt":"(busy)","answer":"busier","distractors":["busyier","more busier","the busyest"],"explanation":"For an adjective ending in consonant + y, change y to i and add -er: busy → busier. Do not use 'more' with the -er form or form the superlative as 'busyest'."},
             " on Sundays. On weekday mornings, it is much quieter.\n\nFinally, we read about Dragon's Back. Of the three trails, it is the easiest. It is short and mostly gentle, so it is ",
             {"prompt":"(tiring)","answer":"less tiring than","distractors":["less tiring","least tiring than","less tireder than"],"explanation":"Use 'less + base adjective + than' to make this comparison: less tiring than the other two."},
             " the other two. It also has ",
-            {"prompt":"(few)","answer":"the fewest","distractors":["fewest","the less","the most few"],"explanation":"Use few → fewer → fewest for countable nouns. 'The fewest' compares the number of steps among all three trails."},
+            {"prompt":"(few)","answer":"the fewest","distractors":["fewerer","the fewerest","the fewest than"],"explanation":"Use few → fewer → fewest for countable nouns. 'The fewest' compares the number of steps among all three trails."},
             " steps of all three trails, which is great news for anyone who hates stairs! When my brother's class hiked it last year, his group was ",
             {"prompt":"(fast)","answer":"the fastest","distractors":["fastest","more fast","faster than"],"explanation":"Use 'the fastest' for the required superlative form in this topic. 'Fast' takes -est, not 'more'; do not use the comparative 'faster than' without a comparison target."},
             " group of all, finishing in under two hours.\n\nIn the end, most of my classmates voted for Dragon's Back because it is ",
@@ -118,7 +119,7 @@ const GRAMMAR_DATA = {
             " it was last year.\n\nIvan: That's because the school has added six new clubs. So, have you decided which one to join this year?\n\nChloe: Not yet. I want something that will help me later on. Which club do you think is ",
             {"prompt":"(useful)","answer":"the most useful","distractors":["the more useful than","the most usefully","the most usefulest"],"explanation":"Use 'the most useful' to identify one club as useful to the greatest degree. The other options use a dangling comparative, an adverb, or an invalid double-superlative form."},
             " for our future?\n\nIvan: Probably Robotics Club. My brother joined it in Form 1. Now he writes code ",
-            {"prompt":"(well)","answer":"better than","distractors":["best than","better","better than than"],"explanation":"Use the comparative phrase 'better than' to compare his coding with anyone else in his class. The other options misuse a superlative, omit 'than', or duplicate it."},
+            {"prompt":"(well)","answer":"better than","distractors":["best","more better than","good than"],"explanation":"Use the comparative phrase 'better than' to compare his coding with anyone else in his class. The other options omit 'than', use a double comparative, or use the wrong base form."},
             " anyone else in his class, and he's even won a prize at a STEM competition.\n\nChloe: Really? But I'm so bad at maths.\n\nIvan: Don't worry. Mr Ho, the teacher in charge, is the friendliest teacher in our school. He explains everything step by step.\n\nChloe: I'll think about it. Oh, what about Drama Club? Their booth looks ",
             {"prompt":"(colourful)","answer":"the most colourful","distractors":["most colourful","more colourful","colourfulest"],"explanation":"Use 'the most colourful' for one booth among all the booths in the hall. The other options omit the determiner, use a comparative where a superlative is needed, or use a nonstandard form."},
             " one in the whole hall. Look at all those costumes and masks!\n\nIvan: It's fun, but it takes up a lot of time. Drama members have to rehearse ",
@@ -130,7 +131,7 @@ const GRAMMAR_DATA = {
             ". There are no tight deadlines and nobody shouts at you when you make a mistake.\n\nChloe: But I've never even touched a Chinese instrument. I'm sure I'd learn ",
             {"prompt":"(slowly)","answer":"the most slowly","alternatives":["the slowest"],"distractors":["more slowly than","the most slower","the most slowlier"],"explanation":"Both 'the most slowly' and 'the slowest' are accepted here. The sentence compares Chloe with all the beginners; the distractors use an incomplete comparative or invalid double-degree forms."},
             " of all the beginners.\n\nIvan: Don't be silly! Ms Lam, our conductor, is just ",
-            {"prompt":"(patient)","answer":"as patient as","distractors":["as patient than","more patient than than","the most patient"],"explanation":"Use the equality-comparison pattern 'as + adjective + as': as patient as a saint. The other options break the required comparison structure."},
+            {"prompt":"(patient)","answer":"as patient as","distractors":["as patient as than","more patient as","the most patiently"],"explanation":"Use the equality-comparison pattern 'as + adjective + as': as patient as a saint. The other options break the required comparison structure."},
             " a saint. Also, the orchestra really needs new members. Right now it has ",
             {"prompt":"(few)","answer":"the fewest","distractors":["the fewest than","the fewer","fewer than"],"explanation":"Use 'the fewest' because the sentence compares the orchestra with all the music clubs. The other options use an invalid linker or an incomplete comparative."},
             " members of all the music clubs, so we'd love to have you.\n\nChloe: OK, you've convinced me! I think Chinese Orchestra is ",
