@@ -621,7 +621,17 @@
             passageBody.appendChild(document.createElement('br'));
             passageBody.appendChild(document.createElement('br'));
           }
-          passageBody.appendChild(document.createTextNode(part));
+          const speakerMatch = part.match(/^([A-Z][a-z]+):\s*/);
+          if (speakerMatch) {
+            const speaker = speakerMatch[1];
+            const label = document.createElement('span');
+            label.className = `dialogue-speaker speaker-${speaker.toLowerCase()}`;
+            label.textContent = speaker;
+            passageBody.appendChild(label);
+            passageBody.appendChild(document.createTextNode(`: ${part.slice(speakerMatch[0].length)}`));
+          } else {
+            passageBody.appendChild(document.createTextNode(part));
+          }
         });
       } else {
         const idx = blankIndex++;

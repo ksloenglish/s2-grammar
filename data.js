@@ -109,6 +109,36 @@ const GRAMMAR_DATA = {
             {"prompt":"(seriously)","answer":"more seriously","distractors":["seriouslyer","more serious than","less seriously than"],"explanation":"Use 'more seriously' to describe how Kayla will train. 'Seriouslyer' is invalid, while the other options use the wrong word class or add a dangling 'than'."},
             " and go for gold in the long jump!\n\nKayla"
           ]
+        },
+        {
+          title: "At the Club Fair",
+          segments: [
+            "Chloe: Wow, look at all these booths! The hall is much ",
+            {"prompt":"(crowded)","answer":"more crowded than","distractors":["more crowded","most crowded than","crowdeder than"],"explanation":"Use 'more crowded than' after 'much' to compare the hall with last year. The other options omit the linker or use an invalid degree form."},
+            " it was last year.\n\nIvan: That's because the school has added six new clubs. So, have you decided which one to join this year?\n\nChloe: Not yet. I want something that will help me later on. Which club do you think is ",
+            {"prompt":"(useful)","answer":"the most useful","distractors":["the more useful than","the most usefully","the most usefulest"],"explanation":"Use 'the most useful' to identify one club as useful to the greatest degree. The other options use a dangling comparative, an adverb, or an invalid double-superlative form."},
+            " for our future?\n\nIvan: Probably Robotics Club. My brother joined it in Form 1. Now he writes code ",
+            {"prompt":"(well)","answer":"better than","distractors":["best than","better","better than than"],"explanation":"Use the comparative phrase 'better than' to compare his coding with anyone else in his class. The other options misuse a superlative, omit 'than', or duplicate it."},
+            " anyone else in his class, and he's even won a prize at a STEM competition.\n\nChloe: Really? But I'm so bad at maths.\n\nIvan: Don't worry. Mr Ho, the teacher in charge, is the friendliest teacher in our school. He explains everything step by step.\n\nChloe: I'll think about it. Oh, what about Drama Club? Their booth looks ",
+            {"prompt":"(colourful)","answer":"the most colourful","distractors":["most colourful","more colourful","colourfulest"],"explanation":"Use 'the most colourful' for one booth among all the booths in the hall. The other options omit the determiner, use a comparative where a superlative is needed, or use a nonstandard form."},
+            " one in the whole hall. Look at all those costumes and masks!\n\nIvan: It's fun, but it takes up a lot of time. Drama members have to rehearse ",
+            {"prompt":"(often)","answer":"more often than","distractors":["often than","more often","most often than"],"explanation":"Use 'more often than' to compare how frequently Drama members rehearse with members of other clubs. The other options lack a comparative marker, omit 'than', or mix a superlative with 'than'."},
+            " members of other clubs. Before the Inter-school Drama Festival, they stay at school until seven o'clock almost every evening.\n\nChloe: That sounds exhausting. Hey, you play the erhu, right? Is Chinese Orchestra ",
+            {"prompt":"(hard)","answer":"harder than","distractors":["hard than","harder Robotics Club","more harder than"],"explanation":"Use 'harder than' to compare the difficulty of two clubs. The other options omit or misuse 'than', or use a double comparative."},
+            " Robotics Club?\n\nIvan: Not really. In fact, I'd say it's a lot ",
+            {"prompt":"(stressful)","answer":"less stressful","distractors":["less stressfully","least stressful","less stressful than"],"explanation":"Use the comparative adjective phrase 'less stressful' after 'a lot'. The other options use an adverb, an incompatible superlative, or a dangling 'than'."},
+            ". There are no tight deadlines and nobody shouts at you when you make a mistake.\n\nChloe: But I've never even touched a Chinese instrument. I'm sure I'd learn ",
+            {"prompt":"(slowly)","answer":"the most slowly","alternatives":["the slowest"],"distractors":["more slowly than","the most slower","the most slowlier"],"explanation":"Both 'the most slowly' and 'the slowest' are accepted here. The sentence compares Chloe with all the beginners; the distractors use an incomplete comparative or invalid double-degree forms."},
+            " of all the beginners.\n\nIvan: Don't be silly! Ms Lam, our conductor, is just ",
+            {"prompt":"(patient)","answer":"as patient as","distractors":["as patient than","more patient than than","the most patient"],"explanation":"Use the equality-comparison pattern 'as + adjective + as': as patient as a saint. The other options break the required comparison structure."},
+            " a saint. Also, the orchestra really needs new members. Right now it has ",
+            {"prompt":"(few)","answer":"the fewest","distractors":["the fewest than","the fewer","fewer than"],"explanation":"Use 'the fewest' because the sentence compares the orchestra with all the music clubs. The other options use an invalid linker or an incomplete comparative."},
+            " members of all the music clubs, so we'd love to have you.\n\nChloe: OK, you've convinced me! I think Chinese Orchestra is ",
+            {"prompt":"(good)","answer":"the best","distractors":["best","the best than","the more best"],"explanation":"Use the irregular superlative phrase 'the best' before the singular count noun 'choice'. The other options omit the determiner or use invalid degree marking."},
+            " choice for me. Where do I sign up?\n\nIvan: Over there, but we'd better hurry. The queue is getting ",
+            {"prompt":"(long)","answer":"longer","distractors":["more longer","longerest","most longer"],"explanation":"Use 'getting longer by the minute' to show that the queue is increasing in length. The other options are invalid double-comparison or nonstandard forms."},
+            " by the minute! Don't forget to get your form stamped by Miss Yeung before Friday."
+          ]
         }
       ]
     }

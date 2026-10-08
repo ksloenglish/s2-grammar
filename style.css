@@ -964,6 +964,29 @@ body {
   text-align: left;
 }
 
+.dialogue-speaker {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  margin-right: 3px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.55;
+  vertical-align: middle;
+}
+
+.speaker-chloe {
+  color: #6D28D9;
+  background: #EDE9FE;
+}
+
+.speaker-ivan {
+  color: #047857;
+  background: #D1FAE5;
+}
+
 .blank-wrap {
   display: inline-flex;
   align-items: center;
