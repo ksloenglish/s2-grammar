@@ -621,8 +621,38 @@
             passageBody.appendChild(document.createElement('br'));
             passageBody.appendChild(document.createElement('br'));
           }
+          const reportLines = part.trim().split('\n');
+          const isReportMeta = reportLines.length >= 2 && reportLines.every(line => /^(To|From|Date):\s+.+$/.test(line.trim()));
+          const sectionMatch = part.trim().match(/^(\d+)\.\s+(.+)$/);
           const speakerMatch = part.match(/^([A-Z][a-z]+):\s*/);
-          if (speakerMatch) {
+          if (isReportMeta) {
+            const meta = document.createElement('div');
+            meta.className = 'report-meta';
+            reportLines.forEach(line => {
+              const [, labelText, valueText] = line.trim().match(/^([^:]+):\s*(.+)$/);
+              const row = document.createElement('div');
+              row.className = 'report-meta-row';
+              const label = document.createElement('span');
+              label.className = 'report-meta-label';
+              label.textContent = `${labelText}:`;
+              const value = document.createElement('span');
+              value.className = 'report-meta-value';
+              value.textContent = valueText;
+              row.append(label, value);
+              meta.appendChild(row);
+            });
+            passageBody.appendChild(meta);
+          } else if (sectionMatch) {
+            const heading = document.createElement('div');
+            heading.className = 'report-section-heading';
+            const number = document.createElement('span');
+            number.className = 'report-section-number';
+            number.textContent = sectionMatch[1];
+            const text = document.createElement('span');
+            text.textContent = sectionMatch[2];
+            heading.append(number, text);
+            passageBody.appendChild(heading);
+          } else if (speakerMatch) {
             const speaker = speakerMatch[1];
             const label = document.createElement('span');
             label.className = `dialogue-speaker speaker-${speaker.toLowerCase()}`;

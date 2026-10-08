@@ -140,6 +140,36 @@ const GRAMMAR_DATA = {
             {"prompt":"(long)","answer":"longer","distractors":["more longer","longerest","most longer"],"explanation":"Use 'getting longer by the minute' to show that the queue is increasing in length. The other options are invalid double-comparison or nonstandard forms."},
             " by the minute! Don't forget to get your form stamped by Miss Yeung before Friday."
           ]
+        },
+        {
+          title: "Report on the Lunch Supplier Survey",
+          segments: [
+            "To: Mr Leung, Teacher Advisor of the Student Union\nFrom: Jasmine Ho (5C), Welfare Secretary\nDate: 20 March\n\n1. Introduction\n\nOur school's contract with its current lunch box supplier ends in July. Last month, three companies (Happy Bento, Golden Wok and Green Bowl) each provided sample lunches for two weeks. The Student Union then asked 300 students from Secondary 1 to Secondary 6 to compare them. The main findings are below.\n\n2. Findings\n\nTaste\n\nGolden Wok's food was clearly ",
+            {"prompt":"(popular)","answer":"the most popular","distractors":["the most popularer","the more popularest","the most populars"],"explanation":"Use 'the most popular' to compare Golden Wok with all three suppliers. The other options combine incompatible degree markers or add an invalid plural ending to the adjective."},
+            " of the three. Over 60% of students voted for it as their favourite. Many said its char siu rice tasted just ",
+            {"prompt":"(good)","answer":"as good as","distractors":["as better as","more better than","the best than"],"explanation":"Use the equality-comparison pattern 'as + adjective + as': just as good as the dishes at a real cha chaan teng. The other options mix incompatible comparison patterns."},
+            " the dishes at a real cha chaan teng. In contrast, Happy Bento received ",
+            {"prompt":"(bad)","answer":"the worst","distractors":["the badest","the worstest","the most worst"],"explanation":"Use the irregular superlative 'the worst' before 'comments'. The other options are invalid or double-superlative forms."},
+            " comments in the survey. Students complained that its rice was hard and its vegetables were overcooked.\n\nHealth\n\nGreen Bowl's meals were the healthiest. They contain much ",
+            {"prompt":"(little)","answer":"less","distractors":["fewer","fewest","least"],"explanation":"Use 'much less' with the uncountable nouns 'oil and salt'. 'Fewer' is for countable plural nouns, while 'fewest' and 'least' are superlatives that do not fit this comparison."},
+            " oil and salt than the other suppliers' meals. However, its portions were ",
+            {"prompt":"(small)","answer":"smaller than","distractors":["small than","smallest than","smaller then"],"explanation":"Use 'smaller than' to compare Green Bowl's portions with Golden Wok's. The other options lack the comparative form, misuse a superlative, or use 'then' instead of 'than'."},
+            " Golden Wok's. Several Form 6 boys said they felt hungry ",
+            {"prompt":"(early)","answer":"earlier than","distractors":["more earlier than","earliest than","early than"],"explanation":"Use 'earlier than usual' to compare the time when the boys felt hungry with their normal time. The other options use a double comparative, a superlative, or no comparative form."},
+            " usual on Green Bowl days, often by three o'clock.\n\nPrice\n\nHappy Bento is ",
+            {"prompt":"(cheap)","answer":"the cheapest","distractors":["cheapestest","the cheaperest","the most cheapest"],"explanation":"Use 'the cheapest' before the singular noun 'option'. The other options are invalid or double-superlative forms."},
+            " option, at $32 per meal. Golden Wok costs $36, so it is slightly ",
+            {"prompt":"(expensive)","answer":"more expensive than","distractors":["expensiver than","most expensive than","the most expensive than"],"explanation":"Use 'more expensive than' to compare Golden Wok's price with Happy Bento's. The other options use an invalid comparative or a superlative with 'than'."},
+            " Happy Bento. At $42 per meal, Green Bowl is not nearly ",
+            {"prompt":"(affordable)","answer":"as affordable as","distractors":["as affordable than","more affordable than as","the most affordable than"],"explanation":"Use the equality-comparison pattern 'not nearly as affordable as the other two'. The other options mix or misorder comparison markers."},
+            " the other two, and some parents may find it too costly.\n\nDelivery\n\nOf the three companies, Golden Wok delivered ",
+            {"prompt":"(reliably)","answer":"the most reliably","distractors":["the more reliably","the most reliablely","the most reliablest"],"explanation":"Use 'the most reliably' for the three-company comparison. The other options use the wrong degree or invalid forms of the adverb."},
+            ". Its van arrived before 12:30 p.m. every single day. Happy Bento was late three times during the trial, and Green Bowl turned up late even ",
+            {"prompt":"(often)","answer":"more often","distractors":["more oftener","most oftener","more often than"],"explanation":"Use 'more often' to compare Green Bowl's late deliveries with Happy Bento's. The other options use invalid double-degree forms or add a dangling 'than'."},
+            ". It was late five times in just two weeks.\n\n3. Recommendation\n\nBased on these findings, the Student Union believes that Golden Wok is ",
+            {"prompt":"(good)","answer":"the best","distractors":["the goodest","the betterest","the most best"],"explanation":"Use the irregular superlative phrase 'the best' before 'choice'. The other options are invalid or double-superlative forms."},
+            " choice for our school. Its food is tasty and its delivery is dependable. It costs only $4 more per meal than Happy Bento. We suggest that the school send a letter to parents about the new supplier before the Easter holiday."
+          ]
         }
       ]
     }
