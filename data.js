@@ -187,7 +187,7 @@ const GRAMMAR_DATA = {
       desc: "simple and continuous tenses",
       type: "passage",
       blankType: "select",
-      instructions: "Complete the conversation using the correct form of the verbs in brackets. Use the simple present, present continuous, simple past or past continuous. The first one has been done as an example.",
+      instructions: "Complete the passage using the correct form of the verbs in brackets. Use the simple present, present continuous, simple past or past continuous. The first one has been done as an example.",
       exercises: [
         {
           title: "Mandy and Kelvin's Octopus Card",
@@ -217,6 +217,36 @@ const GRAMMAR_DATA = {
             " lost items at the Lost Property Office, so you can call them after school.\n\nKelvin: That's a relief. Thanks, Mandy! Oh no, listen! The bell ",
             {"showPrompt":true,"prompt":"(ring)","answer":"is ringing","alternatives":["'s ringing"],"distractors":["is ring","are ringing"],"explanation":"Listen! shows that the bell is ringing now, so use 'is ringing' or 's ringing'."},
             ". Let's hurry back to the classroom!"
+          ]
+        },
+        {
+          title: "Kitty's Typhoon Day",
+          segments: [
+            "Wednesday, 18 September\n\nDear Diary,\n\nAs I write this, strong winds are blowing (blow) outside my bedroom window, and heavy rain is hitting the glass. The Hong Kong Observatory ",
+            {"showPrompt":true,"prompt":"(raise)","answer":"raised","distractors":["raises","is raising","raise"],"explanation":"Use 'raised'. The signal was raised at a specific time this morning."},
+            " Typhoon Signal No. 8 at six o'clock this morning, so there are no classes today.\n\nI ",
+            {"showPrompt":true,"prompt":"(sleep)","answer":"was sleeping","distractors":["were sleeping","was sleep","am sleeping"],"explanation":"Use 'was sleeping'. Mum knocked while Kitty was in the middle of sleeping."},
+            " soundly when Mum knocked on my door with the news. At first, I ",
+            {"showPrompt":true,"prompt":"(not believe)","answer":"didn't believe","alternatives":["did not believe"],"distractors":["don't believe","didn't believed"],"explanation":"Use 'didn't believe' or 'did not believe'. After didn't, use the base verb believe."},
+            " her because the sky outside looked so calm. Then I jumped out of bed with a big grin. When Mum saw my face, she laughed and asked, \"Why ",
+            {"showPrompt":true,"prompt":"(smile)","answer":"are you smiling","distractors":["is you smiling","are you smile","do you smiling"],"explanation":"Use 'are you smiling'. Mum is asking what Kitty is doing at that moment."},
+            " so much? You still have your Chinese test next week!\"\n\nDuring typhoons, my family always ",
+            {"showPrompt":true,"prompt":"(stay)","answer":"stay","distractors":["stayed","was staying","does stays"],"explanation":"Use 'stay'. Always shows what Kitty's family usually does during typhoons."},
+            " indoors. Dad says it ",
+            {"showPrompt":true,"prompt":"(not be)","answer":"isn't","alternatives":["is not"],"distractors":["aren't","doesn't be"],"explanation":"Use 'isn't' or 'is not'. Dad is giving a general safety rule."},
+            " safe to go out because the wind can blow down trees and signboards.\n\nThis afternoon, while Mum ",
+            {"showPrompt":true,"prompt":"(cook)","answer":"was cooking","distractors":["cooks","is cooking","were cooking"],"explanation":"Use 'was cooking'. Mum's cooking was in progress when the lights went out."},
+            " instant noodles for lunch, the lights suddenly ",
+            {"showPrompt":true,"prompt":"(go)","answer":"went","distractors":["gone","going","goes"],"explanation":"Use 'went'. The lights went out in a completed event this afternoon."},
+            " out. My little sister was so scared that she ",
+            {"showPrompt":true,"prompt":"(begin)","answer":"began","distractors":["begins","begin","begun"],"explanation":"Use 'began'. Kitty's sister started to cry during the past event."},
+            " to cry. Luckily, Dad found a torch and told her funny stories until the power came back half an hour later.\n\nNow everything is calm again. Dad ",
+            {"showPrompt":true,"prompt":"(watch)","answer":"is watching","alternatives":["'s watching"],"distractors":["are watching","is watch"],"explanation":"Use 'is watching' or 's watching'. Now shows an action happening at this moment."},
+            " the latest typhoon news on TV, and my sister ",
+            {"showPrompt":true,"prompt":"(draw)","answer":"is drawing","alternatives":["'s drawing"],"distractors":["are drawing","is draw"],"explanation":"Use 'is drawing' or 's drawing'. My sister is doing this at the moment."},
+            " a picture of a rainbow at the dining table. I really ",
+            {"showPrompt":true,"prompt":"(want)","answer":"want","distractors":["wants","wanting","am want"],"explanation":"Use 'want'. Kitty is describing what she feels now, so use the present simple with I."},
+            " the signal to stay up tomorrow, but I'd better start revising for that Chinese test just in case!\n\nKitty"
           ]
         }
       ]
