@@ -340,6 +340,50 @@ const GRAMMAR_DATA = {
           ]
         }
       ]
+    },
+    "gerunds-to-infinitives": {
+      label: "Gerunds & To-Infinitives",
+      icon: "\u{1F4DA}",
+      iconClass: "c-orange",
+      desc: "enjoy doing, decide to do",
+      type: "passage",
+      blankType: "select",
+      instructions: "Read and complete the email using the correct form of the verbs in brackets.",
+      // Use only teacher-approved form distractors: gerund, bare infinitive,
+      // to-infinitive, to + gerund, to + past participle, or past participle.
+      // Reject any grammatical alternative.
+      exercises: [
+        {
+          title: "My first beach clean-up!",
+          segments: [
+            "From: Chloe Wong\nTo: Jason Wong\nSubject: My first beach clean-up!\n\nHi Jason,\n\nAre you interested in hearing about my weekend? Last Saturday, the Green Club at my school went to Pui O Beach on Lantau Island for a beach clean-up. Mr Chan, our club teacher, had promised ",
+            {"showPrompt":true,"prompt":"(take)","answer":"to take","distractors":["taking","take","to taking"],"explanation":"Use 'to take'. After 'had promised', use to + verb."},
+            " us there before the summer holiday, and he kept his word!\n\nWe met at Tung Chung MTR Station at 8 a.m. Getting up so early on a Saturday wasn't easy, but nobody wanted ",
+            {"showPrompt":true,"prompt":"(miss)","answer":"to miss","distractors":["missing","miss","to missing"],"explanation":"Use 'to miss'. After 'wanted', use to + verb."},
+            " the trip. On the bus, Mr Chan reminded us ",
+            {"showPrompt":true,"prompt":"(put)","answer":"to put","distractors":["putting","put","to putting"],"explanation":"Use 'to put'. We say remind someone to + verb."},
+            " on sunscreen, and he gave everyone a pair of gloves.\n\nWhen we arrived, I couldn't believe my eyes. There were plastic bottles, straws and takeaway boxes everywhere! We spent three hours ",
+            {"showPrompt":true,"prompt":"(pick)","answer":"picking","distractors":["pick","to picking","picked"],"explanation":"Use 'picking'. After spend + time, use verb-ing."},
+            " up rubbish under the hot sun. My best friend Kelly kept ",
+            {"showPrompt":true,"prompt":"(complain)","answer":"complaining","distractors":["complain","to complain","complained"],"explanation":"Use 'complaining'. After kept, use verb-ing."},
+            " about the smell, but she still refused ",
+            {"showPrompt":true,"prompt":"(leave)","answer":"to leave","distractors":["leaving","leave","to leaving"],"explanation":"Use 'to leave'. After refused, use to + verb."},
+            " until her rubbish bag was full.\n\nDo you know what surprised me most? A lot of the rubbish wasn't left by people at the beach. The sea washes it there from other places! Mr Chan told us, \"",
+            {"showPrompt":true,"prompt":"(reduce)","answer":"Reducing","distractors":["Reduce","To reducing","Reduced"],"explanation":"Use 'Reducing'. A verb-ing form can be the subject of a sentence."},
+            " plastic waste in our daily lives is the best way to protect the ocean.\" After ",
+            {"showPrompt":true,"prompt":"(collect)","answer":"collecting","distractors":["collect","to collect","collected"],"explanation":"Use 'collecting'. After 'after', use verb-ing."},
+            " more than 30 bags of rubbish, we were all exhausted, but I felt really proud of our team.\n\nSince then, I've decided ",
+            {"showPrompt":true,"prompt":"(bring)","answer":"to bring","distractors":["bringing","bring","brought"],"explanation":"Use 'to bring'. After 'decided', use to + verb."},
+            " my own water bottle to school every day. My mum has also agreed ",
+            {"showPrompt":true,"prompt":"(use)","answer":"to use","distractors":["use","using","to used"],"explanation":"Use 'to use'. After 'agreed', use to + verb."},
+            " her own containers when she buys takeaway food. I'm even thinking about ",
+            {"showPrompt":true,"prompt":"(start)","answer":"starting","distractors":["start","to start","started"],"explanation":"Use 'starting'. After 'thinking about', use verb-ing."},
+            " a \"No Straw Week\" at school. Do you think it's a good idea?\n\nAre you coming back to Hong Kong next summer? I'm really looking forward to ",
+            {"showPrompt":true,"prompt":"(show)","answer":"showing","distractors":["show","to show","shown"],"explanation":"Use 'showing'. After 'looking forward to', use verb-ing."},
+            " you the beach. It's much cleaner now!\n\nWrite back soon!\n\nChloe"
+          ]
+        }
+      ]
     }
   },
   "Second Term": {
