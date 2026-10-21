@@ -62,6 +62,23 @@ const expectedExercises = [
       { prompt: '(give)', answer: 'gave', alternatives: [], distractors: ['gives', 'give', 'giving'] },
       { prompt: '(not like)', answer: "doesn't like", alternatives: ['does not like'], distractors: ['do not like', 'does not likes'] }
     ]
+  },
+  {
+    title: 'Live from Sports Day!',
+    blanks: [
+      { prompt: '(type)', answer: 'am typing', alternatives: [], distractors: ['type', 'typed', 'is typing'] },
+      { prompt: '(not start)', answer: 'does not start', alternatives: [], distractors: ['do not start', 'did not start', 'does not starts'] },
+      { prompt: '(run)', answer: 'are running', alternatives: [], distractors: ['is running', 'are run', 'are ran'] },
+      { prompt: '(come)', answer: 'comes', alternatives: [], distractors: ['come', 'coming', 'does comes'] },
+      { prompt: '(not join)', answer: 'Did you not join', alternatives: [], distractors: ['Did you not joined', 'Was you not joining', 'Did you not joining'] },
+      { prompt: '(hurt)', answer: 'hurt', alternatives: [], distractors: ['was hurt', 'were hurt', 'am hurt'] },
+      { prompt: '(practise)', answer: 'was practising', alternatives: [], distractors: ['practise', 'am practising', 'were practising'] },
+      { prompt: '(trip)', answer: 'tripped', alternatives: [], distractors: ['trip', 'am tripping', 'tripping'] },
+      { prompt: '(stretch)', answer: 'were stretching', alternatives: [], distractors: ['was stretching', 'is stretching', 'were stretch'] },
+      { prompt: '(announce)', answer: 'announced', alternatives: [], distractors: ['announce', 'did announced', 'was announce'] },
+      { prompt: '(not want)', answer: 'do not want', alternatives: [], distractors: ['does not want', 'do not wanted', 'am not want'] },
+      { prompt: '(call)', answer: 'is calling', alternatives: [], distractors: ['are calling', 'call', 'is call'] }
+    ]
   }
 ];
 

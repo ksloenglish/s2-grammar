@@ -278,6 +278,36 @@ const GRAMMAR_DATA = {
             {"showPrompt":true,"prompt":"(not like)","answer":"doesn't like","alternatives":["does not like"],"distractors":["do not like","does not likes"],"explanation":"Use 'doesn't like' or 'does not like'. Grandma is one person, so use doesn't + the base verb like."},
             " sweet things, so I got to eat her share too!\n\nWrite back soon and tell me what your family usually does on Sundays.\n\nLove,\n\nChloe"
           ]
+        },
+        {
+          title: "Live from Sports Day!",
+          segments: [
+            "Posted by Jason Lee (3B) at 11:30 a.m.\n\nEvery year, our school holds (hold) its Sports Day at Wan Chai Sports Ground, and today is the big day! At the moment, I ",
+            {"showPrompt":true,"prompt":"(type)","answer":"am typing","distractors":["type","typed","is typing"],"explanation":"Use 'am typing'. At the moment shows that the action is happening now."},
+            " this post on my phone in the stands. My race ",
+            {"showPrompt":true,"prompt":"(not start)","answer":"does not start","distractors":["do not start","did not start","does not starts"],"explanation":"Use 'does not start'. The singular subject race takes does not, followed by start."},
+            " until 2:30 p.m., so I have plenty of time.\n\nThe atmosphere here is amazing. Down on the track right now, the Form 1 girls ",
+            {"showPrompt":true,"prompt":"(run)","answer":"are running","distractors":["is running","are run","are ran"],"explanation":"Use 'are running'. Right now shows the present continuous, and the Form 1 girls are plural."},
+            " the 400-metre race, and their classmates are screaming at the top of their lungs. My House, Blue House, usually ",
+            {"showPrompt":true,"prompt":"(come)","answer":"comes","distractors":["come","coming","does comes"],"explanation":"Use 'comes'. Usually shows a regular result, and My House is singular."},
+            " last in the overall results, but this year we have a real chance of winning.\n\nLast year, lots of my friends asked me, \"Why ",
+            {"showPrompt":true,"prompt":"(not join)","answer":"Did you not join","distractors":["Did you not joined","Was you not joining","Did you not joining"],"explanation":"Use 'Did you not join'. Last year shows a past question, so use did + join."},
+            " the relay team?\" Here's the embarrassing truth: I ",
+            {"showPrompt":true,"prompt":"(hurt)","answer":"hurt","distractors":["was hurt","were hurt","am hurt"],"explanation":"Use 'hurt'. The past form of hurt is also hurt."},
+            " my ankle just two weeks before Sports Day. I ",
+            {"showPrompt":true,"prompt":"(practise)","answer":"was practising","distractors":["practise","am practising","were practising"],"explanation":"Use 'was practising'. The practice was in progress when Jason tripped."},
+            " on the school basketball court after school when I ",
+            {"showPrompt":true,"prompt":"(trip)","answer":"tripped","distractors":["trip","am tripping","tripping"],"explanation":"Use 'tripped'. It was a completed action in the past."},
+            " over a ball that someone had left on the ground. I had to watch the whole event from the stands with a bandage on my foot!\n\nThis year is different. While we ",
+            {"showPrompt":true,"prompt":"(stretch)","answer":"were stretching","distractors":["was stretching","is stretching","were stretch"],"explanation":"Use 'were stretching'. The stretching was in progress when the principal announced the result."},
+            " behind the stands this morning, the principal ",
+            {"showPrompt":true,"prompt":"(announce)","answer":"announced","distractors":["announce","did announced","was announce"],"explanation":"Use 'announced'. The principal made the announcement in the past."},
+            " over the loudspeaker that Blue House was in second place. Everyone went wild! I really ",
+            {"showPrompt":true,"prompt":"(not want)","answer":"do not want","distractors":["does not want","do not wanted","am not want"],"explanation":"Use 'do not want'. This describes how Jason feels now, and I takes do not."},
+            " to let my teammates down this afternoon.\n\nOh, Mr Chan ",
+            {"showPrompt":true,"prompt":"(call)","answer":"is calling","distractors":["are calling","call","is call"],"explanation":"Use 'is calling'. Now shows an action happening at this moment."},
+            " my name now. It's time to get ready. Wish me luck!"
+          ]
         }
       ]
     }
