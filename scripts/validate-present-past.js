@@ -79,6 +79,23 @@ const expectedExercises = [
       { prompt: '(not want)', answer: 'do not want', alternatives: [], distractors: ['does not want', 'do not wanted', 'am not want'] },
       { prompt: '(call)', answer: 'is calling', alternatives: [], distractors: ['are calling', 'call', 'is call'] }
     ]
+  },
+  {
+    title: 'Creative Writing Corner',
+    blanks: [
+      { prompt: '(buy)', answer: 'bought', alternatives: [], distractors: ['buy', 'buys', 'was bought'] },
+      { prompt: '(walk)', answer: 'were walking', alternatives: [], distractors: ['are walking', 'was walking', 'were walk'] },
+      { prompt: '(blow)', answer: 'blew', alternatives: [], distractors: ['blows', 'was blow', 'blowing'] },
+      { prompt: '(not stop)', answer: 'did not stop', alternatives: [], distractors: ['did not stopped', 'did not stopping', 'was not stop'] },
+      { prompt: '(happen)', answer: 'happens', alternatives: [], distractors: ['happen', 'are happening', 'is happen'] },
+      { prompt: '(keep)', answer: 'Do you always keep', alternatives: [], distractors: ['Do you always keeps', 'Did you always kept', 'Were you always keep'] },
+      { prompt: '(know)', answer: 'know', alternatives: [], distractors: ['knows', 'knowing', 'did knew'] },
+      { prompt: '(climb)', answer: 'climbed', alternatives: [], distractors: ['climbs', 'climbing', 'was climb'] },
+      { prompt: '(tie)', answer: 'is tying', alternatives: [], distractors: ['are tying', 'tie', 'is tie'] },
+      { prompt: '(cut)', answer: 'is cutting', alternatives: [], distractors: ['are cutting', 'is cut', 'cutting'] },
+      { prompt: '(not forget)', answer: 'does not forget', alternatives: [], distractors: ['does not forgot', 'do not forget', 'does not forgetting'] },
+      { prompt: '(laugh)', answer: 'are you laughing', alternatives: [], distractors: ['is you laughing', 'are you laugh', 'did you laughing'] }
+    ]
   }
 ];
 

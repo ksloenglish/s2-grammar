@@ -308,6 +308,36 @@ const GRAMMAR_DATA = {
             {"showPrompt":true,"prompt":"(call)","answer":"is calling","distractors":["are calling","call","is call"],"explanation":"Use 'is calling'. Now shows an action happening at this moment."},
             " my name now. It's time to get ready. Wish me luck!"
           ]
+        },
+        {
+          title: "Creative Writing Corner",
+          segments: [
+            "The Runaway Rabbit by Ivy Cheung (2C)\n\nLast Mid-Autumn Festival, thousands of families were enjoying (enjoy) the lantern carnival in Victoria Park when our little adventure began.\n\nMy six-year-old brother, Tommy, was very excited that night because Grandma ",
+            {"showPrompt":true,"prompt":"(buy)","answer":"bought","distractors":["buy","buys","was bought"],"explanation":"Use 'bought'. That afternoon shows the action happened in the past."},
+            " him a big rabbit lantern that afternoon. While we ",
+            {"showPrompt":true,"prompt":"(walk)","answer":"were walking","distractors":["are walking","was walking","were walk"],"explanation":"Use 'were walking'. The walking was in progress when the wind blew."},
+            " past the lantern riddle stalls, a strong gust of wind suddenly ",
+            {"showPrompt":true,"prompt":"(blow)","answer":"blew","distractors":["blows","was blow","blowing"],"explanation":"Use 'blew'. The gust did this suddenly in the past."},
+            " the lantern out of his hands. It flew over the crowd and got stuck high up in a tree. Poor Tommy ",
+            {"showPrompt":true,"prompt":"(not stop)","answer":"did not stop","distractors":["did not stopped","did not stopping","was not stop"],"explanation":"Use 'did not stop'. After did not, use the base verb stop."},
+            " crying for ten whole minutes!\n\nDad quickly went to find a security guard. The guard looked up at the tree and smiled. \"Don't worry. This ",
+            {"showPrompt":true,"prompt":"(happen)","answer":"happens","distractors":["happen","are happening","is happen"],"explanation":"Use 'happens'. Every year shows a regular action."},
+            " here every year,\" he said.\n\n\"",
+            {"showPrompt":true,"prompt":"(keep)","answer":"Do you always keep","distractors":["Do you always keeps","Did you always kept","Were you always keep"],"explanation":"Use 'Do you always keep'. After do, use the base verb keep."},
+            " a ladder in the park?\" Dad asked.\n\n\"No,\" the guard replied, \"but I ",
+            {"showPrompt":true,"prompt":"(know)","answer":"know","distractors":["knows","knowing","did knew"],"explanation":"Use 'know'. The guard is saying what he knows now."},
+            " where to find one.\"\n\nFive minutes later, he ",
+            {"showPrompt":true,"prompt":"(climb)","answer":"climbed","distractors":["climbs","climbing","was climb"],"explanation":"Use 'climbed'. Five minutes later shows a completed action in the past."},
+            " up the ladder and brought the rabbit safely back down. Tommy hugged it as if it were a real pet!\n\nNow it is Mid-Autumn Festival again. As I write this story, Tommy ",
+            {"showPrompt":true,"prompt":"(tie)","answer":"is tying","distractors":["are tying","tie","is tie"],"explanation":"Use 'is tying'. As I write this story shows an action happening now."},
+            " a long string around his new lantern so that it can't fly away, and in the kitchen, Grandma ",
+            {"showPrompt":true,"prompt":"(cut)","answer":"is cutting","distractors":["are cutting","is cut","cutting"],"explanation":"Use 'is cutting'. Grandma is one person, and the action is happening now."},
+            " mooncakes for the whole family. My brother is only six, but he certainly ",
+            {"showPrompt":true,"prompt":"(not forget)","answer":"does not forget","distractors":["does not forgot","do not forget","does not forgetting"],"explanation":"Use 'does not forget'. My brother is singular, so use does not + forget."},
+            " his lessons! When he hears me giggling at him, he frowns and asks, \"Why ",
+            {"showPrompt":true,"prompt":"(laugh)","answer":"are you laughing","distractors":["is you laughing","are you laugh","did you laughing"],"explanation":"Use 'are you laughing'. The question is about an action happening now."},
+            " at me?\""
+          ]
         }
       ]
     }
