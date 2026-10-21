@@ -476,6 +476,37 @@ const GRAMMAR_DATA = {
             {"showPrompt":true,"prompt":"(try)","answer":"trying","distractors":["try","to try","tried"],"explanation":"Use 'trying'. After 'give up', use verb-ing."},
             ". You can do it!\n\nMiss Wise"
           ]
+        },
+        {
+          title: "💬 3C Class Chat",
+          instructions: "Read and complete the group chat using the correct form of the verbs in brackets.",
+          segments: [
+            "Jacky: Guys, bad news 😢 Miss Tam told us today she's moving to the UK in August.\n\nBella: I know... I can't imagine ",
+            {"showPrompt":true,"prompt":"(have)","answer":"having","distractors":["have","to having","to had"],"explanation":"Use 'having'. After 'imagine', use verb-ing."},
+            " a different class teacher next year.\n\nJacky: Me neither. Why don't we throw a surprise party for her on the last day of term?\n\nOwen: Count me in! I don't mind ",
+            {"showPrompt":true,"prompt":"(stay)","answer":"staying","distractors":["stay","to stay","stayed"],"explanation":"Use 'staying'. After 'mind', use verb-ing."},
+            " after school to decorate the classroom.\n\nHailey: Me too! But we need ",
+            {"showPrompt":true,"prompt":"(keep)","answer":"to keep","distractors":["kept","to kept","to keeping"],"explanation":"Use 'to keep'. After 'need', use to + verb."},
+            " it a secret. Miss Tam always seems to know everything 👀\n\nJacky: Haha, true. OK, so what do we need? Food, decorations and a present?\n\nOwen: I want ",
+            {"showPrompt":true,"prompt":"(order)","answer":"to order","distractors":["ordering","order","to ordering"],"explanation":"Use 'to order'. After 'want', use to + verb."},
+            " pizza! Everyone loves pizza 🍕\n\nHailey: Miss Tam is a vegetarian, remember? Let's get some dim sum from that vegetarian restaurant in Mong Kok instead.\n\nOwen: Fine 😂\n\nBella: For the present, I'd like everyone ",
+            {"showPrompt":true,"prompt":"(write)","answer":"to write","distractors":["write","to writing","to written"],"explanation":"Use 'to write'. We say 'would like someone to + verb'."},
+            " a short card for her. Then we can put all the cards in a photo album.\n\nJacky: Love it! But ",
+            {"showPrompt":true,"prompt":"(collect)","answer":"Collecting","distractors":["Collect","To collecting","Collected"],"explanation":"Use 'Collecting'. An activity at the start of a sentence uses verb-ing."},
+            " 32 cards in one week won't be easy. Some people in our class forget everything!\n\nHailey: Don't worry. I'll be in charge of ",
+            {"showPrompt":true,"prompt":"(remind)","answer":"reminding","distractors":["remind","to remind","to reminding"],"explanation":"Use 'reminding'. After 'in charge of', use verb-ing."},
+            " them every morning in homeroom 😤\n\nOwen: What about a performance? Miss Tam trained us for the Choral Speaking competition at the Speech Festival, and we won! We could perform the poem for her again.\n\nBella: Omg yes, she'd love that! But that was months ago. Does anyone still remember the lines?\n\nJacky: Not really 😅 But we can practise ",
+            {"showPrompt":true,"prompt":"(say)","answer":"saying","distractors":["say","to say","said"],"explanation":"Use 'saying'. After 'practise', use verb-ing."},
+            " them together at lunchtime.\n\nHailey: There's still one problem. How do we get Miss Tam to the classroom without ",
+            {"showPrompt":true,"prompt":"(tell)","answer":"telling","distractors":["tell","to tell","told"],"explanation":"Use 'telling'. After 'without', use verb-ing."},
+            " her why?\n\nOwen: Easy. I'll ask Mr Ho ",
+            {"showPrompt":true,"prompt":"(bring)","answer":"to bring","distractors":["bring","bringing","to bringing"],"explanation":"Use 'to bring'. We say 'ask someone to + verb'."},
+            " her there after the last lesson. He can tell her something's wrong with the projector 😏\n\nBella: Genius!\n\nJacky: Hailey, could you make a list of who's doing what? I'm too forgetful ",
+            {"showPrompt":true,"prompt":"(be)","answer":"to be","distractors":["being","be","to being"],"explanation":"Use 'to be'. After 'too + adjective', use to + verb."},
+            " in charge of the list.\n\nHailey: Sure, I'll post it tonight. And everyone, please be careful not ",
+            {"showPrompt":true,"prompt":"(mention)","answer":"to mention","distractors":["mention","mentioning","to mentioning"],"explanation":"Use 'to mention'. After 'be careful not', use to + verb."},
+            " the party in front of her! 🤫"
+          ]
         }
       ]
     }

@@ -1007,6 +1007,26 @@ body {
   background: #FEF3C7;
 }
 
+.speaker-jacky {
+  color: #1D4ED8;
+  background: #DBEAFE;
+}
+
+.speaker-bella {
+  color: #9D174D;
+  background: #FCE7F3;
+}
+
+.speaker-owen {
+  color: #047857;
+  background: #D1FAE5;
+}
+
+.speaker-hailey {
+  color: #6D28D9;
+  background: #EDE9FE;
+}
+
 .report-meta {
   display: grid;
   gap: 5px;

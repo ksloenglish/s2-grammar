@@ -90,6 +90,25 @@ const expectedExercises = [
       { prompt: '(reward)', answer: 'to reward', alternatives: [], distractors: ['reward', 'to rewarding', 'to rewarded'] },
       { prompt: '(try)', answer: 'trying', alternatives: [], distractors: ['try', 'to try', 'tried'] }
     ]
+  },
+  {
+    title: '💬 3C Class Chat',
+    instructions: 'Read and complete the group chat using the correct form of the verbs in brackets.',
+    chatSpeakers: ['Jacky', 'Bella', 'Owen', 'Hailey'],
+    blanks: [
+      { prompt: '(have)', answer: 'having', alternatives: [], distractors: ['have', 'to having', 'to had'] },
+      { prompt: '(stay)', answer: 'staying', alternatives: [], distractors: ['stay', 'to stay', 'stayed'] },
+      { prompt: '(keep)', answer: 'to keep', alternatives: [], distractors: ['kept', 'to kept', 'to keeping'] },
+      { prompt: '(order)', answer: 'to order', alternatives: [], distractors: ['ordering', 'order', 'to ordering'] },
+      { prompt: '(write)', answer: 'to write', alternatives: [], distractors: ['write', 'to writing', 'to written'] },
+      { prompt: '(collect)', answer: 'Collecting', alternatives: [], distractors: ['Collect', 'To collecting', 'Collected'] },
+      { prompt: '(remind)', answer: 'reminding', alternatives: [], distractors: ['remind', 'to remind', 'to reminding'] },
+      { prompt: '(say)', answer: 'saying', alternatives: [], distractors: ['say', 'to say', 'said'] },
+      { prompt: '(tell)', answer: 'telling', alternatives: [], distractors: ['tell', 'to tell', 'told'] },
+      { prompt: '(bring)', answer: 'to bring', alternatives: [], distractors: ['bring', 'bringing', 'to bringing'] },
+      { prompt: '(be)', answer: 'to be', alternatives: [], distractors: ['being', 'be', 'to being'] },
+      { prompt: '(mention)', answer: 'to mention', alternatives: [], distractors: ['mention', 'mentioning', 'to mentioning'] }
+    ]
   }
 ];
 
@@ -147,6 +166,12 @@ expectedExercises.forEach((expectedExercise, exerciseIndex) => {
   }
   if (expectedExercise.replyStart && !exercise.segments.some(segment => typeof segment === 'string' && segment.includes(expectedExercise.replyStart))) {
     problems.push(`${labelPrefix}: sender name and reply salutation must be separate blocks.`);
+  }
+  if (expectedExercise.chatSpeakers) {
+    const text = exercise.segments.filter(segment => typeof segment === 'string').join('');
+    expectedExercise.chatSpeakers.forEach(speaker => {
+      if (!text.includes(`${speaker}:`)) problems.push(`${labelPrefix}: missing ${speaker} chat label.`);
+    });
   }
   const end = exercise.segments[exercise.segments.length - 1] || '';
   if (expectedExercise.signature && !end.endsWith(`\n\n${expectedExercise.signature}`)) {
