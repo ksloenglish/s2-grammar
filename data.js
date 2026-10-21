@@ -179,6 +179,47 @@ const GRAMMAR_DATA = {
           ]
         }
       ]
+    },
+    "present-past": {
+      label: "The Present & the Past",
+      icon: "\u23F3",
+      iconClass: "c-purple",
+      desc: "simple and continuous tenses",
+      type: "passage",
+      blankType: "select",
+      instructions: "Complete the conversation using the correct form of the verbs in brackets. Use the simple present, present continuous, simple past or past continuous. The first one has been done as an example.",
+      exercises: [
+        {
+          title: "Mandy and Kelvin's Octopus Card",
+          segments: [
+            "Mandy: Kelvin, you look (look) really worried. What's wrong?\n\nKelvin: I can't find my Octopus card anywhere! I'm sure I ",
+            {"showPrompt":true,"prompt":"(have)","answer":"had","distractors":["have","am having","was have"],"explanation":"Use 'had'. This morning is a finished time in the past, so use the simple past."},
+            " it this morning because I tapped it when I ",
+            {"showPrompt":true,"prompt":"(get)","answer":"got","distractors":["get","am getting","was get"],"explanation":"Use 'got'. It describes the completed action of getting on the train in the past."},
+            " on the train at Tsuen Wan.\n\nMandy: Oh no! ",
+            {"showPrompt":true,"prompt":"(use)","answer":"Did you use","distractors":["Did you used","Do you used","Are you use"],"explanation":"Use 'Did you use'. At recess is a finished time in the past, so use did + the base verb use."},
+            " it at the tuck shop at recess?\n\nKelvin: No. I ",
+            {"showPrompt":true,"prompt":"(not buy)","answer":"didn't buy","alternatives":["did not buy"],"distractors":["don't buy","didn't bought"],"explanation":"Use 'didn't buy' or 'did not buy'. Didn't is followed by the base verb buy."},
+            " anything today. My mum always ",
+            {"showPrompt":true,"prompt":"(pack)","answer":"packs","distractors":["pack","packed","is pack"],"explanation":"Use 'packs' for something Mum always does. With my mum, the present-simple verb ends in -s."},
+            " a snack and a lunch box for me.\n\nMandy: OK, let's think carefully. What ",
+            {"showPrompt":true,"prompt":"(do)","answer":"were you doing","distractors":["Was you doing","Were you do","Did you doing"],"explanation":"Use 'were you doing' to ask about an action that was happening in the past."},
+            " on the train?\n\nKelvin: Hmm... Oh, I remember now! I ",
+            {"showPrompt":true,"prompt":"(play)","answer":"was playing","distractors":["am playing","were playing","was play"],"explanation":"Use 'was playing' for an action that was continuing in the past."},
+            " a game on my phone the whole time, so I ",
+            {"showPrompt":true,"prompt":"(not notice)","answer":"didn't notice","alternatives":["did not notice"],"distractors":["don't notice","didn't noticed"],"explanation":"Use 'didn't notice' or 'did not notice' for a past action. Didn't is followed by the base verb notice."},
+            " anything around me. Maybe the card ",
+            {"showPrompt":true,"prompt":"(fall)","answer":"fell","distractors":["fall","was fall","was fell"],"explanation":"Use 'fell' for the completed past action when the card came out of Kelvin's pocket."},
+            " out of my pocket when I stood up at Lai King.\n\nMandy: Don't panic. Look, I ",
+            {"showPrompt":true,"prompt":"(search)","answer":"am searching","alternatives":["'m searching"],"distractors":["search","is searching"],"explanation":"Right now shows an action happening at this moment, so use 'am searching' or 'm searching'."},
+            " the MTR website on my phone right now. It says the MTR staff usually ",
+            {"showPrompt":true,"prompt":"(keep)","answer":"keep","distractors":["kept","were keeping","keeping"],"explanation":"Usually describes something that happens regularly, so use the present simple: 'keep'."},
+            " lost items at the Lost Property Office, so you can call them after school.\n\nKelvin: That's a relief. Thanks, Mandy! Oh no, listen! The bell ",
+            {"showPrompt":true,"prompt":"(ring)","answer":"is ringing","alternatives":["'s ringing"],"distractors":["is ring","are ringing"],"explanation":"Listen! shows that the bell is ringing now, so use 'is ringing' or 's ringing'."},
+            ". Let's hurry back to the classroom!"
+          ]
+        }
+      ]
     }
   },
   "Second Term": {

@@ -987,6 +987,16 @@ body {
   background: #D1FAE5;
 }
 
+.speaker-mandy {
+  color: #9D174D;
+  background: #FCE7F3;
+}
+
+.speaker-kelvin {
+  color: #1D4ED8;
+  background: #DBEAFE;
+}
+
 .report-meta {
   display: grid;
   gap: 5px;

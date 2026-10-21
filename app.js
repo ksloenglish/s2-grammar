@@ -743,6 +743,12 @@
             updatePassageProgress();
           });
           wrap.appendChild(sel);
+          if (seg.showPrompt && seg.prompt) {
+            const pr = document.createElement('span');
+            pr.className = 'blank-prompt';
+            pr.textContent = seg.prompt;
+            wrap.appendChild(pr);
+          }
           blankObj.selectEl = sel;
         }
 
