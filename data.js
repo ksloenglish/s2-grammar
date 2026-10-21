@@ -445,6 +445,37 @@ const GRAMMAR_DATA = {
             {"showPrompt":true,"prompt":"(see)","answer":"to see","distractors":["seeing","see","to seeing"],"explanation":"Use 'to see'. After 'can't wait', use to + verb."},
             " them again!\n\nMandy"
           ]
+        },
+        {
+          title: "ASK MISS WISE: Your Problems, Our Advice",
+          instructions: "Read and complete the letters using the correct form of the verbs in brackets.",
+          segments: [
+            "Dear Miss Wise,\n\nI'm a Form 4 student, and I have a big problem. I just can't stop ",
+            {"showPrompt":true,"prompt":"(scroll)","answer":"scrolling","distractors":["scroll","to scrolling","scrolled"],"explanation":"Use 'scrolling'. After 'can't stop', use verb-ing."},
+            " through social media on my phone!\n\nEvery night, I sit down at my desk at eight o'clock and plan ",
+            {"showPrompt":true,"prompt":"(revise)","answer":"to revise","distractors":["revise","revising","to revising"],"explanation":"Use 'to revise'. After 'plan', use to + verb."},
+            " for my tests. But after five minutes, I pick up my phone \"just to check one message.\" Before I know it, it's midnight. Most nights, I haven't even finished ",
+            {"showPrompt":true,"prompt":"(do)","answer":"doing","distractors":["do","to do","done"],"explanation":"Use 'doing'. After 'finished', use verb-ing."},
+            " my Maths homework.\n\nMy results in last term's uniform tests were terrible. Now my parents have threatened ",
+            {"showPrompt":true,"prompt":"(take)","answer":"to take","distractors":["taking","take","to taking"],"explanation":"Use 'to take'. After 'threatened', use to + verb."},
+            " away my phone if my grades don't improve. I really want to change, but I don't know where ",
+            {"showPrompt":true,"prompt":"(start)","answer":"to start","distractors":["starting","start","to starting"],"explanation":"Use 'to start'. We say 'where to + verb'."},
+            ". Can you help me?\n\nWorried in Tsuen Wan\n\nDear Worried,\n\nYou're definitely not alone. Lots of teenagers find it hard to put their phones down! The good news is that you've already taken the most important step: you've admitted there's a problem.\n\nHere are a few tips that may help.\n\nFirst, I suggest ",
+            {"showPrompt":true,"prompt":"(leave)","answer":"leaving","distractors":["leave","to leaving","left"],"explanation":"Use 'leaving'. After 'suggest', use verb-ing."},
+            " your phone in the living room while you study. If it isn't on your desk, you won't feel like ",
+            {"showPrompt":true,"prompt":"(check)","answer":"checking","distractors":["check","to checking","checked"],"explanation":"Use 'checking'. After 'feel like', use verb-ing."},
+            " it every few minutes.\n\nSecond, don't try to study for three hours without a rest. Study for 25 minutes and then take a five-minute break. ",
+            {"showPrompt":true,"prompt":"(work)","answer":"Working","distractors":["Work","To working","To worked"],"explanation":"Use 'Working'. An activity at the start of a sentence uses verb-ing."},
+            " in short sessions like this helps your brain stay focused.\n\nThird, why not ask a classmate ",
+            {"showPrompt":true,"prompt":"(study)","answer":"to study","distractors":["study","to studying","studied"],"explanation":"Use 'to study'. After 'ask someone', use to + verb."},
+            " with you at the public library on weekends? It's much harder to waste time when a friend is sitting next to you.\n\nYou could also consider ",
+            {"showPrompt":true,"prompt":"(turn)","answer":"turning","distractors":["turn","to turn","to turning"],"explanation":"Use 'turning'. After 'consider', use verb-ing."},
+            " off your app notifications in the evening. Then your phone won't keep distracting you.\n\nFinally, don't forget ",
+            {"showPrompt":true,"prompt":"(reward)","answer":"to reward","distractors":["reward","to rewarding","to rewarded"],"explanation":"Use 'to reward'. After 'don't forget', use to + verb for something you need to remember to do."},
+            " yourself when you reach a goal. For example, you could watch one episode of your favourite drama after you finish a past paper.\n\nChanging a habit takes time. Some days will go better than others, but whatever happens, don't give up ",
+            {"showPrompt":true,"prompt":"(try)","answer":"trying","distractors":["try","to try","tried"],"explanation":"Use 'trying'. After 'give up', use verb-ing."},
+            ". You can do it!\n\nMiss Wise"
+          ]
         }
       ]
     }

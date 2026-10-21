@@ -69,6 +69,27 @@ const expectedExercises = [
       { prompt: '(visit)', answer: 'to visit', alternatives: [], distractors: ['visiting', 'visit', 'to visiting'] },
       { prompt: '(see)', answer: 'to see', alternatives: [], distractors: ['seeing', 'see', 'to seeing'] }
     ]
+  },
+  {
+    title: 'ASK MISS WISE: Your Problems, Our Advice',
+    instructions: 'Read and complete the letters using the correct form of the verbs in brackets.',
+    letterStart: 'Dear Miss Wise,',
+    replyStart: 'Worried in Tsuen Wan\n\nDear Worried,',
+    signature: 'Miss Wise',
+    blanks: [
+      { prompt: '(scroll)', answer: 'scrolling', alternatives: [], distractors: ['scroll', 'to scrolling', 'scrolled'] },
+      { prompt: '(revise)', answer: 'to revise', alternatives: [], distractors: ['revise', 'revising', 'to revising'] },
+      { prompt: '(do)', answer: 'doing', alternatives: [], distractors: ['do', 'to do', 'done'] },
+      { prompt: '(take)', answer: 'to take', alternatives: [], distractors: ['taking', 'take', 'to taking'] },
+      { prompt: '(start)', answer: 'to start', alternatives: [], distractors: ['starting', 'start', 'to starting'] },
+      { prompt: '(leave)', answer: 'leaving', alternatives: [], distractors: ['leave', 'to leaving', 'left'] },
+      { prompt: '(check)', answer: 'checking', alternatives: [], distractors: ['check', 'to checking', 'checked'] },
+      { prompt: '(work)', answer: 'Working', alternatives: [], distractors: ['Work', 'To working', 'To worked'] },
+      { prompt: '(study)', answer: 'to study', alternatives: [], distractors: ['study', 'to studying', 'studied'] },
+      { prompt: '(turn)', answer: 'turning', alternatives: [], distractors: ['turn', 'to turn', 'to turning'] },
+      { prompt: '(reward)', answer: 'to reward', alternatives: [], distractors: ['reward', 'to rewarding', 'to rewarded'] },
+      { prompt: '(try)', answer: 'trying', alternatives: [], distractors: ['try', 'to try', 'tried'] }
+    ]
   }
 ];
 
@@ -121,9 +142,15 @@ expectedExercises.forEach((expectedExercise, exerciseIndex) => {
   if (expectedExercise.diaryStart && !start.startsWith(expectedExercise.diaryStart)) {
     problems.push(`${labelPrefix}: diary date and salutation must begin the passage.`);
   }
+  if (expectedExercise.letterStart && !start.startsWith(expectedExercise.letterStart)) {
+    problems.push(`${labelPrefix}: first letter must begin with its salutation.`);
+  }
+  if (expectedExercise.replyStart && !exercise.segments.some(segment => typeof segment === 'string' && segment.includes(expectedExercise.replyStart))) {
+    problems.push(`${labelPrefix}: sender name and reply salutation must be separate blocks.`);
+  }
   const end = exercise.segments[exercise.segments.length - 1] || '';
   if (expectedExercise.signature && !end.endsWith(`\n\n${expectedExercise.signature}`)) {
-    problems.push(`${labelPrefix}: diary signature must be on its own final line.`);
+    problems.push(`${labelPrefix}: signature must be on its own final line.`);
   }
 });
 
