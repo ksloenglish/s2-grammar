@@ -348,13 +348,14 @@ const GRAMMAR_DATA = {
       desc: "enjoy doing, decide to do",
       type: "passage",
       blankType: "select",
-      instructions: "Read and complete the email using the correct form of the verbs in brackets.",
+      instructions: "Read and complete the passage using the correct form of the verbs in brackets.",
       // Use only teacher-approved form distractors: gerund, bare infinitive,
       // to-infinitive, to + gerund, to + past participle, or past participle.
       // Reject any grammatical alternative.
       exercises: [
         {
           title: "My first beach clean-up!",
+          instructions: "Read and complete the email using the correct form of the verbs in brackets.",
           segments: [
             "From: Chloe Wong\nTo: Jason Wong\nSubject: My first beach clean-up!\n\nHi Jason,\n\nAre you interested in hearing about my weekend? Last Saturday, the Green Club at my school went to Pui O Beach on Lantau Island for a beach clean-up. Mr Chan, our club teacher, had promised ",
             {"showPrompt":true,"prompt":"(take)","answer":"to take","distractors":["taking","take","to taking"],"explanation":"Use 'to take'. After 'had promised', use to + verb."},
@@ -381,6 +382,37 @@ const GRAMMAR_DATA = {
             " a \"No Straw Week\" at school. Do you think it's a good idea?\n\nAre you coming back to Hong Kong next summer? I'm really looking forward to ",
             {"showPrompt":true,"prompt":"(show)","answer":"showing","distractors":["show","to show","shown"],"explanation":"Use 'showing'. After 'looking forward to', use verb-ing."},
             " you the beach. It's much cleaner now!\n\nWrite back soon!\n\nChloe"
+          ]
+        },
+        {
+          title: "Paddling to Success: An Interview with Our Dragon Boat Captain",
+          instructions: "Read and complete the interview using the correct form of the verbs in brackets.",
+          segments: [
+            "THE SCHOOL VOICE — Student Reporter Corner\n\nLast month, our school dragon boat team came second in a youth race in Stanley during the Tuen Ng Festival. Our reporter, Yuki Cheung (3B), talked to team captain Marcus Lee (5A).\n\nYuki: Congratulations, Marcus! How did you feel when your boat crossed the finish line?\n\nMarcus: Amazing! We had hoped to finish in the top three, but we never expected ",
+            {"showPrompt":true,"prompt":"(come)","answer":"to come","distractors":["come","coming","to coming"],"explanation":"Use 'to come'. After 'expected', use to + verb."},
+            " second out of twenty teams!\n\nYuki: How did you get into dragon boating?\n\nMarcus: In Form 2, my PE teacher, Miss Ho, encouraged me ",
+            {"showPrompt":true,"prompt":"(join)","answer":"to join","distractors":["joining","join","to joining"],"explanation":"Use 'to join'. After encouraged + person, use to + verb."},
+            " the team. I couldn't swim very well back then, so I had to take swimming lessons before ",
+            {"showPrompt":true,"prompt":"(get)","answer":"getting","distractors":["get","to get","to getting"],"explanation":"Use 'getting'. After 'before', use verb-ing."},
+            " into a boat for the first time.\n\nYuki: What's training like?\n\nMarcus: Tough! We practise three times a week on the Shing Mun River in Sha Tin. ",
+            {"showPrompt":true,"prompt":"(paddle)","answer":"Paddling","distractors":["paddle","to paddling","paddled"],"explanation":"Use 'Paddling'. An activity at the start of a sentence uses verb-ing."},
+            " for two hours in the summer heat is really tiring. Some new members give up after a few weeks, but most of us really enjoy ",
+            {"showPrompt":true,"prompt":"(train)","answer":"training","distractors":["train","to train","trained"],"explanation":"Use 'training'. After 'enjoy', use verb-ing."},
+            " together.\n\nYuki: Isn't it hard to balance training and schoolwork?\n\nMarcus: Yes, especially with the HKDSE coming next year. I usually do my homework on the MTR instead of ",
+            {"showPrompt":true,"prompt":"(play)","answer":"playing","distractors":["play","to play","played"],"explanation":"Use 'playing'. After 'instead of', use verb-ing."},
+            " games on my phone. My parents don't mind me ",
+            {"showPrompt":true,"prompt":"(stay)","answer":"staying","distractors":["stay","to stay","to staying"],"explanation":"Use 'staying'. After 'mind + person', use verb-ing."},
+            " out late on training days, as long as my grades don't drop.\n\nYuki: What was the most difficult moment of the race?\n\nMarcus: Halfway through, our drummer, Carmen, nearly dropped her drumstick into the sea! Luckily, she managed ",
+            {"showPrompt":true,"prompt":"(hold)","answer":"to hold","distractors":["holding","hold","held"],"explanation":"Use 'to hold'. After 'managed', use to + verb."},
+            " on to it, and she kept ",
+            {"showPrompt":true,"prompt":"(beat)","answer":"beating","distractors":["beat","to beat","beaten"],"explanation":"Use 'beating'. After 'kept', use verb-ing."},
+            " the drum so that we could paddle together.\n\nYuki: What's next for the team?\n\nMarcus: We're planning ",
+            {"showPrompt":true,"prompt":"(enter)","answer":"to enter","distractors":["entering","enter","to entering"],"explanation":"Use 'to enter'. After 'planning', use to + verb."},
+            " a race in Macau in October. We also need more Form 1 and Form 2 members. Anyone who's interested can visit Room 204 after school on Friday ",
+            {"showPrompt":true,"prompt":"(sign)","answer":"to sign","distractors":["sign","to signing","to signed"],"explanation":"Use 'to sign'. It shows why students should visit Room 204."},
+            " up.\n\nYuki: Any advice for new paddlers?\n\nMarcus: Don't be afraid of ",
+            {"showPrompt":true,"prompt":"(make)","answer":"making","distractors":["make","to make","made"],"explanation":"Use 'making'. After 'afraid of', use verb-ing."},
+            " mistakes. Everyone is slow at the beginning. Just keep going!"
           ]
         }
       ]

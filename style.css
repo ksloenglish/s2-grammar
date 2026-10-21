@@ -997,6 +997,16 @@ body {
   background: #DBEAFE;
 }
 
+.speaker-yuki {
+  color: #0F766E;
+  background: #CCFBF1;
+}
+
+.speaker-marcus {
+  color: #B45309;
+  background: #FEF3C7;
+}
+
 .report-meta {
   display: grid;
   gap: 5px;

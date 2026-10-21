@@ -11,23 +11,46 @@ const dataPath = path.resolve(__dirname, '..', 'data.js');
 let source = fs.readFileSync(dataPath, 'utf8').replace('const GRAMMAR_DATA', 'globalThis.GRAMMAR_DATA');
 eval(source);
 
-const expectedExercise = {
-  title: 'My first beach clean-up!',
-  blanks: [
-    { prompt: '(take)', answer: 'to take', alternatives: [], distractors: ['taking', 'take', 'to taking'] },
-    { prompt: '(miss)', answer: 'to miss', alternatives: [], distractors: ['missing', 'miss', 'to missing'] },
-    { prompt: '(put)', answer: 'to put', alternatives: [], distractors: ['putting', 'put', 'to putting'] },
-    { prompt: '(pick)', answer: 'picking', alternatives: [], distractors: ['pick', 'to picking', 'picked'] },
-    { prompt: '(complain)', answer: 'complaining', alternatives: [], distractors: ['complain', 'to complain', 'complained'] },
-    { prompt: '(leave)', answer: 'to leave', alternatives: [], distractors: ['leaving', 'leave', 'to leaving'] },
-    { prompt: '(reduce)', answer: 'Reducing', alternatives: [], distractors: ['Reduce', 'To reducing', 'Reduced'] },
-    { prompt: '(collect)', answer: 'collecting', alternatives: [], distractors: ['collect', 'to collect', 'collected'] },
-    { prompt: '(bring)', answer: 'to bring', alternatives: [], distractors: ['bringing', 'bring', 'brought'] },
-    { prompt: '(use)', answer: 'to use', alternatives: [], distractors: ['use', 'using', 'to used'] },
-    { prompt: '(start)', answer: 'starting', alternatives: [], distractors: ['start', 'to start', 'started'] },
-    { prompt: '(show)', answer: 'showing', alternatives: [], distractors: ['show', 'to show', 'shown'] }
-  ]
-};
+const expectedExercises = [
+  {
+    title: 'My first beach clean-up!',
+    instructions: 'Read and complete the email using the correct form of the verbs in brackets.',
+    metadata: 'From: Chloe Wong\nTo: Jason Wong\nSubject: My first beach clean-up!',
+    blanks: [
+      { prompt: '(take)', answer: 'to take', alternatives: [], distractors: ['taking', 'take', 'to taking'] },
+      { prompt: '(miss)', answer: 'to miss', alternatives: [], distractors: ['missing', 'miss', 'to missing'] },
+      { prompt: '(put)', answer: 'to put', alternatives: [], distractors: ['putting', 'put', 'to putting'] },
+      { prompt: '(pick)', answer: 'picking', alternatives: [], distractors: ['pick', 'to picking', 'picked'] },
+      { prompt: '(complain)', answer: 'complaining', alternatives: [], distractors: ['complain', 'to complain', 'complained'] },
+      { prompt: '(leave)', answer: 'to leave', alternatives: [], distractors: ['leaving', 'leave', 'to leaving'] },
+      { prompt: '(reduce)', answer: 'Reducing', alternatives: [], distractors: ['Reduce', 'To reducing', 'Reduced'] },
+      { prompt: '(collect)', answer: 'collecting', alternatives: [], distractors: ['collect', 'to collect', 'collected'] },
+      { prompt: '(bring)', answer: 'to bring', alternatives: [], distractors: ['bringing', 'bring', 'brought'] },
+      { prompt: '(use)', answer: 'to use', alternatives: [], distractors: ['use', 'using', 'to used'] },
+      { prompt: '(start)', answer: 'starting', alternatives: [], distractors: ['start', 'to start', 'started'] },
+      { prompt: '(show)', answer: 'showing', alternatives: [], distractors: ['show', 'to show', 'shown'] }
+    ]
+  },
+  {
+    title: 'Paddling to Success: An Interview with Our Dragon Boat Captain',
+    instructions: 'Read and complete the interview using the correct form of the verbs in brackets.',
+    byline: 'THE SCHOOL VOICE — Student Reporter Corner',
+    blanks: [
+      { prompt: '(come)', answer: 'to come', alternatives: [], distractors: ['come', 'coming', 'to coming'] },
+      { prompt: '(join)', answer: 'to join', alternatives: [], distractors: ['joining', 'join', 'to joining'] },
+      { prompt: '(get)', answer: 'getting', alternatives: [], distractors: ['get', 'to get', 'to getting'] },
+      { prompt: '(paddle)', answer: 'Paddling', alternatives: [], distractors: ['paddle', 'to paddling', 'paddled'] },
+      { prompt: '(train)', answer: 'training', alternatives: [], distractors: ['train', 'to train', 'trained'] },
+      { prompt: '(play)', answer: 'playing', alternatives: [], distractors: ['play', 'to play', 'played'] },
+      { prompt: '(stay)', answer: 'staying', alternatives: [], distractors: ['stay', 'to stay', 'to staying'] },
+      { prompt: '(hold)', answer: 'to hold', alternatives: [], distractors: ['holding', 'hold', 'held'] },
+      { prompt: '(beat)', answer: 'beating', alternatives: [], distractors: ['beat', 'to beat', 'beaten'] },
+      { prompt: '(enter)', answer: 'to enter', alternatives: [], distractors: ['entering', 'enter', 'to entering'] },
+      { prompt: '(sign)', answer: 'to sign', alternatives: [], distractors: ['sign', 'to signing', 'to signed'] },
+      { prompt: '(make)', answer: 'making', alternatives: [], distractors: ['make', 'to make', 'made'] }
+    ]
+  }
+];
 
 const topic = GRAMMAR_DATA['First Term']?.['gerunds-to-infinitives'];
 const problems = [];
@@ -37,20 +60,25 @@ if (!topic) problems.push('Missing First Term / gerunds-to-infinitives topic.');
 if (topic && (topic.type !== 'passage' || topic.blankType !== 'select')) {
   problems.push('Topic must use select-based passage mode.');
 }
-if (topic && (!Array.isArray(topic.exercises) || topic.exercises.length !== 1)) {
-  problems.push('Topic must contain exactly one exercise.');
+if (topic && (!Array.isArray(topic.exercises) || topic.exercises.length !== expectedExercises.length)) {
+  problems.push(`Topic must contain exactly ${expectedExercises.length} exercises.`);
 }
 
-const exercise = topic?.exercises?.[0];
-if (exercise) {
-  if (exercise.title !== expectedExercise.title) problems.push(`Exercise title must be ${expectedExercise.title}.`);
+let auditedBlankCount = 0;
+expectedExercises.forEach((expectedExercise, exerciseIndex) => {
+  const exercise = topic?.exercises?.[exerciseIndex];
+  const labelPrefix = `Exercise ${exerciseIndex + 1}`;
+  if (!exercise) return;
+  if (exercise.title !== expectedExercise.title) problems.push(`${labelPrefix}: title must be ${expectedExercise.title}.`);
+  if (exercise.instructions !== expectedExercise.instructions) problems.push(`${labelPrefix}: instructions must name the correct passage format.`);
   const blanks = exercise.segments.filter(segment => typeof segment === 'object');
+  auditedBlankCount += blanks.length;
   if (blanks.length !== expectedExercise.blanks.length) {
-    problems.push(`Expected ${expectedExercise.blanks.length} blanks; found ${blanks.length}.`);
+    problems.push(`${labelPrefix}: expected ${expectedExercise.blanks.length} blanks; found ${blanks.length}.`);
   }
-  expectedExercise.blanks.forEach((want, index) => {
-    const blank = blanks[index];
-    const label = `Blank ${index + 1}`;
+  expectedExercise.blanks.forEach((want, blankIndex) => {
+    const blank = blanks[blankIndex];
+    const label = `${labelPrefix}, blank ${blankIndex + 1}`;
     if (!blank) return;
     if (blank.prompt !== want.prompt) problems.push(`${label}: prompt must be ${want.prompt}.`);
     if (blank.showPrompt !== true) problems.push(`${label}: must display its bracketed verb cue.`);
@@ -63,13 +91,16 @@ if (exercise) {
     if (!blank.explanation || blank.explanation.length > 240) problems.push(`${label}: must have a concise student-facing explanation.`);
   });
 
-  const emailStart = exercise.segments[0] || '';
-  if (!emailStart.startsWith('From: Chloe Wong\nTo: Jason Wong\nSubject: My first beach clean-up!')) {
-    problems.push('The email metadata must keep the From, To, and Subject lines together.');
+  const start = exercise.segments[0] || '';
+  if (expectedExercise.metadata && !start.startsWith(expectedExercise.metadata)) {
+    problems.push(`${labelPrefix}: email metadata must stay together at the start.`);
   }
-}
+  if (expectedExercise.byline && !start.startsWith(expectedExercise.byline)) {
+    problems.push(`${labelPrefix}: School Voice byline must appear before the interview.`);
+  }
+});
 
-console.log(`Audited ${expectedExercise.blanks.length} Gerunds & To-Infinitives blanks.`);
+console.log(`Audited ${auditedBlankCount} Gerunds & To-Infinitives blanks across ${expectedExercises.length} exercises.`);
 if (problems.length) {
   console.error(`Gerunds & To-Infinitives validation violations: ${problems.length}`);
   problems.forEach(problem => console.error(problem));

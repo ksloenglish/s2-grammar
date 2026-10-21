@@ -592,7 +592,7 @@
     elapsed = 0;
 
     // Instructions
-    passageInstructions.textContent = topicData.instructions || '';
+    passageInstructions.textContent = currentPassage.instructions || topicData.instructions || '';
     passageTitle.textContent = currentPassage.title || '';
 
     // Build passage body with dropdowns
