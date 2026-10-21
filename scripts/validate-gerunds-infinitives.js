@@ -49,6 +49,26 @@ const expectedExercises = [
       { prompt: '(sign)', answer: 'to sign', alternatives: [], distractors: ['sign', 'to signing', 'to signed'] },
       { prompt: '(make)', answer: 'making', alternatives: [], distractors: ['make', 'to make', 'made'] }
     ]
+  },
+  {
+    title: "Mandy's Mid-Autumn Visit",
+    instructions: 'Read and complete the diary entry using the correct form of the verbs in brackets.',
+    diaryStart: 'Saturday, 14 September\n\nDear Diary,',
+    signature: 'Mandy',
+    blanks: [
+      { prompt: '(talk)', answer: 'to talk', alternatives: [], distractors: ['talking', 'talk', 'to talking'] },
+      { prompt: '(do)', answer: 'doing', alternatives: [], distractors: ['do', 'to do', 'to doing'] },
+      { prompt: '(perform)', answer: 'to perform', alternatives: [], distractors: ['performing', 'perform', 'to performing'] },
+      { prompt: '(sing)', answer: 'singing', alternatives: [], distractors: ['sing', 'to singing', 'sung'] },
+      { prompt: '(buy)', answer: 'to buy', alternatives: [], distractors: ['buy', 'to buying', 'bought'] },
+      { prompt: '(look)', answer: 'looking', alternatives: [], distractors: ['look', 'to look', 'looked'] },
+      { prompt: '(smile)', answer: 'smiling', alternatives: [], distractors: ['smile', 'to smiling', 'smiled'] },
+      { prompt: '(play)', answer: 'to play', alternatives: [], distractors: ['play', 'playing', 'to playing'] },
+      { prompt: '(think)', answer: 'thinking', alternatives: [], distractors: ['think', 'to think', 'thought'] },
+      { prompt: '(spend)', answer: 'Spending', alternatives: [], distractors: ['Spend', 'To spending', 'To spent'] },
+      { prompt: '(visit)', answer: 'to visit', alternatives: [], distractors: ['visiting', 'visit', 'to visiting'] },
+      { prompt: '(see)', answer: 'to see', alternatives: [], distractors: ['seeing', 'see', 'to seeing'] }
+    ]
   }
 ];
 
@@ -97,6 +117,13 @@ expectedExercises.forEach((expectedExercise, exerciseIndex) => {
   }
   if (expectedExercise.byline && !start.startsWith(expectedExercise.byline)) {
     problems.push(`${labelPrefix}: School Voice byline must appear before the interview.`);
+  }
+  if (expectedExercise.diaryStart && !start.startsWith(expectedExercise.diaryStart)) {
+    problems.push(`${labelPrefix}: diary date and salutation must begin the passage.`);
+  }
+  const end = exercise.segments[exercise.segments.length - 1] || '';
+  if (expectedExercise.signature && !end.endsWith(`\n\n${expectedExercise.signature}`)) {
+    problems.push(`${labelPrefix}: diary signature must be on its own final line.`);
   }
 });
 

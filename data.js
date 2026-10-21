@@ -414,6 +414,37 @@ const GRAMMAR_DATA = {
             {"showPrompt":true,"prompt":"(make)","answer":"making","distractors":["make","to make","made"],"explanation":"Use 'making'. After 'afraid of', use verb-ing."},
             " mistakes. Everyone is slow at the beginning. Just keep going!"
           ]
+        },
+        {
+          title: "Mandy's Mid-Autumn Visit",
+          instructions: "Read and complete the diary entry using the correct form of the verbs in brackets.",
+          segments: [
+            "Saturday, 14 September\n\nDear Diary,\n\nToday the Community Service Club visited an elderly home in Sham Shui Po to celebrate the Mid-Autumn Festival. It was my first volunteer activity since I started Form 1, and I was really nervous last night. What if the old people didn't want ",
+            {"showPrompt":true,"prompt":"(talk)","answer":"to talk","distractors":["talking","talk","to talking"],"explanation":"Use 'to talk'. After 'want', use to + verb."},
+            " to me? What if my performance was terrible?\n\nTwo weeks ago, our teacher advisor, Ms Yip, asked each of us to prepare a short performance. My classmate Ethan is good at ",
+            {"showPrompt":true,"prompt":"(do)","answer":"doing","distractors":["do","to do","to doing"],"explanation":"Use 'doing'. After 'good at', use verb-ing."},
+            " magic tricks, so he offered ",
+            {"showPrompt":true,"prompt":"(perform)","answer":"to perform","distractors":["performing","perform","to performing"],"explanation":"Use 'to perform'. After 'offered', use to + verb."},
+            " first. I chose an old Cantonese song that my grandma loves. I practised ",
+            {"showPrompt":true,"prompt":"(sing)","answer":"singing","distractors":["sing","to singing","sung"],"explanation":"Use 'singing'. After 'practised', use verb-ing."},
+            " it in my bedroom every night for a whole week. My little brother covered his ears every time!\n\nOn the way to the elderly home, we stopped at a supermarket ",
+            {"showPrompt":true,"prompt":"(buy)","answer":"to buy","distractors":["buy","to buying","bought"],"explanation":"Use 'to buy'. It shows the purpose of stopping at the supermarket."},
+            " mooncakes and some fruit for the residents. When we arrived, about thirty grandpas and grandmas were waiting for us in the hall, and they were all wearing bright red jackets.\n\nEthan's magic show was a big hit. Then it was my turn. At first, I tried to avoid ",
+            {"showPrompt":true,"prompt":"(look)","answer":"looking","distractors":["look","to look","looked"],"explanation":"Use 'looking'. After 'avoid', use verb-ing."},
+            " at the audience because I was so shy. But Grandma Lau in the front row clapped along to the whole song, and I couldn't help ",
+            {"showPrompt":true,"prompt":"(smile)","answer":"smiling","distractors":["smile","to smiling","smiled"],"explanation":"Use 'smiling'. After 'couldn't help', use verb-ing."},
+            " at her. By the end, some of the residents were even singing with me!\n\nAfter the performances, we shared the mooncakes and chatted with the residents. Grandpa Chow taught me how ",
+            {"showPrompt":true,"prompt":"(play)","answer":"to play","distractors":["play","playing","to playing"],"explanation":"Use 'to play'. After 'how', use to + verb."},
+            " Chinese chess. He beat me three times in a row, and he did it without even ",
+            {"showPrompt":true,"prompt":"(think)","answer":"thinking","distractors":["think","to think","thought"],"explanation":"Use 'thinking'. After 'without even', use verb-ing."},
+            " hard! He laughed and said I needed more practice.\n\n",
+            {"showPrompt":true,"prompt":"(spend)","answer":"Spending","distractors":["Spend","To spending","To spent"],"explanation":"Use 'Spending'. An activity at the start of a sentence uses verb-ing."},
+            " time with the elderly turned out to be much more fun than I expected. Before we left, Grandma Lau held my hand and asked, \"Will you come back to see us?\" I promised ",
+            {"showPrompt":true,"prompt":"(visit)","answer":"to visit","distractors":["visiting","visit","to visiting"],"explanation":"Use 'to visit'. After 'promised', use to + verb."},
+            " again at Christmas. I really can't wait ",
+            {"showPrompt":true,"prompt":"(see)","answer":"to see","distractors":["seeing","see","to seeing"],"explanation":"Use 'to see'. After 'can't wait', use to + verb."},
+            " them again!\n\nMandy"
+          ]
         }
       ]
     }
