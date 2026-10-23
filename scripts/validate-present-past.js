@@ -70,7 +70,7 @@ const expectedExercises = [
       { prompt: '(not start)', answer: 'does not start', alternatives: [], distractors: ['do not start', 'did not start', 'does not starts'] },
       { prompt: '(run)', answer: 'are running', alternatives: [], distractors: ['is running', 'are run', 'are ran'] },
       { prompt: '(come)', answer: 'comes', alternatives: [], distractors: ['come', 'coming', 'does comes'] },
-      { prompt: '(not join)', answer: 'Did you not join', alternatives: [], distractors: ['Did you not joined', 'Was you not joining', 'Did you not joining'] },
+      { prompt: '(not join)', answer: 'did you not join', alternatives: [], distractors: ['did you not joined', 'was you not joining', 'did you not joining'] },
       { prompt: '(hurt)', answer: 'hurt', alternatives: [], distractors: ['was hurt', 'were hurt', 'am hurt'] },
       { prompt: '(practise)', answer: 'was practising', alternatives: [], distractors: ['practise', 'am practising', 'were practising'] },
       { prompt: '(trip)', answer: 'tripped', alternatives: [], distractors: ['trip', 'am tripping', 'tripping'] },
