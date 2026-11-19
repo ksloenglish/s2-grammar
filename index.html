@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=v261024-065344">
+<link rel="stylesheet" href="style.css?v=v261119-232105">
 </head>
 <body>
 <!-- ========== TOP BAR ========== -->
@@ -255,21 +255,25 @@
         <div class="res-stat" id="res-stat-streak"><div class="res-icon">&#x1F525;</div><div class="res-val" id="res-streak">&mdash;</div><div class="res-lbl">Best Streak</div></div>
       </div>
     </div>
+    <div class="results-actions">
+      <button class="btn-again" id="btn-retry-same" type="button" aria-describedby="retry-note">Retry same exercise &#x21BA;</button>
+      <button class="btn-again btn-home" id="btn-again" type="button">Back to Home</button>
+    </div>
+    <p class="retry-note" id="retry-note">Try the same questions again with fresh answers, a new score and a reset timer.</p>
     <div class="review-panel" id="review-panel">
       <h3 class="review-heading" id="review-heading">&#x1F4CB; Review</h3>
       <div class="review-list" id="review-list"></div>
     </div>
-    <button class="btn-again" id="btn-again">Back to Home &#x21BA;</button>
   </section>
 </main>
 
 <!-- ========== FOOTER ========== -->
 <footer class="site-footer">
-  <div style="font-size:0.7rem;color:var(--text-muted);opacity:0.5;margin-bottom:4px;">v261024-065344</div>
+  <div style="font-size:0.7rem;color:var(--text-muted);opacity:0.5;margin-bottom:4px;">v261119-232105</div>
   &copy; <span id="yr"></span> K S Lo English. All Rights Reserved.
 </footer>
 
-<script src="data.js?v=v261024-065344"></script>
-<script src="app.js?v=v261024-065344"></script>
+<script src="data.js?v=v261119-232105"></script>
+<script src="app.js?v=v261119-232105"></script>
 </body>
 </html>

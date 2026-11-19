@@ -93,6 +93,7 @@
   const reviewList = $('review-list');
   const reviewHeading = $('review-heading');
   const btnAgain = $('btn-again');
+  const btnRetrySame = $('btn-retry-same');
 
   // --- STATE ---
   let selectedTerm = null;
@@ -366,11 +367,15 @@
       return;
     }
 
+    startMCExercise(topicData);
+  }
+
+  function startMCExercise(topicData, questions = null) {
     const pool = topicData.questions;
     if (!pool || pool.length === 0) { alert('No questions available for this topic yet.'); return; }
 
-    // Build question set
-    currentQuestions = buildQuestionSet(pool, selectedCount);
+    // A retry copies the existing sequence; a new challenge draws a fresh set.
+    currentQuestions = questions ? [...questions] : buildQuestionSet(pool, selectedCount);
     currentIndex = 0;
     score = 0;
     streak = 0;
@@ -522,6 +527,11 @@
 
   // --- TIMER ---
   function startTimer() {
+    stopTimer();
+    elapsed = 0;
+    [hudTimer, passageTimer, builderTimer, rsTimer].forEach(t => {
+      t.textContent = formatTime(0);
+    });
     startTime = Date.now();
     timerInterval = setInterval(() => {
       elapsed = (Date.now() - startTime) / 1000;
@@ -576,17 +586,38 @@
     showScreen('home');
   }
 
+  function retrySameExercise() {
+    // Ignore stale or double clicks once the summary is no longer active.
+    if (!screenResults.classList.contains('active')) return;
+    const topicData = GRAMMAR_DATA[selectedTerm]?.[selectedTopic];
+    if (!topicData) return;
+
+    closeAllPopovers();
+    reviewList.innerHTML = '';
+    if (topicData.type === 'passage') {
+      if (currentPassage) startPassageExercise(topicData, currentPassage);
+    } else if (currentQuestions.length) {
+      if (topicData.type === 'builder') {
+        startBuilderExercise(topicData, currentQuestions);
+      } else if (topicData.type === 'builder-rs') {
+        startRSExercise(topicData, currentQuestions);
+      } else {
+        startMCExercise(topicData, currentQuestions);
+      }
+    }
+  }
+
   // ============================================================
   // PASSAGE EXERCISE
   // ============================================================
-  function startPassageExercise(topicData) {
+  function startPassageExercise(topicData, passage = null) {
     const exercises = topicData.exercises;
     if (!exercises || exercises.length === 0) {
       alert('No exercises available for this topic yet.');
       return;
     }
-    // Randomly assign an exercise
-    currentPassage = exercises[Math.floor(Math.random() * exercises.length)];
+    // Keep the chosen passage on retry; randomly assign one on a new start.
+    currentPassage = passage || exercises[Math.floor(Math.random() * exercises.length)];
     passageBlanks = [];
     passageBlankType = topicData.blankType === 'input' ? 'input' : 'select';
     elapsed = 0;
@@ -903,11 +934,11 @@
   // 3 marks per question: pronoun (1) + clause (1) + placement (1)
   // Deferred scoring: no feedback during play.
   // ============================================================
-  function startBuilderExercise(topicData) {
+  function startBuilderExercise(topicData, questions = null) {
     builderTopic = topicData;
     const n = Math.min(selectedCount, topicData.questions.length);
-    // Draw UNIQUE, non-repeating questions at random.
-    currentQuestions = [...topicData.questions].sort(() => Math.random() - 0.5).slice(0, n);
+    // Retry the same ordered set, or draw unique questions for a new challenge.
+    currentQuestions = questions ? [...questions] : [...topicData.questions].sort(() => Math.random() - 0.5).slice(0, n);
     currentIndex = 0;
     elapsed = 0;
     bScore = 0;
@@ -1357,10 +1388,10 @@
   //   Step 3 (time):   choose the time expression (omitted when no time word).
   // Up to 3 marks per question (2 when no Step 3). Immediate per-step feedback.
   // ============================================================
-  function startRSExercise(topicData) {
+  function startRSExercise(topicData, questions = null) {
     rsTopic = topicData;
     const n = Math.min(selectedCount, topicData.questions.length);
-    currentQuestions = [...topicData.questions].sort(() => Math.random() - 0.5).slice(0, n);
+    currentQuestions = questions ? [...questions] : [...topicData.questions].sort(() => Math.random() - 0.5).slice(0, n);
     currentIndex = 0;
     elapsed = 0;
     rsScoreVal = 0;
@@ -1734,6 +1765,7 @@
     btnNext.addEventListener('click', nextQuestion);
     hudQuit.addEventListener('click', quitToHome);
     btnAgain.addEventListener('click', playAgain);
+    btnRetrySame.addEventListener('click', retrySameExercise);
     btnSubmitPassage.addEventListener('click', submitPassage);
     passageQuit.addEventListener('click', quitPassageToHome);
     btnBuilderCheck.addEventListener('click', builderCheck);
