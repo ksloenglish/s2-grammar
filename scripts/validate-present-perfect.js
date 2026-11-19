@@ -4,6 +4,8 @@
  * accepted alternatives, independently screened six-rule distractors and
  * teacher-approved contextual wording. Each exercise is worth 12 marks.
  * Formation-only exceptions: Jason blank 12; Natalie blanks 9 and 10.
+ * Rooftop blog exceptions: formation-only blanks 1, 8 and 9; the singular
+ * principal's blank 3 also permits the agreed "have set up" agreement error.
  * Preserve the protected alternate forms; never turn them into distractors.
  * Run: node scripts/validate-present-perfect.js
  */
@@ -115,6 +117,41 @@ const expectedExercises = [
       'Write back soon,\n\nNatalie'
     ],
     questionPhrases: ['Have you ever done']
+  },
+  {
+    title: 'Exercise 4: 🌱 Green Club Blog: Life on Our Rooftop Farm',
+    instructions: 'Read this post from a school club blog. Fill in the blanks with the correct form of the verbs in brackets. Decide carefully whether to use the present perfect tense or the simple past tense. (12 marks)',
+    blanks: [
+      { prompt: '(eat)', answer: 'Have you ever eaten', alternatives: [], initial: true, past: 'ate', participle: 'eaten', noTenseContrast: true, forbiddenDistractors: ['Did you ever eat'], wrong: [['Have you ever ate', 5], ['Have you ever eat', 3], ['Were you ever ate', 6]] },
+      { prompt: '(think)', answer: 'thought', alternatives: [], wrong: [['have think', 3], ['have thought', 2], ['was thought', 6]] },
+      // All forms of set up coincide; only this blank permits the teacher's
+      // explicitly approved has/have + base subject-agreement error.
+      { prompt: '(set up)', answer: 'set up', alternatives: [], agreementException: true, wrong: [['has set up', 2], ['have set up', 3], ['was set up', 4]] },
+      { prompt: '(grow)', answer: 'have grown', alternatives: [], past: 'grew', participle: 'grown', wrong: [['were grew', 6], ['grew', 2], ['have grew', 5]] },
+      { prompt: '(not buy)', answer: 'have not bought', alternatives: ["haven't bought"], wrong: [['have not buy', 3], ['did not buy', 2]] },
+      { prompt: '(blow)', answer: 'blew', alternatives: [], past: 'blew', participle: 'blown', wrong: [['was blew', 6], ['has blown', 2], ['has blew', 5]] },
+      { prompt: '(have)', answer: 'had', alternatives: [], wrong: [['have had', 2], ['were had', 6], ['have have', 3]] },
+      { prompt: '(just / pick)', answer: 'have just picked', alternatives: [], noTenseContrast: true, forbiddenDistractors: ['just picked'], wrong: [['have just pick', 3], ['was just pick', 4], ['just pick', 1]] },
+      { prompt: '(never / see)', answer: 'has never seen', alternatives: [], past: 'saw', participle: 'seen', noTenseContrast: true, forbiddenDistractors: ['never saw'], wrong: [['has never saw', 5], ['has never see', 3], ['was never saw', 6]] },
+      { prompt: '(sell)', answer: 'sold', alternatives: [], wrong: [['were sell', 4], ['have sold', 2], ['have sell', 3]] },
+      { prompt: '(sign up)', answer: 'have signed up', alternatives: [], wrong: [['signed up', 2], ['were sign up', 4], ['have sign up', 3]] },
+      { prompt: '(try)', answer: 'Have you tried', alternatives: [], initial: true, wrong: [['Have you try', 3], ['Were you tried', 6], ['Did you try', 2]] }
+    ],
+    cues: [
+      'Posted by Marcus Lee, 4C\n\n[Have you ever eaten] a vegetable that you grew yourself?',
+      'before I joined the Green Club in Form 3, I [thought]',
+      'Our principal, Mrs Yip, [set up] the rooftop farm in 2022.',
+      'Since then, club members [have grown]',
+      'since the beginning of this year we [have not bought]',
+      'Last summer, a strong typhoon [blew]',
+      'We [had] to replant everything the following week.',
+      'I [have just picked] our first basket of cherry tomatoes of the season,',
+      'says he [has never seen] such big ones on a school rooftop.',
+      'Last Friday, we [sold]',
+      'and so far, fifteen new members [have signed up]',
+      'Finally, a question for all our readers: [Have you tried] our homemade mint lemonade yet?'
+    ],
+    questionPhrases: ['Have you ever eaten', 'Have you tried']
   }
 ];
 const same = (a, b) => a.length === b.length && a.every((v, i) => v === b[i]);
@@ -143,6 +180,7 @@ expectedExercises.forEach((wantExercise, exerciseIndex) => {
     if (choices.length !== 4 || new Set(choices.map(s => s.toLowerCase())).size !== 4) fail(`${label}: needs exactly four unique choices.`);
     if ((b.distractors || []).some(s => /['’]/.test(s))) fail(`${label}: distractors must use whole words.`);
     if (!want.noTenseContrast && !want.wrong.some(([, rule]) => rule === 2)) fail(`${label}: missing the safe tense contrast.`);
+    if (want.agreementException && (exerciseIndex !== 3 || i !== 2)) fail(`${label}: the agreement exception is limited to rooftop blog blank 3.`);
     for (const [, rule] of want.wrong) {
       if (!Number.isInteger(rule) || rule < 1 || rule > 6) fail(`${label}: unapproved rule tag.`);
       if (rule === 5 && (!want.past || !want.participle || want.past === want.participle)) fail(`${label}: rule 5 requires a different past form and participle.`);
@@ -161,7 +199,7 @@ expectedExercises.forEach((wantExercise, exerciseIndex) => {
   for (const phrase of wantExercise.questionPhrases) {
     if (text.split(phrase).length !== 2) fail(`${prefix}: complete question phrase must appear exactly once: ${phrase}`);
   }
-  if (/\[(?:Have you ever swum|Have you ever thought|Have you ever done)\] you ever|\[Has the café changed\] the café/.test(text)) fail(`${prefix}: duplicated preprinted words after a question dropdown.`);
+  if (/\[(?:Have you ever swum|Have you ever thought|Have you ever done|Have you ever eaten)\] you ever|\[Has the café changed\] the café|\[Have you tried\] you/.test(text)) fail(`${prefix}: duplicated preprinted words after a question dropdown.`);
 });
 console.log(`Audited ${totalBlanks} Present Perfect blanks across ${expectedExercises.length} exercises against the six permitted distractor forms.`);
 if (problems.length) {

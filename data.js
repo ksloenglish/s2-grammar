@@ -610,6 +610,37 @@ const GRAMMAR_DATA = {
             {"showPrompt":true,"prompt":"(offer)","answer":"offered","distractors":["has offered","has offer","was offer"],"explanation":"Use 'offered'. Mum made the offer when Natalie spoke to her yesterday, a finished time in the past."},
             " to make some lotus seed mooncakes for everyone. I can't wait!\n\nWrite back soon,\n\nNatalie"
           ]
+        },
+        {
+          title: "Exercise 4: 🌱 Green Club Blog: Life on Our Rooftop Farm",
+          instructions: "Read this post from a school club blog. Fill in the blanks with the correct form of the verbs in brackets. Decide carefully whether to use the present perfect tense or the simple past tense. (12 marks)",
+          segments: [
+            "Posted by Marcus Lee, 4C\n\n",
+            {"showPrompt":true,"sentenceInitial":true,"prompt":"(eat)","answer":"Have you ever eaten","distractors":["Have you ever ate","Have you ever eat","Were you ever ate"],"explanation":"Use 'Have you ever eaten' to ask about experience up to now; after have, use the past participle eaten."},
+            " a vegetable that you grew yourself? Believe it or not, before I joined the Green Club in Form 3, I ",
+            {"showPrompt":true,"prompt":"(think)","answer":"thought","distractors":["have think","have thought","was thought"],"explanation":"Use 'thought'. Marcus describes his belief during the finished period before he joined the Green Club, so use the simple past."},
+            " that choi sum just came from the supermarket!\n\nOur principal, Mrs Yip, ",
+            {"showPrompt":true,"prompt":"(set up)","answer":"set up","distractors":["has set up","have set up","was set up"],"explanation":"Use 'set up'. 'In 2022' places the action at a finished past time, and the simple past of set up is also set up."},
+            " the rooftop farm in 2022. Since then, club members ",
+            {"showPrompt":true,"prompt":"(grow)","answer":"have grown","distractors":["were grew","grew","have grew"],"explanation":"Use 'have grown'. 'Since then' links the farm's start in 2022 to now; use have with the plural subject and the past participle grown."},
+            " more than twenty kinds of vegetables and herbs, including choi sum, cherry tomatoes and mint. We want our farm to be fully organic, so since the beginning of this year we ",
+            {"showPrompt":true,"prompt":"(not buy)","answer":"have not bought","alternatives":["haven't bought"],"distractors":["have not buy","did not buy"],"explanation":"Use 'have not bought' or 'haven't bought'. 'Since the beginning of this year' describes the period up to now, so use the present perfect."},
+            " any chemical sprays at all.\n\nOf course, farming isn't always easy. Last summer, a strong typhoon ",
+            {"showPrompt":true,"prompt":"(blow)","answer":"blew","distractors":["was blew","has blown","has blew"],"explanation":"Use 'blew'. 'Last summer' places the typhoon at a finished time in the past, so use the simple past."},
+            " down almost all of our tomato plants. We ",
+            {"showPrompt":true,"prompt":"(have)","answer":"had","distractors":["have had","were had","have have"],"explanation":"Use 'had'. The replanting happened the week after last summer's typhoon; had to expresses something necessary in the past."},
+            " to replant everything the following week. It was really hard work!\n\nLuckily, things are going much better this term. I ",
+            {"showPrompt":true,"prompt":"(just / pick)","answer":"have just picked","distractors":["have just pick","was just pick","just pick"],"explanation":"Use 'have just picked' to describe a recent harvest with a result now; after have, use the past participle picked."},
+            " our first basket of cherry tomatoes of the season, and they are huge! Mr Tsang, our club teacher, says he ",
+            {"showPrompt":true,"prompt":"(never / see)","answer":"has never seen","distractors":["has never saw","has never see","was never saw"],"explanation":"Use 'has never seen' for Mr Tsang's experience up to now; after has, use the past participle seen, not see or saw."},
+            " such big ones on a school rooftop.\n\nLast Friday, we ",
+            {"showPrompt":true,"prompt":"(sell)","answer":"sold","distractors":["were sell","have sold","have sell"],"explanation":"Use 'sold'. 'Last Friday' tells us when the completed sale happened, so use the simple past."},
+            " some of our vegetables at a stall on Parents' Day. Lots of parents and students stopped by, and so far, fifteen new members ",
+            {"showPrompt":true,"prompt":"(sign up)","answer":"have signed up","distractors":["signed up","were sign up","have sign up"],"explanation":"Use 'have signed up'. 'So far' gives the total number of new members up to now, so use the present perfect."},
+            " for the Green Club. Welcome, everyone!\n\nFinally, a question for all our readers: ",
+            {"showPrompt":true,"sentenceInitial":true,"prompt":"(try)","answer":"Have you tried","distractors":["Have you try","Were you tried","Did you try"],"explanation":"Use 'Have you tried'. 'Yet' asks whether the readers have tasted the lemonade by now, so use the present perfect in formal British English."},
+            " our homemade mint lemonade yet? If not, come up to the rooftop at lunchtime and have a cup!"
+          ]
         }
       ]
     }
