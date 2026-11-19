@@ -625,6 +625,7 @@
     // Instructions
     passageInstructions.textContent = currentPassage.instructions || topicData.instructions || '';
     passageTitle.textContent = currentPassage.title || '';
+    screenPassage.dataset.topic = selectedTopic;
 
     // Build passage body with dropdowns
     renderPassage();

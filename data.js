@@ -509,6 +509,47 @@ const GRAMMAR_DATA = {
           ]
         }
       ]
+    },
+    "present-perfect": {
+      label: "The Present Perfect",
+      icon: "\u2713",
+      iconClass: "c-blue",
+      desc: "present perfect or simple past",
+      type: "passage",
+      blankType: "select",
+      instructions: "Read this passage about Jason, a nervous swimmer. Fill in the blanks with the correct form of the verbs in brackets. Decide carefully whether to use the present perfect tense or the simple past tense. (12 marks)",
+      exercises: [
+        {
+          title: "Exercise 1: Jason, a Nervous Swimmer",
+          segments: [
+            "Jason is a Form 3 student at a secondary school in Sha Tin. He ",
+            {"showPrompt":true,"prompt":"(never / be)","answer":"has never been","distractors":["never be","never was","has never be"],"explanation":"Use 'has never been'. 'In his life so far' describes his experience from the past up to now, so use the present perfect."},
+            " a strong swimmer in his life so far. When he was in Primary 4, he ",
+            {"showPrompt":true,"prompt":"(fall)","answer":"fell","distractors":["has fall","fall","has fallen"],"explanation":"Use 'fell'. 'When he was in Primary 4' places the accident in a finished past period, so use the simple past."},
+            " into the deep end of the pool during a swimming lesson. After that, he ",
+            {"showPrompt":true,"prompt":"(not want)","answer":"did not want","alternatives":["didn't want"],"distractors":["has not wanted","was not want"],"explanation":"Use 'did not want' or 'didn't want'. His reluctance ended last September, so use the simple past for this finished period."},
+            " to go near the water for years, until last September.\n\nThings changed last September, when his best friend Ryan ",
+            {"showPrompt":true,"prompt":"(join)","answer":"joined","distractors":["join","was join","has joined"],"explanation":"Use 'joined'. Ryan joined the team last September, a definite finished time in the past."},
+            " the school swimming team and ",
+            {"showPrompt":true,"prompt":"(ask)","answer":"asked","distractors":["has asked","ask","has ask"],"explanation":"Use 'asked'. Ryan invited Jason last September, so use the simple past for the invitation."},
+            " Jason to try out too. Since then, Jason ",
+            {"showPrompt":true,"prompt":"(practise)","answer":"has practised","alternatives":["has been practising"],"distractors":["has practise","practised"],"explanation":"Use 'has practised' or 'has been practising'. 'Since then' links his regular practice from last September to now, so both perfect forms are correct."},
+            " at the Sha Tin Jockey Club Swimming Pool three times a week. He is very proud because he ",
+            {"showPrompt":true,"prompt":"(not miss)","answer":"has not missed","alternatives":["hasn't missed"],"distractors":["did not miss","was not miss"],"explanation":"Use 'has not missed' or 'hasn't missed'. 'So far' means up to now, so use the present perfect for his attendance."},
+            " a single training session so far.\n\nMiss Lau, the swimming coach, is pleased with him. After training yesterday, she said, \"Jason, you ",
+            {"showPrompt":true,"prompt":"(improve)","answer":"have improved","distractors":["were improve","improved","have improve"],"explanation":"Use 'have improved'. 'Since the start of this term' links Jason's progress to the time Miss Lau speaks, so use the present perfect."},
+            " a lot since the start of this term. ",
+            {"showPrompt":true,"sentenceInitial":true,"prompt":"(swim)","answer":"Have you ever swum","distractors":["Have you ever swim","Were you ever swim","Did you ever swim"],"explanation":"Use 'Have you ever swum'. 'Since joining our team' asks about experience up to the time of speaking, so use have + subject + past participle."},
+            " in a real competition since joining our team?\" Jason shook his head. He is going to swim the 50-metre freestyle for Green House at the Swimming Gala next Friday.\n\nHis family is very supportive. Since Jason joined the team, his parents ",
+            {"showPrompt":true,"prompt":"(already / buy)","answer":"have already bought","distractors":["were already buy","have already buy","already bought"],"explanation":"Use 'have already bought'. 'Since Jason joined the team' links the purchase to now; use have + the past participle bought."},
+            " him a new pair of goggles. Last night, his younger sister ",
+            {"showPrompt":true,"prompt":"(make)","answer":"made","distractors":["make","has made","was make"],"explanation":"Use 'made'. 'Last night' is a finished time in the past, so use the simple past."},
+            " a colourful poster that says \"Go, Jason, Go!\" Jason ",
+            {"showPrompt":true,"prompt":"(just / finish)","answer":"has just finished","distractors":["has just finish","was just finish","just finish"],"explanation":"Use 'has just finished' for a very recent action linked to now; after has, use the past participle finished."},
+            " his final practice. He feels a little nervous, but he is ready!"
+          ]
+        }
+      ]
     }
   },
   "Second Term": {

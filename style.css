@@ -1294,6 +1294,12 @@ body {
   .passage-card { padding: 20px 18px; }
   .passage-body { font-size: 0.98rem; line-height: 2.3; }
   .passage-review { font-size: 0.95rem; }
+
+  /* Present Perfect has longer accepted phrases and slash-separated cues.
+     Keep its card inside the viewport and allow a cue to wrap below a select. */
+  #screen-passage[data-topic="present-perfect"] .passage-card { width: 100%; min-width: 0; }
+  #screen-passage[data-topic="present-perfect"] .blank-wrap { max-width: 100%; flex-wrap: wrap; white-space: normal; }
+  #screen-passage[data-topic="present-perfect"] .blank-select { max-width: 100%; }
 }
 
 /* ============================================================
