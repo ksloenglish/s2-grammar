@@ -579,6 +579,37 @@ const GRAMMAR_DATA = {
             {"showPrompt":true,"prompt":"(give)","answer":"gave","distractors":["was gave","has given","has gave"],"explanation":"Use 'gave'. Mr Chan gave Chloe the tea during her completed visit last Monday, before she left, so use the simple past."},
             " her a free cup of his famous milk tea. She says it was the best she has ever tasted!"
           ]
+        },
+        {
+          title: "Exercise 3: My New Friends at the Elderly Centre!",
+          instructions: "Read this email from Natalie to her cousin Kelly. Fill in the blanks with the correct form of the verbs in brackets. Decide carefully whether to use the present perfect tense or the simple past tense. (12 marks)",
+          segments: [
+            "To: kelly.cheung@mailbox.com\nSubject: My new friends at the elderly centre!\n\nDear Kelly,\n\nSorry I ",
+            {"showPrompt":true,"prompt":"(not reply)","answer":"have not replied","alternatives":["haven't replied"],"distractors":["was not replied","did not reply"],"explanation":"Use 'have not replied' or 'haven't replied'. 'Yet' shows that the reply is still outstanding at the time of writing, so use the present perfect."},
+            " to your email yet. I ",
+            {"showPrompt":true,"prompt":"(be)","answer":"have been","distractors":["was","have was","was be"],"explanation":"Use 'have been'. 'Since our first visit to the centre' links Natalie's busy period from that visit up to now."},
+            " really busy since our first visit to the centre, but I have some exciting news to share!\n\nThree weeks ago, our class teacher, Mr Ho, ",
+            {"showPrompt":true,"prompt":"(take)","answer":"took","distractors":["has took","has taken","was took"],"explanation":"Use 'took'. 'Three weeks ago' places the visit at a definite, finished time in the past, so use the simple past."},
+            " our class to an elderly centre in Wong Tai Sin as part of our OLE programme. On our first visit, I ",
+            {"showPrompt":true,"prompt":"(feel)","answer":"felt","distractors":["have felt","was feel","have feel"],"explanation":"Use 'felt'. The first visit happened three weeks ago, so use the simple past to describe Natalie's feelings on that completed visit."},
+            " very shy. I ",
+            {"showPrompt":true,"prompt":"(not know)","answer":"did not know","alternatives":["didn't know"],"distractors":["was not knew","have not known"],"explanation":"Use 'did not know' or 'didn't know'. Natalie is still describing her first visit three weeks ago, so use the simple past."},
+            " what to say to the elderly people at all.\n\nSince then, things have changed a lot. I ",
+            {"showPrompt":true,"prompt":"(make)","answer":"have made","distractors":["have make","made","was make"],"explanation":"Use 'have made'. 'Since our first visit' links Natalie's new friendships to the present, so use the present perfect."},
+            " some wonderful new friends at the centre since our first visit. My favourite is Granny Leung. She is 88 years old, and she ",
+            {"showPrompt":true,"prompt":"(live)","answer":"has lived","alternatives":["has been living"],"distractors":["lived","has live"],"explanation":"Use 'has lived' or 'has been living'. 'Since she was born' describes residence from birth up to now, so both perfect forms are correct."},
+            " in Wong Tai Sin since she was born, so she knows lots of interesting stories about the old days.\n\nLast Saturday, Granny Leung ",
+            {"showPrompt":true,"prompt":"(teach)","answer":"taught","distractors":["teach","was taught","has taught"],"explanation":"Use 'taught'. 'Last Saturday' is a definite, finished time in the past, so use the simple past."},
+            " me how to play Chinese chess. She is really good at it! I ",
+            {"showPrompt":true,"prompt":"(lose)","answer":"have lost","distractors":["have lose","lose","was lose"],"explanation":"Use 'have lost'. 'So far' summarises the games played up to now; after have, use the past participle lost."},
+            " every game so far, but I'm getting better.\n\nHere's the best part: our class ",
+            {"showPrompt":true,"prompt":"(just / start)","answer":"have just started","distractors":["were just start","have just start","just start"],"explanation":"Use 'have just started' to describe a very recent beginning linked to now; after have, use the past participle started."},
+            " planning a Mid-Autumn Festival party for the centre. We are going to sing songs and make lanterns with the elderly. ",
+            {"showPrompt":true,"sentenceInitial":true,"prompt":"(do)","answer":"Have you ever done","distractors":["Have you ever did","Were you ever did","Did you ever do"],"explanation":"Use 'Have you ever done'. 'Since the start of this school year' asks about experience up to now, so use have + subject + past participle."},
+            " any volunteer work since the start of this school year? It's so much fun!\n\nWhen I told Mum about the party yesterday, she ",
+            {"showPrompt":true,"prompt":"(offer)","answer":"offered","distractors":["has offered","has offer","was offer"],"explanation":"Use 'offered'. Mum made the offer when Natalie spoke to her yesterday, a finished time in the past."},
+            " to make some lotus seed mooncakes for everyone. I can't wait!\n\nWrite back soon,\n\nNatalie"
+          ]
         }
       ]
     }
