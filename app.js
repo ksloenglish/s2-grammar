@@ -656,7 +656,7 @@
           const reportLines = part.trim().split('\n');
           const isReportMeta = reportLines.length >= 2 && reportLines.every(line => /^(To|From|Date|Subject):\s+.+$/.test(line.trim()));
           const sectionMatch = part.trim().match(/^(\d+)\.\s+(.+)$/);
-          const speakerMatch = part.match(/^([A-Z][a-z]+):\s*/);
+          const speakerMatch = part.match(/^((?:(?:Mr|Mrs|Ms|Miss)\s+)?[A-Z][a-z]+):\s*/);
           if (isReportMeta) {
             const meta = document.createElement('div');
             meta.className = 'report-meta';
@@ -687,7 +687,7 @@
           } else if (speakerMatch) {
             const speaker = speakerMatch[1];
             const label = document.createElement('span');
-            label.className = `dialogue-speaker speaker-${speaker.toLowerCase()}`;
+            label.className = `dialogue-speaker speaker-${speaker.toLowerCase().replace(/\s+/g, '-')}`;
             label.textContent = speaker;
             passageBody.appendChild(label);
             passageBody.appendChild(document.createTextNode(`: ${part.slice(speakerMatch[0].length)}`));

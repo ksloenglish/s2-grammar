@@ -548,6 +548,37 @@ const GRAMMAR_DATA = {
             {"showPrompt":true,"prompt":"(just / finish)","answer":"has just finished","distractors":["has just finish","was just finish","just finish"],"explanation":"Use 'has just finished' for a very recent action linked to now; after has, use the past participle finished."},
             " his final practice. He feels a little nervous, but he is ready!"
           ]
+        },
+        {
+          title: "Exercise 2: Meet the Milk Tea Master of Sham Shui Po!",
+          instructions: "Read this interview from a school newspaper. Fill in the blanks with the correct form of the verbs in brackets. Decide carefully whether to use the present perfect tense or the simple past tense. (12 marks)",
+          segments: [
+            "Last Monday, our Form 2 reporter, Chloe Wong, ",
+            {"showPrompt":true,"prompt":"(visit)","answer":"visited","distractors":["has visit","was visited","has visited"],"explanation":"Use 'visited'. 'Last Monday' places the visit at a specific, finished time in the past, so use the simple past."},
+            " Wing Kee Café, a small cha chaan teng on Fuk Wing Street. Its owner, Mr Chan, ",
+            {"showPrompt":true,"prompt":"(run)","answer":"has run","alternatives":["has been running"],"distractors":["has ran","ran"],"explanation":"Use 'has run' or 'has been running'. 'Since 1998' links Mr Chan's management of the café from that year up to the present."},
+            " the café since 1998. Here is part of their interview.\n\nChloe: How did the café first start?\n\nMr Chan: My father ",
+            {"showPrompt":true,"prompt":"(open)","answer":"opened","distractors":["open","has opened","was opened"],"explanation":"Use 'opened'. 'In 1975' tells us when this completed event happened, so use the simple past."},
+            " it in 1975. I ",
+            {"showPrompt":true,"prompt":"(begin)","answer":"began","distractors":["was began","have begun","have began"],"explanation":"Use 'began'. 'When I was only fifteen' places the start of Mr Chan's work at a definite, finished time in the past."},
+            " helping him in the kitchen when I was only fifteen.\n\nChloe: ",
+            {"showPrompt":true,"sentenceInitial":true,"prompt":"(change)","answer":"Has the café changed","distractors":["Has the café change","Did the café change","Was the café change"],"explanation":"Use 'Has the café changed'. 'Since then' asks about changes from Mr Chan's teenage years up to the interview, so use the present perfect."},
+            " much since then?\n\nMr Chan: Not really. We ",
+            {"showPrompt":true,"prompt":"(not change)","answer":"have not changed","alternatives":["haven't changed"],"distractors":["were not changed","did not change"],"explanation":"Use 'have not changed' or 'haven't changed'. The recipe has stayed the same from the past up to the interview, so use the present perfect."},
+            " our milk tea recipe in almost fifty years. Our customers love it just the way it is!\n\nChloe: What is your most popular item?\n\nMr Chan: Our pineapple bun with butter, of course. We ",
+            {"showPrompt":true,"prompt":"(already / sell)","answer":"have already sold","distractors":["already sell","have already sell","already sold"],"explanation":"Use 'have already sold'. 'So far today' gives the total from the start of the day up to the time of speaking, so use the present perfect."},
+            " over two hundred so far today, and it's only eleven o'clock!\n\nChloe: Wow! Has anything exciting happened recently?\n\nMr Chan: Yes. Two months ago, a famous food blogger ",
+            {"showPrompt":true,"prompt":"(write)","answer":"wrote","distractors":["has wrote","was wrote","has written"],"explanation":"Use 'wrote'. 'Two months ago' places the post at a definite, finished time in the past, so use the simple past."},
+            " a post about us. Lots of tourists ",
+            {"showPrompt":true,"prompt":"(come)","answer":"have come","distractors":["came","were came","have came"],"explanation":"Use 'have come'. 'Since then' links the tourists' visits from the blogger's post up to the interview; use have with the plural subject."},
+            " here since then.\n\nChloe: ",
+            {"showPrompt":true,"sentenceInitial":true,"prompt":"(think)","answer":"Have you ever thought","distractors":["Were you ever thought","Have you ever think","Did you ever think"],"explanation":"Use 'Have you ever thought'. 'Since 1998' asks about experience over a period continuing up to the interview, so use the present perfect."},
+            " about retiring since 1998?\n\nMr Chan: Sometimes. But my daughter ",
+            {"showPrompt":true,"prompt":"(not decide)","answer":"has not decided","alternatives":["hasn't decided"],"distractors":["did not decide","has not decide"],"explanation":"Use 'has not decided' or 'hasn't decided'. 'Yet' shows that her decision is still unresolved at the time of speaking."},
+            " yet whether she wants to take over the business.\n\nBefore Chloe left, Mr Chan ",
+            {"showPrompt":true,"prompt":"(give)","answer":"gave","distractors":["was gave","has given","has gave"],"explanation":"Use 'gave'. Mr Chan gave Chloe the tea during her completed visit last Monday, before she left, so use the simple past."},
+            " her a free cup of his famous milk tea. She says it was the best she has ever tasted!"
+          ]
         }
       ]
     }
