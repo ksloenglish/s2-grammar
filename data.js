@@ -641,6 +641,37 @@ const GRAMMAR_DATA = {
             {"showPrompt":true,"sentenceInitial":true,"prompt":"(try)","answer":"Have you tried","distractors":["Have you try","Were you tried","Did you try"],"explanation":"Use 'Have you tried'. 'Yet' asks whether the readers have tasted the lemonade by now, so use the present perfect in formal British English."},
             " our homemade mint lemonade yet? If not, come up to the rooftop at lunchtime and have a cup!"
           ]
+        },
+        {
+          title: "Exercise 5: Hailey's New Pet",
+          instructions: "Read Hailey's diary entry about her new pet. Fill in the blanks with the correct form of the verbs in brackets. Decide carefully whether to use the present perfect tense or the simple past tense. (12 marks)",
+          segments: [
+            "Saturday, 15 March\n\nDear Diary,\n\nI will never forget today! At ten o'clock this morning, Dad and I ",
+            {"showPrompt":true,"prompt":"(bring)","answer":"brought","distractors":["have brought","were bring","bring"],"explanation":"Use 'brought'. 'At ten o'clock this morning' gives a specific past time for the completed action, so use the simple past."},
+            " home a puppy from the SPCA centre in Wan Chai. I ",
+            {"showPrompt":true,"prompt":"(want)","answer":"have wanted","distractors":["was wanted","have want","was want"],"explanation":"Use 'have wanted' to link Hailey's long-standing wish with its fulfilment today; after have, use the past participle wanted."},
+            " a dog of my own for as long as I can remember. Now my dream has finally come true!\n\nIt wasn't easy to make it happen, though. Mum always said our flat in Tseung Kwan O was too small for a pet. Last Christmas, I ",
+            {"showPrompt":true,"prompt":"(write)","answer":"wrote","distractors":["have wrote","have written","have write"],"explanation":"Use 'wrote'. 'Last Christmas' refers to a finished time in the past, so use the simple past."},
+            " my parents a long letter. In it, I promised to feed the dog, walk it and clean up after it every day. At first, they ",
+            {"showPrompt":true,"prompt":"(not give)","answer":"did not give","alternatives":["didn't give"],"distractors":["have not given","have not gave"],"explanation":"Use 'did not give' or 'didn't give'. The wait ended when Mum agreed in February, so use the simple past for that completed period."},
+            " me an answer for weeks. Then in February, Mum ",
+            {"showPrompt":true,"prompt":"(agree)","answer":"agreed","distractors":["was agree","has agree","has agreed"],"explanation":"Use 'agreed'. 'In February' places Mum's decision at a finished time before this diary entry, so use the simple past."},
+            " at last.\n\nOur puppy is a little brown mixed-breed dog called Toffee. Two months ago, the SPCA staff ",
+            {"showPrompt":true,"prompt":"(find)","answer":"found","distractors":["have found","were find","have find"],"explanation":"Use 'found'. 'Two months ago' is a definite, finished time in the past, so use the simple past of find."},
+            " him all alone near a building site. Poor thing!\n\nToffee has only been with us for a day, but so far he ",
+            {"showPrompt":true,"prompt":"(already / chew)","answer":"has already chewed","distractors":["already chewed","has already chew","was already chew"],"explanation":"Use 'has already chewed'. 'So far' describes the period from Toffee's arrival up to now, so use the present perfect."},
+            " one of my slippers to pieces! He ",
+            {"showPrompt":true,"prompt":"(not eat)","answer":"has not eaten","alternatives":["hasn't eaten"],"distractors":["has not ate","did not eat"],"explanation":"Use 'has not eaten' or 'hasn't eaten'. 'Since he arrived' links Toffee's eating from his arrival up to now."},
+            " much since he arrived, though. The SPCA staff told us this is normal for a new pet, so I'm trying not to worry.\n\nMy little brother Ethan is in Primary 3, and he is a bit scared of Toffee. So far, he ",
+            {"showPrompt":true,"prompt":"(never / touch)","answer":"has never touched","distractors":["has never touch","was never touch","never touched"],"explanation":"Use 'has never touched'. 'So far' makes this a statement about Ethan's experience up to now, so use the present perfect."},
+            " a dog. When Toffee licked his hand this afternoon, Ethan ",
+            {"showPrompt":true,"prompt":"(scream)","answer":"screamed","distractors":["has screamed","was scream","has scream"],"explanation":"Use 'screamed'. Ethan's reaction belongs to the completed event when Toffee licked his hand this afternoon, and it matches the past action hid."},
+            " and hid behind the sofa. Mum and I couldn't stop laughing!\n\nAfter dinner, I sent my best friend Mandy a message: \"",
+            {"showPrompt":true,"sentenceInitial":true,"prompt":"(have)","answer":"Have you ever had","distractors":["Were you ever had","Have you ever have","Were you ever have"],"explanation":"Use 'Have you ever had' to ask about Mandy's experience up to now; in this perfect question, have comes before the subject and had is the past participle."},
+            " a pet? I need some tips!\" She is coming over tomorrow to meet Toffee.\n\nIt's ten o'clock now, and Toffee ",
+            {"showPrompt":true,"prompt":"(just / fall)","answer":"has just fallen","distractors":["has just fell","was just fell","has just fall"],"explanation":"Use 'has just fallen' for a very recent event with a result now: Toffee is asleep; after has, use the past participle fallen."},
+            " asleep in his new bed next to mine. Goodnight, Toffee!\n\nHailey"
+          ]
         }
       ]
     }

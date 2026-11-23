@@ -6,6 +6,7 @@
  * Formation-only exceptions: Jason blank 12; Natalie blanks 9 and 10.
  * Rooftop blog exceptions: formation-only blanks 1, 8 and 9; the singular
  * principal's blank 3 also permits the agreed "have set up" agreement error.
+ * Hailey diary exceptions: formation-only blanks 2, 11 and 12.
  * Preserve the protected alternate forms; never turn them into distractors.
  * Run: node scripts/validate-present-perfect.js
  */
@@ -152,6 +153,40 @@ const expectedExercises = [
       'Finally, a question for all our readers: [Have you tried] our homemade mint lemonade yet?'
     ],
     questionPhrases: ['Have you ever eaten', 'Have you tried']
+  },
+  {
+    title: "Exercise 5: Hailey's New Pet",
+    instructions: "Read Hailey's diary entry about her new pet. Fill in the blanks with the correct form of the verbs in brackets. Decide carefully whether to use the present perfect tense or the simple past tense. (12 marks)",
+    blanks: [
+      { prompt: '(bring)', answer: 'brought', alternatives: [], wrong: [['have brought', 2], ['were bring', 4], ['bring', 1]] },
+      { prompt: '(want)', answer: 'have wanted', alternatives: [], noTenseContrast: true, forbiddenDistractors: ['wanted'], wrong: [['was wanted', 6], ['have want', 3], ['was want', 4]] },
+      { prompt: '(write)', answer: 'wrote', alternatives: [], past: 'wrote', participle: 'written', wrong: [['have wrote', 5], ['have written', 2], ['have write', 3]] },
+      { prompt: '(not give)', answer: 'did not give', alternatives: ["didn't give"], past: 'gave', participle: 'given', wrong: [['have not given', 2], ['have not gave', 5]] },
+      { prompt: '(agree)', answer: 'agreed', alternatives: [], wrong: [['was agree', 4], ['has agree', 3], ['has agreed', 2]] },
+      { prompt: '(find)', answer: 'found', alternatives: [], wrong: [['have found', 2], ['were find', 4], ['have find', 3]] },
+      { prompt: '(already / chew)', answer: 'has already chewed', alternatives: [], wrong: [['already chewed', 2], ['has already chew', 3], ['was already chew', 4]] },
+      { prompt: '(not eat)', answer: 'has not eaten', alternatives: ["hasn't eaten"], past: 'ate', participle: 'eaten', wrong: [['has not ate', 5], ['did not eat', 2]] },
+      { prompt: '(never / touch)', answer: 'has never touched', alternatives: [], wrong: [['has never touch', 3], ['was never touch', 4], ['never touched', 2]] },
+      { prompt: '(scream)', answer: 'screamed', alternatives: [], wrong: [['has screamed', 2], ['was scream', 4], ['has scream', 3]] },
+      { prompt: '(have)', answer: 'Have you ever had', alternatives: [], initial: true, noTenseContrast: true, forbiddenDistractors: ['Did you ever have'], wrong: [['Were you ever had', 6], ['Have you ever have', 3], ['Were you ever have', 4]] },
+      { prompt: '(just / fall)', answer: 'has just fallen', alternatives: [], past: 'fell', participle: 'fallen', noTenseContrast: true, forbiddenDistractors: ['just fell'], wrong: [['has just fell', 5], ['was just fell', 6], ['has just fall', 3]] }
+    ],
+    cues: [
+      "Saturday, 15 March\n\nDear Diary,\n\nI will never forget today! At ten o'clock this morning, Dad and I [brought]",
+      'I [have wanted] a dog of my own for as long as I can remember.',
+      'Now my dream has finally come true!',
+      'Last Christmas, I [wrote]',
+      'At first, they [did not give] me an answer for weeks. Then in February, Mum [agreed]',
+      'Two months ago, the SPCA staff [found]',
+      'Toffee has only been with us for a day, but so far he [has already chewed]',
+      'He [has not eaten] much since he arrived,',
+      'So far, he [has never touched] a dog.',
+      'When Toffee licked his hand this afternoon, Ethan [screamed] and hid',
+      'After dinner, I sent my best friend Mandy a message: "[Have you ever had] a pet? I need some tips!"',
+      "It's ten o'clock now, and Toffee [has just fallen] asleep",
+      'Goodnight, Toffee!\n\nHailey'
+    ],
+    questionPhrases: ['Have you ever had']
   }
 ];
 const same = (a, b) => a.length === b.length && a.every((v, i) => v === b[i]);
@@ -199,7 +234,7 @@ expectedExercises.forEach((wantExercise, exerciseIndex) => {
   for (const phrase of wantExercise.questionPhrases) {
     if (text.split(phrase).length !== 2) fail(`${prefix}: complete question phrase must appear exactly once: ${phrase}`);
   }
-  if (/\[(?:Have you ever swum|Have you ever thought|Have you ever done|Have you ever eaten)\] you ever|\[Has the café changed\] the café|\[Have you tried\] you/.test(text)) fail(`${prefix}: duplicated preprinted words after a question dropdown.`);
+  if (/\[(?:Have you ever swum|Have you ever thought|Have you ever done|Have you ever eaten|Have you ever had)\] you ever|\[Has the café changed\] the café|\[Have you tried\] you/.test(text)) fail(`${prefix}: duplicated preprinted words after a question dropdown.`);
 });
 console.log(`Audited ${totalBlanks} Present Perfect blanks across ${expectedExercises.length} exercises against the six permitted distractor forms.`);
 if (problems.length) {
