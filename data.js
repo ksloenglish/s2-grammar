@@ -859,9 +859,9 @@ const GRAMMAR_DATA = {
               "prompt": "(you / do)",
               "answer": "will you do",
               "distractors": [
-                "will you doing",
-                "would you doing",
-                "will you did"
+                "you do",
+                "are you do",
+                "will you doing"
               ],
               "alternatives": [],
               "displayAlternatives": [],
@@ -889,7 +889,7 @@ const GRAMMAR_DATA = {
               "distractors": [
                 "been",
                 "will being",
-                "would were"
+                "would be"
               ],
               "alternatives": [],
               "displayAlternatives": [],
@@ -933,7 +933,7 @@ const GRAMMAR_DATA = {
               "distractors": [
                 "been",
                 "being",
-                "will being"
+                "will be"
               ],
               "alternatives": [
                 "was"

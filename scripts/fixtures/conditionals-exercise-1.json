@@ -58,6 +58,18 @@
     {
       "rule": 13,
       "form": "For a main-verb negative, use am/is/are/was/were + not instead of do/does/did not"
+    },
+    {
+      "rule": 14,
+      "form": "For a will/would question, omit the starting modal and retain subject + base verb"
+    },
+    {
+      "rule": 15,
+      "form": "For a will/would question, replace the modal with subject-appropriate am/is/are/was/were and retain the base verb"
+    },
+    {
+      "rule": 16,
+      "form": "In an if-clause, use will/would + base verb as a candidate only when it is unambiguously wrong in the full context; preserve negative cues and exclude defensible willingness, refusal, politeness or other modal readings"
     }
   ],
   "blanks": [
@@ -109,21 +121,21 @@
       "answer": "will you do",
       "prompt": "(you / do)",
       "distractors": [
-        "will you doing",
-        "would you doing",
-        "will you did"
+        "you do",
+        "are you do",
+        "will you doing"
       ],
       "alternatives": [],
       "explanation": "Use 'will you do' to ask about a real possibility tomorrow (Type 1). Put 'will' before 'you' and use the base verb 'do'.",
       "ruletags": [
         [
+          14
+        ],
+        [
+          15
+        ],
+        [
           8
-        ],
-        [
-          9
-        ],
-        [
-          10
         ]
       ]
     },
@@ -155,7 +167,7 @@
       "distractors": [
         "been",
         "will being",
-        "would were"
+        "would be"
       ],
       "alternatives": [],
       "explanation": "Use 'are' for Jason’s usual pattern: Type 0 uses the present simple in the if-clause. 'Supermarkets' is plural, so use 'are'.",
@@ -167,7 +179,8 @@
           8
         ],
         [
-          11
+          2,
+          16
         ]
       ]
     },
@@ -224,7 +237,7 @@
       "distractors": [
         "been",
         "being",
-        "will being"
+        "will be"
       ],
       "alternatives": [
         "was"
@@ -238,7 +251,8 @@
           7
         ],
         [
-          8
+          1,
+          16
         ]
       ]
     },

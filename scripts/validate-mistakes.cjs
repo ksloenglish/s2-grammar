@@ -589,6 +589,33 @@ test('Adding Conditional Sentences preserves all previous saved references and r
   assert.deepEqual(next.list(), old.list(), 'Full marks remove only the new passage');
 });
 
+test('Conditional distractor update invalidates only its edited passage and retains every other saved reference', () => {
+  const before = load(execFileSync('git', ['show', '822ff9dcff53a55f34b656dc519fbdd9ba27e109:data.js'], { cwd: root, encoding: 'utf8' }));
+  const old = harness(before), changed = [], unchanged = [];
+  for (const [term, topics] of Object.entries(before)) for (const [topicKey, topic] of Object.entries(topics)) {
+    for (const item of topic.exercises || topic.questions || []) {
+      const max = topic.type === 'passage' ? item.segments.filter(b => typeof b === 'object').length : topic.type === 'builder' ? 3 : item.timeCorrect?.length ? 3 : 2;
+      old.api.record(term, topicKey, item, 0, max);
+      const current = (production[term][topicKey].exercises || production[term][topicKey].questions).find(x => x.id === item.id);
+      assert.ok(current, 'No stable item may disappear during a distractor update');
+      (JSON.stringify(item) === JSON.stringify(current) ? unchanged : changed).push(item.id);
+    }
+  }
+  assert.deepEqual(changed, ['conditionals-p-001'], 'Only the Conditional passage changed');
+  const expected = old.list().filter(record => record.id !== changed[0]);
+  assert.equal(expected.length, unchanged.length);
+  const next = restore(production, snapshot(old));
+  assert.deepEqual(next.list(), expected, 'All unchanged references and marks survive byte-for-byte');
+  assert.equal(next.api.resolve(old.list().find(record => record.id === changed[0])), null, 'Old Conditional revision cannot retry stale options');
+  const item = production['First Term'].conditionals.exercises[0];
+  next.api.record('First Term', 'conditionals', item, 11, 12);
+  const saved = next.list().find(record => record.id === item.id);
+  assert.equal(next.api.resolve(saved).item.id, item.id, 'New Conditional revision resolves for whole-passage practice');
+  assert.notEqual(saved.revision, old.list().find(record => record.id === item.id).revision);
+  next.api.record('First Term', 'conditionals', item, 12, 12);
+  assert.deepEqual(next.list(), expected, 'Full marks remove only the current Conditional reference');
+});
+
 let passed = 0;
 const start = Date.now();
 for (const { label, run } of tests) {

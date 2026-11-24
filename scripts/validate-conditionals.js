@@ -20,7 +20,7 @@ const exercise = topic.exercises[0];
 assert.equal(exercise.id, fixture.id); assert.equal(exercise.title, fixture.title);
 assert.equal(exercise.instructions, fixture.instructions);
 assert.equal(topic.instructions, fixture.instructions);
-assert.equal(fixture.rules.length, 13);
+assert.equal(fixture.rules.length, 16);
 const blanks = exercise.segments.filter(segment => typeof segment === 'object');
 assert.equal(blanks.length, 12); assert.equal(blanks.length, fixture.marks);
 assert.equal(blanks.length, fixture.blanks.length);
@@ -76,9 +76,16 @@ blanks.forEach((blank, index) => {
     assert.ok(!/['’]/.test(value), 'Wrong choices use expanded whole-word forms');
     const tags = expected.ruletags[j]; assert.ok(tags.length > 0);
     tags.forEach(rule => {
-      assert.ok(Number.isInteger(rule) && rule >= 1 && rule <= 13);
+      assert.ok(Number.isInteger(rule) && rule >= 1 && rule <= 16);
       usedRules.add(rule);
-      if (rule >= 12) assert.ok(swaps.includes(value), 'Negative auxiliary swaps require the correct subject and base verb');
+      if (rule === 12 || rule === 13) assert.ok(swaps.includes(value), 'Negative auxiliary swaps require the correct subject and base verb');
+      else if (rule === 14 || rule === 15) {
+        assert.equal(index, 2, 'Question error rules apply only to the modal question');
+        assert.equal(value, rule === 14 ? phrase(base) : phrase(base, 'are'), 'Question errors preserve subject and lexical base verb');
+      } else if (rule === 16) {
+        assert.ok([3, 4, 5, 6, 7, 11].includes(index), 'If-clause modal rule cannot change a result clause');
+        assert.ok([phrase(base, 'will'), phrase(base, 'would')].includes(value), 'If-clause candidates preserve base verb and negative cues');
+      }
       else assert.equal(value, candidates[rule], `Blank ${index + 1}: distractor does not match tagged formation ${rule}`);
     });
   });
@@ -97,6 +104,8 @@ assert.equal((skeleton.match(/e\.g\. hoists \(hoist\)/g) || []).length, 1);
 assert.equal((skeleton.match(/(?:^|\n\n)(?:Kelly|Jason):/g) || []).length, fixture.chatTurns);
 assert.equal(crypto.createHash('sha256').update(skeleton).digest('hex'), fixture.skeleton_sha256, 'Conversation/cues must match the screened source');
 assert.equal(blanks[2].answer, 'will you do');
+assert.deepEqual(blanks[2].distractors, ['you do', 'are you do', 'will you doing']);
+assert.ok(!blanks[2].distractors.includes('are you doing'), 'A grammatical progressive question must not be marked wrong');
 assert.ok(skeleton.includes('So what (3) __________ (you / do) if school is closed?'));
 console.log(`PASS: ${blanks.length} conditional blanks, four unique choices and one stored accepted answer visible each; ${hidden} valid alternatives hidden; 13 speaker turns; unscored example preserved.`);
 console.log('Selected formation rules: ' + [...usedRules].sort((a, b) => a - b).join(', ') + '. Full-context screening remains the grammar-quality evidence.');

@@ -198,6 +198,20 @@ function main() {
   const fixturePath = path.join(repo, 'scripts/fixtures/conditionals-exercise-1.json');
   const fixtureText = fs.readFileSync(fixturePath, 'utf8'); fixture = JSON.parse(fixtureText); report.fixtureHash = hash(fixtureText);
   eq(fixture.blanks.length, 12, 'Independent fixture has 12 blanks'); eq(fixture.marks, 12, 'Independent maximum 12');
+  suite('Approved modal-question error regression guards', () => {
+    eq(fixture.blanks[2].answer, 'will you do', 'Teacher question key unchanged');
+    eq(fixture.blanks[2].distractors, ['you do', 'are you do', 'will you doing'], 'Missing modal, be + base and modal + ing are screened wrong');
+    eq(fixture.blanks[2].ruletags, [[14], [15], [8]], 'Each question distractor uses an approved formation');
+    ok(fixture.rules.some(r => r.rule === 14 && /omit the starting modal/.test(r.form)), 'Omitted question modal rule retained');
+    ok(fixture.rules.some(r => r.rule === 15 && /subject-appropriate/.test(r.form)), 'Be substitution preserves subject agreement');
+    ok(!fixture.blanks[2].distractors.includes('are you doing'), 'Valid continuous question never offered as wrong');
+    eq(fixture.blanks[4].distractors, ['been', 'will being', 'would be'], 'General current supermarket pattern rejects the screened would be');
+    eq(fixture.blanks[7].distractors, ['been', 'being', 'will be'], 'Imaginary Chief Executive identity rejects screened will be');
+    eq(fixture.blanks[4].ruletags[2], [2, 16], 'Would + base candidate is tagged for the if-clause');
+    eq(fixture.blanks[7].ruletags[2], [1, 16], 'Will + base candidate is tagged for the if-clause');
+    ok(fixture.rules.some(r => r.rule === 16 && /unambiguously wrong/.test(r.form)), 'If-clause rule retains full-context screening requirement');
+    ok(!fixture.blanks[4].distractors.includes('will be'), 'Defensible predictive supermarket will be stays excluded');
+  });
   suite('Approved negative-formation semantic regression guards', () => {
     eq(fixture.blanks[5].distractors, ['not finished', 'not finishing', 'am not finish'], 'Blank 6 uses approved main-verb be-negative formation error');
     eq(fixture.blanks[11].distractors, ['is not raise', 'will not raising', 'would not raised'], 'Blank 12 uses approved main-verb be-negative formation error');
