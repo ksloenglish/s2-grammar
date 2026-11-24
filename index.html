@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=v261123-202039">
+<link rel="stylesheet" href="style.css?v=v261124-101959">
 </head>
 <body>
 <!-- ========== TOP BAR ========== -->
@@ -70,6 +70,19 @@
     <span class="btn-start-text">Select a Quest to Begin</span>
     <span class="btn-start-glow"></span>
   </button>
+
+  <section class="mistake-panel" id="mistake-practice" aria-labelledby="mistake-heading">
+    <div class="mistake-header">
+      <div>
+        <p class="mistake-eyebrow">YOUR NEXT STEP</p>
+        <h2 id="mistake-heading">Mistake Practice</h2>
+      </div>
+      <button id="btn-clear-mistakes" class="mistake-clear" type="button" disabled>Clear saved mistakes</button>
+    </div>
+    <p class="mistake-intro">Turn mistakes into progress. Retry whole exercises or practise your incorrect questions.</p>
+    <div id="mistake-list"></div>
+    <p id="mistake-status" class="mistake-status" role="status"></p>
+  </section>
 </main>
 
 <!-- ========== EXERCISE SCREEN ========== -->
@@ -257,6 +270,7 @@
     </div>
     <div class="results-actions">
       <button class="btn-again" id="btn-retry-same" type="button" aria-describedby="retry-note">Retry same exercise &#x21BA;</button>
+      <button class="btn-again hidden" id="btn-retry-incorrect" type="button">Retry incorrect questions</button>
       <button class="btn-again btn-home" id="btn-again" type="button">Back to Home</button>
     </div>
     <p class="retry-note" id="retry-note">Try the same questions again with fresh answers, a new score and a reset timer.</p>
@@ -269,11 +283,12 @@
 
 <!-- ========== FOOTER ========== -->
 <footer class="site-footer">
-  <div style="font-size:0.7rem;color:var(--text-muted);opacity:0.5;margin-bottom:4px;">v261123-202039</div>
+  <div style="font-size:0.7rem;color:var(--text-muted);opacity:0.5;margin-bottom:4px;">v261124-101959</div>
   &copy; <span id="yr"></span> K S Lo English. All Rights Reserved.
 </footer>
 
-<script src="data.js?v=v261123-202039"></script>
-<script src="app.js?v=v261123-202039"></script>
+<script src="data.js?v=v261124-101959"></script>
+<script src="mistakes.js?v=v261124-101959"></script>
+<script src="app.js?v=v261124-101959"></script>
 </body>
 </html>

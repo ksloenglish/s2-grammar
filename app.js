@@ -94,6 +94,15 @@
   const reviewHeading = $('review-heading');
   const btnAgain = $('btn-again');
   const btnRetrySame = $('btn-retry-same');
+  const btnRetryIncorrect = $('btn-retry-incorrect');
+  const mistakeList = $('mistake-list');
+  const mistakeStatus = $('mistake-status');
+  const btnClearMistakes = $('btn-clear-mistakes');
+  const mistakeStore = window.KSLOMistakes;
+  let lastIncorrectQuestions = [];
+  let mcResults = [];
+  let attemptMode = 'normal';
+  let practiceHomeSelection = null;
 
   // --- STATE ---
   let selectedTerm = null;
@@ -150,6 +159,8 @@
     renderTermButtons();
     loadStats();
     bindEvents();
+    renderMistakePractice();
+    if (mistakeStore) mistakeStore.subscribe(renderMistakePractice);
     // Auto-select Second Term if First Term is empty
     if (TERM_KEYS["First Term"].length === 0) {
       selectTerm("Second Term");
@@ -158,7 +169,8 @@
 
   // --- THEME ---
   function loadTheme() {
-    const saved = localStorage.getItem('kslo_grammar_theme') || 'light';
+    const value = safeStorageGet('kslo_grammar_theme');
+    const saved = value === 'dark' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', saved);
     themeIcon.textContent = saved === 'dark' ? '\u2600\uFE0F' : '\u{1F319}';
   }
@@ -167,8 +179,17 @@
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('kslo_grammar_theme', next);
+    safeStorageSet('kslo_grammar_theme', next);
     themeIcon.textContent = next === 'dark' ? '\u2600\uFE0F' : '\u{1F319}';
+  }
+
+  // Optional browser storage must never block initialization or results.
+  function safeStorageGet(key) {
+    try { return localStorage.getItem(key); } catch (_) { return null; }
+  }
+
+  function safeStorageSet(key, value) {
+    try { localStorage.setItem(key, value); } catch (_) { /* Keep practice usable. */ }
   }
 
   // --- STATS (localStorage) ---
@@ -178,17 +199,17 @@
   }
 
   function saveStats(scoreStr, timeStr) {
-    const attempts = parseInt(localStorage.getItem('kslo_grammar_attempts') || '0') + 1;
-    localStorage.setItem('kslo_grammar_attempts', attempts.toString());
+    const attempts = parseInt(safeStorageGet('kslo_grammar_attempts') || '0') + 1;
+    safeStorageSet('kslo_grammar_attempts', attempts.toString());
 
-    const prevBest = localStorage.getItem('kslo_grammar_best_score');
+    const prevBest = safeStorageGet('kslo_grammar_best_score');
     if (!prevBest || parseScorePct(scoreStr) > parseScorePct(prevBest)) {
-      localStorage.setItem('kslo_grammar_best_score', scoreStr);
+      safeStorageSet('kslo_grammar_best_score', scoreStr);
     }
 
-    const prevTime = localStorage.getItem('kslo_grammar_best_time');
+    const prevTime = safeStorageGet('kslo_grammar_best_time');
     if (!prevTime || elapsed < parseTime(prevTime)) {
-      localStorage.setItem('kslo_grammar_best_time', timeStr);
+      safeStorageSet('kslo_grammar_best_time', timeStr);
     }
   }
 
@@ -351,6 +372,8 @@
   function startExercise() {
     if (!selectedTerm || !selectedTopic || !selectedCount) return;
     const topicData = GRAMMAR_DATA[selectedTerm][selectedTopic];
+    attemptMode = 'normal';
+    practiceHomeSelection = null;
 
     if (topicData.type === 'passage') {
       startPassageExercise(topicData);
@@ -377,6 +400,7 @@
     // A retry copies the existing sequence; a new challenge draws a fresh set.
     currentQuestions = questions ? [...questions] : buildQuestionSet(pool, selectedCount);
     currentIndex = 0;
+    mcResults = [];
     score = 0;
     streak = 0;
     bestStreak = 0;
@@ -439,7 +463,7 @@
     const chosen = btn.dataset.opt;
     // Decode HTML entities for comparison
     const decodedChosen = decodeHtml(chosen);
-    if (btn.classList.contains('correct') || btn.classList.contains('wrong')) return;
+    if (btn.classList.contains('correct') || btn.classList.contains('wrong') || btn.classList.contains('revealed')) return;
 
     if (decodedChosen === correctAnswer) {
       btn.classList.add('correct');
@@ -447,6 +471,9 @@
       questionCard.querySelectorAll('.option-btn').forEach(b => {
         if (!b.classList.contains('correct')) b.classList.add('revealed');
       });
+      const q = currentQuestions[currentIndex];
+      mcResults[currentIndex] = { q, total: firstAttempt ? 1 : 0 };
+      captureMistake(q, firstAttempt ? 1 : 0, 1);
       if (firstAttempt) {
         score++;
         streak++;
@@ -470,6 +497,9 @@
         streakCount.textContent = streak;
       }
       firstAttempt = false;
+      const q = currentQuestions[currentIndex];
+      mcResults[currentIndex] = { q, total: 0 };
+      captureMistake(q, 0, 1);
     }
   }
 
@@ -490,6 +520,7 @@
 
   function endExercise() {
     stopTimer();
+    lastIncorrectQuestions = mcResults.filter(r => r && r.total < 1).map(r => r.q);
     const pct = Math.round((score / currentQuestions.length) * 100);
     const scoreStr = `${score}/${currentQuestions.length} (${pct}%)`;
     const timeStr = formatTime(elapsed);
@@ -565,7 +596,25 @@
       'builder-rs': screenBuilderRS,
       results: screenResults
     };
-    (map[name] || screenHome).classList.add('active');
+    const activeScreen = map[name] || screenHome;
+    activeScreen.classList.add('active');
+    if (name === 'home') {
+      restorePracticeSelection();
+      renderMistakePractice();
+    } else if (name === 'results') {
+      updateRetryActions();
+    } else {
+      let banner = activeScreen.querySelector('.practice-banner');
+      if (!banner) {
+        banner = document.createElement('p');
+        banner.className = 'practice-banner';
+        activeScreen.prepend(banner);
+      }
+      banner.classList.toggle('hidden', attemptMode !== 'mistakes');
+      banner.textContent = selectedTopic && GRAMMAR_DATA[selectedTerm]?.[selectedTopic]?.type === 'passage'
+        ? 'Mistake Practice — retry the whole exercise.'
+        : 'Mistake Practice — only the selected incorrect questions.';
+    }
     window.scrollTo(0, 0);
   }
 
@@ -605,6 +654,170 @@
         startMCExercise(topicData, currentQuestions);
       }
     }
+  }
+
+  // --- HOME MISTAKE PRACTICE ---
+  function captureMistake(item, earned, max) {
+    if (mistakeStore) mistakeStore.record(selectedTerm, selectedTopic, item, earned, max);
+  }
+
+  function renderMistakePractice() {
+    if (!mistakeList) return;
+    const records = mistakeStore ? mistakeStore.list() : [];
+    const persistent = mistakeStore && mistakeStore.status().persistent;
+    mistakeStatus.textContent = persistent
+      ? 'Saved in this browser only. Your practice list does not sync between devices. Records are kept for up to 90 days.'
+      : 'Browser storage is unavailable. Your practice list is kept only while this page stays open.';
+    btnClearMistakes.disabled = records.length === 0;
+    mistakeList.replaceChildren();
+    if (!records.length) {
+      const empty = document.createElement('p');
+      empty.className = 'mistake-empty';
+      empty.textContent = 'No mistakes saved yet. Complete a challenge to build your practice list.';
+      mistakeList.appendChild(empty);
+      return;
+    }
+    for (const [term, topics] of Object.entries(GRAMMAR_DATA)) {
+      const termRecords = records.filter(r => r.term === term);
+      if (!termRecords.length) continue;
+      const group = document.createElement('div');
+      group.className = 'mistake-term';
+      const heading = document.createElement('h3');
+      heading.textContent = term;
+      group.appendChild(heading);
+      for (const [key, topic] of Object.entries(topics)) {
+        const pending = termRecords.filter(r => r.topic === key);
+        if (!pending.length) continue;
+        const card = document.createElement('section');
+        card.className = 'mistake-topic';
+        const title = document.createElement('h4');
+        const passage = topic.type === 'passage';
+        title.textContent = `${topic.label} — ${pending.length} ${passage ? (pending.length === 1 ? 'exercise' : 'exercises') : (pending.length === 1 ? 'question' : 'questions')} to retry`;
+        card.appendChild(title);
+        if (passage) {
+          for (const record of pending) {
+            const target = mistakeStore.resolve(record);
+            if (!target) continue;
+            const row = document.createElement('div');
+            row.className = 'mistake-row';
+            const details = document.createElement('div');
+            details.className = 'mistake-details';
+            const name = document.createElement('p');
+            name.className = 'mistake-name';
+            name.textContent = target.item.title || 'Saved exercise';
+            const marks = document.createElement('p');
+            marks.className = 'mistake-marks';
+            marks.textContent = `Last score: ${record.earned}/${record.max}`;
+            details.append(name, marks);
+            const button = makeMistakeButton('Retry exercise', term, key, record.id);
+            row.append(details, button);
+            card.appendChild(row);
+          }
+        } else {
+          const note = document.createElement('p');
+          note.className = 'mistake-batch-note';
+          note.textContent = `Practise ${Math.min(20, pending.length)} saved ${pending.length === 1 ? 'question' : 'questions'}, oldest mistakes first. All steps are included.`;
+          card.append(note, makeMistakeButton('Practise incorrect questions', term, key));
+        }
+        group.appendChild(card);
+      }
+      mistakeList.appendChild(group);
+    }
+  }
+
+  function makeMistakeButton(label, term, topic, id) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'mistake-start';
+    button.textContent = label;
+    button.dataset.term = term;
+    button.dataset.topic = topic;
+    if (id) button.dataset.mistakeId = id;
+    button.addEventListener('click', () => startSavedMistakes(term, topic, id));
+    return button;
+  }
+
+  function rememberPracticeSelection() {
+    if (!practiceHomeSelection) {
+      practiceHomeSelection = { term: selectedTerm, topic: selectedTopic, count: selectedCount };
+    }
+    attemptMode = 'mistakes';
+    closeAllPopovers();
+  }
+
+  function restorePracticeSelection() {
+    if (!practiceHomeSelection) return;
+    const saved = practiceHomeSelection;
+    practiceHomeSelection = null;
+    attemptMode = 'normal';
+    selectedTerm = null;
+    selectedTopic = null;
+    selectedCount = null;
+    renderTermButtons();
+    renderTopicCards();
+    hideQCountSection();
+    if (saved.term && GRAMMAR_DATA[saved.term]) {
+      selectTerm(saved.term);
+      const card = [...topicGrid.querySelectorAll('.topic-card')].find(c => c.dataset.topic === saved.topic);
+      if (card) {
+        selectTopic(saved.topic, card);
+        selectedCount = saved.count;
+        if (GRAMMAR_DATA[saved.term][saved.topic].type !== 'passage') renderQCountButtons(GRAMMAR_DATA[saved.term][saved.topic]);
+      }
+    }
+    updateStartBtn();
+  }
+
+  function startSavedMistakes(term, topicKey, id) {
+    if (!screenHome.classList.contains('active') || !mistakeStore) return;
+    const pending = mistakeStore.list().filter(r => r.term === term && r.topic === topicKey && (!id || r.id === id));
+    const targets = pending.map(r => mistakeStore.resolve(r)).filter(Boolean);
+    if (!targets.length) { renderMistakePractice(); return; }
+    const topic = targets[0].topicData;
+    rememberPracticeSelection();
+    selectedTerm = term;
+    selectedTopic = topicKey;
+    if (topic.type === 'passage') {
+      selectedCount = 'passage';
+      startPassageExercise(topic, targets[0].item);
+    } else {
+      const questions = targets.slice(0, 20).map(target => target.item);
+      selectedCount = questions.length;
+      startSuppliedQuestions(topic, questions);
+    }
+  }
+
+  function startSuppliedQuestions(topic, questions) {
+    if (topic.type === 'builder') startBuilderExercise(topic, questions);
+    else if (topic.type === 'builder-rs') startRSExercise(topic, questions);
+    else startMCExercise(topic, questions);
+  }
+
+  function updateRetryActions() {
+    const topic = GRAMMAR_DATA[selectedTerm]?.[selectedTopic];
+    const passage = topic?.type === 'passage';
+    btnRetrySame.textContent = passage ? 'Retry same exercise ↺' : 'Retry same question set ↺';
+    $('retry-note').textContent = passage
+      ? 'Try the whole exercise again with fresh answers, a new score and a reset timer.'
+      : 'Retry the same question set, or practise only the incorrect questions. Each retry starts with a new score and a reset timer.';
+    $('screen-results').querySelector('.results-title').textContent = attemptMode === 'mistakes' ? 'Mistake Practice Complete!' : 'Challenge Complete!';
+    const count = uniqueQuestions(lastIncorrectQuestions).length;
+    btnRetryIncorrect.classList.toggle('hidden', passage || count === 0);
+    btnRetryIncorrect.textContent = `Retry incorrect questions (${count})`;
+  }
+
+  function uniqueQuestions(questions) {
+    return [...new Set(questions)];
+  }
+
+  function retryIncorrectQuestions() {
+    if (!screenResults.classList.contains('active')) return;
+    const topic = GRAMMAR_DATA[selectedTerm]?.[selectedTopic];
+    const questions = uniqueQuestions(lastIncorrectQuestions);
+    if (!topic || topic.type === 'passage' || !questions.length) return;
+    rememberPracticeSelection();
+    reviewList.innerHTML = '';
+    startSuppliedQuestions(topic, questions);
   }
 
   // ============================================================
@@ -826,12 +1039,15 @@
   }
 
   function submitPassage() {
+    if (!screenPassage.classList.contains('active') || passageBlanks.some(b => !blankFilled(b))) return;
     stopTimer();
+    lastIncorrectQuestions = [];
     let correct = 0;
     passageBlanks.forEach(b => {
       if (blankIsCorrect(b)) correct++;
     });
     const total = passageBlanks.length;
+    captureMistake(currentPassage, correct, total);
     const pct = Math.round((correct / total) * 100);
     const scoreStr = `${correct}/${total} (${pct}%)`;
     const timeStr = formatTime(elapsed);
@@ -1161,6 +1377,7 @@
 
     bChecked = true;
     bScore += total;
+    captureMistake(q, total, 3);
     builderScore.textContent = String(bScore);
     builderScoreBadgePulse();
 
@@ -1262,6 +1479,7 @@
 
   function endBuilderExercise() {
     stopTimer();
+    lastIncorrectQuestions = builderResults.filter(r => r.total < 3).map(r => r.q);
     const maxMarks = currentQuestions.length * 3;
     const gained = builderResults.reduce((s, r) => s + r.total, 0);
     const pct = Math.round((gained / maxMarks) * 100);
@@ -1585,6 +1803,7 @@
 
     rsChecked = true;
     rsScoreVal += total;
+    captureMistake(q, total, rsHasTime ? 3 : 2);
     rsScore.textContent = String(rsScoreVal);
     rsScoreBadgePulse();
 
@@ -1677,6 +1896,7 @@
 
   function endRSExercise() {
     stopTimer();
+    lastIncorrectQuestions = rsResults.filter(r => r.total < r.maxMarks).map(r => r.q);
     const maxMarks = rsResults.reduce((s, r) => s + r.maxMarks, 0);
     const gained = rsResults.reduce((s, r) => s + r.total, 0);
     const pct = maxMarks ? Math.round((gained / maxMarks) * 100) : 0;
@@ -1767,6 +1987,14 @@
     hudQuit.addEventListener('click', quitToHome);
     btnAgain.addEventListener('click', playAgain);
     btnRetrySame.addEventListener('click', retrySameExercise);
+    btnRetryIncorrect.addEventListener('click', retryIncorrectQuestions);
+    btnClearMistakes.addEventListener('click', () => {
+      if (mistakeStore && mistakeStore.list().length && window.confirm('Clear all saved mistakes in this browser? This cannot be undone.')) {
+        mistakeStore.clear();
+        renderMistakePractice();
+        btnClearMistakes.focus();
+      }
+    });
     btnSubmitPassage.addEventListener('click', submitPassage);
     passageQuit.addEventListener('click', quitPassageToHome);
     btnBuilderCheck.addEventListener('click', builderCheck);
