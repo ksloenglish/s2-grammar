@@ -200,6 +200,8 @@ suite('First Term','present-past',1,10,417);
 suite('First Term','gerunds-to-infinitives',1);
 inventory['First Term']['present-perfect'].exercises.forEach((exercise,i) =>
   suite('First Term','present-perfect',3,10,[936,417,221,519][i] ?? (936+i*37),false,exercise.title));
+inventory['First Term'].conditionals.exercises.forEach((exercise,i) =>
+  suite('First Term','conditionals',3,10,643+i*37,false,exercise.title));
 suite('Second Term','passive-voice',1);
 suite('Second Term','articles',1);
 suite('Second Term','relative-clauses',3,10);

@@ -1,0 +1,337 @@
+{
+  "id": "conditionals-p-001",
+  "title": "Exercise 1: Typhoon Day WhatsApp Chat",
+  "instructions": "Complete the following WhatsApp conversation with the correct forms of the verbs in brackets. The first one has been done as an example. (12 marks)",
+  "marks": 12,
+  "example": "Kelly: Jason, have you seen the news? A typhoon is heading our way! If the Observatory e.g. hoists (hoist) Signal No. 8 tomorrow morning, we won't have the Maths test.",
+  "chatTurns": 13,
+  "skeleton_sha256": "9a3a909dbea81df586e71de0d8e5348e97d88cc6a6015a4e10e8112ce35e7d34",
+  "rules": [
+    {
+      "rule": 1,
+      "form": "will + v(basic)"
+    },
+    {
+      "rule": 2,
+      "form": "would + v(basic)"
+    },
+    {
+      "rule": 3,
+      "form": "v(basic) without the third person singular -s when -s is needed"
+    },
+    {
+      "rule": 4,
+      "form": "v(present simple)"
+    },
+    {
+      "rule": 5,
+      "form": "v(past simple)"
+    },
+    {
+      "rule": 6,
+      "form": "v(PP)"
+    },
+    {
+      "rule": 7,
+      "form": "v-ing without the verb to be"
+    },
+    {
+      "rule": 8,
+      "form": "will + v-ing"
+    },
+    {
+      "rule": 9,
+      "form": "would + v-ing"
+    },
+    {
+      "rule": 10,
+      "form": "will + v(past simple)"
+    },
+    {
+      "rule": 11,
+      "form": "would + v(past simple)"
+    },
+    {
+      "rule": 12,
+      "form": "Use do/does/did not instead of am/is/are/was/were not, or vice versa"
+    },
+    {
+      "rule": 13,
+      "form": "For a main-verb negative, use am/is/are/was/were + not instead of do/does/did not"
+    }
+  ],
+  "blanks": [
+    {
+      "answer": "lowers",
+      "prompt": "(lower)",
+      "distractors": [
+        "lower",
+        "lowering",
+        "will lowered"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'lowers'. This Type 0 sentence describes what always happens, and the singular subject 'the Observatory' takes an -s verb.",
+      "ruletags": [
+        [
+          3
+        ],
+        [
+          7
+        ],
+        [
+          10
+        ]
+      ]
+    },
+    {
+      "answer": "will have",
+      "prompt": "(have)",
+      "distractors": [
+        "having",
+        "will having",
+        "would had"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'will have' for the possible result tomorrow. This is Type 1: if + present simple, then will + base verb.",
+      "ruletags": [
+        [
+          7
+        ],
+        [
+          8
+        ],
+        [
+          11
+        ]
+      ]
+    },
+    {
+      "answer": "will you do",
+      "prompt": "(you / do)",
+      "distractors": [
+        "will you doing",
+        "would you doing",
+        "will you did"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'will you do' to ask about a real possibility tomorrow (Type 1). Put 'will' before 'you' and use the base verb 'do'.",
+      "ruletags": [
+        [
+          8
+        ],
+        [
+          9
+        ],
+        [
+          10
+        ]
+      ]
+    },
+    {
+      "answer": "go",
+      "prompt": "(go)",
+      "distractors": [
+        "gone",
+        "will going",
+        "would went"
+      ],
+      "alternatives": [],
+      "explanation": "Use ‘go’. Mum is stating a general truth: in this Type 0 conditional, both clauses use the present simple.",
+      "ruletags": [
+        [
+          6
+        ],
+        [
+          8
+        ],
+        [
+          11
+        ]
+      ]
+    },
+    {
+      "answer": "are",
+      "prompt": "(be)",
+      "distractors": [
+        "been",
+        "will being",
+        "would were"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'are' for Jason’s usual pattern: Type 0 uses the present simple in the if-clause. 'Supermarkets' is plural, so use 'are'.",
+      "ruletags": [
+        [
+          6
+        ],
+        [
+          8
+        ],
+        [
+          11
+        ]
+      ]
+    },
+    {
+      "answer": "do not finish",
+      "prompt": "(not finish)",
+      "distractors": [
+        "not finished",
+        "not finishing",
+        "am not finish"
+      ],
+      "alternatives": [
+        "don't finish"
+      ],
+      "explanation": "Use 'do not finish'. This is a real possibility for tonight, so use the present simple negative in the if-clause: I do not + finish.",
+      "ruletags": [
+        [
+          6
+        ],
+        [
+          7
+        ],
+        [
+          12,
+          13
+        ]
+      ]
+    },
+    {
+      "answer": "start",
+      "prompt": "(start)",
+      "distractors": [
+        "starting",
+        "will starting",
+        "would started"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'start' in the if-clause for this real possibility. The result is 'you'll be done before dinner', so this is a Type 1 conditional.",
+      "ruletags": [
+        [
+          7
+        ],
+        [
+          8
+        ],
+        [
+          11
+        ]
+      ]
+    },
+    {
+      "answer": "were",
+      "prompt": "(be)",
+      "distractors": [
+        "been",
+        "being",
+        "will being"
+      ],
+      "alternatives": [
+        "was"
+      ],
+      "explanation": "Use ‘were’ because Kelly is imagining herself as the Chief Executive. This Type 2 sentence uses ‘if I were’ with ‘I would give’ for the imagined result.",
+      "ruletags": [
+        [
+          6
+        ],
+        [
+          7
+        ],
+        [
+          8
+        ]
+      ]
+    },
+    {
+      "answer": "would want",
+      "prompt": "(want)",
+      "distractors": [
+        "want",
+        "will wanting",
+        "would wanted"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'would want'. Jason is imagining the result of Kelly's made-up plan, so Type 2 uses would + the base verb.",
+      "ruletags": [
+        [
+          3
+        ],
+        [
+          8
+        ],
+        [
+          11
+        ]
+      ]
+    },
+    {
+      "answer": "would feel",
+      "prompt": "(feel)",
+      "distractors": [
+        "feeling",
+        "will feeling",
+        "would felt"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'would feel'. Her cousin imagines having typhoon days, so this Type 2 sentence uses 'would + base verb' for the result, even before the if-clause.",
+      "ruletags": [
+        [
+          7
+        ],
+        [
+          8
+        ],
+        [
+          11
+        ]
+      ]
+    },
+    {
+      "answer": "gets",
+      "prompt": "(get)",
+      "distractors": [
+        "get",
+        "getting",
+        "will got"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'gets': 'It happens every single time' shows a repeated result, so Type 0 fits here. 'Rainwater' is singular, so add -s to 'get'.",
+      "ruletags": [
+        [
+          3
+        ],
+        [
+          7
+        ],
+        [
+          10
+        ]
+      ]
+    },
+    {
+      "answer": "does not raise",
+      "prompt": "(not raise)",
+      "distractors": [
+        "is not raise",
+        "will not raising",
+        "would not raised"
+      ],
+      "alternatives": [
+        "doesn't raise"
+      ],
+      "explanation": "Use 'does not raise'. In this Type 1 sentence about tomorrow, the if-clause uses the present simple, and 'the Observatory' takes 'does'.",
+      "ruletags": [
+        [
+          12,
+          13
+        ],
+        [
+          8
+        ],
+        [
+          11
+        ]
+      ]
+    }
+  ]
+}

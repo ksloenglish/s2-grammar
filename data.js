@@ -811,6 +811,199 @@ const GRAMMAR_DATA = {
           ]
         }
       ]
+    },
+    "conditionals": {
+      "label": "Conditional Sentences (Types 0, 1 and 2)",
+      "icon": "🔀",
+      "iconClass": "c-blue",
+      "desc": "general truths, real possibilities and imaginary situations",
+      "type": "passage",
+      "blankType": "select",
+      "instructions": "Complete the following WhatsApp conversation with the correct forms of the verbs in brackets. The first one has been done as an example. (12 marks)",
+      "exercises": [
+        {
+          "id": "conditionals-p-001",
+          "title": "Exercise 1: Typhoon Day WhatsApp Chat",
+          "instructions": "Complete the following WhatsApp conversation with the correct forms of the verbs in brackets. The first one has been done as an example. (12 marks)",
+          "segments": [
+            "Kelly: Jason, have you seen the news? A typhoon is heading our way! If the Observatory e.g. hoists (hoist) Signal No. 8 tomorrow morning, we won't have the Maths test.\n\nJason: Don't get too excited yet. Typhoons are hard to predict. If a typhoon moves away from Hong Kong, the Observatory ",
+            {
+              "prompt": "(lower)",
+              "answer": "lowers",
+              "distractors": [
+                "lower",
+                "lowering",
+                "will lowered"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+                "showPrompt": true,
+              "explanation": "Use 'lowers'. This Type 0 sentence describes what always happens, and the singular subject 'the Observatory' takes an -s verb."
+            },
+            " the signal. That's how it always works.\n\nKelly: I know, but I really hope it stays! If we don't have the test tomorrow, I ",
+            {
+              "prompt": "(have)",
+              "answer": "will have",
+              "distractors": [
+                "having",
+                "will having",
+                "would had"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+                "showPrompt": true,
+              "explanation": "Use 'will have' for the possible result tomorrow. This is Type 1: if + present simple, then will + base verb."
+            },
+            " one more day to revise.\n\nJason: Same here. So what ",
+            {
+              "prompt": "(you / do)",
+              "answer": "will you do",
+              "distractors": [
+                "will you doing",
+                "would you doing",
+                "will you did"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+                "showPrompt": true,
+              "explanation": "Use 'will you do' to ask about a real possibility tomorrow (Type 1). Put 'will' before 'you' and use the base verb 'do'."
+            },
+            " if school is closed?\n\nKelly: Stay at home, of course! My mum always says that if people ",
+            {
+              "prompt": "(go)",
+              "answer": "go",
+              "distractors": [
+                "gone",
+                "will going",
+                "would went"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+                "showPrompt": true,
+              "explanation": "Use ‘go’. Mum is stating a general truth: in this Type 0 conditional, both clauses use the present simple."
+            },
+            " out during a No. 8 signal, they put themselves in danger. That's just common sense.\n\nJason: She's right. My family always stocks up on food before a typhoon. If the supermarkets ",
+            {
+              "prompt": "(be)",
+              "answer": "are",
+              "distractors": [
+                "been",
+                "will being",
+                "would were"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+                "showPrompt": true,
+              "explanation": "Use 'are' for Jason’s usual pattern: Type 0 uses the present simple in the if-clause. 'Supermarkets' is plural, so use 'are'."
+            },
+            " crowded the night before, it usually means a big storm is coming!\n\nKelly: Haha, that's so true! Oh no, I just remembered something. If I ",
+            {
+              "prompt": "(not finish)",
+              "answer": "do not finish",
+              "distractors": [
+                "not finished",
+                "not finishing",
+                "am not finish"
+              ],
+              "alternatives": [
+                "don't finish"
+              ],
+              "displayAlternatives": [],
+                "showPrompt": true,
+              "explanation": "Use 'do not finish'. This is a real possibility for tonight, so use the present simple negative in the if-clause: I do not + finish."
+            },
+            " my Chinese homework tonight, my mum won't let me play video games tomorrow.\n\nJason: Then stop texting me! If you ",
+            {
+              "prompt": "(start)",
+              "answer": "start",
+              "distractors": [
+                "starting",
+                "will starting",
+                "would started"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+                "showPrompt": true,
+              "explanation": "Use 'start' in the if-clause for this real possibility. The result is 'you'll be done before dinner', so this is a Type 1 conditional."
+            },
+            " now, you'll be done before dinner.\n\nKelly: OK, OK. But honestly, if I ",
+            {
+              "prompt": "(be)",
+              "answer": "were",
+              "distractors": [
+                "been",
+                "being",
+                "will being"
+              ],
+              "alternatives": [
+                "was"
+              ],
+              "displayAlternatives": [],
+                "showPrompt": true,
+              "explanation": "Use ‘were’ because Kelly is imagining herself as the Chief Executive. This Type 2 sentence uses ‘if I were’ with ‘I would give’ for the imagined result."
+            },
+            " the Chief Executive, I would give every student a \"typhoon day\" once a month!\n\nJason: LOL! If that happened, nobody ",
+            {
+              "prompt": "(want)",
+              "answer": "would want",
+              "distractors": [
+                "want",
+                "will wanting",
+                "would wanted"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+                "showPrompt": true,
+              "explanation": "Use 'would want'. Jason is imagining the result of Kelly's made-up plan, so Type 2 uses would + the base verb."
+            },
+            " to go back to school.\n\nKelly: True. My cousin in London never gets typhoon days. She says she ",
+            {
+              "prompt": "(feel)",
+              "answer": "would feel",
+              "distractors": [
+                "feeling",
+                "will feeling",
+                "would felt"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+                "showPrompt": true,
+              "explanation": "Use 'would feel'. Her cousin imagines having typhoon days, so this Type 2 sentence uses 'would + base verb' for the result, even before the if-clause."
+            },
+            " so lucky if she had them like us.\n\nJason: Lucky? Not for families whose homes get flooded! If you don't lock your windows properly during a typhoon, rainwater ",
+            {
+              "prompt": "(get)",
+              "answer": "gets",
+              "distractors": [
+                "get",
+                "getting",
+                "will got"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+                "showPrompt": true,
+              "explanation": "Use 'gets': 'It happens every single time' shows a repeated result, so Type 0 fits here. 'Rainwater' is singular, so add -s to 'get'."
+            },
+            " inside. It happens every single time.\n\nKelly: Good point. I'll check my windows now. And if the Observatory ",
+            {
+              "prompt": "(not raise)",
+              "answer": "does not raise",
+              "distractors": [
+                "is not raise",
+                "will not raising",
+                "would not raised"
+              ],
+              "alternatives": [
+                "doesn't raise"
+              ],
+              "displayAlternatives": [],
+                "showPrompt": true,
+              "explanation": "Use 'does not raise'. In this Type 1 sentence about tomorrow, the if-clause uses the present simple, and 'the Observatory' takes 'does'."
+            },
+            " Signal No. 8 by tomorrow morning, I'll see you at school, with my calculator!"
+          ]
+        }
+      ]
     }
   },
   "Second Term": {

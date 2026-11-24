@@ -1055,6 +1055,16 @@ body {
   background: #EDE9FE;
 }
 
+.speaker-kelly {
+  color: #9D174D;
+  background: #FCE7F3;
+}
+
+.speaker-jason {
+  color: #1D4ED8;
+  background: #DBEAFE;
+}
+
 .report-meta {
   display: grid;
   gap: 5px;
@@ -1305,6 +1315,11 @@ body {
   #screen-passage[data-topic="present-perfect"] .passage-card { width: 100%; min-width: 0; }
   #screen-passage[data-topic="present-perfect"] .blank-wrap { max-width: 100%; flex-wrap: wrap; white-space: normal; }
   #screen-passage[data-topic="present-perfect"] .blank-select { max-width: 100%; }
+
+  /* Conditional questions/negatives can also need the verb cue on a new line. */
+  #screen-passage[data-topic="conditionals"] .passage-card { width: 100%; min-width: 0; }
+  #screen-passage[data-topic="conditionals"] .blank-wrap { max-width: 100%; flex-wrap: wrap; white-space: normal; }
+  #screen-passage[data-topic="conditionals"] .blank-select { max-width: 100%; }
 }
 
 /* ============================================================

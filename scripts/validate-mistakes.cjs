@@ -130,16 +130,18 @@ test('Permanent literal IDs are globally unique and existing keys/accepted forms
           assert.match(item.id, /^[a-zA-Z0-9][a-zA-Z0-9._-]{0,99}$/);
           assert.equal(ids.has(item.id), false, 'Duplicate ID: ' + item.id);
           ids.add(item.id);
-          const prior = baseline[term][topicKey][collection][index];
-          if (Object.hasOwn(prior, 'id')) assert.equal(item.id, prior.id, 'Existing permanent ID changed');
-          for (const field of ['answer', 'pronoun', 'correctGap', 'frameCorrect', 'clauseCorrect', 'timeCorrect']) {
-            if (Object.hasOwn(prior, field)) assert.deepEqual(item[field], prior[field], 'Existing teacher key changed: ' + item.id + '/' + field);
+          const prior = (baseline[term]?.[topicKey]?.[collection] || []).find(old => old.id === item.id);
+          if (prior) {
+            assert.equal(item.id, prior.id, 'Existing permanent ID changed');
+            for (const field of ['answer', 'pronoun', 'correctGap', 'frameCorrect', 'clauseCorrect', 'timeCorrect']) {
+              if (Object.hasOwn(prior, field)) assert.deepEqual(item[field], prior[field], 'Existing teacher key changed: ' + item.id + '/' + field);
+            }
+            if (prior.segments) prior.segments.forEach((blank, i) => {
+              if (typeof blank !== 'object') return;
+              assert.equal(item.segments[i].answer, blank.answer, 'Passage key changed');
+              assert.deepEqual(item.segments[i].alternatives || [], blank.alternatives || [], 'Accepted variant changed');
+            });
           }
-          if (prior.segments) prior.segments.forEach((blank, i) => {
-            if (typeof blank !== 'object') return;
-            assert.equal(item.segments[i].answer, blank.answer, 'Passage key changed');
-            assert.deepEqual(item.segments[i].alternatives || [], blank.alternatives || [], 'Accepted variant changed');
-          });
           const escaped = item.id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
           assert.match(source, new RegExp('(?:\\bid|"id")\\s*:\\s*"' + escaped + '"'), 'ID must be a literal');
         });
@@ -147,6 +149,11 @@ test('Permanent literal IDs are globally unique and existing keys/accepted forms
         if (collection === 'exercises') passages += items.length;
         else questions += items.length;
       }
+    }
+  }
+  for (const topics of Object.values(baseline)) for (const topic of Object.values(topics)) {
+    for (const prior of topic.exercises || topic.questions || []) {
+      if (Object.hasOwn(prior, 'id')) assert.ok(ids.has(prior.id), 'Existing permanent ID removed: ' + prior.id);
     }
   }
   const literals = source.match(/(?:\bid|"id")\s*:\s*"[a-zA-Z0-9][a-zA-Z0-9._-]*"/g) || [];
@@ -532,7 +539,8 @@ test('Audited content release prunes only edited saved items and retains all unc
       if (JSON.stringify(current) === JSON.stringify(item)) expected.push(item.id);
     }
   }
-  assert.equal(old.list().length, inventory.total, 'Every pre-release item was seeded once');
+  const previousCount = Object.values(before).flatMap(topics => Object.values(topics)).reduce((sum, topic) => sum + (topic.exercises || topic.questions || []).length, 0);
+  assert.equal(old.list().length, previousCount, 'Every pre-release item was seeded once');
   const next = restore(production, snapshot(old));
   assert.deepEqual(keys(next.list()).sort(), expected.sort(), 'Unchanged saved work survives; edited work is individually pruned');
   for (const record of old.list()) assert.equal(Boolean(next.api.resolve(record)), expected.includes(record.id), 'Revision lookup safety: ' + record.id);
@@ -551,10 +559,34 @@ test('Approved Perfect release prunes precisely five passages and retains other 
     }
   }
   assert.deepEqual(changed.sort(), [1, 2, 3, 4, 5].map(n => 'present-perfect-p-00' + n));
-  assert.equal(old.list().length, inventory.total);
+  assert.equal(old.list().length, changed.length + unchanged.length);
   const next = restore(production, snapshot(old));
   assert.deepEqual(keys(next.list()).sort(), unchanged.sort());
-  assert.equal(next.list().length, inventory.total - 5);
+  assert.equal(next.list().length, unchanged.length);
+});
+
+test('Adding Conditional Sentences preserves all previous saved references and records one whole new passage', () => {
+  const before = load(execFileSync('git', ['show', '5064ffcd7c7a5c560d3be7b8fb6d2911e0cb3ab1:data.js'], { cwd: root, encoding: 'utf8' }));
+  const old = harness(before);
+  for (const [term, topics] of Object.entries(before)) for (const [topicKey, topic] of Object.entries(topics)) {
+    assert.deepEqual(production[term][topicKey], topic, 'Conditional addition must not revise existing topic: ' + topicKey);
+    for (const item of topic.exercises || topic.questions || []) {
+      const max = topic.type === 'passage' ? item.segments.filter(b => typeof b === 'object').length : topic.type === 'builder' ? 3 : item.timeCorrect?.length ? 3 : 2;
+      old.api.record(term, topicKey, item, 0, max);
+    }
+  }
+  const next = restore(production, snapshot(old));
+  assert.deepEqual(next.list(), old.list(), 'Every prior reference and revision survives the additive topic');
+  const topic = production['First Term'].conditionals;
+  const item = topic.exercises[0];
+  assert.equal(item.id, 'conditionals-p-001');
+  next.api.record('First Term', 'conditionals', item, 11, 12);
+  assert.equal(next.list().length, old.list().length + 1);
+  const saved = next.list().find(record => record.id === item.id);
+  assert.equal(saved.type, 'passage'); assert.equal(saved.earned, 11); assert.equal(saved.max, 12);
+  assert.equal(next.api.resolve(saved).item.id, item.id);
+  next.api.record('First Term', 'conditionals', item, 12, 12);
+  assert.deepEqual(next.list(), old.list(), 'Full marks remove only the new passage');
 });
 
 let passed = 0;
