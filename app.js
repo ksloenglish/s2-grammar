@@ -804,6 +804,9 @@
     const count = uniqueQuestions(lastIncorrectQuestions).length;
     btnRetryIncorrect.classList.toggle('hidden', passage || count === 0);
     btnRetryIncorrect.textContent = `Retry incorrect questions (${count})`;
+    $('btn-retry-same-bottom').textContent = btnRetrySame.textContent;
+    $('btn-retry-incorrect-bottom').textContent = btnRetryIncorrect.textContent;
+    $('btn-retry-incorrect-bottom').classList.toggle('hidden', passage || count === 0);
   }
 
   function uniqueQuestions(questions) {
@@ -1988,6 +1991,11 @@
     btnAgain.addEventListener('click', playAgain);
     btnRetrySame.addEventListener('click', retrySameExercise);
     btnRetryIncorrect.addEventListener('click', retryIncorrectQuestions);
+    $('btn-retry-same-bottom').addEventListener('click', retrySameExercise);
+    $('btn-retry-incorrect-bottom').addEventListener('click', retryIncorrectQuestions);
+    $('btn-again-bottom').addEventListener('click', () => {
+      if (screenResults.classList.contains('active')) playAgain();
+    });
     btnClearMistakes.addEventListener('click', () => {
       if (mistakeStore && mistakeStore.list().length && window.confirm('Clear all saved mistakes in this browser? This cannot be undone.')) {
         mistakeStore.clear();

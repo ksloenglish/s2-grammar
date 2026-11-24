@@ -1783,3 +1783,5 @@ body {
   .mistake-start { width: 100%; white-space: normal; }
   #btn-retry-incorrect { white-space: normal; }
 }
+
+.results-actions-bottom { margin-top: 24px; margin-bottom: 0; }

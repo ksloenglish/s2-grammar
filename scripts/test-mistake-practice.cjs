@@ -18,7 +18,7 @@ const vm = require('node:vm');
 const repo = path.resolve(process.argv[2] || path.join(__dirname, '..'));
 const output = path.resolve(process.argv[3] || '/tmp/s2-grammar-mistake-practice-results.json');
 const STORE_KEY = 'kslo_s2_grammar_mistakes_v1';
-const files = ['index.html', 'data.js', 'mistakes.js', 'app.js', 'style.css', 'plan.md'];
+const files = ['index.html', 'data.js', 'mistakes.js', 'app.js', 'style.css'];
 const report = {
   started: new Date().toISOString(), repo, checks: 0, suites: [], failures: [],
   hashes: {}, snapshots: [], sessions: [], coverage: {
@@ -226,6 +226,12 @@ function result(c, earned, max, count, type) {
   if (type !== 'passage') eq(c.d.querySelectorAll('#review-list .review-item').length, count, 'Only active question set in review');
   ok(!c.el('#btn-retry-same').disabled && !c.el('#btn-retry-same').classList.contains('hidden'), 'Same-set retry retained');
   ok(/Back to Home/i.test(c.el('#btn-again').textContent), 'Distinct Home action retained');
+  const bottom = c.el('.results-actions-bottom');
+  ok(c.el('#review-panel').compareDocumentPosition(bottom) & c.w.Node.DOCUMENT_POSITION_FOLLOWING, 'Lower actions appear after answer review');
+  eq(c.el('#btn-retry-same-bottom').textContent, c.el('#btn-retry-same').textContent, 'Both same-retry labels match topic type');
+  eq(c.el('#btn-retry-incorrect-bottom').textContent, c.el('#btn-retry-incorrect').textContent, 'Both incorrect-retry labels match');
+  eq(c.el('#btn-retry-incorrect-bottom').classList.contains('hidden'), c.el('#btn-retry-incorrect').classList.contains('hidden'), 'Both incorrect-retry visibility states match');
+  ok(/Back to Home/i.test(c.el('#btn-again-bottom').textContent), 'Home available after review');
   report.sessions.push({ type, earned, max, count });
 }
 function displayed(c, topic) {
@@ -321,10 +327,10 @@ function passageSuite(term, key, exerciseIndex) {
   eq(attempt.item.id, inventory[term][key].exercises[exerciseIndex].id, 'Normal UI drew intended real exercise');
   let expected = [ref(term, key, attempt.item, attempt.earned, attempt.max)];
   assertRecords(c, expected); c.snapshot(`${key}/${attempt.item.id}: normal partial`);
-  c.click('#btn-retry-same'); c.fresh('passage'); eq(passageState(c), initial, 'Same passage/options retained');
+  c.click('#btn-retry-same-bottom'); c.fresh('passage'); eq(passageState(c), initial, 'Same passage/options retained through lower retry');
   const repeated = passageFinish(c, topic, 'wrong'); expected = [ref(term, key, repeated.item, repeated.earned, repeated.max)];
   assertRecords(c, expected, 'Whole exercise deduped on repeated errors; latest marks update');
-  c.home();
+  c.home('#btn-again-bottom');
   c.select('Second Term', 'relative-clauses', 20); const originalHome = c.selection();
   const untouched = c.records(); c.saved(term, key, attempt.item.id); c.fresh('passage');
   eq(passageState(c), initial, 'Home saved start retains exact whole passage and approved choices');
@@ -367,7 +373,7 @@ function questionSuite(term, key, seed) {
   c.clock.tick(100); c.store.record('Second Term', otherKey, other, 0, qmax(otherTopic, other)); expected.push(ref('Second Term', otherKey, other, 0, qmax(otherTopic, other)));
   const wrongIds = rows.filter(r => r.earned < r.max).map(r => r.q.id);
   c.snapshot(`${key}: normal results with unrelated saved work`);
-  c.click('#btn-retry-incorrect'); c.fresh(topic.type, wrongIds.length);
+  c.click('#btn-retry-incorrect-bottom'); c.fresh(topic.type, wrongIds.length);
   const subset = runSet(c, topic, i => i === 0 ? 'correct' : 'frame', wrongIds);
   expected = expected.filter(r => r.id !== wrongIds[0]).map(r => {
     const outcome = subset.find(s => s.q.id === r.id); return outcome ? ref(term, key, outcome.q, outcome.earned, outcome.max) : r;
