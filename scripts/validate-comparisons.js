@@ -28,7 +28,7 @@ for (const exercise of exercises) {
   exercise.segments.forEach((segment, index, segments) => {
     if (typeof segment !== 'object') return;
     blankCount += 1;
-    const choices = [segment.answer, ...(segment.alternatives || []), ...segment.distractors];
+    const choices = [segment.answer, ...(segment.displayAlternatives ?? segment.alternatives ?? []), ...segment.distractors];
     const before = typeof segments[index - 1] === 'string' ? segments[index - 1] : '';
     const after = typeof segments[index + 1] === 'string' ? segments[index + 1] : '';
     const issues = [];

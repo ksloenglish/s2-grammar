@@ -1,0 +1,2375 @@
+{
+  "version": 1,
+  "description": "Exact independently screened safe repair fields; does not claim unresolved items are unique.",
+  "baselineSHA256": "734341648d5ca35aaadc83669b5d04f68dd010880989cbf4cff65f301e798dc9",
+  "fields": [
+    {
+      "id": "comparatives-superlatives-p-001",
+      "field": "segments.21.distractors",
+      "expected": [
+        "well as",
+        "more better",
+        "well than"
+      ],
+      "source": "comparatives-superlatives-p-001-R5.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-001",
+      "field": "segments.9.distractors",
+      "expected": [
+        "the less better",
+        "the more better",
+        "the best than"
+      ],
+      "source": "comparatives-superlatives-p-001-R1.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-001",
+      "field": "segments.11.distractors",
+      "expected": [
+        "more busier",
+        "busy than",
+        "busily"
+      ],
+      "source": "comparatives-superlatives-p-001-R2.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-001",
+      "field": "segments.15.distractors",
+      "expected": [
+        "the more fewer",
+        "the less fewer",
+        "the fewest than"
+      ],
+      "source": "comparatives-superlatives-p-001-R3.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-001",
+      "field": "segments.17.distractors",
+      "expected": [
+        "fastest",
+        "the more faster",
+        "the fastest than"
+      ],
+      "source": "comparatives-superlatives-p-001-R4.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-002",
+      "field": "segments.19.distractors",
+      "expected": [
+        "The more sadder",
+        "The saddest than",
+        "Saddest"
+      ],
+      "source": "comparatives-superlatives-p-002-R4.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-002",
+      "field": "segments.5.distractors",
+      "expected": [
+        "more farther",
+        "farther than",
+        "far"
+      ],
+      "source": "comparatives-superlatives-p-002-R1.2"
+    },
+    {
+      "id": "comparatives-superlatives-p-002",
+      "field": "segments.5.explanation",
+      "expected": "Use 'farther'. 'A lot' strengthens the comparison of the new and old distances to school.",
+      "source": "comparatives-superlatives-p-002-R1.3"
+    },
+    {
+      "id": "comparatives-superlatives-p-002",
+      "field": "segments.5.displayAlternatives",
+      "expected": [],
+      "source": "comparatives-superlatives-p-002-R1.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-002",
+      "field": "segments.9.distractors",
+      "expected": [
+        "worst",
+        "the more worse",
+        "the worst than"
+      ],
+      "source": "comparatives-superlatives-p-002-R2.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-002",
+      "field": "segments.11.distractors",
+      "expected": [
+        "confidently than",
+        "more confidently",
+        "the most confidently"
+      ],
+      "source": "comparatives-superlatives-p-002-R3.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-003",
+      "field": "segments.13.distractors",
+      "expected": [
+        "as experienced",
+        "more experienced",
+        "most experienced than"
+      ],
+      "source": "comparatives-superlatives-p-003-R1.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-004",
+      "field": "segments.23.distractors",
+      "expected": [
+        "more longer",
+        "longer than",
+        "less longer"
+      ],
+      "source": "comparatives-superlatives-p-004-R4.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-004",
+      "field": "segments.3.distractors",
+      "expected": [
+        "more usefully",
+        "the most usefully",
+        "the most useful than"
+      ],
+      "source": "comparatives-superlatives-p-004-R1.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-004",
+      "field": "segments.15.distractors",
+      "expected": [
+        "more slowly than",
+        "the slow",
+        "more slower"
+      ],
+      "source": "comparatives-superlatives-p-004-R2.2"
+    },
+    {
+      "id": "comparatives-superlatives-p-004",
+      "field": "segments.15.explanation",
+      "expected": "Use 'the most slowly'. 'Of all the beginners' compares Chloe with the whole group, so use a superlative adverb to describe how she would learn.",
+      "source": "comparatives-superlatives-p-004-R2.3"
+    },
+    {
+      "id": "comparatives-superlatives-p-004",
+      "field": "segments.15.displayAlternatives",
+      "expected": [],
+      "source": "comparatives-superlatives-p-004-R2.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-004",
+      "field": "segments.17.distractors",
+      "expected": [
+        "patient than",
+        "the most patient",
+        "as patiently as"
+      ],
+      "source": "comparatives-superlatives-p-004-R3.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-005",
+      "field": "segments.1.distractors",
+      "expected": [
+        "the most popularly",
+        "more more popular",
+        "the most popular than"
+      ],
+      "source": "comparatives-superlatives-p-005-R1.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-005",
+      "field": "segments.1.explanation",
+      "expected": "Use 'the most popular'. It shows that Golden Wok's food was more popular than the food from both other companies.",
+      "source": "comparatives-superlatives-p-005-R1.2"
+    },
+    {
+      "id": "comparatives-superlatives-p-005",
+      "field": "segments.19.distractors",
+      "expected": [
+        "reliable",
+        "more more reliably",
+        "more reliably than"
+      ],
+      "source": "comparatives-superlatives-p-005-R2.1"
+    },
+    {
+      "id": "comparatives-superlatives-p-005",
+      "field": "segments.19.explanation",
+      "expected": "Use 'the most reliably'. This superlative adverb shows that Golden Wok's delivery was more reliable than either of the other companies' delivery.",
+      "source": "comparatives-superlatives-p-005-R2.2"
+    },
+    {
+      "id": "comparatives-superlatives-p-005",
+      "field": "segments.21.distractors",
+      "expected": [
+        "more oftener",
+        "more more often",
+        "more often than"
+      ],
+      "source": "comparatives-superlatives-p-005-R3.1"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.1.distractors",
+      "expected": [
+        "has",
+        "am having",
+        "was have"
+      ],
+      "source": "present-past-p-001-R1.1"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.1.explanation",
+      "expected": "Use 'had' for possession at the earlier train journey. Tapping the card shows that Kelvin had it then.",
+      "source": "present-past-p-001-R1.2"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.19.distractors",
+      "expected": [
+        "am search",
+        "are searching",
+        "is searching"
+      ],
+      "source": "present-past-p-001-R7.3"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.19.explanation",
+      "expected": "Use 'am searching' for the search in progress now. With 'I', the present continuous is am + the -ing form.",
+      "source": "present-past-p-001-R7.4"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.19.displayAlternatives",
+      "expected": [],
+      "source": "present-past-p-001-R7.1"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.21.distractors",
+      "expected": [
+        "were keep",
+        "did kept",
+        "keeping"
+      ],
+      "source": "present-past-p-001-R8.1"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.21.explanation",
+      "expected": "Use 'keep' to state the MTR staff's usual practice in the present simple.",
+      "source": "present-past-p-001-R8.2"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.23.distractors",
+      "expected": [
+        "is ring",
+        "are ringing",
+        "ringing"
+      ],
+      "source": "present-past-p-001-R9.3"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.23.explanation",
+      "expected": "Use 'is ringing' for the sound happening now. The singular noun 'bell' takes is + the -ing form.",
+      "source": "present-past-p-001-R9.4"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.23.displayAlternatives",
+      "expected": [],
+      "source": "present-past-p-001-R9.1"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.5.explanation",
+      "expected": "Use 'Did you use' to ask about an earlier action at recess. Use did + the base verb use.",
+      "source": "present-past-p-001-R2.1"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.7.distractors",
+      "expected": [
+        "does not buy",
+        "did not bought",
+        "was not buy"
+      ],
+      "source": "present-past-p-001-R3.3"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.7.explanation",
+      "expected": "Use 'didn't buy' for the earlier action. Didn't means did not and is followed by the base verb buy.",
+      "source": "present-past-p-001-R3.4"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.7.displayAlternatives",
+      "expected": [],
+      "source": "present-past-p-001-R3.1"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.9.distractors",
+      "expected": [
+        "pack",
+        "was pack",
+        "is pack"
+      ],
+      "source": "present-past-p-001-R4.1"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.9.explanation",
+      "expected": "Use 'packs' to describe Mum's regular habit. With 'my mum', add -s to the verb in the present simple.",
+      "source": "present-past-p-001-R4.2"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.11.distractors",
+      "expected": [
+        "was you doing",
+        "were you do",
+        "did you doing"
+      ],
+      "source": "present-past-p-001-R5.1"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.15.distractors",
+      "expected": [
+        "does not notice",
+        "did not noticed",
+        "was not notice"
+      ],
+      "source": "present-past-p-001-R6.3"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.15.explanation",
+      "expected": "Use 'didn't notice' for the earlier train journey. Didn't means did not and is followed by the base verb notice.",
+      "source": "present-past-p-001-R6.4"
+    },
+    {
+      "id": "present-past-p-001",
+      "field": "segments.15.displayAlternatives",
+      "expected": [],
+      "source": "present-past-p-001-R6.1"
+    },
+    {
+      "id": "present-past-p-002",
+      "field": "segments.19.distractors",
+      "expected": [
+        "are watching",
+        "is watch",
+        "does watching"
+      ],
+      "source": "present-past-p-002-R4.2"
+    },
+    {
+      "id": "present-past-p-002",
+      "field": "segments.19.explanation",
+      "expected": "Use 'is watching'. Now shows that Dad's action is happening at this moment.",
+      "source": "present-past-p-002-R4.3"
+    },
+    {
+      "id": "present-past-p-002",
+      "field": "segments.19.displayAlternatives",
+      "expected": [],
+      "source": "present-past-p-002-R4.1"
+    },
+    {
+      "id": "present-past-p-002",
+      "field": "segments.21.distractors",
+      "expected": [
+        "are drawing",
+        "is draw",
+        "does drawing"
+      ],
+      "source": "present-past-p-002-R5.2"
+    },
+    {
+      "id": "present-past-p-002",
+      "field": "segments.21.explanation",
+      "expected": "Use 'is drawing'. Kitty's sister is drawing at the moment, so use the present continuous.",
+      "source": "present-past-p-002-R5.3"
+    },
+    {
+      "id": "present-past-p-002",
+      "field": "segments.21.displayAlternatives",
+      "expected": [],
+      "source": "present-past-p-002-R5.1"
+    },
+    {
+      "id": "present-past-p-002",
+      "field": "segments.5.distractors",
+      "expected": [
+        "does not believe",
+        "did not believed",
+        "was not believe"
+      ],
+      "source": "present-past-p-002-R1.2"
+    },
+    {
+      "id": "present-past-p-002",
+      "field": "segments.5.explanation",
+      "expected": "Use 'didn't believe'. This describes Kitty's reaction in the past; after didn't, use the base verb believe.",
+      "source": "present-past-p-002-R1.3"
+    },
+    {
+      "id": "present-past-p-002",
+      "field": "segments.5.displayAlternatives",
+      "expected": [],
+      "source": "present-past-p-002-R1.1"
+    },
+    {
+      "id": "present-past-p-002",
+      "field": "segments.9.distractors",
+      "expected": [
+        "did stayed",
+        "is stay",
+        "does stays"
+      ],
+      "source": "present-past-p-002-R2.1"
+    },
+    {
+      "id": "present-past-p-002",
+      "field": "segments.9.explanation",
+      "expected": "Use 'stay'. The present simple describes the family's usual habit during typhoons; 'family' can take plural agreement in British English.",
+      "source": "present-past-p-002-R2.2"
+    },
+    {
+      "id": "present-past-p-002",
+      "field": "segments.11.distractors",
+      "expected": [
+        "are not",
+        "does not be",
+        "were not"
+      ],
+      "source": "present-past-p-002-R3.2"
+    },
+    {
+      "id": "present-past-p-002",
+      "field": "segments.11.explanation",
+      "expected": "Use 'isn't'. Dad is giving a general safety rule; use is with the singular subject it.",
+      "source": "present-past-p-002-R3.3"
+    },
+    {
+      "id": "present-past-p-002",
+      "field": "segments.11.displayAlternatives",
+      "expected": [],
+      "source": "present-past-p-002-R3.1"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.1.distractors",
+      "expected": [
+        "does not reply",
+        "did not replied",
+        "did not replying"
+      ],
+      "source": "present-past-p-003-R1.2"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.1.explanation",
+      "expected": "Use 'didn't reply'. The reply was delayed, so use didn't + the base verb reply.",
+      "source": "present-past-p-003-R1.3"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.1.displayAlternatives",
+      "expected": [],
+      "source": "present-past-p-003-R1.1"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.19.distractors",
+      "expected": [
+        "were falling",
+        "falling",
+        "was fall"
+      ],
+      "source": "present-past-p-003-R6.1"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.19.explanation",
+      "expected": "Use 'fell' to describe the result of the incident. Fell is the past simple form of fall.",
+      "source": "present-past-p-003-R6.2"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.21.distractors",
+      "expected": [
+        "give",
+        "giving",
+        "did gave"
+      ],
+      "source": "present-past-p-003-R7.1"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.21.explanation",
+      "expected": "Use 'gave' to describe the completed action. Gave is the past simple form of give.",
+      "source": "present-past-p-003-R7.2"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.23.distractors",
+      "expected": [
+        "do not like",
+        "does not likes",
+        "does not liking"
+      ],
+      "source": "present-past-p-003-R8.2"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.23.explanation",
+      "expected": "Use 'doesn't like'. Grandma is one person, so use doesn't + the base verb like.",
+      "source": "present-past-p-003-R8.3"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.23.displayAlternatives",
+      "expected": [],
+      "source": "present-past-p-003-R8.1"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.5.distractors",
+      "expected": [
+        "is sitting",
+        "am sit",
+        "am sits"
+      ],
+      "source": "present-past-p-003-R2.2"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.5.explanation",
+      "expected": "Use 'am sitting'. 'Right now' shows that the action is happening at this moment.",
+      "source": "present-past-p-003-R2.3"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.5.displayAlternatives",
+      "expected": [],
+      "source": "present-past-p-003-R2.1"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.7.distractors",
+      "expected": [
+        "has",
+        "having",
+        "are have"
+      ],
+      "source": "present-past-p-003-R3.1"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.7.explanation",
+      "expected": "Use 'have' for the family's Sunday habit. With 'we', the simple present uses the base form have.",
+      "source": "present-past-p-003-R3.2"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.9.distractors",
+      "expected": [
+        "are pouring",
+        "is pour",
+        "is pours"
+      ],
+      "source": "present-past-p-003-R4.2"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.9.explanation",
+      "expected": "Use 'is pouring'. 'At the moment' shows an action happening now, and Grandpa takes is.",
+      "source": "present-past-p-003-R4.3"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.9.displayAlternatives",
+      "expected": [],
+      "source": "present-past-p-003-R4.1"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.17.distractors",
+      "expected": [
+        "bump",
+        "was bump",
+        "did bumped"
+      ],
+      "source": "present-past-p-003-R5.1"
+    },
+    {
+      "id": "present-past-p-003",
+      "field": "segments.17.explanation",
+      "expected": "Use 'bumped' to describe the completed bump. Bumped is the past simple form of bump.",
+      "source": "present-past-p-003-R5.2"
+    },
+    {
+      "id": "present-past-p-004",
+      "field": "segments.1.distractors",
+      "expected": [
+        "am type",
+        "typed",
+        "is typing"
+      ],
+      "source": "present-past-p-004-R1.1"
+    },
+    {
+      "id": "present-past-p-004",
+      "field": "segments.7.distractors",
+      "expected": [
+        "does coming",
+        "coming",
+        "does comes"
+      ],
+      "source": "present-past-p-004-R2.1"
+    },
+    {
+      "id": "present-past-p-004",
+      "field": "segments.7.explanation",
+      "expected": "Use 'comes'. 'Usually' describes a regular result, and 'comes' treats Blue House as one team.",
+      "source": "present-past-p-004-R3.1"
+    },
+    {
+      "id": "present-past-p-005",
+      "field": "segments.19.distractors",
+      "expected": [
+        "are cutting",
+        "is cuts",
+        "did cuts"
+      ],
+      "source": "present-past-p-005-R1.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-001",
+      "field": "segments.13.distractors",
+      "expected": [
+        "Reduce",
+        "To reducing",
+        "To reduced"
+      ],
+      "source": "gerunds-to-infinitives-p-001-R1.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-002",
+      "field": "segments.19.distractors",
+      "expected": [
+        "to entered",
+        "enter",
+        "to entering"
+      ],
+      "source": "gerunds-to-infinitives-p-002-R3.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-002",
+      "field": "segments.19.explanation",
+      "expected": "Use 'to enter'. 'Plan to + verb' describes what the team intends to do.",
+      "source": "gerunds-to-infinitives-p-002-R3.2"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-002",
+      "field": "segments.7.explanation",
+      "expected": "Use 'Paddling'. The -ing phrase 'Paddling for two hours in the summer heat' is the subject of 'is really tiring'.",
+      "source": "gerunds-to-infinitives-p-002-R1.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-002",
+      "field": "segments.15.distractors",
+      "expected": [
+        "to held",
+        "hold",
+        "held"
+      ],
+      "source": "gerunds-to-infinitives-p-002-R2.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-002",
+      "field": "segments.15.explanation",
+      "expected": "Use 'to hold'. 'Managed to + verb' means Carmen succeeded in doing something.",
+      "source": "gerunds-to-infinitives-p-002-R2.2"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-003",
+      "field": "segments.19.explanation",
+      "expected": "Use 'Spending'. The verb-ing phrase 'Spending time with the elderly' is the subject and names the activity that turned out to be fun.",
+      "source": "gerunds-to-infinitives-p-003-R1.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-004",
+      "field": "segments.3.distractors",
+      "expected": [
+        "revise",
+        "to revising",
+        "to revised"
+      ],
+      "source": "gerunds-to-infinitives-p-004-R1.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-004",
+      "field": "segments.3.explanation",
+      "expected": "Use 'to revise'. 'Plan to + verb' describes what you intend to do.",
+      "source": "gerunds-to-infinitives-p-004-R1.2"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-004",
+      "field": "segments.7.distractors",
+      "expected": [
+        "to taken",
+        "take",
+        "to taking"
+      ],
+      "source": "gerunds-to-infinitives-p-004-R2.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-004",
+      "field": "segments.7.explanation",
+      "expected": "Use 'to take'. 'Threaten to + verb' describes an action someone says they may take.",
+      "source": "gerunds-to-infinitives-p-004-R2.2"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-004",
+      "field": "segments.15.distractors",
+      "expected": [
+        "Worked",
+        "To working",
+        "To worked"
+      ],
+      "source": "gerunds-to-infinitives-p-004-R3.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-004",
+      "field": "segments.15.explanation",
+      "expected": "Use 'Working'. The -ing phrase names the activity and is the subject of 'helps'.",
+      "source": "gerunds-to-infinitives-p-004-R3.2"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-005",
+      "field": "segments.21.distractors",
+      "expected": [
+        "been",
+        "be",
+        "to being"
+      ],
+      "source": "gerunds-to-infinitives-p-005-R6.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-005",
+      "field": "segments.21.explanation",
+      "expected": "Use 'to be'. 'Too forgetful to be in charge' means Jacky is not reliable enough to manage the list.",
+      "source": "gerunds-to-infinitives-p-005-R7.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-005",
+      "field": "segments.7.distractors",
+      "expected": [
+        "to ordered",
+        "order",
+        "to ordering"
+      ],
+      "source": "gerunds-to-infinitives-p-005-R1.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-005",
+      "field": "segments.7.explanation",
+      "expected": "Use 'to order'. Owen uses 'want to + verb' to say what he would like to do.",
+      "source": "gerunds-to-infinitives-p-005-R2.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-005",
+      "field": "segments.11.explanation",
+      "expected": "Use 'collecting'. 'Collecting 32 cards in one week' is the subject of 'won't be easy'.",
+      "source": "gerunds-to-infinitives-p-005-R3.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-005",
+      "field": "segments.15.distractors",
+      "expected": [
+        "say",
+        "to saying",
+        "said"
+      ],
+      "source": "gerunds-to-infinitives-p-005-R4.1"
+    },
+    {
+      "id": "gerunds-to-infinitives-p-005",
+      "field": "segments.15.explanation",
+      "expected": "Use 'saying'. The -ing form names the activity the class can practise.",
+      "source": "gerunds-to-infinitives-p-005-R5.1"
+    },
+    {
+      "id": "present-perfect-p-001",
+      "field": "segments.5.distractors",
+      "expected": [
+        "has not wanted",
+        "was not want",
+        "has not want"
+      ],
+      "source": "present-perfect-p-001-R1.2"
+    },
+    {
+      "id": "present-perfect-p-001",
+      "field": "segments.5.explanation",
+      "expected": "Use 'did not want'. His reluctance ended last September, so use the simple past for this finished period.",
+      "source": "present-perfect-p-001-R1.3"
+    },
+    {
+      "id": "present-perfect-p-001",
+      "field": "segments.5.displayAlternatives",
+      "expected": [],
+      "source": "present-perfect-p-001-R1.1"
+    },
+    {
+      "id": "present-perfect-p-001",
+      "field": "segments.13.distractors",
+      "expected": [
+        "did not miss",
+        "was not miss",
+        "has not miss"
+      ],
+      "source": "present-perfect-p-001-R3.2"
+    },
+    {
+      "id": "present-perfect-p-001",
+      "field": "segments.13.explanation",
+      "expected": "Use 'has not missed'. 'So far' means up to now, so use the present perfect for his attendance.",
+      "source": "present-perfect-p-001-R3.3"
+    },
+    {
+      "id": "present-perfect-p-001",
+      "field": "segments.13.displayAlternatives",
+      "expected": [],
+      "source": "present-perfect-p-001-R3.1"
+    },
+    {
+      "id": "present-perfect-p-002",
+      "field": "segments.21.distractors",
+      "expected": [
+        "did not decide",
+        "has not decide",
+        "was not decide"
+      ],
+      "source": "present-perfect-p-002-R2.2"
+    },
+    {
+      "id": "present-perfect-p-002",
+      "field": "segments.21.explanation",
+      "expected": "Use 'has not decided'. 'Yet' shows that her decision is still unresolved at the time of speaking.",
+      "source": "present-perfect-p-002-R2.3"
+    },
+    {
+      "id": "present-perfect-p-002",
+      "field": "segments.21.displayAlternatives",
+      "expected": [],
+      "source": "present-perfect-p-002-R2.1"
+    },
+    {
+      "id": "present-perfect-p-002",
+      "field": "segments.3.distractors",
+      "expected": [
+        "has ran",
+        "ran",
+        "was ran"
+      ],
+      "source": "present-perfect-p-002-R1.2"
+    },
+    {
+      "id": "present-perfect-p-002",
+      "field": "segments.3.explanation",
+      "expected": "Use 'has run'. 'Since 1998' links Mr Chan's management of the café from that year up to the present.",
+      "source": "present-perfect-p-002-R1.3"
+    },
+    {
+      "id": "present-perfect-p-002",
+      "field": "segments.3.displayAlternatives",
+      "expected": [],
+      "source": "present-perfect-p-002-R1.1"
+    },
+    {
+      "id": "present-perfect-p-003",
+      "field": "segments.1.distractors",
+      "expected": [
+        "was not replied",
+        "did not reply",
+        "have not reply"
+      ],
+      "source": "present-perfect-p-003-R1.2"
+    },
+    {
+      "id": "present-perfect-p-003",
+      "field": "segments.1.explanation",
+      "expected": "Use 'have not replied'. 'Yet' shows that the reply is still outstanding now, so use have not + the past participle replied.",
+      "source": "present-perfect-p-003-R1.3"
+    },
+    {
+      "id": "present-perfect-p-003",
+      "field": "segments.1.displayAlternatives",
+      "expected": [],
+      "source": "present-perfect-p-003-R1.1"
+    },
+    {
+      "id": "present-perfect-p-003",
+      "field": "segments.13.distractors",
+      "expected": [
+        "lived",
+        "has live",
+        "was live"
+      ],
+      "source": "present-perfect-p-003-R2.2"
+    },
+    {
+      "id": "present-perfect-p-003",
+      "field": "segments.13.explanation",
+      "expected": "Use 'has lived'. 'Since she was born' links Granny Leung's residence from birth up to now, so use has + the past participle lived.",
+      "source": "present-perfect-p-003-R2.3"
+    },
+    {
+      "id": "present-perfect-p-003",
+      "field": "segments.13.displayAlternatives",
+      "expected": [],
+      "source": "present-perfect-p-003-R2.1"
+    },
+    {
+      "id": "present-perfect-p-004",
+      "field": "segments.9.distractors",
+      "expected": [
+        "have not buy",
+        "did not buy",
+        "were not buy"
+      ],
+      "source": "present-perfect-p-004-R1.2"
+    },
+    {
+      "id": "present-perfect-p-004",
+      "field": "segments.9.explanation",
+      "expected": "Use 'have not bought'. 'Since the beginning of this year' describes the period up to now, so use the present perfect.",
+      "source": "present-perfect-p-004-R1.3"
+    },
+    {
+      "id": "present-perfect-p-004",
+      "field": "segments.9.displayAlternatives",
+      "expected": [],
+      "source": "present-perfect-p-004-R1.1"
+    },
+    {
+      "id": "present-perfect-p-005",
+      "field": "segments.7.distractors",
+      "expected": [
+        "have not given",
+        "have not gave",
+        "were not give"
+      ],
+      "source": "present-perfect-p-005-R1.2"
+    },
+    {
+      "id": "present-perfect-p-005",
+      "field": "segments.7.explanation",
+      "expected": "Use 'did not give'. The wait ended when Mum agreed in February, so use the simple past for that completed period.",
+      "source": "present-perfect-p-005-R1.3"
+    },
+    {
+      "id": "present-perfect-p-005",
+      "field": "segments.7.displayAlternatives",
+      "expected": [],
+      "source": "present-perfect-p-005-R1.1"
+    },
+    {
+      "id": "passive-voice-p-001",
+      "field": "segments.17.distractors",
+      "expected": [
+        "given",
+        "were given",
+        "gave"
+      ],
+      "source": "passive-voice-p-001-R2.1"
+    },
+    {
+      "id": "passive-voice-p-002",
+      "field": "segments.25.distractors",
+      "expected": [
+        "watched",
+        "was watch",
+        "were watched"
+      ],
+      "source": "passive-voice-p-002-R3.1"
+    },
+    {
+      "id": "passive-voice-p-002",
+      "field": "segments.3.distractors",
+      "expected": [
+        "discussed",
+        "was discuss",
+        "were discussed"
+      ],
+      "source": "passive-voice-p-002-R1.1"
+    },
+    {
+      "id": "passive-voice-p-002",
+      "field": "segments.15.distractors",
+      "expected": [
+        "not used",
+        "was not use",
+        "were not used"
+      ],
+      "source": "passive-voice-p-002-R2.1"
+    },
+    {
+      "id": "passive-voice-p-003",
+      "field": "segments.25.distractors",
+      "expected": [
+        "counted",
+        "was count",
+        "were counted"
+      ],
+      "source": "passive-voice-p-003-R5.1"
+    },
+    {
+      "id": "passive-voice-p-003",
+      "field": "segments.3.distractors",
+      "expected": [
+        "chosen",
+        "was choose",
+        "were chosen"
+      ],
+      "source": "passive-voice-p-003-R2.1"
+    },
+    {
+      "id": "passive-voice-p-003",
+      "field": "segments.17.distractors",
+      "expected": [
+        "not used",
+        "was not use",
+        "were not used"
+      ],
+      "source": "passive-voice-p-003-R3.1"
+    },
+    {
+      "id": "passive-voice-p-004",
+      "field": "segments.1.distractors",
+      "expected": [
+        "held",
+        "is hold",
+        "are held"
+      ],
+      "source": "passive-voice-p-004-R1.1"
+    },
+    {
+      "id": "passive-voice-p-004",
+      "field": "segments.9.distractors",
+      "expected": [
+        "painted",
+        "was paint",
+        "were painted"
+      ],
+      "source": "passive-voice-p-004-R2.1"
+    },
+    {
+      "id": "passive-voice-p-004",
+      "field": "segments.17.distractors",
+      "expected": [
+        "sent",
+        "was send",
+        "were sent"
+      ],
+      "source": "passive-voice-p-004-R3.1"
+    },
+    {
+      "id": "relative-clauses-q-010",
+      "field": "segs",
+      "expected": [
+        "Summer is the",
+        "season."
+      ],
+      "source": "relative-clauses-q-010-R1.1"
+    },
+    {
+      "id": "relative-clauses-q-031",
+      "field": "combined",
+      "expected": "The girl who sits next to me in maths class helped me fix my controller.",
+      "source": "relative-clauses-q-031-R1.1"
+    },
+    {
+      "id": "relative-clauses-q-032",
+      "field": "segs",
+      "expected": [
+        "December is",
+        "the time of year."
+      ],
+      "source": "relative-clauses-q-032-R1.1"
+    },
+    {
+      "id": "relative-clauses-q-040",
+      "field": "combined",
+      "expected": "The student who is also in my science class helped me stretch properly.",
+      "source": "relative-clauses-q-040-R1.1"
+    },
+    {
+      "id": "reported-speech-q-006",
+      "field": "frameWrong",
+      "expected": [
+        "The policeman said the driver",
+        "The policeman told",
+        "The policeman told to the driver"
+      ],
+      "source": "reported-speech-q-006-R1.1"
+    },
+    {
+      "id": "reported-speech-q-009",
+      "field": "frameWrong",
+      "expected": [
+        "Paul said his sister",
+        "Paul told to his sister",
+        "Paul told"
+      ],
+      "source": "reported-speech-q-009-R1.1"
+    },
+    {
+      "id": "reported-speech-q-017",
+      "field": "frameWrong",
+      "expected": [
+        "Ryan said Ben",
+        "Ryan told",
+        "Ryan told to Ben"
+      ],
+      "source": "reported-speech-q-017-R1.1"
+    },
+    {
+      "id": "reported-speech-q-018",
+      "field": "frameWrong",
+      "expected": [
+        "The coach said the players",
+        "The coach told",
+        "The coach warned to the players"
+      ],
+      "source": "reported-speech-q-018-R1.1"
+    },
+    {
+      "id": "reported-speech-q-023",
+      "field": "frameWrong",
+      "expected": [
+        "Noah said Lily",
+        "Noah told",
+        "Noah told to Lily"
+      ],
+      "source": "reported-speech-q-023-R1.1"
+    },
+    {
+      "id": "reported-speech-q-024",
+      "field": "frameWrong",
+      "expected": [
+        "Grace said her friend",
+        "Grace told",
+        "Grace told to her friend"
+      ],
+      "source": "reported-speech-q-024-R1.1"
+    },
+    {
+      "id": "reported-speech-q-028",
+      "field": "frameWrong",
+      "expected": [
+        "The teacher said the student helper",
+        "The teacher told",
+        "The teacher told to the student helper"
+      ],
+      "source": "reported-speech-q-028-R1.1"
+    },
+    {
+      "id": "reported-speech-q-035",
+      "field": "frameWrong",
+      "expected": [
+        "Dad said the boys",
+        "Dad told",
+        "Dad asked to the boys"
+      ],
+      "source": "reported-speech-q-035-R1.1"
+    },
+    {
+      "id": "reported-speech-q-037",
+      "field": "frameWrong",
+      "expected": [
+        "Chloe said Ryan",
+        "Chloe told",
+        "Chloe told to Ryan"
+      ],
+      "source": "reported-speech-q-037-R1.1"
+    },
+    {
+      "id": "reported-speech-q-043",
+      "field": "frameWrong",
+      "expected": [
+        "Mum told",
+        "Mum said Jake",
+        "Mum told to Jake"
+      ],
+      "source": "reported-speech-q-043-R1.1"
+    },
+    {
+      "id": "reported-speech-q-047",
+      "field": "frameWrong",
+      "expected": [
+        "Ms Wong said the helpers",
+        "Ms Wong told",
+        "Ms Wong told to the helpers"
+      ],
+      "source": "reported-speech-q-047-R1.1"
+    },
+    {
+      "id": "reported-speech-q-049",
+      "field": "frameWrong",
+      "expected": [
+        "The teacher warned to the students",
+        "The teacher said the students",
+        "The teacher told to the students"
+      ],
+      "source": "reported-speech-q-049-R1.1"
+    },
+    {
+      "id": "reported-speech-q-052",
+      "field": "frameWrong",
+      "expected": [
+        "Ethan said Grace",
+        "Ethan told",
+        "Ethan told to Grace"
+      ],
+      "source": "reported-speech-q-052-R1.1"
+    },
+    {
+      "id": "reported-speech-q-056",
+      "field": "frameWrong",
+      "expected": [
+        "Ruby said Jack",
+        "Ruby told",
+        "Ruby said him"
+      ],
+      "source": "reported-speech-q-056-R1.1"
+    },
+    {
+      "id": "reported-speech-q-058",
+      "field": "frameWrong",
+      "expected": [
+        "The volunteer said the visitors",
+        "The volunteer told",
+        "The volunteer told to the visitors"
+      ],
+      "source": "reported-speech-q-058-R1.1"
+    },
+    {
+      "id": "relative-clauses-q-042",
+      "field": "pronounOptions",
+      "expected": [
+        "who",
+        "which",
+        "whose",
+        "when"
+      ],
+      "source": "relative-clauses-q-042-local-visible-pronouns"
+    },
+    {
+      "id": "relative-clauses-q-045",
+      "field": "pronounOptions",
+      "expected": [
+        "which",
+        "whose",
+        "when",
+        "where"
+      ],
+      "source": "relative-clauses-q-045-R1.1"
+    }
+  ],
+  "passageChoices": [
+    {
+      "id": "comparatives-superlatives-p-001",
+      "segmentIndex": 21,
+      "answer": "better",
+      "acceptedVariants": [],
+      "visible": [
+        "better",
+        "well as",
+        "more better",
+        "well than"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-001",
+      "segmentIndex": 9,
+      "answer": "the best",
+      "acceptedVariants": [],
+      "visible": [
+        "the best",
+        "the less better",
+        "the more better",
+        "the best than"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-001",
+      "segmentIndex": 11,
+      "answer": "busier",
+      "acceptedVariants": [],
+      "visible": [
+        "busier",
+        "more busier",
+        "busy than",
+        "busily"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-001",
+      "segmentIndex": 15,
+      "answer": "the fewest",
+      "acceptedVariants": [],
+      "visible": [
+        "the fewest",
+        "the more fewer",
+        "the less fewer",
+        "the fewest than"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-001",
+      "segmentIndex": 17,
+      "answer": "the fastest",
+      "acceptedVariants": [],
+      "visible": [
+        "the fastest",
+        "fastest",
+        "the more faster",
+        "the fastest than"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-002",
+      "segmentIndex": 19,
+      "answer": "The saddest",
+      "acceptedVariants": [],
+      "visible": [
+        "The saddest",
+        "The more sadder",
+        "The saddest than",
+        "Saddest"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-002",
+      "segmentIndex": 5,
+      "answer": "farther",
+      "acceptedVariants": [
+        "further"
+      ],
+      "visible": [
+        "farther",
+        "more farther",
+        "farther than",
+        "far"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-002",
+      "segmentIndex": 9,
+      "answer": "the worst",
+      "acceptedVariants": [],
+      "visible": [
+        "the worst",
+        "worst",
+        "the more worse",
+        "the worst than"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-002",
+      "segmentIndex": 11,
+      "answer": "more confidently than",
+      "acceptedVariants": [],
+      "visible": [
+        "more confidently than",
+        "confidently than",
+        "more confidently",
+        "the most confidently"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-003",
+      "segmentIndex": 13,
+      "answer": "as experienced as",
+      "acceptedVariants": [],
+      "visible": [
+        "as experienced as",
+        "as experienced",
+        "more experienced",
+        "most experienced than"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-004",
+      "segmentIndex": 23,
+      "answer": "longer",
+      "acceptedVariants": [],
+      "visible": [
+        "longer",
+        "more longer",
+        "longer than",
+        "less longer"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-004",
+      "segmentIndex": 3,
+      "answer": "the most useful",
+      "acceptedVariants": [],
+      "visible": [
+        "the most useful",
+        "more usefully",
+        "the most usefully",
+        "the most useful than"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-004",
+      "segmentIndex": 15,
+      "answer": "the most slowly",
+      "acceptedVariants": [
+        "the slowest"
+      ],
+      "visible": [
+        "the most slowly",
+        "more slowly than",
+        "the slow",
+        "more slower"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-004",
+      "segmentIndex": 17,
+      "answer": "as patient as",
+      "acceptedVariants": [],
+      "visible": [
+        "as patient as",
+        "patient than",
+        "the most patient",
+        "as patiently as"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-005",
+      "segmentIndex": 1,
+      "answer": "the most popular",
+      "acceptedVariants": [],
+      "visible": [
+        "the most popular",
+        "the most popularly",
+        "more more popular",
+        "the most popular than"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-005",
+      "segmentIndex": 19,
+      "answer": "the most reliably",
+      "acceptedVariants": [],
+      "visible": [
+        "the most reliably",
+        "reliable",
+        "more more reliably",
+        "more reliably than"
+      ]
+    },
+    {
+      "id": "comparatives-superlatives-p-005",
+      "segmentIndex": 21,
+      "answer": "more often",
+      "acceptedVariants": [],
+      "visible": [
+        "more often",
+        "more oftener",
+        "more more often",
+        "more often than"
+      ]
+    },
+    {
+      "id": "present-past-p-001",
+      "segmentIndex": 1,
+      "answer": "had",
+      "acceptedVariants": [],
+      "visible": [
+        "had",
+        "has",
+        "am having",
+        "was have"
+      ]
+    },
+    {
+      "id": "present-past-p-001",
+      "segmentIndex": 19,
+      "answer": "am searching",
+      "acceptedVariants": [
+        "'m searching"
+      ],
+      "visible": [
+        "am searching",
+        "am search",
+        "are searching",
+        "is searching"
+      ]
+    },
+    {
+      "id": "present-past-p-001",
+      "segmentIndex": 21,
+      "answer": "keep",
+      "acceptedVariants": [],
+      "visible": [
+        "keep",
+        "were keep",
+        "did kept",
+        "keeping"
+      ]
+    },
+    {
+      "id": "present-past-p-001",
+      "segmentIndex": 23,
+      "answer": "is ringing",
+      "acceptedVariants": [
+        "'s ringing"
+      ],
+      "visible": [
+        "is ringing",
+        "is ring",
+        "are ringing",
+        "ringing"
+      ]
+    },
+    {
+      "id": "present-past-p-001",
+      "segmentIndex": 5,
+      "answer": "Did you use",
+      "acceptedVariants": [],
+      "visible": [
+        "Did you use",
+        "Did you used",
+        "Do you used",
+        "Are you use"
+      ]
+    },
+    {
+      "id": "present-past-p-001",
+      "segmentIndex": 7,
+      "answer": "didn't buy",
+      "acceptedVariants": [
+        "did not buy"
+      ],
+      "visible": [
+        "didn't buy",
+        "does not buy",
+        "did not bought",
+        "was not buy"
+      ]
+    },
+    {
+      "id": "present-past-p-001",
+      "segmentIndex": 9,
+      "answer": "packs",
+      "acceptedVariants": [],
+      "visible": [
+        "packs",
+        "pack",
+        "was pack",
+        "is pack"
+      ]
+    },
+    {
+      "id": "present-past-p-001",
+      "segmentIndex": 11,
+      "answer": "were you doing",
+      "acceptedVariants": [],
+      "visible": [
+        "were you doing",
+        "was you doing",
+        "were you do",
+        "did you doing"
+      ]
+    },
+    {
+      "id": "present-past-p-001",
+      "segmentIndex": 15,
+      "answer": "didn't notice",
+      "acceptedVariants": [
+        "did not notice"
+      ],
+      "visible": [
+        "didn't notice",
+        "does not notice",
+        "did not noticed",
+        "was not notice"
+      ]
+    },
+    {
+      "id": "present-past-p-002",
+      "segmentIndex": 19,
+      "answer": "is watching",
+      "acceptedVariants": [
+        "'s watching"
+      ],
+      "visible": [
+        "is watching",
+        "are watching",
+        "is watch",
+        "does watching"
+      ]
+    },
+    {
+      "id": "present-past-p-002",
+      "segmentIndex": 21,
+      "answer": "is drawing",
+      "acceptedVariants": [
+        "'s drawing"
+      ],
+      "visible": [
+        "is drawing",
+        "are drawing",
+        "is draw",
+        "does drawing"
+      ]
+    },
+    {
+      "id": "present-past-p-002",
+      "segmentIndex": 5,
+      "answer": "didn't believe",
+      "acceptedVariants": [
+        "did not believe"
+      ],
+      "visible": [
+        "didn't believe",
+        "does not believe",
+        "did not believed",
+        "was not believe"
+      ]
+    },
+    {
+      "id": "present-past-p-002",
+      "segmentIndex": 9,
+      "answer": "stay",
+      "acceptedVariants": [],
+      "visible": [
+        "stay",
+        "did stayed",
+        "is stay",
+        "does stays"
+      ]
+    },
+    {
+      "id": "present-past-p-002",
+      "segmentIndex": 11,
+      "answer": "isn't",
+      "acceptedVariants": [
+        "is not"
+      ],
+      "visible": [
+        "isn't",
+        "are not",
+        "does not be",
+        "were not"
+      ]
+    },
+    {
+      "id": "present-past-p-003",
+      "segmentIndex": 1,
+      "answer": "didn't reply",
+      "acceptedVariants": [
+        "did not reply"
+      ],
+      "visible": [
+        "didn't reply",
+        "does not reply",
+        "did not replied",
+        "did not replying"
+      ]
+    },
+    {
+      "id": "present-past-p-003",
+      "segmentIndex": 19,
+      "answer": "fell",
+      "acceptedVariants": [],
+      "visible": [
+        "fell",
+        "were falling",
+        "falling",
+        "was fall"
+      ]
+    },
+    {
+      "id": "present-past-p-003",
+      "segmentIndex": 21,
+      "answer": "gave",
+      "acceptedVariants": [],
+      "visible": [
+        "gave",
+        "give",
+        "giving",
+        "did gave"
+      ]
+    },
+    {
+      "id": "present-past-p-003",
+      "segmentIndex": 23,
+      "answer": "doesn't like",
+      "acceptedVariants": [
+        "does not like"
+      ],
+      "visible": [
+        "doesn't like",
+        "do not like",
+        "does not likes",
+        "does not liking"
+      ]
+    },
+    {
+      "id": "present-past-p-003",
+      "segmentIndex": 5,
+      "answer": "am sitting",
+      "acceptedVariants": [
+        "'m sitting"
+      ],
+      "visible": [
+        "am sitting",
+        "is sitting",
+        "am sit",
+        "am sits"
+      ]
+    },
+    {
+      "id": "present-past-p-003",
+      "segmentIndex": 7,
+      "answer": "have",
+      "acceptedVariants": [],
+      "visible": [
+        "have",
+        "has",
+        "having",
+        "are have"
+      ]
+    },
+    {
+      "id": "present-past-p-003",
+      "segmentIndex": 9,
+      "answer": "is pouring",
+      "acceptedVariants": [
+        "'s pouring"
+      ],
+      "visible": [
+        "is pouring",
+        "are pouring",
+        "is pour",
+        "is pours"
+      ]
+    },
+    {
+      "id": "present-past-p-003",
+      "segmentIndex": 17,
+      "answer": "bumped",
+      "acceptedVariants": [],
+      "visible": [
+        "bumped",
+        "bump",
+        "was bump",
+        "did bumped"
+      ]
+    },
+    {
+      "id": "present-past-p-004",
+      "segmentIndex": 1,
+      "answer": "am typing",
+      "acceptedVariants": [],
+      "visible": [
+        "am typing",
+        "am type",
+        "typed",
+        "is typing"
+      ]
+    },
+    {
+      "id": "present-past-p-004",
+      "segmentIndex": 7,
+      "answer": "comes",
+      "acceptedVariants": [],
+      "visible": [
+        "comes",
+        "does coming",
+        "coming",
+        "does comes"
+      ]
+    },
+    {
+      "id": "present-past-p-005",
+      "segmentIndex": 19,
+      "answer": "is cutting",
+      "acceptedVariants": [],
+      "visible": [
+        "is cutting",
+        "are cutting",
+        "is cuts",
+        "did cuts"
+      ]
+    },
+    {
+      "id": "gerunds-to-infinitives-p-001",
+      "segmentIndex": 13,
+      "answer": "Reducing",
+      "acceptedVariants": [],
+      "visible": [
+        "Reducing",
+        "Reduce",
+        "To reducing",
+        "To reduced"
+      ]
+    },
+    {
+      "id": "gerunds-to-infinitives-p-002",
+      "segmentIndex": 19,
+      "answer": "to enter",
+      "acceptedVariants": [],
+      "visible": [
+        "to enter",
+        "to entered",
+        "enter",
+        "to entering"
+      ]
+    },
+    {
+      "id": "gerunds-to-infinitives-p-002",
+      "segmentIndex": 7,
+      "answer": "Paddling",
+      "acceptedVariants": [],
+      "visible": [
+        "Paddling",
+        "Paddle",
+        "To paddling",
+        "Paddled"
+      ]
+    },
+    {
+      "id": "gerunds-to-infinitives-p-002",
+      "segmentIndex": 15,
+      "answer": "to hold",
+      "acceptedVariants": [],
+      "visible": [
+        "to hold",
+        "to held",
+        "hold",
+        "held"
+      ]
+    },
+    {
+      "id": "gerunds-to-infinitives-p-003",
+      "segmentIndex": 19,
+      "answer": "Spending",
+      "acceptedVariants": [],
+      "visible": [
+        "Spending",
+        "Spend",
+        "To spending",
+        "To spent"
+      ]
+    },
+    {
+      "id": "gerunds-to-infinitives-p-004",
+      "segmentIndex": 3,
+      "answer": "to revise",
+      "acceptedVariants": [],
+      "visible": [
+        "to revise",
+        "revise",
+        "to revising",
+        "to revised"
+      ]
+    },
+    {
+      "id": "gerunds-to-infinitives-p-004",
+      "segmentIndex": 7,
+      "answer": "to take",
+      "acceptedVariants": [],
+      "visible": [
+        "to take",
+        "to taken",
+        "take",
+        "to taking"
+      ]
+    },
+    {
+      "id": "gerunds-to-infinitives-p-004",
+      "segmentIndex": 15,
+      "answer": "Working",
+      "acceptedVariants": [],
+      "visible": [
+        "Working",
+        "Worked",
+        "To working",
+        "To worked"
+      ]
+    },
+    {
+      "id": "gerunds-to-infinitives-p-005",
+      "segmentIndex": 21,
+      "answer": "to be",
+      "acceptedVariants": [],
+      "visible": [
+        "to be",
+        "been",
+        "be",
+        "to being"
+      ]
+    },
+    {
+      "id": "gerunds-to-infinitives-p-005",
+      "segmentIndex": 7,
+      "answer": "to order",
+      "acceptedVariants": [],
+      "visible": [
+        "to order",
+        "to ordered",
+        "order",
+        "to ordering"
+      ]
+    },
+    {
+      "id": "gerunds-to-infinitives-p-005",
+      "segmentIndex": 11,
+      "answer": "collecting",
+      "acceptedVariants": [],
+      "visible": [
+        "collecting",
+        "collect",
+        "to collecting",
+        "collected"
+      ]
+    },
+    {
+      "id": "gerunds-to-infinitives-p-005",
+      "segmentIndex": 15,
+      "answer": "saying",
+      "acceptedVariants": [],
+      "visible": [
+        "saying",
+        "say",
+        "to saying",
+        "said"
+      ]
+    },
+    {
+      "id": "present-perfect-p-001",
+      "segmentIndex": 5,
+      "answer": "did not want",
+      "acceptedVariants": [
+        "didn't want"
+      ],
+      "visible": [
+        "did not want",
+        "has not wanted",
+        "was not want",
+        "has not want"
+      ]
+    },
+    {
+      "id": "present-perfect-p-001",
+      "segmentIndex": 13,
+      "answer": "has not missed",
+      "acceptedVariants": [
+        "hasn't missed"
+      ],
+      "visible": [
+        "has not missed",
+        "did not miss",
+        "was not miss",
+        "has not miss"
+      ]
+    },
+    {
+      "id": "present-perfect-p-002",
+      "segmentIndex": 21,
+      "answer": "has not decided",
+      "acceptedVariants": [
+        "hasn't decided"
+      ],
+      "visible": [
+        "has not decided",
+        "did not decide",
+        "has not decide",
+        "was not decide"
+      ]
+    },
+    {
+      "id": "present-perfect-p-002",
+      "segmentIndex": 3,
+      "answer": "has run",
+      "acceptedVariants": [
+        "has been running"
+      ],
+      "visible": [
+        "has run",
+        "has ran",
+        "ran",
+        "was ran"
+      ]
+    },
+    {
+      "id": "present-perfect-p-003",
+      "segmentIndex": 1,
+      "answer": "have not replied",
+      "acceptedVariants": [
+        "haven't replied"
+      ],
+      "visible": [
+        "have not replied",
+        "was not replied",
+        "did not reply",
+        "have not reply"
+      ]
+    },
+    {
+      "id": "present-perfect-p-003",
+      "segmentIndex": 13,
+      "answer": "has lived",
+      "acceptedVariants": [
+        "has been living"
+      ],
+      "visible": [
+        "has lived",
+        "lived",
+        "has live",
+        "was live"
+      ]
+    },
+    {
+      "id": "present-perfect-p-004",
+      "segmentIndex": 9,
+      "answer": "have not bought",
+      "acceptedVariants": [
+        "haven't bought"
+      ],
+      "visible": [
+        "have not bought",
+        "have not buy",
+        "did not buy",
+        "were not buy"
+      ]
+    },
+    {
+      "id": "present-perfect-p-005",
+      "segmentIndex": 7,
+      "answer": "did not give",
+      "acceptedVariants": [
+        "didn't give"
+      ],
+      "visible": [
+        "did not give",
+        "have not given",
+        "have not gave",
+        "were not give"
+      ]
+    },
+    {
+      "id": "passive-voice-p-001",
+      "segmentIndex": 17,
+      "answer": "was given",
+      "acceptedVariants": [],
+      "visible": [
+        "was given",
+        "given",
+        "were given",
+        "gave"
+      ]
+    },
+    {
+      "id": "passive-voice-p-002",
+      "segmentIndex": 25,
+      "answer": "was watched",
+      "acceptedVariants": [],
+      "visible": [
+        "was watched",
+        "watched",
+        "was watch",
+        "were watched"
+      ]
+    },
+    {
+      "id": "passive-voice-p-002",
+      "segmentIndex": 3,
+      "answer": "was discussed",
+      "acceptedVariants": [],
+      "visible": [
+        "was discussed",
+        "discussed",
+        "was discuss",
+        "were discussed"
+      ]
+    },
+    {
+      "id": "passive-voice-p-002",
+      "segmentIndex": 15,
+      "answer": "was not used",
+      "acceptedVariants": [],
+      "visible": [
+        "was not used",
+        "not used",
+        "was not use",
+        "were not used"
+      ]
+    },
+    {
+      "id": "passive-voice-p-003",
+      "segmentIndex": 25,
+      "answer": "was counted",
+      "acceptedVariants": [],
+      "visible": [
+        "was counted",
+        "counted",
+        "was count",
+        "were counted"
+      ]
+    },
+    {
+      "id": "passive-voice-p-003",
+      "segmentIndex": 3,
+      "answer": "was chosen",
+      "acceptedVariants": [],
+      "visible": [
+        "was chosen",
+        "chosen",
+        "was choose",
+        "were chosen"
+      ]
+    },
+    {
+      "id": "passive-voice-p-003",
+      "segmentIndex": 17,
+      "answer": "was not used",
+      "acceptedVariants": [],
+      "visible": [
+        "was not used",
+        "not used",
+        "was not use",
+        "were not used"
+      ]
+    },
+    {
+      "id": "passive-voice-p-004",
+      "segmentIndex": 1,
+      "answer": "is held",
+      "acceptedVariants": [],
+      "visible": [
+        "is held",
+        "held",
+        "is hold",
+        "are held"
+      ]
+    },
+    {
+      "id": "passive-voice-p-004",
+      "segmentIndex": 9,
+      "answer": "was painted",
+      "acceptedVariants": [],
+      "visible": [
+        "was painted",
+        "painted",
+        "was paint",
+        "were painted"
+      ]
+    },
+    {
+      "id": "passive-voice-p-004",
+      "segmentIndex": 17,
+      "answer": "was sent",
+      "acceptedVariants": [],
+      "visible": [
+        "was sent",
+        "sent",
+        "was send",
+        "were sent"
+      ]
+    }
+  ],
+  "pronounChoices": [
+    {
+      "id": "relative-clauses-q-042",
+      "key": "whose",
+      "visible": [
+        "who",
+        "which",
+        "whose",
+        "when"
+      ]
+    },
+    {
+      "id": "relative-clauses-q-045",
+      "key": "which",
+      "visible": [
+        "which",
+        "whose",
+        "when",
+        "where"
+      ]
+    }
+  ],
+  "frameChoices": [
+    {
+      "id": "reported-speech-q-006",
+      "key": "The policeman warned the driver",
+      "visible": [
+        "The policeman warned the driver",
+        "The policeman said the driver",
+        "The policeman told",
+        "The policeman told to the driver"
+      ]
+    },
+    {
+      "id": "reported-speech-q-009",
+      "key": "Paul said to his sister",
+      "visible": [
+        "Paul said to his sister",
+        "Paul said his sister",
+        "Paul told to his sister",
+        "Paul told"
+      ]
+    },
+    {
+      "id": "reported-speech-q-017",
+      "key": "Ryan asked Ben",
+      "visible": [
+        "Ryan asked Ben",
+        "Ryan said Ben",
+        "Ryan told",
+        "Ryan told to Ben"
+      ]
+    },
+    {
+      "id": "reported-speech-q-018",
+      "key": "The coach warned the players",
+      "visible": [
+        "The coach warned the players",
+        "The coach said the players",
+        "The coach told",
+        "The coach warned to the players"
+      ]
+    },
+    {
+      "id": "reported-speech-q-023",
+      "key": "Noah said to Lily",
+      "visible": [
+        "Noah said to Lily",
+        "Noah said Lily",
+        "Noah told",
+        "Noah told to Lily"
+      ]
+    },
+    {
+      "id": "reported-speech-q-024",
+      "key": "Grace warned her friend",
+      "visible": [
+        "Grace warned her friend",
+        "Grace said her friend",
+        "Grace told",
+        "Grace told to her friend"
+      ]
+    },
+    {
+      "id": "reported-speech-q-028",
+      "key": "The teacher asked the student helper",
+      "visible": [
+        "The teacher asked the student helper",
+        "The teacher said the student helper",
+        "The teacher told",
+        "The teacher told to the student helper"
+      ]
+    },
+    {
+      "id": "reported-speech-q-035",
+      "key": "Dad warned the boys",
+      "visible": [
+        "Dad warned the boys",
+        "Dad said the boys",
+        "Dad told",
+        "Dad asked to the boys"
+      ]
+    },
+    {
+      "id": "reported-speech-q-037",
+      "key": "Chloe said to Ryan",
+      "visible": [
+        "Chloe said to Ryan",
+        "Chloe said Ryan",
+        "Chloe told",
+        "Chloe told to Ryan"
+      ]
+    },
+    {
+      "id": "reported-speech-q-043",
+      "key": "Mum asked Jake",
+      "visible": [
+        "Mum asked Jake",
+        "Mum told",
+        "Mum said Jake",
+        "Mum told to Jake"
+      ]
+    },
+    {
+      "id": "reported-speech-q-047",
+      "key": "Ms Wong asked the helpers",
+      "visible": [
+        "Ms Wong asked the helpers",
+        "Ms Wong said the helpers",
+        "Ms Wong told",
+        "Ms Wong told to the helpers"
+      ]
+    },
+    {
+      "id": "reported-speech-q-049",
+      "key": "The teacher warned the students",
+      "visible": [
+        "The teacher warned the students",
+        "The teacher warned to the students",
+        "The teacher said the students",
+        "The teacher told to the students"
+      ]
+    },
+    {
+      "id": "reported-speech-q-052",
+      "key": "Ethan said to Grace",
+      "visible": [
+        "Ethan said to Grace",
+        "Ethan said Grace",
+        "Ethan told",
+        "Ethan told to Grace"
+      ]
+    },
+    {
+      "id": "reported-speech-q-056",
+      "key": "Ruby asked Jack",
+      "visible": [
+        "Ruby asked Jack",
+        "Ruby said Jack",
+        "Ruby told",
+        "Ruby said him"
+      ]
+    },
+    {
+      "id": "reported-speech-q-058",
+      "key": "The volunteer warned the visitors",
+      "visible": [
+        "The volunteer warned the visitors",
+        "The volunteer said the visitors",
+        "The volunteer told",
+        "The volunteer told to the visitors"
+      ]
+    }
+  ]
+}

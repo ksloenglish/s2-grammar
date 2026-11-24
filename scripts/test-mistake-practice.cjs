@@ -206,10 +206,12 @@ function passageFinish(c, topic, mode) {
     const values = [...controls[i].options].filter(o => !o.disabled).map(o => o.value);
     eq(values.length, 4, 'Exactly four visible choices'); eq(new Set(values).size, 4, 'Unique choices');
     const accepted = [blank.answer, ...(blank.alternatives || [])];
-    for (const key of accepted) ok(values.includes(key), 'Approved key/alternative retained');
+    const visibleAlternatives = blank.displayAlternatives ?? blank.alternatives ?? [];
+    for (const key of [blank.answer, ...visibleAlternatives]) ok(values.includes(key), 'Visible key/variant retained');
+    for (const key of accepted.filter(key => key !== blank.answer && !visibleAlternatives.includes(key))) ok(!values.includes(key), 'Valid hidden variant is not an incorrect visible choice');
     let value = blank.answer;
     if (mode === 'wrong' || (mode === 'partial' && i === 0)) value = values.find(v => !accepted.some(a => norm(a) === norm(v)));
-    if (mode === 'alternatives' && blank.alternatives?.length) { value = blank.alternatives.at(-1); report.coverage.passageAlternatives++; }
+    if (mode === 'alternatives' && visibleAlternatives.length) { value = visibleAlternatives.at(-1); report.coverage.passageAlternatives++; }
     if (accepted.some(a => norm(a) === norm(value))) earned++;
     c.choose(`#passage-body .blank-select[data-index="${i}"]`, value);
     eq(c.el('#passage-filled').textContent, `${i + 1} / ${blanks.length}`, 'Actual DOM selection updates fill count');
@@ -251,7 +253,7 @@ function buttonValue(c, selector, field, value) {
 function questionCheck(c, topic, mode = 'correct') {
   const q = displayed(c, topic), max = qmax(topic, q); let earned;
   if (topic.type === 'builder') {
-    const pronoun = mode === 'frame' || mode === 'wrong' ? topic.pronouns.find(p => p !== q.pronoun) : q.pronoun;
+    const pronoun = mode === 'frame' || mode === 'wrong' ? (q.pronounOptions || topic.pronouns).find(p => p !== q.pronoun) : q.pronoun;
     const tokens = mode === 'clause' || mode === 'wrong' ? [q.distractor] : q.clause;
     const gap = mode === 'wrong' ? (q.correctGap === 0 ? 1 : 0) : q.correctGap;
     buttonValue(c, '#pronoun-chips button', 'p', pronoun);
@@ -553,7 +555,7 @@ function main() {
   suite('Coverage and unchanged website sources', () => {
     eq(report.coverage.passageTopics.slice().sort(), passageTopics.map(([term, key]) => `${term}|${key}`).sort(), 'All current real passage topics discovered');
     eq(report.coverage.passageExercises.slice().sort(), passageTopics.flatMap(([term, key]) => inventory[term][key].exercises.map(e => `${term}|${key}|${e.id}`)).sort(), 'Every real whole passage exercised successfully');
-    if (passageTopics.some(([term, key]) => inventory[term][key].exercises.some(e => e.segments.some(x => typeof x === 'object' && x.alternatives?.length)))) ok(report.coverage.passageAlternatives > 0, 'Accepted passage alternatives covered');
+    if (passageTopics.some(([term, key]) => inventory[term][key].exercises.some(e => e.segments.some(x => typeof x === 'object' && (x.displayAlternatives ?? x.alternatives ?? []).length)))) ok(report.coverage.passageAlternatives > 0, 'Visible accepted passage variants covered');
     ok(report.coverage.twoMarkRS > 0 && report.coverage.threeMarkRS > 0, 'Two and three mark RS paths covered');
     eq(report.coverage.questionTopics.slice().sort(), ['Second Term|relative-clauses', 'Second Term|reported-speech'], 'Both real question engines completed');
     eq(report.coverage.batchOver20.slice().sort(), ['relative-clauses', 'reported-speech'], 'Both real engines enforce cap without padding');

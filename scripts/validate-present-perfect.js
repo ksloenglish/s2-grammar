@@ -28,11 +28,11 @@ const expectedExercises = [
     blanks: [
       { prompt: '(never / be)', answer: 'has never been', alternatives: [], wrong: [['never be', 1], ['never was', 2], ['has never be', 3]] },
       { prompt: '(fall)', answer: 'fell', alternatives: [], wrong: [['has fall', 3], ['fall', 1], ['has fallen', 2]] },
-      { prompt: '(not want)', answer: 'did not want', alternatives: ["didn't want"], wrong: [['has not wanted', 2], ['was not want', 4]] },
+      { prompt: '(not want)', answer: 'did not want', alternatives: ["didn't want"], wrong: [["has not wanted",2],["was not want",4],["has not want",3]] },
       { prompt: '(join)', answer: 'joined', alternatives: [], wrong: [['join', 1], ['was join', 4], ['has joined', 2]] },
       { prompt: '(ask)', answer: 'asked', alternatives: [], wrong: [['has asked', 2], ['ask', 1], ['has ask', 3]] },
       { prompt: '(practise)', answer: 'has practised', alternatives: ['has been practising'], wrong: [['has practise', 3], ['practised', 2]] },
-      { prompt: '(not miss)', answer: 'has not missed', alternatives: ["hasn't missed"], wrong: [['did not miss', 2], ['was not miss', 4]] },
+      { prompt: '(not miss)', answer: 'has not missed', alternatives: ["hasn't missed"], wrong: [["did not miss",2],["was not miss",4],["has not miss",3]] },
       { prompt: '(improve)', answer: 'have improved', alternatives: [], wrong: [['were improve', 4], ['improved', 2], ['have improve', 3]] },
       { prompt: '(swim)', answer: 'Have you ever swum', alternatives: [], initial: true, wrong: [['Have you ever swim', 3], ['Were you ever swim', 4], ['Did you ever swim', 2]] },
       { prompt: '(already / buy)', answer: 'have already bought', alternatives: [], wrong: [['were already buy', 4], ['have already buy', 3], ['already bought', 2]] },
@@ -57,7 +57,7 @@ const expectedExercises = [
     instructions: 'Read this interview from a school newspaper. Fill in the blanks with the correct form of the verbs in brackets. Decide carefully whether to use the present perfect tense or the simple past tense. (12 marks)',
     blanks: [
       { prompt: '(visit)', answer: 'visited', alternatives: [], wrong: [['has visit', 3], ['was visited', 6], ['has visited', 2]] },
-      { prompt: '(run)', answer: 'has run', alternatives: ['has been running'], past: 'ran', participle: 'run', wrong: [['has ran', 5], ['ran', 2]] },
+      { prompt: '(run)', answer: 'has run', alternatives: ['has been running'], past: 'ran', participle: 'run', wrong: [["has ran",5],["ran",2],["was ran",6]] },
       { prompt: '(open)', answer: 'opened', alternatives: [], wrong: [['open', 1], ['has opened', 2], ['was opened', 6]] },
       { prompt: '(begin)', answer: 'began', alternatives: [], past: 'began', participle: 'begun', wrong: [['was began', 6], ['have begun', 2], ['have began', 5]] },
       { prompt: '(change)', answer: 'Has the café changed', alternatives: [], initial: true, wrong: [['Has the café change', 3], ['Did the café change', 2], ['Was the café change', 4]] },
@@ -66,7 +66,7 @@ const expectedExercises = [
       { prompt: '(write)', answer: 'wrote', alternatives: [], past: 'wrote', participle: 'written', wrong: [['has wrote', 5], ['was wrote', 6], ['has written', 2]] },
       { prompt: '(come)', answer: 'have come', alternatives: [], past: 'came', participle: 'come', wrong: [['came', 2], ['were came', 6], ['have came', 5]] },
       { prompt: '(think)', answer: 'Have you ever thought', alternatives: [], initial: true, wrong: [['Were you ever thought', 6], ['Have you ever think', 3], ['Did you ever think', 2]] },
-      { prompt: '(not decide)', answer: 'has not decided', alternatives: ["hasn't decided"], wrong: [['did not decide', 2], ['has not decide', 3]] },
+      { prompt: '(not decide)', answer: 'has not decided', alternatives: ["hasn't decided"], wrong: [["did not decide",2],["has not decide",3],["was not decide",4]] },
       { prompt: '(give)', answer: 'gave', alternatives: [], past: 'gave', participle: 'given', wrong: [['was gave', 6], ['has given', 2], ['has gave', 5]] }
     ],
     cues: [
@@ -89,13 +89,13 @@ const expectedExercises = [
     title: 'Exercise 3: My New Friends at the Elderly Centre!',
     instructions: 'Read this email from Natalie to her cousin Kelly. Fill in the blanks with the correct form of the verbs in brackets. Decide carefully whether to use the present perfect tense or the simple past tense. (12 marks)',
     blanks: [
-      { prompt: '(not reply)', answer: 'have not replied', alternatives: ["haven't replied"], wrong: [['was not replied', 6], ['did not reply', 2]] },
+      { prompt: '(not reply)', answer: 'have not replied', alternatives: ["haven't replied"], wrong: [["was not replied",6],["did not reply",2],["have not reply",3]] },
       { prompt: '(be)', answer: 'have been', alternatives: [], past: 'was', participle: 'been', wrong: [['was', 2], ['have was', 5], ['was be', 4]] },
       { prompt: '(take)', answer: 'took', alternatives: [], past: 'took', participle: 'taken', wrong: [['has took', 5], ['has taken', 2], ['was took', 6]] },
       { prompt: '(feel)', answer: 'felt', alternatives: [], wrong: [['have felt', 2], ['was feel', 4], ['have feel', 3]] },
       { prompt: '(not know)', answer: 'did not know', alternatives: ["didn't know"], wrong: [['was not knew', 6], ['have not known', 2]] },
       { prompt: '(make)', answer: 'have made', alternatives: [], wrong: [['have make', 3], ['made', 2], ['was make', 4]] },
-      { prompt: '(live)', answer: 'has lived', alternatives: ['has been living'], wrong: [['lived', 2], ['has live', 3]] },
+      { prompt: '(live)', answer: 'has lived', alternatives: ['has been living'], wrong: [["lived",2],["has live",3],["was live",4]] },
       { prompt: '(teach)', answer: 'taught', alternatives: [], wrong: [['teach', 1], ['was taught', 6], ['has taught', 2]] },
       { prompt: '(lose)', answer: 'have lost', alternatives: [], noTenseContrast: true, forbiddenDistractors: ['lost'], wrong: [['have lose', 3], ['lose', 1], ['was lose', 4]] },
       { prompt: '(just / start)', answer: 'have just started', alternatives: [], noTenseContrast: true, forbiddenDistractors: ['just started', 'has just started'], wrong: [['were just start', 4], ['have just start', 3], ['just start', 1]] },
@@ -129,7 +129,7 @@ const expectedExercises = [
       // explicitly approved has/have + base subject-agreement error.
       { prompt: '(set up)', answer: 'set up', alternatives: [], agreementException: true, wrong: [['has set up', 2], ['have set up', 3], ['was set up', 4]] },
       { prompt: '(grow)', answer: 'have grown', alternatives: [], past: 'grew', participle: 'grown', wrong: [['were grew', 6], ['grew', 2], ['have grew', 5]] },
-      { prompt: '(not buy)', answer: 'have not bought', alternatives: ["haven't bought"], wrong: [['have not buy', 3], ['did not buy', 2]] },
+      { prompt: '(not buy)', answer: 'have not bought', alternatives: ["haven't bought"], wrong: [["have not buy",3],["did not buy",2],["were not buy",4]] },
       { prompt: '(blow)', answer: 'blew', alternatives: [], past: 'blew', participle: 'blown', wrong: [['was blew', 6], ['has blown', 2], ['has blew', 5]] },
       { prompt: '(have)', answer: 'had', alternatives: [], wrong: [['have had', 2], ['were had', 6], ['have have', 3]] },
       { prompt: '(just / pick)', answer: 'have just picked', alternatives: [], noTenseContrast: true, forbiddenDistractors: ['just picked'], wrong: [['have just pick', 3], ['was just pick', 4], ['just pick', 1]] },
@@ -161,7 +161,7 @@ const expectedExercises = [
       { prompt: '(bring)', answer: 'brought', alternatives: [], wrong: [['have brought', 2], ['were bring', 4], ['bring', 1]] },
       { prompt: '(want)', answer: 'have wanted', alternatives: [], noTenseContrast: true, forbiddenDistractors: ['wanted'], wrong: [['was wanted', 6], ['have want', 3], ['was want', 4]] },
       { prompt: '(write)', answer: 'wrote', alternatives: [], past: 'wrote', participle: 'written', wrong: [['have wrote', 5], ['have written', 2], ['have write', 3]] },
-      { prompt: '(not give)', answer: 'did not give', alternatives: ["didn't give"], past: 'gave', participle: 'given', wrong: [['have not given', 2], ['have not gave', 5]] },
+      { prompt: '(not give)', answer: 'did not give', alternatives: ["didn't give"], past: 'gave', participle: 'given', wrong: [["have not given",2],["have not gave",5],["were not give",4]] },
       { prompt: '(agree)', answer: 'agreed', alternatives: [], wrong: [['was agree', 4], ['has agree', 3], ['has agreed', 2]] },
       { prompt: '(find)', answer: 'found', alternatives: [], wrong: [['have found', 2], ['were find', 4], ['have find', 3]] },
       { prompt: '(already / chew)', answer: 'has already chewed', alternatives: [], wrong: [['already chewed', 2], ['has already chew', 3], ['was already chew', 4]] },
@@ -211,7 +211,7 @@ expectedExercises.forEach((wantExercise, exerciseIndex) => {
     if (!same(b.alternatives || [], want.alternatives)) fail(`${label}: supplied accepted alternatives changed.`);
     if (!same(b.distractors || [], want.wrong.map(([text]) => text))) fail(`${label}: screened distractor set changed.`);
     if (Boolean(b.sentenceInitial) !== Boolean(want.initial)) fail(`${label}: sentence-position metadata changed.`);
-    const choices = [b.answer, ...(b.alternatives || []), ...(b.distractors || [])];
+    const choices = [b.answer, ...(b.displayAlternatives ?? b.alternatives ?? []), ...(b.distractors || [])];
     if (choices.length !== 4 || new Set(choices.map(s => s.toLowerCase())).size !== 4) fail(`${label}: needs exactly four unique choices.`);
     if ((b.distractors || []).some(s => /['’]/.test(s))) fail(`${label}: distractors must use whole words.`);
     if (!want.noTenseContrast && !want.wrong.some(([, rule]) => rule === 2)) fail(`${label}: missing the safe tense contrast.`);
@@ -225,7 +225,7 @@ expectedExercises.forEach((wantExercise, exerciseIndex) => {
       if ((b.distractors || []).includes(forbidden)) fail(`${label}: approved exception forbids ${forbidden} as a distractor.`);
     }
     if (!b.explanation || b.explanation.length > 240) fail(`${label}: missing or overlong explanation.`);
-    for (const answer of [b.answer, ...(b.alternatives || [])]) {
+    for (const answer of [b.answer, ...(b.displayAlternatives ?? b.alternatives ?? [])]) {
       if (!b.explanation?.includes(answer)) fail(`${label}: explanation must name ${answer}.`);
     }
   });

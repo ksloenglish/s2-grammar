@@ -115,11 +115,9 @@ const stripSourceIDs = text => text
   .replace(/\{"id":"[^"\n]+",/g, '{');
 let inventory;
 
-test('Permanent literal IDs are globally unique and all non-ID source/data match git HEAD', () => {
+test('Permanent literal IDs are globally unique and existing keys/accepted forms retain their identities', () => {
   const baselineSource = execFileSync('git', ['show', 'HEAD:data.js'], { cwd: root, encoding: 'utf8' });
   const baseline = load(baselineSource);
-  assert.deepEqual(stripIDs(production), stripIDs(baseline), 'Grammar content changed beyond item IDs');
-  assert.equal(stripSourceIDs(source), stripSourceIDs(baselineSource), 'Non-ID source bytes changed');
   const ids = new Set();
   const rows = [];
   let passages = 0, questions = 0;
@@ -134,6 +132,14 @@ test('Permanent literal IDs are globally unique and all non-ID source/data match
           ids.add(item.id);
           const prior = baseline[term][topicKey][collection][index];
           if (Object.hasOwn(prior, 'id')) assert.equal(item.id, prior.id, 'Existing permanent ID changed');
+          for (const field of ['answer', 'pronoun', 'correctGap', 'frameCorrect', 'clauseCorrect', 'timeCorrect']) {
+            if (Object.hasOwn(prior, field)) assert.deepEqual(item[field], prior[field], 'Existing teacher key changed: ' + item.id + '/' + field);
+          }
+          if (prior.segments) prior.segments.forEach((blank, i) => {
+            if (typeof blank !== 'object') return;
+            assert.equal(item.segments[i].answer, blank.answer, 'Passage key changed');
+            assert.deepEqual(item.segments[i].alternatives || [], blank.alternatives || [], 'Accepted variant changed');
+          });
           const escaped = item.id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
           assert.match(source, new RegExp('(?:\\bid|"id")\\s*:\\s*"' + escaped + '"'), 'ID must be a literal');
         });
@@ -512,6 +518,24 @@ test('Persistence contains references/marks only, never item content or student 
   assert.deepEqual(Object.keys(envelope.records[0]).sort(), schemaFields);
   assert.match(envelope.records[0].revision, /^c1-[0-9a-f]{16}$/);
   assert.equal(adapter.includes('deploymentToken'), false);
+});
+
+test('Audited content release prunes only edited saved items and retains all unchanged work', () => {
+  const before = load(execFileSync('git', ['show', 'ef92cbb5b96e8bbcea36fa2de80612f314ba7e1a:data.js'], { cwd: root, encoding: 'utf8' }));
+  const old = harness(before), expected = [];
+  for (const [term, topics] of Object.entries(before)) for (const [topicKey, topic] of Object.entries(topics)) {
+    for (const item of topic.exercises || topic.questions || []) {
+      const max = topic.type === 'passage' ? item.segments.filter(b => typeof b === 'object').length : topic.type === 'builder' ? 3 : item.timeCorrect?.length ? 3 : 2;
+      old.api.record(term, topicKey, item, 0, max);
+      const current = (production[term][topicKey].exercises || production[term][topicKey].questions).find(x => x.id === item.id);
+      assert.ok(current, 'Stable item removed without explicit retirement');
+      if (JSON.stringify(current) === JSON.stringify(item)) expected.push(item.id);
+    }
+  }
+  assert.equal(old.list().length, inventory.total, 'Every pre-release item was seeded once');
+  const next = restore(production, snapshot(old));
+  assert.deepEqual(keys(next.list()).sort(), expected.sort(), 'Unchanged saved work survives; edited work is individually pruned');
+  for (const record of old.list()) assert.equal(Boolean(next.api.resolve(record)), expected.includes(record.id), 'Revision lookup safety: ' + record.id);
 });
 
 let passed = 0;

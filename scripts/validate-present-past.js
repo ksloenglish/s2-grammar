@@ -15,18 +15,18 @@ const expectedExercises = [
   {
     title: "Mandy and Kelvin's Octopus Card",
     blanks: [
-      { prompt: '(have)', answer: 'had', alternatives: [], distractors: ['have', 'am having', 'was have'] },
+      { prompt: '(have)', answer: 'had', alternatives: [], distractors: ["has","am having","was have"] },
       { prompt: '(get)', answer: 'got', alternatives: [], distractors: ['get', 'am getting', 'was get'] },
       { prompt: '(use)', answer: 'Did you use', alternatives: [], distractors: ['Did you used', 'Do you used', 'Are you use'] },
-      { prompt: '(not buy)', answer: "didn't buy", alternatives: ['did not buy'], distractors: ['does not buy', 'did not bought'] },
-      { prompt: '(pack)', answer: 'packs', alternatives: [], distractors: ['pack', 'packed', 'is pack'] },
-      { prompt: '(do)', answer: 'were you doing', alternatives: [], distractors: ['Was you doing', 'Were you do', 'Did you doing'] },
+      { prompt: '(not buy)', answer: "didn't buy", alternatives: ['did not buy'], distractors: ["does not buy","did not bought","was not buy"] },
+      { prompt: '(pack)', answer: 'packs', alternatives: [], distractors: ["pack","was pack","is pack"] },
+      { prompt: '(do)', answer: 'were you doing', alternatives: [], distractors: ["was you doing","were you do","did you doing"] },
       { prompt: '(play)', answer: 'was playing', alternatives: [], distractors: ['am playing', 'were playing', 'was play'] },
-      { prompt: '(not notice)', answer: "didn't notice", alternatives: ['did not notice'], distractors: ['does not notice', 'did not noticed'] },
+      { prompt: '(not notice)', answer: "didn't notice", alternatives: ['did not notice'], distractors: ["does not notice","did not noticed","was not notice"] },
       { prompt: '(fall)', answer: 'fell', alternatives: [], distractors: ['fall', 'was fall', 'was fell'] },
-      { prompt: '(search)', answer: 'am searching', alternatives: ["'m searching"], distractors: ['search', 'is searching'] },
-      { prompt: '(keep)', answer: 'keep', alternatives: [], distractors: ['kept', 'were keeping', 'keeping'] },
-      { prompt: '(ring)', answer: 'is ringing', alternatives: ["'s ringing"], distractors: ['is ring', 'are ringing'] }
+      { prompt: '(search)', answer: 'am searching', alternatives: ["'m searching"], distractors: ["am search","are searching","is searching"] },
+      { prompt: '(keep)', answer: 'keep', alternatives: [], distractors: ["were keep","did kept","keeping"] },
+      { prompt: '(ring)', answer: 'is ringing', alternatives: ["'s ringing"], distractors: ["is ring","are ringing","ringing"] }
     ]
   },
   {
@@ -34,42 +34,42 @@ const expectedExercises = [
     blanks: [
       { prompt: '(raise)', answer: 'raised', alternatives: [], distractors: ['raises', 'is raising', 'raise'] },
       { prompt: '(sleep)', answer: 'was sleeping', alternatives: [], distractors: ['were sleeping', 'was sleep', 'am sleeping'] },
-      { prompt: '(not believe)', answer: "didn't believe", alternatives: ['did not believe'], distractors: ['does not believe', 'did not believed'] },
+      { prompt: '(not believe)', answer: "didn't believe", alternatives: ['did not believe'], distractors: ["does not believe","did not believed","was not believe"] },
       { prompt: '(smile)', answer: 'are you smiling', alternatives: [], distractors: ['is you smiling', 'are you smile', 'do you smiling'] },
-      { prompt: '(stay)', answer: 'stay', alternatives: [], distractors: ['stayed', 'was staying', 'does stays'] },
-      { prompt: '(not be)', answer: "isn't", alternatives: ['is not'], distractors: ['are not', 'does not be'] },
+      { prompt: '(stay)', answer: 'stay', alternatives: [], distractors: ["did stayed","is stay","does stays"] },
+      { prompt: '(not be)', answer: "isn't", alternatives: ['is not'], distractors: ["are not","does not be","were not"] },
       { prompt: '(cook)', answer: 'was cooking', alternatives: [], distractors: ['cooks', 'is cooking', 'were cooking'] },
       { prompt: '(go)', answer: 'went', alternatives: [], distractors: ['gone', 'going', 'goes'] },
       { prompt: '(begin)', answer: 'began', alternatives: [], distractors: ['begins', 'begin', 'begun'] },
-      { prompt: '(watch)', answer: 'is watching', alternatives: ["'s watching"], distractors: ['are watching', 'is watch'] },
-      { prompt: '(draw)', answer: 'is drawing', alternatives: ["'s drawing"], distractors: ['are drawing', 'is draw'] },
+      { prompt: '(watch)', answer: 'is watching', alternatives: ["'s watching"], distractors: ["are watching","is watch","does watching"] },
+      { prompt: '(draw)', answer: 'is drawing', alternatives: ["'s drawing"], distractors: ["are drawing","is draw","does drawing"] },
       { prompt: '(want)', answer: 'want', alternatives: [], distractors: ['wants', 'wanting', 'am want'] }
     ]
   },
   {
     title: 'Greetings from a dim sum restaurant!',
     blanks: [
-      { prompt: '(not reply)', answer: "didn't reply", alternatives: ['did not reply'], distractors: ['does not reply', 'did not replied'] },
+      { prompt: '(not reply)', answer: "didn't reply", alternatives: ['did not reply'], distractors: ["does not reply","did not replied","did not replying"] },
       { prompt: '(prepare)', answer: 'was preparing', alternatives: [], distractors: ['am preparing', 'were preparing', 'was prepare'] },
-      { prompt: '(sit)', answer: 'am sitting', alternatives: ["'m sitting"], distractors: ['is sitting', 'am sit'] },
-      { prompt: '(have)', answer: 'have', alternatives: [], distractors: ['has', 'had', 'having'] },
-      { prompt: '(pour)', answer: 'is pouring', alternatives: ["'s pouring"], distractors: ['are pouring', 'is pour'] },
+      { prompt: '(sit)', answer: 'am sitting', alternatives: ["'m sitting"], distractors: ["is sitting","am sit","am sits"] },
+      { prompt: '(have)', answer: 'have', alternatives: [], distractors: ["has","having","are have"] },
+      { prompt: '(pour)', answer: 'is pouring', alternatives: ["'s pouring"], distractors: ["are pouring","is pour","is pours"] },
       { prompt: '(argue)', answer: 'are arguing', alternatives: [], distractors: ['is arguing', 'are argue', 'were arguing'] },
       { prompt: '(know)', answer: 'Do you know', alternatives: [], distractors: ['Does you know', 'Do you knows', 'Do you knowing'] },
       { prompt: '(look)', answer: 'was looking', alternatives: [], distractors: ['were looking', 'was look', 'is look'] },
-      { prompt: '(bump)', answer: 'bumped', alternatives: [], distractors: ['bumps', 'bump', 'was bump'] },
-      { prompt: '(fall)', answer: 'fell', alternatives: [], distractors: ['falls', 'were falling', 'falling'] },
-      { prompt: '(give)', answer: 'gave', alternatives: [], distractors: ['gives', 'give', 'giving'] },
-      { prompt: '(not like)', answer: "doesn't like", alternatives: ['does not like'], distractors: ['do not like', 'does not likes'] }
+      { prompt: '(bump)', answer: 'bumped', alternatives: [], distractors: ["bump","was bump","did bumped"] },
+      { prompt: '(fall)', answer: 'fell', alternatives: [], distractors: ["were falling","falling","was fall"] },
+      { prompt: '(give)', answer: 'gave', alternatives: [], distractors: ["give","giving","did gave"] },
+      { prompt: '(not like)', answer: "doesn't like", alternatives: ['does not like'], distractors: ["do not like","does not likes","does not liking"] }
     ]
   },
   {
     title: 'Live from Sports Day!',
     blanks: [
-      { prompt: '(type)', answer: 'am typing', alternatives: [], distractors: ['type', 'typed', 'is typing'] },
+      { prompt: '(type)', answer: 'am typing', alternatives: [], distractors: ["am type","typed","is typing"] },
       { prompt: '(not start)', answer: 'does not start', alternatives: [], distractors: ['do not start', 'did not start', 'does not starts'] },
       { prompt: '(run)', answer: 'are running', alternatives: [], distractors: ['is running', 'are run', 'are ran'] },
-      { prompt: '(come)', answer: 'comes', alternatives: [], distractors: ['come', 'coming', 'does comes'] },
+      { prompt: '(come)', answer: 'comes', alternatives: [], distractors: ["does coming","coming","does comes"] },
       { prompt: '(not join)', answer: 'did you not join', alternatives: [], distractors: ['did you not joined', 'was you not joining', 'did you not joining'] },
       { prompt: '(hurt)', answer: 'hurt', alternatives: [], distractors: ['was hurt', 'were hurt', 'am hurt'] },
       { prompt: '(practise)', answer: 'was practising', alternatives: [], distractors: ['practise', 'am practising', 'were practising'] },
@@ -92,7 +92,7 @@ const expectedExercises = [
       { prompt: '(know)', answer: 'know', alternatives: [], distractors: ['knows', 'knowing', 'did knew'] },
       { prompt: '(climb)', answer: 'climbed', alternatives: [], distractors: ['climbs', 'climbing', 'was climb'] },
       { prompt: '(tie)', answer: 'is tying', alternatives: [], distractors: ['are tying', 'tie', 'is tie'] },
-      { prompt: '(cut)', answer: 'is cutting', alternatives: [], distractors: ['are cutting', 'is cut', 'cutting'] },
+      { prompt: '(cut)', answer: 'is cutting', alternatives: [], distractors: ["are cutting","is cuts","did cuts"] },
       { prompt: '(not forget)', answer: 'does not forget', alternatives: [], distractors: ['does not forgot', 'do not forget', 'does not forgetting'] },
       { prompt: '(laugh)', answer: 'are you laughing', alternatives: [], distractors: ['is you laughing', 'are you laugh', 'did you laughing'] }
     ]
@@ -129,7 +129,7 @@ expectedExercises.forEach((expectedExercise, exerciseIndex) => {
     if (!sameList(blank.alternatives || [], want.alternatives)) problems.push(`${label}: accepted alternatives do not match the teacher-approved list.`);
     if (!sameList(blank.distractors || [], want.distractors)) problems.push(`${label}: distractors do not match the teacher-approved set.`);
     if ((blank.distractors || []).some(option => /['’]/.test(option))) problems.push(`${label}: distractors must use whole words, not contractions.`);
-    const options = [blank.answer, ...(blank.alternatives || []), ...(blank.distractors || [])];
+    const options = [blank.answer, ...(blank.displayAlternatives ?? blank.alternatives ?? []), ...(blank.distractors || [])];
     if (options.length !== 4 || new Set(options).size !== 4) problems.push(`${label}: must offer exactly four unique choices.`);
     if (!blank.explanation || blank.explanation.length > 240) problems.push(`${label}: must have a concise student-facing explanation.`);
   });

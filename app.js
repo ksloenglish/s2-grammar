@@ -959,11 +959,12 @@
           placeholder.selected = true;
           sel.appendChild(placeholder);
 
-          // Show exactly four answer choices: normally one answer plus three distractors;
-          // with one accepted alternative, use two distractors. Alternatives are correct.
+          // Display and acceptance are separate: an audited blank can hide a valid
+          // alternative while retaining it for existing/free-response grading.
+          // Unrevised blanks keep their current display until their safe set is approved.
           let options = [];
           if (seg.distractors) {
-             options = [...new Set([seg.answer, ...(seg.alternatives || []), ...seg.distractors])];
+             options = [...new Set([seg.answer, ...(seg.displayAlternatives ?? seg.alternatives ?? []), ...seg.distractors])];
              if (options.length !== 4) {
                throw new Error(`Dropdown blank ${idx + 1} must offer exactly four unique answer choices; found ${options.length}.`);
              }
@@ -1195,7 +1196,7 @@
     builderS2.textContent = q.s2;
 
     // Step 1: pronoun chips (shuffled)
-    const prons = [...(builderTopic.pronouns || ['who','which','whose','when','where'])].sort(() => Math.random() - 0.5);
+    const prons = [...(q.pronounOptions || builderTopic.pronouns || ['who','which','whose','when','where'])].sort(() => Math.random() - 0.5);
     pronounChips.innerHTML = '';
     prons.forEach(p => {
       const chip = document.createElement('button');
