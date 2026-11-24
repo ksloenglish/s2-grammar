@@ -7,6 +7,9 @@
  * Rooftop blog exceptions: formation-only blanks 1, 8 and 9; the singular
  * principal's blank 3 also permits the agreed "have set up" agreement error.
  * Hailey diary exceptions: formation-only blanks 2, 11 and 12.
+ * 24 November teacher approval adds exactly ten reviewed sets: Jason 6/10,
+ * milk-tea 6, Natalie 5/10, rooftop 3/4/11/12 and Hailey 8. Extra agreement
+ * and have + present-participle errors stay confined to the named blanks.
  * Preserve the protected alternate forms; never turn them into distractors.
  * Run: node scripts/validate-present-perfect.js
  */
@@ -22,6 +25,13 @@ const problems = [];
 const fail = message => problems.push(message);
 // 1 base; 2 wrong simple past/perfect; 3 has/have + base; 4 was/were + base;
 // 5 has/have + past, only if different from participle; 6 was/were + past.
+// Keys below use zero-based exercise/blank indices; no topic-wide exception.
+const approvedExtraRules = Object.freeze({
+  '3/2/have set up': 'agreement',
+  '3/2/were set up': 'agreement',
+  '3/10/has signed up': 'agreement',
+  '2/9/have just starting': 'perfect-ing'
+});
 const expectedExercises = [
   {
     title: 'Exercise 1: Jason, a Nervous Swimmer',
@@ -31,11 +41,11 @@ const expectedExercises = [
       { prompt: '(not want)', answer: 'did not want', alternatives: ["didn't want"], wrong: [["has not wanted",2],["was not want",4],["has not want",3]] },
       { prompt: '(join)', answer: 'joined', alternatives: [], wrong: [['join', 1], ['was join', 4], ['has joined', 2]] },
       { prompt: '(ask)', answer: 'asked', alternatives: [], wrong: [['has asked', 2], ['ask', 1], ['has ask', 3]] },
-      { prompt: '(practise)', answer: 'has practised', alternatives: ['has been practising'], wrong: [['has practise', 3], ['practised', 2]] },
+      {"prompt":"(practise)","answer":"has practised","alternatives":["has been practising"],"wrong":[["has practise",3],["practise",1],["was practise",4]],"noTenseContrast":true},
       { prompt: '(not miss)', answer: 'has not missed', alternatives: ["hasn't missed"], wrong: [["did not miss",2],["was not miss",4],["has not miss",3]] },
       { prompt: '(improve)', answer: 'have improved', alternatives: [], wrong: [['were improve', 4], ['improved', 2], ['have improve', 3]] },
       { prompt: '(swim)', answer: 'Have you ever swum', alternatives: [], initial: true, wrong: [['Have you ever swim', 3], ['Were you ever swim', 4], ['Did you ever swim', 2]] },
-      { prompt: '(already / buy)', answer: 'have already bought', alternatives: [], wrong: [['were already buy', 4], ['have already buy', 3], ['already bought', 2]] },
+      {"prompt":"(already / buy)","answer":"have already bought","alternatives":[],"wrong":[["were already buy",4],["have already buy",3],["were already bought",6]],"noTenseContrast":true},
       { prompt: '(make)', answer: 'made', alternatives: [], wrong: [['make', 1], ['has made', 2], ['was make', 4]] },
       { prompt: '(just / finish)', answer: 'has just finished', alternatives: [], noTenseContrast: true, wrong: [['has just finish', 3], ['was just finish', 4], ['just finish', 1]] }
     ],
@@ -61,7 +71,7 @@ const expectedExercises = [
       { prompt: '(open)', answer: 'opened', alternatives: [], wrong: [['open', 1], ['has opened', 2], ['was opened', 6]] },
       { prompt: '(begin)', answer: 'began', alternatives: [], past: 'began', participle: 'begun', wrong: [['was began', 6], ['have begun', 2], ['have began', 5]] },
       { prompt: '(change)', answer: 'Has the café changed', alternatives: [], initial: true, wrong: [['Has the café change', 3], ['Did the café change', 2], ['Was the café change', 4]] },
-      { prompt: '(not change)', answer: 'have not changed', alternatives: ["haven't changed"], wrong: [['were not changed', 6], ['did not change', 2]] },
+      {"prompt":"(not change)","answer":"have not changed","alternatives":["haven't changed"],"wrong":[["were not changed",6],["have not change",3],["were not change",4]],"noTenseContrast":true},
       { prompt: '(already / sell)', answer: 'have already sold', alternatives: [], wrong: [['already sell', 1], ['have already sell', 3], ['already sold', 2]] },
       { prompt: '(write)', answer: 'wrote', alternatives: [], past: 'wrote', participle: 'written', wrong: [['has wrote', 5], ['was wrote', 6], ['has written', 2]] },
       { prompt: '(come)', answer: 'have come', alternatives: [], past: 'came', participle: 'come', wrong: [['came', 2], ['were came', 6], ['have came', 5]] },
@@ -93,12 +103,12 @@ const expectedExercises = [
       { prompt: '(be)', answer: 'have been', alternatives: [], past: 'was', participle: 'been', wrong: [['was', 2], ['have was', 5], ['was be', 4]] },
       { prompt: '(take)', answer: 'took', alternatives: [], past: 'took', participle: 'taken', wrong: [['has took', 5], ['has taken', 2], ['was took', 6]] },
       { prompt: '(feel)', answer: 'felt', alternatives: [], wrong: [['have felt', 2], ['was feel', 4], ['have feel', 3]] },
-      { prompt: '(not know)', answer: 'did not know', alternatives: ["didn't know"], wrong: [['was not knew', 6], ['have not known', 2]] },
+      {"prompt":"(not know)","answer":"did not know","alternatives":["didn't know"],"wrong":[["was not knew",6],["have not know",3],["have not knew",5]],"noTenseContrast":true,"past":"knew","participle":"known"},
       { prompt: '(make)', answer: 'have made', alternatives: [], wrong: [['have make', 3], ['made', 2], ['was make', 4]] },
       { prompt: '(live)', answer: 'has lived', alternatives: ['has been living'], wrong: [["lived",2],["has live",3],["was live",4]] },
       { prompt: '(teach)', answer: 'taught', alternatives: [], wrong: [['teach', 1], ['was taught', 6], ['has taught', 2]] },
       { prompt: '(lose)', answer: 'have lost', alternatives: [], noTenseContrast: true, forbiddenDistractors: ['lost'], wrong: [['have lose', 3], ['lose', 1], ['was lose', 4]] },
-      { prompt: '(just / start)', answer: 'have just started', alternatives: [], noTenseContrast: true, forbiddenDistractors: ['just started', 'has just started'], wrong: [['were just start', 4], ['have just start', 3], ['just start', 1]] },
+      {"prompt":"(just / start)","answer":"have just started","alternatives":[],"noTenseContrast":true,"forbiddenDistractors":["just started","has just started"],"wrong":[["were just start",4],["have just start",3],["have just starting","perfect-ing"]]},
       { prompt: '(do)', answer: 'Have you ever done', alternatives: [], initial: true, past: 'did', participle: 'done', wrong: [['Have you ever did', 5], ['Were you ever did', 6], ['Did you ever do', 2]] },
       { prompt: '(offer)', answer: 'offered', alternatives: [], wrong: [['has offered', 2], ['has offer', 3], ['was offer', 4]] }
     ],
@@ -127,16 +137,16 @@ const expectedExercises = [
       { prompt: '(think)', answer: 'thought', alternatives: [], wrong: [['have think', 3], ['have thought', 2], ['was thought', 6]] },
       // All forms of set up coincide; only this blank permits the teacher's
       // explicitly approved has/have + base subject-agreement error.
-      { prompt: '(set up)', answer: 'set up', alternatives: [], agreementException: true, wrong: [['has set up', 2], ['have set up', 3], ['was set up', 4]] },
-      { prompt: '(grow)', answer: 'have grown', alternatives: [], past: 'grew', participle: 'grown', wrong: [['were grew', 6], ['grew', 2], ['have grew', 5]] },
+      {"prompt":"(set up)","answer":"set up","alternatives":[],"agreementException":true,"wrong":[["has set up",2],["have set up","agreement"],["were set up","agreement"]]},
+      {"prompt":"(grow)","answer":"have grown","alternatives":[],"past":"grew","participle":"grown","wrong":[["were grew",6],["have grow",3],["have grew",5]],"noTenseContrast":true},
       { prompt: '(not buy)', answer: 'have not bought', alternatives: ["haven't bought"], wrong: [["have not buy",3],["did not buy",2],["were not buy",4]] },
       { prompt: '(blow)', answer: 'blew', alternatives: [], past: 'blew', participle: 'blown', wrong: [['was blew', 6], ['has blown', 2], ['has blew', 5]] },
       { prompt: '(have)', answer: 'had', alternatives: [], wrong: [['have had', 2], ['were had', 6], ['have have', 3]] },
       { prompt: '(just / pick)', answer: 'have just picked', alternatives: [], noTenseContrast: true, forbiddenDistractors: ['just picked'], wrong: [['have just pick', 3], ['was just pick', 4], ['just pick', 1]] },
       { prompt: '(never / see)', answer: 'has never seen', alternatives: [], past: 'saw', participle: 'seen', noTenseContrast: true, forbiddenDistractors: ['never saw'], wrong: [['has never saw', 5], ['has never see', 3], ['was never saw', 6]] },
       { prompt: '(sell)', answer: 'sold', alternatives: [], wrong: [['were sell', 4], ['have sold', 2], ['have sell', 3]] },
-      { prompt: '(sign up)', answer: 'have signed up', alternatives: [], wrong: [['signed up', 2], ['were sign up', 4], ['have sign up', 3]] },
-      { prompt: '(try)', answer: 'Have you tried', alternatives: [], initial: true, wrong: [['Have you try', 3], ['Were you tried', 6], ['Did you try', 2]] }
+      {"prompt":"(sign up)","answer":"have signed up","alternatives":[],"wrong":[["has signed up","agreement"],["were sign up",4],["have sign up",3]],"noTenseContrast":true,"agreementException":true},
+      {"prompt":"(try)","answer":"Have you tried","alternatives":[],"initial":true,"wrong":[["Have you try",3],["Were you tried",6],["Were you try",4]],"noTenseContrast":true}
     ],
     cues: [
       'Posted by Marcus Lee, 4C\n\n[Have you ever eaten] a vegetable that you grew yourself?',
@@ -165,7 +175,7 @@ const expectedExercises = [
       { prompt: '(agree)', answer: 'agreed', alternatives: [], wrong: [['was agree', 4], ['has agree', 3], ['has agreed', 2]] },
       { prompt: '(find)', answer: 'found', alternatives: [], wrong: [['have found', 2], ['were find', 4], ['have find', 3]] },
       { prompt: '(already / chew)', answer: 'has already chewed', alternatives: [], wrong: [['already chewed', 2], ['has already chew', 3], ['was already chew', 4]] },
-      { prompt: '(not eat)', answer: 'has not eaten', alternatives: ["hasn't eaten"], past: 'ate', participle: 'eaten', wrong: [['has not ate', 5], ['did not eat', 2]] },
+      {"prompt":"(not eat)","answer":"has not eaten","alternatives":["hasn't eaten"],"past":"ate","participle":"eaten","wrong":[["has not ate",5],["has not eat",3],["was not eat",4]],"noTenseContrast":true},
       { prompt: '(never / touch)', answer: 'has never touched', alternatives: [], wrong: [['has never touch', 3], ['was never touch', 4], ['never touched', 2]] },
       { prompt: '(scream)', answer: 'screamed', alternatives: [], wrong: [['has screamed', 2], ['was scream', 4], ['has scream', 3]] },
       { prompt: '(have)', answer: 'Have you ever had', alternatives: [], initial: true, noTenseContrast: true, forbiddenDistractors: ['Did you ever have'], wrong: [['Were you ever had', 6], ['Have you ever have', 3], ['Were you ever have', 4]] },
@@ -215,8 +225,10 @@ expectedExercises.forEach((wantExercise, exerciseIndex) => {
     if (choices.length !== 4 || new Set(choices.map(s => s.toLowerCase())).size !== 4) fail(`${label}: needs exactly four unique choices.`);
     if ((b.distractors || []).some(s => /['’]/.test(s))) fail(`${label}: distractors must use whole words.`);
     if (!want.noTenseContrast && !want.wrong.some(([, rule]) => rule === 2)) fail(`${label}: missing the safe tense contrast.`);
-    if (want.agreementException && (exerciseIndex !== 3 || i !== 2)) fail(`${label}: the agreement exception is limited to rooftop blog blank 3.`);
-    for (const [, rule] of want.wrong) {
+    if (choices.filter(s => [b.answer, ...(b.alternatives || [])].includes(s)).length !== 1) fail(`${label}: only one accepted form may be displayed.`);
+    if (want.agreementException && !(exerciseIndex === 3 && [2, 10].includes(i))) fail(`${label}: agreement exceptions are limited to rooftop blanks 3 and 11.`);
+    for (const [text, rule] of want.wrong) {
+      if (approvedExtraRules[`${exerciseIndex}/${i}/${text}`] === rule) continue;
       if (!Number.isInteger(rule) || rule < 1 || rule > 6) fail(`${label}: unapproved rule tag.`);
       if (rule === 5 && (!want.past || !want.participle || want.past === want.participle)) fail(`${label}: rule 5 requires a different past form and participle.`);
     }
@@ -236,7 +248,7 @@ expectedExercises.forEach((wantExercise, exerciseIndex) => {
   }
   if (/\[(?:Have you ever swum|Have you ever thought|Have you ever done|Have you ever eaten|Have you ever had)\] you ever|\[Has the café changed\] the café|\[Have you tried\] you/.test(text)) fail(`${prefix}: duplicated preprinted words after a question dropdown.`);
 });
-console.log(`Audited ${totalBlanks} Present Perfect blanks across ${expectedExercises.length} exercises against the six permitted distractor forms.`);
+console.log(`Audited ${totalBlanks} Present Perfect blanks across ${expectedExercises.length} exercises against the six permitted families and named teacher-approved local exceptions.`);
 if (problems.length) {
   console.error(`Present Perfect validation violations: ${problems.length}`);
   problems.forEach(p => console.error(p));

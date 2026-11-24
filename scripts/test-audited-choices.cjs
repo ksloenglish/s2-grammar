@@ -7,7 +7,7 @@ const root = path.resolve(__dirname,'..');
 const src = Object.fromEntries(['index.html','data.js','mistakes.js','app.js'].map(f=>[f,fs.readFileSync(path.join(root,f),'utf8')]));
 const data = JSON.parse(JSON.stringify(vm.runInNewContext(src['data.js']+'\nGRAMMAR_DATA;')));
 const fixture = JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/unique-answer-safe-repairs.json')));
-let attempts=0,variants=0,selectors=0;
+let attempts=0,variants=0,selectors=0,approvedOptions=0;
 function dom(patch='') {
   const errors=[],vc=new VirtualConsole();vc.on('jsdomError',e=>errors.push(e.message));
   const d=new JSDOM(src['index.html'],{url:'https://test.invalid/',runScripts:'outside-only',pretendToBeVisual:true,virtualConsole:vc});
@@ -38,6 +38,33 @@ for(const [term,topics] of Object.entries(data))for(const [key,t] of Object.entr
     }
   }
 }
+assert.equal(fixture.teacherApprovedPerfectChoices.length,10,'All ten approved sets must be covered');
+for(const f of fixture.teacherApprovedPerfectChoices) {
+  const topic=data['First Term']['present-perfect'],index=topic.exercises.findIndex(x=>x.id===f.id),item=topic.exercises[index];
+  const blanks=item.segments.filter(b=>typeof b==='object'),target=blanks[f.blank-1];
+  for(const option of f.visible) {
+    const c=dom();
+    try {
+      c.click('[data-term="First Term"]');c.click('[data-topic="present-perfect"]');
+      c.w.Math.random=()=>(index+0.25)/topic.exercises.length;c.click('#btn-start');
+      assert.equal(c.el('#passage-title').textContent,item.title);
+      const selects=[...c.w.document.querySelectorAll('#passage-body select')];
+      assert.deepEqual([...selects[f.blank-1].options].filter(x=>!x.disabled).map(x=>x.value).sort(),f.visible.slice().sort());
+      selects.forEach((x,i)=>{x.value=i===f.blank-1?option:blanks[i].answer;x.dispatchEvent(new c.w.Event('change',{bubbles:true}));});
+      c.click('#btn-submit-passage');
+      const earned=option===target.answer?blanks.length:blanks.length-1;
+      assert.equal(c.el('#res-score').textContent,`${earned}/${blanks.length} (${Math.round(earned/blanks.length*100)}%)`);
+      assert.equal(c.w.document.querySelectorAll('.rev-blank.correct').length,earned);
+      assert.equal(c.w.document.querySelectorAll('.rev-info')[f.blank-1].dataset.exp,target.explanation);
+      assert.equal(c.w.KSLOMistakes.list().length,option===target.answer?0:1);
+      c.click('#btn-retry-same-bottom');
+      assert.ok([...c.w.document.querySelectorAll('#passage-body select')].every(x=>!x.value));
+      assert.equal(c.el('#passage-filled').textContent,'0 / '+blanks.length);
+      assert.deepEqual([...c.w.document.querySelectorAll('#passage-body select')[f.blank-1].options].filter(x=>!x.disabled).map(x=>x.value).sort(),f.visible.slice().sort());
+      approvedOptions++;attempts++;
+    } finally {c.d.window.close();}
+  }
+}
 const targets=[...new Set([...fixture.pronounChoices.map(f=>f.id),...fixture.frameChoices.map(f=>f.id),...fixture.fields.filter(f=>['combined','segs'].includes(f.field)).map(f=>f.id)])];
 for(const id of targets) {
   const key=id.startsWith('relative-clauses')?'relative-clauses':'reported-speech',t=data['Second Term'][key],item=t.questions.find(q=>q.id===id),rs=t.type==='builder-rs';
@@ -63,4 +90,4 @@ for(const id of targets) {
     assert.equal(c.w.KSLOMistakes.list().length,0);selectors++;attempts++;
   } finally {c.d.window.close();}
 }
-console.log(`PASS: ${attempts} focused attempts; ${variants} hidden grammatical variants accepted via input fixtures; ${selectors} changed builder items retain display, scoring, review and retry.`);
+console.log(`PASS: ${attempts} focused attempts; ${variants} hidden grammatical variants accepted via input fixtures; ${approvedOptions} approved Perfect dropdown options pass scoring/feedback/retry; ${selectors} changed builder items retain display, scoring, review and retry.`);

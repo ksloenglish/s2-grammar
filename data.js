@@ -549,7 +549,21 @@ const GRAMMAR_DATA = {
             " the school swimming team and ",
             {"showPrompt":true,"prompt":"(ask)","answer":"asked","distractors":["has asked","ask","has ask"],"explanation":"Use 'asked'. Ryan invited Jason last September, so use the simple past for the invitation."},
             " Jason to try out too. Since then, Jason ",
-            {"showPrompt":true,"prompt":"(practise)","answer":"has practised","alternatives":["has been practising"],"distractors":["has practise","practised"],"explanation":"Use 'has practised' or 'has been practising'. 'Since then' links his regular practice from last September to now, so both perfect forms are correct."},
+            {
+              "showPrompt": true,
+              "prompt": "(practise)",
+              "answer": "has practised",
+              "alternatives": [
+                "has been practising"
+              ],
+              "distractors": [
+                "has practise",
+                "practise",
+                "was practise"
+              ],
+              "explanation": "Use 'has practised'. This form sums up Jason's repeated practice from last September to now; after 'has', use 'practised'.",
+              "displayAlternatives": []
+            },
             " at the Sha Tin Jockey Club Swimming Pool three times a week. He is very proud because he ",
             {"showPrompt":true,"prompt":"(not miss)","answer":"has not missed","alternatives":["hasn't missed"],"distractors":["did not miss","was not miss","has not miss"],"explanation":"Use 'has not missed'. 'So far' means up to now, so use the present perfect for his attendance.","displayAlternatives":[]},
             " a single training session so far.\n\nMiss Lau, the swimming coach, is pleased with him. After training yesterday, she said, \"Jason, you ",
@@ -557,7 +571,17 @@ const GRAMMAR_DATA = {
             " a lot since the start of this term. ",
             {"showPrompt":true,"sentenceInitial":true,"prompt":"(swim)","answer":"Have you ever swum","distractors":["Have you ever swim","Were you ever swim","Did you ever swim"],"explanation":"Use 'Have you ever swum'. 'Since joining our team' asks about experience up to the time of speaking, so use have + subject + past participle."},
             " in a real competition since joining our team?\" Jason shook his head. He is going to swim the 50-metre freestyle for Green House at the Swimming Gala next Friday.\n\nHis family is very supportive. Since Jason joined the team, his parents ",
-            {"showPrompt":true,"prompt":"(already / buy)","answer":"have already bought","distractors":["were already buy","have already buy","already bought"],"explanation":"Use 'have already bought'. 'Since Jason joined the team' links the purchase to now; use have + the past participle bought."},
+            {
+              "showPrompt": true,
+              "prompt": "(already / buy)",
+              "answer": "have already bought",
+              "distractors": [
+                "were already buy",
+                "have already buy",
+                "were already bought"
+              ],
+              "explanation": "Use 'have already bought'. The present perfect links the purchase to the family's support now; 'bought' is the past participle of 'buy'."
+            },
             " him a new pair of goggles. Last night, his younger sister ",
             {"showPrompt":true,"prompt":"(make)","answer":"made","distractors":["make","has made","was make"],"explanation":"Use 'made'. 'Last night' is a finished time in the past, so use the simple past."},
             " a colourful poster that says \"Go, Jason, Go!\" Jason ",
@@ -581,7 +605,21 @@ const GRAMMAR_DATA = {
             " helping him in the kitchen when I was only fifteen.\n\nChloe: ",
             {"showPrompt":true,"sentenceInitial":true,"prompt":"(change)","answer":"Has the café changed","distractors":["Has the café change","Did the café change","Was the café change"],"explanation":"Use 'Has the café changed'. 'Since then' asks about changes from Mr Chan's teenage years up to the interview, so use the present perfect."},
             " much since then?\n\nMr Chan: Not really. We ",
-            {"showPrompt":true,"prompt":"(not change)","answer":"have not changed","alternatives":["haven't changed"],"distractors":["were not changed","did not change"],"explanation":"Use 'have not changed' or 'haven't changed'. The recipe has stayed the same from the past up to the interview, so use the present perfect."},
+            {
+              "showPrompt": true,
+              "prompt": "(not change)",
+              "answer": "have not changed",
+              "alternatives": [
+                "haven't changed"
+              ],
+              "distractors": [
+                "were not changed",
+                "have not change",
+                "were not change"
+              ],
+              "explanation": "Use 'have not changed'. The recipe has stayed the same from the past up to the interview, so use the present perfect.",
+              "displayAlternatives": []
+            },
             " our milk tea recipe in almost fifty years. Our customers love it just the way it is!\n\nChloe: What is your most popular item?\n\nMr Chan: Our pineapple bun with butter, of course. We ",
             {"showPrompt":true,"prompt":"(already / sell)","answer":"have already sold","distractors":["already sell","have already sell","already sold"],"explanation":"Use 'have already sold'. 'So far today' gives the total from the start of the day up to the time of speaking, so use the present perfect."},
             " over two hundred so far today, and it's only eleven o'clock!\n\nChloe: Wow! Has anything exciting happened recently?\n\nMr Chan: Yes. Two months ago, a famous food blogger ",
@@ -611,7 +649,21 @@ const GRAMMAR_DATA = {
             " our class to an elderly centre in Wong Tai Sin as part of our OLE programme. On our first visit, I ",
             {"showPrompt":true,"prompt":"(feel)","answer":"felt","distractors":["have felt","was feel","have feel"],"explanation":"Use 'felt'. The first visit happened three weeks ago, so use the simple past to describe Natalie's feelings on that completed visit."},
             " very shy. I ",
-            {"showPrompt":true,"prompt":"(not know)","answer":"did not know","alternatives":["didn't know"],"distractors":["was not knew","have not known"],"explanation":"Use 'did not know' or 'didn't know'. Natalie is still describing her first visit three weeks ago, so use the simple past."},
+            {
+              "showPrompt": true,
+              "prompt": "(not know)",
+              "answer": "did not know",
+              "alternatives": [
+                "didn't know"
+              ],
+              "distractors": [
+                "was not knew",
+                "have not know",
+                "have not knew"
+              ],
+              "explanation": "Use 'did not know' for Natalie's uncertainty during that first visit. After did not, use the base form know.",
+              "displayAlternatives": []
+            },
             " what to say to the elderly people at all.\n\nSince then, things have changed a lot. I ",
             {"showPrompt":true,"prompt":"(make)","answer":"have made","distractors":["have make","made","was make"],"explanation":"Use 'have made'. 'Since our first visit' links Natalie's new friendships to the present, so use the present perfect."},
             " some wonderful new friends at the centre since our first visit. My favourite is Granny Leung. She is 88 years old, and she ",
@@ -621,7 +673,17 @@ const GRAMMAR_DATA = {
             " me how to play Chinese chess. She is really good at it! I ",
             {"showPrompt":true,"prompt":"(lose)","answer":"have lost","distractors":["have lose","lose","was lose"],"explanation":"Use 'have lost'. 'So far' summarises the games played up to now; after have, use the past participle lost."},
             " every game so far, but I'm getting better.\n\nHere's the best part: our class ",
-            {"showPrompt":true,"prompt":"(just / start)","answer":"have just started","distractors":["were just start","have just start","just start"],"explanation":"Use 'have just started' to describe a very recent beginning linked to now; after have, use the past participle started."},
+            {
+              "showPrompt": true,
+              "prompt": "(just / start)",
+              "answer": "have just started",
+              "distractors": [
+                "were just start",
+                "have just start",
+                "have just starting"
+              ],
+              "explanation": "Use 'have just started' to describe a very recent beginning linked to now; after have, use the past participle started."
+            },
             " planning a Mid-Autumn Festival party for the centre. We are going to sing songs and make lanterns with the elderly. ",
             {"showPrompt":true,"sentenceInitial":true,"prompt":"(do)","answer":"Have you ever done","distractors":["Have you ever did","Were you ever did","Did you ever do"],"explanation":"Use 'Have you ever done'. 'Since the start of this school year' asks about experience up to now, so use have + subject + past participle."},
             " any volunteer work since the start of this school year? It's so much fun!\n\nWhen I told Mum about the party yesterday, she ",
@@ -639,9 +701,29 @@ const GRAMMAR_DATA = {
             " a vegetable that you grew yourself? Believe it or not, before I joined the Green Club in Form 3, I ",
             {"showPrompt":true,"prompt":"(think)","answer":"thought","distractors":["have think","have thought","was thought"],"explanation":"Use 'thought'. Marcus describes his belief during the finished period before he joined the Green Club, so use the simple past."},
             " that choi sum just came from the supermarket!\n\nOur principal, Mrs Yip, ",
-            {"showPrompt":true,"prompt":"(set up)","answer":"set up","distractors":["has set up","have set up","was set up"],"explanation":"Use 'set up'. 'In 2022' places the action at a finished past time, and the simple past of set up is also set up."},
+            {
+              "showPrompt": true,
+              "prompt": "(set up)",
+              "answer": "set up",
+              "distractors": [
+                "has set up",
+                "have set up",
+                "were set up"
+              ],
+              "explanation": "Use 'set up'. 'In 2022' places the action at a finished past time, and the simple past of set up is also set up."
+            },
             " the rooftop farm in 2022. Since then, club members ",
-            {"showPrompt":true,"prompt":"(grow)","answer":"have grown","distractors":["were grew","grew","have grew"],"explanation":"Use 'have grown'. 'Since then' links the farm's start in 2022 to now; use have with the plural subject and the past participle grown."},
+            {
+              "showPrompt": true,
+              "prompt": "(grow)",
+              "answer": "have grown",
+              "distractors": [
+                "were grew",
+                "have grow",
+                "have grew"
+              ],
+              "explanation": "Use 'have grown' to describe the club's growing achievements up to now. With the plural subject 'club members', use have + grown."
+            },
             " more than twenty kinds of vegetables and herbs, including choi sum, cherry tomatoes and mint. We want our farm to be fully organic, so since the beginning of this year we ",
             {"showPrompt":true,"prompt":"(not buy)","answer":"have not bought","alternatives":["haven't bought"],"distractors":["have not buy","did not buy","were not buy"],"explanation":"Use 'have not bought'. 'Since the beginning of this year' describes the period up to now, so use the present perfect.","displayAlternatives":[]},
             " any chemical sprays at all.\n\nOf course, farming isn't always easy. Last summer, a strong typhoon ",
@@ -655,9 +737,30 @@ const GRAMMAR_DATA = {
             " such big ones on a school rooftop.\n\nLast Friday, we ",
             {"showPrompt":true,"prompt":"(sell)","answer":"sold","distractors":["were sell","have sold","have sell"],"explanation":"Use 'sold'. 'Last Friday' tells us when the completed sale happened, so use the simple past."},
             " some of our vegetables at a stall on Parents' Day. Lots of parents and students stopped by, and so far, fifteen new members ",
-            {"showPrompt":true,"prompt":"(sign up)","answer":"have signed up","distractors":["signed up","were sign up","have sign up"],"explanation":"Use 'have signed up'. 'So far' gives the total number of new members up to now, so use the present perfect."},
+            {
+              "showPrompt": true,
+              "prompt": "(sign up)",
+              "answer": "have signed up",
+              "distractors": [
+                "has signed up",
+                "were sign up",
+                "have sign up"
+              ],
+              "explanation": "Use 'have signed up' to give the total number of new members up to now. With the plural subject 'fifteen new members', use have + signed up."
+            },
             " for the Green Club. Welcome, everyone!\n\nFinally, a question for all our readers: ",
-            {"showPrompt":true,"sentenceInitial":true,"prompt":"(try)","answer":"Have you tried","distractors":["Have you try","Were you tried","Did you try"],"explanation":"Use 'Have you tried'. 'Yet' asks whether the readers have tasted the lemonade by now, so use the present perfect in formal British English."},
+            {
+              "showPrompt": true,
+              "sentenceInitial": true,
+              "prompt": "(try)",
+              "answer": "Have you tried",
+              "distractors": [
+                "Have you try",
+                "Were you tried",
+                "Were you try"
+              ],
+              "explanation": "Use 'Have you tried' to ask about tasting the lemonade by now. After have, use the past participle tried."
+            },
             " our homemade mint lemonade yet? If not, come up to the rooftop at lunchtime and have a cup!"
           ]
         },
@@ -681,7 +784,21 @@ const GRAMMAR_DATA = {
             " him all alone near a building site. Poor thing!\n\nToffee has only been with us for a day, but so far he ",
             {"showPrompt":true,"prompt":"(already / chew)","answer":"has already chewed","distractors":["already chewed","has already chew","was already chew"],"explanation":"Use 'has already chewed'. 'So far' describes the period from Toffee's arrival up to now, so use the present perfect."},
             " one of my slippers to pieces! He ",
-            {"showPrompt":true,"prompt":"(not eat)","answer":"has not eaten","alternatives":["hasn't eaten"],"distractors":["has not ate","did not eat"],"explanation":"Use 'has not eaten' or 'hasn't eaten'. 'Since he arrived' links Toffee's eating from his arrival up to now."},
+            {
+              "showPrompt": true,
+              "prompt": "(not eat)",
+              "answer": "has not eaten",
+              "alternatives": [
+                "hasn't eaten"
+              ],
+              "distractors": [
+                "has not ate",
+                "has not eat",
+                "was not eat"
+              ],
+              "explanation": "Use 'has not eaten'. This describes how little Toffee has eaten from his arrival up to now.",
+              "displayAlternatives": []
+            },
             " much since he arrived, though. The SPCA staff told us this is normal for a new pet, so I'm trying not to worry.\n\nMy little brother Ethan is in Primary 3, and he is a bit scared of Toffee. So far, he ",
             {"showPrompt":true,"prompt":"(never / touch)","answer":"has never touched","distractors":["has never touch","was never touch","never touched"],"explanation":"Use 'has never touched'. 'So far' makes this a statement about Ethan's experience up to now, so use the present perfect."},
             " a dog. When Toffee licked his hand this afternoon, Ethan ",

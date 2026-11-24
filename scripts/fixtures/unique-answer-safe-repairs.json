@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "description": "Exact independently screened safe repair fields; does not claim unresolved items are unique.",
+  "version": 2,
+  "description": "Exact contextual safe repairs plus ten teacher-approved Present Perfect sets; unresolved other-topic items are not certified.",
   "baselineSHA256": "734341648d5ca35aaadc83669b5d04f68dd010880989cbf4cff65f301e798dc9",
   "fields": [
     {
@@ -1286,6 +1286,178 @@
         "where"
       ],
       "source": "relative-clauses-q-045-R1.1"
+    },
+    {
+      "id": "present-perfect-p-001",
+      "field": "segments.11.distractors",
+      "expected": [
+        "has practise",
+        "practise",
+        "was practise"
+      ],
+      "source": "present-perfect-p-001-TD1"
+    },
+    {
+      "id": "present-perfect-p-001",
+      "field": "segments.11.displayAlternatives",
+      "expected": [],
+      "source": "present-perfect-p-001-TD1"
+    },
+    {
+      "id": "present-perfect-p-001",
+      "field": "segments.11.explanation",
+      "expected": "Use 'has practised'. This form sums up Jason's repeated practice from last September to now; after 'has', use 'practised'.",
+      "source": "present-perfect-p-001-TD1"
+    },
+    {
+      "id": "present-perfect-p-002",
+      "field": "segments.11.distractors",
+      "expected": [
+        "were not changed",
+        "have not change",
+        "were not change"
+      ],
+      "source": "PP002-B06-FORMATION-ONLY"
+    },
+    {
+      "id": "present-perfect-p-002",
+      "field": "segments.11.displayAlternatives",
+      "expected": [],
+      "source": "PP002-B06-FORMATION-ONLY"
+    },
+    {
+      "id": "present-perfect-p-002",
+      "field": "segments.11.explanation",
+      "expected": "Use 'have not changed'. The recipe has stayed the same from the past up to the interview, so use the present perfect.",
+      "source": "PP002-B06-FORMATION-ONLY"
+    },
+    {
+      "id": "present-perfect-p-003",
+      "field": "segments.9.distractors",
+      "expected": [
+        "was not knew",
+        "have not know",
+        "have not knew"
+      ],
+      "source": "PP002-T05"
+    },
+    {
+      "id": "present-perfect-p-003",
+      "field": "segments.9.displayAlternatives",
+      "expected": [],
+      "source": "PP002-T05"
+    },
+    {
+      "id": "present-perfect-p-003",
+      "field": "segments.9.explanation",
+      "expected": "Use 'did not know' for Natalie's uncertainty during that first visit. After did not, use the base form know.",
+      "source": "PP002-T05"
+    },
+    {
+      "id": "present-perfect-p-005",
+      "field": "segments.15.distractors",
+      "expected": [
+        "has not ate",
+        "has not eat",
+        "was not eat"
+      ],
+      "source": "PP004-T01"
+    },
+    {
+      "id": "present-perfect-p-005",
+      "field": "segments.15.displayAlternatives",
+      "expected": [],
+      "source": "PP004-T01"
+    },
+    {
+      "id": "present-perfect-p-005",
+      "field": "segments.15.explanation",
+      "expected": "Use 'has not eaten'. This describes how little Toffee has eaten from his arrival up to now.",
+      "source": "PP004-T01"
+    },
+    {
+      "id": "present-perfect-p-001",
+      "field": "segments.19.distractors",
+      "expected": [
+        "were already buy",
+        "have already buy",
+        "were already bought"
+      ],
+      "source": "present-perfect-p-001-TD2"
+    },
+    {
+      "id": "present-perfect-p-001",
+      "field": "segments.19.explanation",
+      "expected": "Use 'have already bought'. The present perfect links the purchase to the family's support now; 'bought' is the past participle of 'buy'.",
+      "source": "present-perfect-p-001-TD2"
+    },
+    {
+      "id": "present-perfect-p-004",
+      "field": "segments.7.distractors",
+      "expected": [
+        "were grew",
+        "have grow",
+        "have grew"
+      ],
+      "source": "TD-PP003-B4"
+    },
+    {
+      "id": "present-perfect-p-004",
+      "field": "segments.7.explanation",
+      "expected": "Use 'have grown' to describe the club's growing achievements up to now. With the plural subject 'club members', use have + grown.",
+      "source": "TD-PP003-B4"
+    },
+    {
+      "id": "present-perfect-p-004",
+      "field": "segments.23.distractors",
+      "expected": [
+        "Have you try",
+        "Were you tried",
+        "Were you try"
+      ],
+      "source": "TD-PP003-B12"
+    },
+    {
+      "id": "present-perfect-p-004",
+      "field": "segments.23.explanation",
+      "expected": "Use 'Have you tried' to ask about tasting the lemonade by now. After have, use the past participle tried.",
+      "source": "TD-PP003-B12"
+    },
+    {
+      "id": "present-perfect-p-004",
+      "field": "segments.5.distractors",
+      "expected": [
+        "has set up",
+        "have set up",
+        "were set up"
+      ],
+      "source": "TD-PP003-B3"
+    },
+    {
+      "id": "present-perfect-p-004",
+      "field": "segments.21.distractors",
+      "expected": [
+        "has signed up",
+        "were sign up",
+        "have sign up"
+      ],
+      "source": "TD-PP003-B11"
+    },
+    {
+      "id": "present-perfect-p-004",
+      "field": "segments.21.explanation",
+      "expected": "Use 'have signed up' to give the total number of new members up to now. With the plural subject 'fifteen new members', use have + signed up.",
+      "source": "TD-PP003-B11"
+    },
+    {
+      "id": "present-perfect-p-003",
+      "field": "segments.19.distractors",
+      "expected": [
+        "were just start",
+        "have just start",
+        "have just starting"
+      ],
+      "source": "PP002-T10"
     }
   ],
   "passageChoices": [
@@ -2196,6 +2368,134 @@
         "was send",
         "were sent"
       ]
+    },
+    {
+      "id": "present-perfect-p-001",
+      "segmentIndex": 11,
+      "answer": "has practised",
+      "acceptedVariants": [
+        "has been practising"
+      ],
+      "visible": [
+        "has practised",
+        "has practise",
+        "practise",
+        "was practise"
+      ]
+    },
+    {
+      "id": "present-perfect-p-002",
+      "segmentIndex": 11,
+      "answer": "have not changed",
+      "acceptedVariants": [
+        "haven't changed"
+      ],
+      "visible": [
+        "have not changed",
+        "were not changed",
+        "have not change",
+        "were not change"
+      ]
+    },
+    {
+      "id": "present-perfect-p-003",
+      "segmentIndex": 9,
+      "answer": "did not know",
+      "acceptedVariants": [
+        "didn't know"
+      ],
+      "visible": [
+        "did not know",
+        "was not knew",
+        "have not know",
+        "have not knew"
+      ]
+    },
+    {
+      "id": "present-perfect-p-005",
+      "segmentIndex": 15,
+      "answer": "has not eaten",
+      "acceptedVariants": [
+        "hasn't eaten"
+      ],
+      "visible": [
+        "has not eaten",
+        "has not ate",
+        "has not eat",
+        "was not eat"
+      ]
+    },
+    {
+      "id": "present-perfect-p-001",
+      "segmentIndex": 19,
+      "answer": "have already bought",
+      "acceptedVariants": [],
+      "visible": [
+        "have already bought",
+        "were already buy",
+        "have already buy",
+        "were already bought"
+      ]
+    },
+    {
+      "id": "present-perfect-p-004",
+      "segmentIndex": 7,
+      "answer": "have grown",
+      "acceptedVariants": [],
+      "visible": [
+        "have grown",
+        "were grew",
+        "have grow",
+        "have grew"
+      ]
+    },
+    {
+      "id": "present-perfect-p-004",
+      "segmentIndex": 23,
+      "answer": "Have you tried",
+      "acceptedVariants": [],
+      "visible": [
+        "Have you tried",
+        "Have you try",
+        "Were you tried",
+        "Were you try"
+      ]
+    },
+    {
+      "id": "present-perfect-p-004",
+      "segmentIndex": 5,
+      "answer": "set up",
+      "acceptedVariants": [],
+      "visible": [
+        "set up",
+        "has set up",
+        "have set up",
+        "were set up"
+      ]
+    },
+    {
+      "id": "present-perfect-p-004",
+      "segmentIndex": 21,
+      "answer": "have signed up",
+      "acceptedVariants": [],
+      "visible": [
+        "have signed up",
+        "has signed up",
+        "were sign up",
+        "have sign up"
+      ]
+    },
+    {
+      "id": "present-perfect-p-003",
+      "segmentIndex": 19,
+      "answer": "have just started",
+      "acceptedVariants": [],
+      "visible": [
+        "have just started",
+        "were just start",
+        "have just start",
+        "have just starting"
+      ]
     }
   ],
   "pronounChoices": [
@@ -2369,6 +2669,118 @@
         "The volunteer said the visitors",
         "The volunteer told",
         "The volunteer told to the visitors"
+      ]
+    }
+  ],
+  "teacherApprovedPerfectChoices": [
+    {
+      "id": "present-perfect-p-001",
+      "blank": 6,
+      "segmentIndex": 11,
+      "visible": [
+        "has practised",
+        "has practise",
+        "practise",
+        "was practise"
+      ]
+    },
+    {
+      "id": "present-perfect-p-002",
+      "blank": 6,
+      "segmentIndex": 11,
+      "visible": [
+        "have not changed",
+        "were not changed",
+        "have not change",
+        "were not change"
+      ]
+    },
+    {
+      "id": "present-perfect-p-003",
+      "blank": 5,
+      "segmentIndex": 9,
+      "visible": [
+        "did not know",
+        "was not knew",
+        "have not know",
+        "have not knew"
+      ]
+    },
+    {
+      "id": "present-perfect-p-005",
+      "blank": 8,
+      "segmentIndex": 15,
+      "visible": [
+        "has not eaten",
+        "has not ate",
+        "has not eat",
+        "was not eat"
+      ]
+    },
+    {
+      "id": "present-perfect-p-001",
+      "blank": 10,
+      "segmentIndex": 19,
+      "visible": [
+        "have already bought",
+        "were already buy",
+        "have already buy",
+        "were already bought"
+      ]
+    },
+    {
+      "id": "present-perfect-p-004",
+      "blank": 4,
+      "segmentIndex": 7,
+      "visible": [
+        "have grown",
+        "were grew",
+        "have grow",
+        "have grew"
+      ]
+    },
+    {
+      "id": "present-perfect-p-004",
+      "blank": 12,
+      "segmentIndex": 23,
+      "visible": [
+        "Have you tried",
+        "Have you try",
+        "Were you tried",
+        "Were you try"
+      ]
+    },
+    {
+      "id": "present-perfect-p-004",
+      "blank": 3,
+      "segmentIndex": 5,
+      "visible": [
+        "set up",
+        "has set up",
+        "have set up",
+        "were set up"
+      ]
+    },
+    {
+      "id": "present-perfect-p-004",
+      "blank": 11,
+      "segmentIndex": 21,
+      "visible": [
+        "have signed up",
+        "has signed up",
+        "were sign up",
+        "have sign up"
+      ]
+    },
+    {
+      "id": "present-perfect-p-003",
+      "blank": 10,
+      "segmentIndex": 19,
+      "visible": [
+        "have just started",
+        "were just start",
+        "have just start",
+        "have just starting"
       ]
     }
   ]

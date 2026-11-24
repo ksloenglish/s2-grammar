@@ -209,7 +209,12 @@ try {
   ok(report.sessions.length>=10,'At least 10 completed sessions');
   eq([...new Set(report.sessions.filter(s=>s.key!=='test-mc').map(s=>`${s.term}|${s.key}`))].sort(),realTopics.sort(),'Every current real topic completed');
   for(const key of ['comparatives-superlatives','relative-clauses','reported-speech'])ok(report.sessions.filter(s=>s.key===key&&s.phase.startsWith('same-retry')).length>=3,'Representative engine repeated retry at least three times: '+key);
-  for(const field of ['passageAlternatives','rsAlternativeSlots','rsAlternateTimes','rsWithThat','rsWithoutThat','rsTwoMarkQuestions','rsThreeMarkQuestions'])ok(report.coverage[field]>0,'Acceptance/scoring coverage '+field);
+  const hasVisiblePassageAlternatives=Object.values(inventory).some(topics=>Object.values(topics).some(t=>t.type==='passage'&&t.exercises.some(e=>e.segments.some(b=>typeof b==='object'&&visibleAlternatives(b).length))));
+  if(hasVisiblePassageAlternatives)ok(report.coverage.passageAlternatives>0,'Every available visible-alternative path has coverage');
+  else eq(report.coverage.passageAlternatives,0,'No hidden accepted form is mistaken for a displayed alternative');
+  // Hidden forms are exercised independently through actual input controls in
+  // test-audited-choices.cjs; this harness never invents a visible correct option.
+  for(const field of ['rsAlternativeSlots','rsAlternateTimes','rsWithThat','rsWithoutThat','rsTwoMarkQuestions','rsThreeMarkQuestions'])ok(report.coverage[field]>0,'Acceptance/scoring coverage '+field);
   for(const [f,hash] of Object.entries(hashes))eq(crypto.createHash('sha256').update(fs.readFileSync(path.join(repo,f),'utf8')).digest('hex'),hash,'Source unchanged throughout test: '+f);
 } catch(e) {report.failures.push({message:e.message,stack:e.stack});}
 report.completedSessions=report.sessions.length;

@@ -538,6 +538,25 @@ test('Audited content release prunes only edited saved items and retains all unc
   for (const record of old.list()) assert.equal(Boolean(next.api.resolve(record)), expected.includes(record.id), 'Revision lookup safety: ' + record.id);
 });
 
+test('Approved Perfect release prunes precisely five passages and retains other saved work', () => {
+  const before = load(execFileSync('git', ['show', '95bdf6ff9d2b4a2bafbf931cf7960bdaaf2e785e:data.js'], { cwd: root, encoding: 'utf8' }));
+  const old = harness(before), changed = [], unchanged = [];
+  for (const [term, topics] of Object.entries(before)) for (const [topicKey, topic] of Object.entries(topics)) {
+    for (const item of topic.exercises || topic.questions || []) {
+      const max = topic.type === 'passage' ? item.segments.filter(b => typeof b === 'object').length : topic.type === 'builder' ? 3 : item.timeCorrect?.length ? 3 : 2;
+      old.api.record(term, topicKey, item, 0, max);
+      const current = (production[term][topicKey].exercises || production[term][topicKey].questions).find(x => x.id === item.id);
+      assert.ok(current, 'A stable item must not disappear');
+      (JSON.stringify(item) === JSON.stringify(current) ? unchanged : changed).push(item.id);
+    }
+  }
+  assert.deepEqual(changed.sort(), [1, 2, 3, 4, 5].map(n => 'present-perfect-p-00' + n));
+  assert.equal(old.list().length, inventory.total);
+  const next = restore(production, snapshot(old));
+  assert.deepEqual(keys(next.list()).sort(), unchanged.sort());
+  assert.equal(next.list().length, inventory.total - 5);
+});
+
 let passed = 0;
 const start = Date.now();
 for (const { label, run } of tests) {
