@@ -209,11 +209,12 @@ function main() {
     eq(fixture.blanks[7].distractors, ['been', 'being', 'will be'], 'Imaginary Chief Executive identity rejects screened will be');
     eq(fixture.blanks[4].ruletags[2], [2, 16], 'Would + base candidate is tagged for the if-clause');
     eq(fixture.blanks[7].ruletags[2], [1, 16], 'Will + base candidate is tagged for the if-clause');
-    ok(fixture.rules.some(r => r.rule === 16 && /unambiguously wrong/.test(r.form)), 'If-clause rule retains full-context screening requirement');
+    ok(fixture.rules.some(r => r.rule === 16 && /definitely wrong/.test(r.form)), 'If-clause rule retains full-context screening requirement');
     ok(!fixture.blanks[4].distractors.includes('will be'), 'Defensible predictive supermarket will be stays excluded');
   });
   suite('Approved negative-formation semantic regression guards', () => {
-    eq(fixture.blanks[5].distractors, ['not finished', 'not finishing', 'am not finish'], 'Blank 6 uses approved main-verb be-negative formation error');
+    eq(fixture.blanks[5].distractors, ['will not finishing', 'not finishing', 'am not finish'], 'Blank 6 uses approved main-verb be-negative formation error and a definitely wrong will + v-ing');
+    [3, 4, 5, 6, 7, 11].forEach(i => ok(fixture.blanks[i].distractors.some(d => /^(will|would) /.test(d)), 'If-clause blank ' + (i + 1) + ' offers a will/would distractor'));
     eq(fixture.blanks[11].distractors, ['is not raise', 'will not raising', 'would not raised'], 'Blank 12 uses approved main-verb be-negative formation error');
     ok(fixture.rules.some(r => r.rule === 13 && /main-verb negative/.test(r.form)), 'Teacher main-verb negative rule retained');
     ok(!fixture.blanks[11].distractors.includes('is not raising'), 'Grammatical is not raising is NOT an incorrect distractor');

@@ -901,7 +901,7 @@ const GRAMMAR_DATA = {
               "prompt": "(not finish)",
               "answer": "do not finish",
               "distractors": [
-                "not finished",
+                "will not finishing",
                 "not finishing",
                 "am not finish"
               ],

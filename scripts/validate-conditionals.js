@@ -90,6 +90,9 @@ blanks.forEach((blank, index) => {
     });
   });
 });
+// Rule 16: every if-clause blank shows at least one definitely wrong distractor beginning with will/would.
+[3, 4, 5, 6, 7, 11].forEach(index => assert.ok(blanks[index].distractors.some(d => /^(will|would) /i.test(d)), `If-clause blank ${index + 1} needs a will/would distractor`));
+assert.ok(!['will not finish', 'would not finish'].some(d => blanks[5].distractors.includes(d)), 'Defensible refusal readings stay excluded at blank 6');
 assert.equal(hidden, 3);
 assert.deepEqual(blanks[5].alternatives, ["don't finish"]);
 assert.deepEqual(blanks[7].alternatives, ['was']);

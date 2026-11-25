@@ -69,7 +69,7 @@
     },
     {
       "rule": 16,
-      "form": "In an if-clause, use will/would + base verb as a candidate only when it is unambiguously wrong in the full context; preserve negative cues and exclude defensible willingness, refusal, politeness or other modal readings"
+      "form": "In every if-clause, include at least one distractor beginning with will/would. Prefer will/would + base verb when it is definitely wrong in the full context; where it is defensible (willingness, refusal, politeness or another modal reading), use a definitely wrong will/would + v-ing or will/would + past form instead. Preserve negative cues"
     }
   ],
   "blanks": [
@@ -188,7 +188,7 @@
       "answer": "do not finish",
       "prompt": "(not finish)",
       "distractors": [
-        "not finished",
+        "will not finishing",
         "not finishing",
         "am not finish"
       ],
@@ -198,7 +198,7 @@
       "explanation": "Use 'do not finish'. This is a real possibility for tonight, so use the present simple negative in the if-clause: I do not + finish.",
       "ruletags": [
         [
-          6
+          8
         ],
         [
           7
