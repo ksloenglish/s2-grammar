@@ -95,7 +95,7 @@
       "distractors": [
         "been",
         "being",
-        "would being"
+        "would be"
       ],
       "alternatives": [
         "was"
@@ -109,7 +109,8 @@
           7
         ],
         [
-          9
+          2,
+          16
         ]
       ]
     },
@@ -298,7 +299,7 @@
       "distractors": [
         "was not have",
         "not having",
-        "would not had"
+        "would not have"
       ],
       "alternatives": [
         "didn't have"
@@ -313,7 +314,8 @@
           7
         ],
         [
-          11
+          2,
+          16
         ]
       ]
     },

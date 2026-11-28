@@ -70,15 +70,18 @@ const CONFIGS = [
     // Screened as defensible in this conversation (willingness/refusal/request, Type 1 general result,
     // declarative question, past-real or mixed readings): never display these as wrong answers.
     excluded: {
-      0: ['would be', 'will be', 'was'], 1: ['will not try', 'would not try', 'did not try'],
+      0: ['will be', 'was'], 1: ['will not try', 'would not try', 'did not try'],
       2: ['will train', 'would train', 'trained'], 4: ['will practise', 'would practise', 'practised'],
       5: ['will get', 'would get'], 6: ['we still have', 'do we still have', 'would we still have'],
       7: ['issue', 'will issue', 'would issue', 'issued'], 8: ['will become', 'would become'],
-      9: ['would not have', 'will not have', 'had not'], 10: ['will not worry'], 11: ['will do', 'would do', 'did']
+      9: ['will not have', 'had not'], 10: ['will not worry'], 11: ['will do', 'would do', 'did']
     },
+    // Teacher decision (2026-11-28): one reviewer rated these defensible, the other definitely wrong;
+    // the teacher chose to display them as the rule 2/16 if-clause modal errors.
+    teacherApproved: { 0: 'would be', 9: 'would not have' },
     skeletonIncludes: ['But what (4) __________ (happen) if I dropped the baton in the final?',
       'Mr Chan, (7) __________ (we / still have) Sports Day if it rains heavily that day?'],
-    exact: {}
+    exact: { 0: ['been', 'being', 'would be'], 9: ['was not have', 'not having', 'would not have'] }
   }
 ];
 
@@ -114,6 +117,7 @@ CONFIGS.forEach((cfg, exIndex) => {
     assert.ok(visible.every(value => value[0] === value[0].toLowerCase()));
     for (const bad of cfg.excluded[index] || []) assert.ok(!blank.distractors.includes(bad), `${where}: defensible '${bad}' must not be displayed as wrong`);
     if (cfg.exact[index]) assert.deepEqual(blank.distractors, cfg.exact[index]);
+    if (cfg.teacherApproved?.[index]) assert.ok(blank.distractors.includes(cfg.teacherApproved[index]), `${where}: teacher-approved '${cfg.teacherApproved[index]}' must stay displayed`);
     hidden += blank.alternatives.length;
     const [base, present, past, participle, ing] = cfg.forms[index];
     const negative = cfg.negative.includes(index);

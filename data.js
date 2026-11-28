@@ -1015,7 +1015,7 @@ const GRAMMAR_DATA = {
               "distractors": [
                 "been",
                 "being",
-                "would being"
+                "would be"
               ],
               "alternatives": [
                 "was"
@@ -1145,7 +1145,7 @@ const GRAMMAR_DATA = {
               "distractors": [
                 "was not have",
                 "not having",
-                "would not had"
+                "would not have"
               ],
               "alternatives": [
                 "didn't have"

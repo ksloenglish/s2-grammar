@@ -228,8 +228,12 @@ function semanticExercise2(P) {
     ok(!fixture.blanks[6].distractors.includes('we still have'), 'Defensible spoken declarative question never offered as wrong');
     ok(!fixture.blanks[6].distractors.includes('do we still have'), 'Grammatical timetable question never offered as wrong');
     [0, 1, 2, 4, 7, 9, 11].forEach(i => ok(fixture.blanks[i].distractors.some(d => /^(will|would) /.test(d)), 'If-clause blank ' + (i + 1) + ' offers a will/would distractor'));
-    for (const [i, bad] of [[0, 'would be'], [1, 'will not try'], [2, 'will train'], [4, 'would practise'], [5, 'will get'], [7, 'issue'], [7, 'would issue'], [8, 'will become'], [9, 'would not have'], [10, 'will not worry'], [11, 'will do']])
+    for (const [i, bad] of [[0, 'will be'], [1, 'will not try'], [2, 'will train'], [4, 'would practise'], [5, 'will get'], [7, 'issue'], [7, 'would issue'], [8, 'will become'], [9, 'will not have'], [10, 'will not worry'], [11, 'will do']])
       ok(!fixture.blanks[i].distractors.includes(bad), 'Reviewed defensible form excluded at blank ' + (i + 1) + ': ' + bad);
+    eq(fixture.blanks[0].distractors, ['been', 'being', 'would be'], 'Teacher-approved if-clause would + base shown at blank 1');
+    eq(fixture.blanks[0].ruletags[2], [2, 16], 'Blank 1 modal error tagged rules 2 and 16');
+    eq(fixture.blanks[9].distractors, ['was not have', 'not having', 'would not have'], 'Teacher-approved if-clause would not + base shown at blank 10');
+    eq(fixture.blanks[9].ruletags[2], [2, 16], 'Blank 10 modal error tagged rules 2 and 16');
     eq(fixture.blanks[1].distractors[0], 'are not try', 'Blank 2 uses the main-verb be-negative formation error');
     eq(fixture.blanks[9].distractors[0], 'was not have', 'Blank 10 uses the main-verb be-negative formation error');
     ok(!/will get|will become|will not worry/i.test(fixture.blanks.map(b => b.explanation).join(' ')), 'Key-focused feedback never calls a grammatical modal reading wrong');
