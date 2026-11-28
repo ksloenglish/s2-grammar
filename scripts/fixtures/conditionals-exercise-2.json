@@ -1,0 +1,367 @@
+{
+  "id": "conditionals-p-002",
+  "title": "Exercise 2: Yellow House Sports Day",
+  "instructions": "Complete the following conversation with the correct forms of the verbs in brackets. The first one has been done as an example. (12 marks)",
+  "marks": 12,
+  "example": "Mr Chan: Good morning, Yellow House! Our Sports Day is next Friday at Wan Chai Sports Ground. If you e.g. want (want) to join the 4 x 100m relay team, please sign up with me by Wednesday.",
+  "chatTurns": 14,
+  "speakers": [
+    "Mr Chan",
+    "Hoi Yan",
+    "Marcus",
+    "Mr Chan",
+    "Hoi Yan",
+    "Marcus",
+    "Mr Chan",
+    "Hoi Yan",
+    "Mr Chan",
+    "Marcus",
+    "Mr Chan",
+    "Marcus",
+    "Hoi Yan",
+    "Mr Chan"
+  ],
+  "skeleton_sha256": "e664c007c48c952adc002f9742de104ff9b9a1551fd9199def4124ec60d49d9d",
+  "rules": [
+    {
+      "rule": 1,
+      "form": "will + v(basic)"
+    },
+    {
+      "rule": 2,
+      "form": "would + v(basic)"
+    },
+    {
+      "rule": 3,
+      "form": "v(basic) without the third person singular -s when -s is needed"
+    },
+    {
+      "rule": 4,
+      "form": "v(present simple)"
+    },
+    {
+      "rule": 5,
+      "form": "v(past simple)"
+    },
+    {
+      "rule": 6,
+      "form": "v(PP)"
+    },
+    {
+      "rule": 7,
+      "form": "v-ing without the verb to be"
+    },
+    {
+      "rule": 8,
+      "form": "will + v-ing"
+    },
+    {
+      "rule": 9,
+      "form": "would + v-ing"
+    },
+    {
+      "rule": 10,
+      "form": "will + v(past simple)"
+    },
+    {
+      "rule": 11,
+      "form": "would + v(past simple)"
+    },
+    {
+      "rule": 12,
+      "form": "Use do/does/did not instead of am/is/are/was/were not, or vice versa"
+    },
+    {
+      "rule": 13,
+      "form": "For a main-verb negative, use am/is/are/was/were + not instead of do/does/did not"
+    },
+    {
+      "rule": 14,
+      "form": "For a will/would question, omit the starting modal and retain subject + base verb"
+    },
+    {
+      "rule": 15,
+      "form": "For a will/would question, replace the modal with subject-appropriate am/is/are/was/were and retain the base verb"
+    },
+    {
+      "rule": 16,
+      "form": "In every if-clause, include at least one distractor beginning with will/would. Prefer will/would + base verb when it is definitely wrong in the full context; where it is defensible (willingness, refusal, politeness or another modal reading), use a definitely wrong will/would + v-ing or will/would + past form instead. Preserve negative cues"
+    }
+  ],
+  "blanks": [
+    {
+      "answer": "were",
+      "prompt": "(be)",
+      "distractors": [
+        "been",
+        "being",
+        "would being"
+      ],
+      "alternatives": [
+        "was"
+      ],
+      "explanation": "Use 'were'. Hoi Yan is not as fast as Marcus, so this Type 2 sentence imagines an unreal situation: if + were, then would + base verb.",
+      "ruletags": [
+        [
+          6
+        ],
+        [
+          7
+        ],
+        [
+          9
+        ]
+      ]
+    },
+    {
+      "answer": "do not try",
+      "prompt": "(not try)",
+      "distractors": [
+        "are not try",
+        "not tried",
+        "will not trying"
+      ],
+      "alternatives": [
+        "don't try"
+      ],
+      "explanation": "Use 'do not try'. This Type 1 sentence is about a real possibility, so the if-clause uses the present simple negative: you do not + try.",
+      "ruletags": [
+        [
+          12,
+          13
+        ],
+        [
+          6
+        ],
+        [
+          8
+        ]
+      ]
+    },
+    {
+      "answer": "train",
+      "prompt": "(train)",
+      "distractors": [
+        "training",
+        "would training",
+        "will trained"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'train'. Mr Chan is stating a general fact about the body, so this Type 0 sentence uses the present simple in both clauses.",
+      "ruletags": [
+        [
+          7
+        ],
+        [
+          9
+        ],
+        [
+          10
+        ]
+      ]
+    },
+    {
+      "answer": "would happen",
+      "prompt": "(happen)",
+      "distractors": [
+        "happen",
+        "is happen",
+        "would happened"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'would happen'. Hoi Yan imagines dropping the baton ('if I dropped'), so this Type 2 question uses would + the base verb.",
+      "ruletags": [
+        [
+          14
+        ],
+        [
+          15
+        ],
+        [
+          11
+        ]
+      ]
+    },
+    {
+      "answer": "practise",
+      "prompt": "(practise)",
+      "distractors": [
+        "practising",
+        "will practising",
+        "would practised"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'practise'. This is a real plan with the result 'you won't drop it', so the Type 1 if-clause uses the present simple.",
+      "ruletags": [
+        [
+          7
+        ],
+        [
+          8
+        ],
+        [
+          11
+        ]
+      ]
+    },
+    {
+      "answer": "get",
+      "prompt": "(get)",
+      "distractors": [
+        "getting",
+        "got",
+        "will getting"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'get': 'That's true for every athlete' shows a general truth, so Type 0 uses the present simple. 'Muscles' is plural, so do not add -s.",
+      "ruletags": [
+        [
+          7
+        ],
+        [
+          5
+        ],
+        [
+          8
+        ]
+      ]
+    },
+    {
+      "answer": "will we still have",
+      "prompt": "(we / still have)",
+      "distractors": [
+        "are we still have",
+        "will we still having",
+        "would we still had"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'will we still have' to ask about a real possibility on Sports Day (Type 1). Put 'will' before 'we' and use the base verb 'have'.",
+      "ruletags": [
+        [
+          15
+        ],
+        [
+          8
+        ],
+        [
+          11
+        ]
+      ]
+    },
+    {
+      "answer": "issues",
+      "prompt": "(issue)",
+      "distractors": [
+        "issuing",
+        "will issuing",
+        "would issued"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'issues'. This Type 1 if-clause uses the present simple for a real possibility, and the singular subject 'the Observatory' takes an -s verb.",
+      "ruletags": [
+        [
+          7
+        ],
+        [
+          8
+        ],
+        [
+          11
+        ]
+      ]
+    },
+    {
+      "answer": "becomes",
+      "prompt": "(become)",
+      "distractors": [
+        "become",
+        "became",
+        "will becoming"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'becomes': 'It happens every time' shows a general truth, so Type 0 fits here. 'The track' is singular, so add -s to 'become'.",
+      "ruletags": [
+        [
+          3
+        ],
+        [
+          5
+        ],
+        [
+          8
+        ]
+      ]
+    },
+    {
+      "answer": "did not have",
+      "prompt": "(not have)",
+      "distractors": [
+        "was not have",
+        "not having",
+        "would not had"
+      ],
+      "alternatives": [
+        "didn't have"
+      ],
+      "explanation": "Use 'did not have'. Green House really has many strong athletes, so Marcus imagines the opposite: Type 2 uses if + past simple.",
+      "ruletags": [
+        [
+          12,
+          13
+        ],
+        [
+          7
+        ],
+        [
+          11
+        ]
+      ]
+    },
+    {
+      "answer": "would not worry",
+      "prompt": "(not worry)",
+      "distractors": [
+        "would not worried",
+        "not worrying",
+        "will not worrying"
+      ],
+      "alternatives": [
+        "wouldn't worry"
+      ],
+      "explanation": "Use 'would not worry'. 'If I were in Green House' is imaginary, so this Type 2 result uses would not + the base verb.",
+      "ruletags": [
+        [
+          11
+        ],
+        [
+          7
+        ],
+        [
+          8
+        ]
+      ]
+    },
+    {
+      "answer": "do",
+      "prompt": "(do)",
+      "distractors": [
+        "done",
+        "will doing",
+        "would did"
+      ],
+      "alternatives": [],
+      "explanation": "Use 'do'. This Type 1 if-clause uses the present simple for a real possibility, with 'I'll be proud' in the main clause.",
+      "ruletags": [
+        [
+          6
+        ],
+        [
+          8
+        ],
+        [
+          11
+        ]
+      ]
+    }
+  ]
+}

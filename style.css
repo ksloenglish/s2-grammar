@@ -1064,6 +1064,10 @@ body {
   color: #1D4ED8;
   background: #DBEAFE;
 }
+.speaker-hoi-yan {
+  color: #9D174D;
+  background: #FCE7F3;
+}
 
 .report-meta {
   display: grid;
@@ -1320,6 +1324,9 @@ body {
   #screen-passage[data-topic="conditionals"] .passage-card { width: 100%; min-width: 0; }
   #screen-passage[data-topic="conditionals"] .blank-wrap { max-width: 100%; flex-wrap: wrap; white-space: normal; }
   #screen-passage[data-topic="conditionals"] .blank-select { max-width: 100%; }
+  /* A long wrong answer plus its correction (e.g. "will we still having -> will we still have")
+     can be wider than a 320px line. Chips that fit are unchanged; only over-wide chips wrap. */
+  .passage-review .rev-blank { max-width: 100%; flex-wrap: wrap; white-space: normal; }
 }
 
 /* ============================================================

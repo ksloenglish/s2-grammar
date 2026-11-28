@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 /**
- * Focused real-control conditionals regression. No application lexical calls.
+ * Focused real-control conditionals regression for every Conditional exercise. No application lexical calls.
  * NODE_PATH=/tmp/s2-grammar-retry-tests/node_modules node scripts/test-conditionals.cjs
  * Optional arguments: [repository directory] [/tmp/evidence.json].
  * Website sources and the independent fixture are read-only. Only this harness
@@ -17,7 +17,7 @@ const files = ['index.html', 'data.js', 'mistakes.js', 'app.js', 'style.css'];
 const TERM = 'First Term', TOPIC = 'conditionals', STORE_KEY = 'kslo_s2_grammar_mistakes_v1';
 const report = { started: new Date().toISOString(), repo, result: 'RUNNING', checks: 0,
   suites: [], failures: [], hashes: {}, finalHashes: {}, attempts: [], snapshots: [],
-  coverage: { displayChoices: [], hiddenAlternatives: [], isolatedDOMs: 0, refreshes: 0 },
+  coverage: { displayChoices: [], hiddenAlternatives: [], isolatedDOMs: 0, refreshes: 0 }, fixtureHashes: {},
   limitations: ['jsdom checks actual DOM controls and logic, not visual wrapping or deployment.',
     'Only test-window Date and timer intervals are instrumented; production sources are untouched.',
     'Hidden variants use cloned evaluated input-mode data before mistakes.js, never production select edits.',
@@ -26,7 +26,7 @@ const plain = v => JSON.parse(JSON.stringify(v));
 const hash = v => crypto.createHash('sha256').update(v).digest('hex');
 const norm = v => String(v).trim().replace(/\s+/g, ' ').toLowerCase();
 const live = new Set();
-let source, fixture, JSDOM, VirtualConsole;
+let source, fixture, cfg, JSDOM, VirtualConsole;
 function ok(value, message) { report.checks++; assert.ok(value, message); }
 function eq(actual, expected, message) { report.checks++; assert.deepEqual(plain(actual), plain(expected), message); }
 function suite(name, fn) {
@@ -36,7 +36,7 @@ function suite(name, fn) {
   catch (e) { report.suites.push({ name, status: 'FAIL', checks: report.checks - before }); report.failures.push({ suite: name, message: e.message, stack: e.stack }); console.error('FAIL ' + name + ': ' + e.message); }
   finally { for (const dom of [...live]) { dom.window.close(); live.delete(dom); } }
 }
-function makeDOM({ storage = {}, inputMode = false } = {}) {
+function makeDOM({ storage = {}, inputMode = false, narrow = true } = {}) {
   const errors = [], vc = new VirtualConsole();
   vc.on('jsdomError', e => errors.push(e.message));
   const dom = new JSDOM(source['index.html'], { url: 'https://example.test/s2-grammar/', runScripts: 'outside-only', pretendToBeVisual: true, virtualConsole: vc });
@@ -64,10 +64,12 @@ function makeDOM({ storage = {}, inputMode = false } = {}) {
   eq(w.localStorage.length, 0, 'New DOM starts with isolated empty localStorage');
   for (const [key, value] of Object.entries(storage)) w.localStorage.setItem(key, value);
   w.eval(source['data.js'] + '\nwindow.__TEST_DATA = GRAMMAR_DATA;');
-  if (inputMode) {
+  if (inputMode || narrow) {
     // Clone evaluated data, not the source or fixture. Store sees final settings.
     w.__TEST_DATA = JSON.parse(JSON.stringify(w.__TEST_DATA));
-    w.__TEST_DATA[TERM][TOPIC].blankType = 'input';
+    // Narrowing only selects which stable exercise Start draws; fingerprints exclude collection membership.
+    if (narrow) w.__TEST_DATA[TERM][TOPIC].exercises = w.__TEST_DATA[TERM][TOPIC].exercises.filter(e => e.id === fixture.id);
+    if (inputMode) w.__TEST_DATA[TERM][TOPIC].blankType = 'input';
   }
   w.GRAMMAR_DATA = w.__TEST_DATA;
   w.TERM_KEYS = Object.fromEntries(Object.entries(w.__TEST_DATA).map(([term, topics]) => [term, Object.keys(topics)]));
@@ -123,22 +125,23 @@ function fresh(c) {
   c.clock.tick(1230); eq(c.timerText(), Array(4).fill('00:01.23'), 'Single timer advances deterministically');
 }
 function structure(c) {
-  const topic = c.w.__TEST_DATA[TERM][TOPIC], item = topic.exercises[0];
-  eq(topic.type, 'passage', 'Conditionals is whole-passage engine'); eq(topic.exercises.length, 1, 'Only the approved first exercise');
+  const topic = c.w.__TEST_DATA[TERM][TOPIC], item = topic.exercises.find(e => e.id === fixture.id);
+  eq(topic.type, 'passage', 'Conditionals is whole-passage engine'); ok(item, 'Fixture exercise present in test data');
   eq(item.id, fixture.id, 'Exact stable exercise ID'); eq(c.el('#passage-title').textContent, fixture.title, 'Exact fixture title');
   eq(c.el('#passage-instructions').textContent, fixture.instructions, 'Exact independent instructions');
   const blanks = item.segments.filter(s => typeof s === 'object'); eq(blanks.length, fixture.marks, 'Example is not scored');
   const labels = [...c.d.querySelectorAll('#passage-body .dialogue-speaker')];
-  eq(labels.length, fixture.chatTurns, 'Exactly 13 speaker turns'); eq(labels.filter(e => e.textContent === 'Kelly').length, 7, 'Seven Kelly turns'); eq(labels.filter(e => e.textContent === 'Jason').length, 6, 'Six Jason turns');
-  eq(labels.map(e => e.textContent), Array.from({ length: 13 }, (_, i) => i % 2 ? 'Jason' : 'Kelly'), 'Alternating speaker turns');
+  eq(labels.length, fixture.chatTurns, 'Exact number of speaker turns'); eq(labels.map(e => e.textContent), cfg.speakers, 'Exact speaker order');
+  if (fixture.speakers) eq(fixture.speakers, cfg.speakers, 'Fixture speaker order agrees with harness');
+  labels.forEach(e => { const slug = e.textContent.toLowerCase().replace(/\s+/g, '-'); ok(e.classList.contains('speaker-' + slug), 'Speaker label class: ' + slug); ok(source['style.css'].includes('.speaker-' + slug + ' {'), 'Speaker colour rule exists: ' + slug); });
   const first = c.el('#passage-body').cloneNode(true); first.querySelectorAll('.blank-wrap').forEach(e => e.remove());
-  ok(first.textContent.startsWith(fixture.example), 'First completed hoists example remains plain unscored text');
-  eq((first.textContent.match(/e\.g\. hoists \(hoist\)/g) || []).length, 1, 'One plain-text example only');
+  ok(first.textContent.startsWith(fixture.example), 'First completed example remains plain unscored text');
+  eq((first.textContent.match(cfg.example) || []).length, 1, 'One plain-text example only');
   eq([...c.d.querySelectorAll('#passage-body .blank-prompt')].map(e => e.textContent), fixture.blanks.map(b => b.prompt), 'All 12 bracket cues exact and in written order');
   const complete = c.el('#passage-body').cloneNode(true);
   complete.querySelectorAll('.blank-wrap').forEach((e, i) => e.replaceWith(fixture.blanks[i].answer));
-  ok(complete.textContent.includes('So what will you do if school is closed?'), 'Complete split question follows So what');
-  ok(!/\byou\s+you\b/i.test(complete.textContent), 'No duplicated fixed you');
+  cfg.complete.forEach(text => ok(complete.textContent.includes(text), 'Completed question reads naturally: ' + text));
+  ok(!cfg.duplicate.test(complete.textContent), 'No duplicated fixed words around question blanks');
   blanks.forEach((b, i) => {
     const f = fixture.blanks[i];
     for (const field of ['answer', 'prompt', 'distractors', 'alternatives', 'explanation']) eq(b[field], f[field], 'Fixture blank ' + (i + 1) + ' exact ' + field);
@@ -189,16 +192,8 @@ function pending(c, earned) {
   ok(!Object.hasOwn(records[0], 'segments') && !Object.hasOwn(records[0], 'studentAnswer'), 'Storage contains references, not passage/answer copies');
   eq(c.w.KSLOMistakes.resolve(records[0]).item.id, fixture.id, 'Public reference resolves exact ID');
 }
-function main() {
-  ok(output.startsWith('/tmp/') && output.endsWith('.json'), 'Evidence writes restricted to temporary JSON');
-  ({ JSDOM, VirtualConsole } = require('jsdom'));
-  report.runtime = { node: process.version, jsdom: require('jsdom/package.json').version };
-  source = Object.fromEntries(files.map(f => [f, fs.readFileSync(path.join(repo, f), 'utf8')]));
-  report.hashes = Object.fromEntries(files.map(f => [f, hash(source[f])]));
-  const fixturePath = path.join(repo, 'scripts/fixtures/conditionals-exercise-1.json');
-  const fixtureText = fs.readFileSync(fixturePath, 'utf8'); fixture = JSON.parse(fixtureText); report.fixtureHash = hash(fixtureText);
-  eq(fixture.blanks.length, 12, 'Independent fixture has 12 blanks'); eq(fixture.marks, 12, 'Independent maximum 12');
-  suite('Approved modal-question error regression guards', () => {
+function semanticExercise1(P) {
+  suite(P + 'Approved modal-question error regression guards', () => {
     eq(fixture.blanks[2].answer, 'will you do', 'Teacher question key unchanged');
     eq(fixture.blanks[2].distractors, ['you do', 'are you do', 'will you doing'], 'Missing modal, be + base and modal + ing are screened wrong');
     eq(fixture.blanks[2].ruletags, [[14], [15], [8]], 'Each question distractor uses an approved formation');
@@ -212,7 +207,7 @@ function main() {
     ok(fixture.rules.some(r => r.rule === 16 && /definitely wrong/.test(r.form)), 'If-clause rule retains full-context screening requirement');
     ok(!fixture.blanks[4].distractors.includes('will be'), 'Defensible predictive supermarket will be stays excluded');
   });
-  suite('Approved negative-formation semantic regression guards', () => {
+  suite(P + 'Approved negative-formation semantic regression guards', () => {
     eq(fixture.blanks[5].distractors, ['will not finishing', 'not finishing', 'am not finish'], 'Blank 6 uses approved main-verb be-negative formation error and a definitely wrong will + v-ing');
     [3, 4, 5, 6, 7, 11].forEach(i => ok(fixture.blanks[i].distractors.some(d => /^(will|would) /.test(d)), 'If-clause blank ' + (i + 1) + ' offers a will/would distractor'));
     eq(fixture.blanks[11].distractors, ['is not raise', 'will not raising', 'would not raised'], 'Blank 12 uses approved main-verb be-negative formation error');
@@ -222,27 +217,91 @@ function main() {
     ok(!/is not raising|am not finishing/i.test(fixture.blanks[5].explanation + fixture.blanks[11].explanation), 'Key-focused explanations do not call grammatical continuous alternatives wrong');
     report.semanticRegression = { blank6: 'am not finish', blank12: 'is not raise', grammaticalNotDistractors: ['am not finishing', 'is not raising'] };
   });
-  suite('48 independent actual display-choice attempts (12 keys + 36 distractors)', () => {
+}
+function semanticExercise2(P) {
+  suite(P + 'Reviewed question, if-clause and negative regression guards', () => {
+    eq(fixture.blanks[3].answer, 'would happen', 'Type 2 subject-question key unchanged');
+    eq(fixture.blanks[3].distractors, ['happen', 'is happen', 'would happened'], 'Omitted modal, be + base and would + past are screened wrong');
+    eq(fixture.blanks[3].ruletags, [[14], [15], [11]], 'Subject question uses approved question formations');
+    eq(fixture.blanks[6].answer, 'will we still have', 'In-sentence question key stays lower case after Mr Chan,');
+    eq(fixture.blanks[6].distractors, ['are we still have', 'will we still having', 'would we still had'], 'Question distractors screened wrong');
+    ok(!fixture.blanks[6].distractors.includes('we still have'), 'Defensible spoken declarative question never offered as wrong');
+    ok(!fixture.blanks[6].distractors.includes('do we still have'), 'Grammatical timetable question never offered as wrong');
+    [0, 1, 2, 4, 7, 9, 11].forEach(i => ok(fixture.blanks[i].distractors.some(d => /^(will|would) /.test(d)), 'If-clause blank ' + (i + 1) + ' offers a will/would distractor'));
+    for (const [i, bad] of [[0, 'would be'], [1, 'will not try'], [2, 'will train'], [4, 'would practise'], [5, 'will get'], [7, 'issue'], [7, 'would issue'], [8, 'will become'], [9, 'would not have'], [10, 'will not worry'], [11, 'will do']])
+      ok(!fixture.blanks[i].distractors.includes(bad), 'Reviewed defensible form excluded at blank ' + (i + 1) + ': ' + bad);
+    eq(fixture.blanks[1].distractors[0], 'are not try', 'Blank 2 uses the main-verb be-negative formation error');
+    eq(fixture.blanks[9].distractors[0], 'was not have', 'Blank 10 uses the main-verb be-negative formation error');
+    ok(!/will get|will become|will not worry/i.test(fixture.blanks.map(b => b.explanation).join(' ')), 'Key-focused feedback never calls a grammatical modal reading wrong');
+  });
+}
+const CONFIGS = [
+  { n: 1, fixtureFile: 'conditionals-exercise-1.json', example: /e\.g\. hoists \(hoist\)/g,
+    speakers: Array.from({ length: 13 }, (_, i) => i % 2 ? 'Jason' : 'Kelly'),
+    complete: ['So what will you do if school is closed?'], duplicate: /\byou\s+you\b/i,
+    hidden: [[5, "don't finish"], [7, 'was'], [11, "doesn't raise"]], lifecycle: [5, 2], semantic: semanticExercise1 },
+  { n: 2, fixtureFile: 'conditionals-exercise-2.json', example: /e\.g\. want \(want\)/g,
+    speakers: ['Mr Chan', 'Hoi Yan', 'Marcus', 'Mr Chan', 'Hoi Yan', 'Marcus', 'Mr Chan', 'Hoi Yan', 'Mr Chan', 'Marcus', 'Mr Chan', 'Marcus', 'Hoi Yan', 'Mr Chan'],
+    complete: ['But what would happen if I dropped the baton in the final?', 'Mr Chan, will we still have Sports Day if it rains heavily that day?'],
+    duplicate: /\b(we\s+we|what\s+what|not\s+not|still\s+still)\b/i,
+    hidden: [[0, 'was'], [1, "don't try"], [9, "didn't have"], [10, "wouldn't worry"]], lifecycle: [6, 0], semantic: semanticExercise2 }
+];
+function loadFixture(config) {
+  const fixturePath = path.join(repo, 'scripts/fixtures', config.fixtureFile);
+  const text = fs.readFileSync(fixturePath, 'utf8');
+  return { fixturePath, fixtureHash: hash(text), data: JSON.parse(text) };
+}
+function runProduction() {
+  suite('Production Conditional inventory and random whole-passage draw', () => {
+    const loaded = CONFIGS.map(config => ({ config, ...loadFixture(config) }));
+    const seen = new Set();
+    const c = makeDOM({ narrow: false });
+    eq(c.w.__TEST_DATA[TERM][TOPIC].exercises.map(e => e.id), loaded.map(l => l.data.id), 'Production inventory: both stable Conditional exercises in order');
+    for (let run = 0; run < 16; run++) {
+      c.start();
+      const match = loaded.find(l => l.data.title === c.el('#passage-title').textContent);
+      ok(match, 'Start draws one whole approved exercise'); cfg = match.config; fixture = match.data; seen.add(fixture.id);
+      fresh(c); structure(c);
+      if (run === 0) {
+        const initial = passageState(c);
+        finish(c, keys(), 12, 'production draw ' + fixture.id); pending(c, 12);
+        c.click('#btn-retry-same'); fresh(c); structure(c); eq(passageState(c), initial, 'Same-exercise retry keeps the drawn passage');
+      }
+      c.home('#passage-quit');
+    }
+    eq([...seen].sort(), loaded.map(l => l.data.id).sort(), 'Random Start reaches both exercises');
+    c.close();
+  });
+}
+function runExercise(config) {
+  cfg = config;
+  const loaded = loadFixture(cfg); const { fixturePath, fixtureHash } = loaded; fixture = loaded.data;
+  report.fixtureHashes[cfg.fixtureFile] = fixtureHash;
+  const P = '[Ex ' + cfg.n + '] ';
+  eq(fixture.blanks.length, 12, 'Independent fixture has 12 blanks'); eq(fixture.marks, 12, 'Independent maximum 12');
+  cfg.semantic(P);
+  suite(P + '48 independent actual display-choice attempts (12 keys + 36 distractors)', () => {
     fixture.blanks.forEach((b, i) => [b.answer, ...b.distractors].forEach((value, choice) => {
       const c = makeDOM(); c.start(); fresh(c); structure(c);
       const values = keys(); values[i] = value; const earned = choice === 0 ? 12 : 11;
       finish(c, values, earned, `blank-${i + 1}/choice-${choice + 1}`); pending(c, earned);
-      report.coverage.displayChoices.push({ blank: i + 1, choice: choice + 1, value, earned }); c.close();
+      report.coverage.displayChoices.push({ exercise: cfg.n, blank: i + 1, choice: choice + 1, value, earned }); c.close();
       if (choice === 3) console.log('  covered blank ' + (i + 1) + '/12');
     }));
-    eq(report.coverage.displayChoices.length, 48, 'All 48 actual display choices submitted');
-    eq(report.coverage.displayChoices.filter(r => r.earned === 12).length, 12, 'Every visible key gets 12/12'); eq(report.coverage.displayChoices.filter(r => r.earned === 11).length, 36, 'Every visible distractor gets 11/12');
+    const mine = report.coverage.displayChoices.filter(r => r.exercise === cfg.n);
+    eq(mine.length, 48, 'All 48 actual display choices submitted');
+    eq(mine.filter(r => r.earned === 12).length, 12, 'Every visible key gets 12/12'); eq(mine.filter(r => r.earned === 11).length, 36, 'Every visible distractor gets 11/12');
   });
-  suite('Mixed and all-wrong whole-passage scores', () => {
+  suite(P + 'Mixed and all-wrong whole-passage scores', () => {
     for (const mode of ['mixed', 'all-wrong']) {
       const c = makeDOM(); c.start(); fresh(c); structure(c);
       const values = fixture.blanks.map((b, i) => mode === 'mixed' && i % 2 === 0 ? b.answer : b.distractors[0]);
       finish(c, values, mode === 'mixed' ? 6 : 0, mode); pending(c, mode === 'mixed' ? 6 : 0); c.close();
     }
   });
-  suite('Lower retry / lower Home / refresh / Home Mistake Practice whole-passage removal', () => {
+  suite(P + 'Lower retry / lower Home / refresh / Home Mistake Practice whole-passage removal', () => {
     let c = makeDOM(); c.start(); fresh(c); structure(c); const initial = passageState(c);
-    const values = keys(); values[5] = fixture.blanks[5].distractors[2];
+    const values = keys(); values[cfg.lifecycle[0]] = fixture.blanks[cfg.lifecycle[0]].distractors[cfg.lifecycle[1]];
     finish(c, values, 11, 'lifecycle initial wrong'); pending(c, 11);
     report.snapshots.push({ label: 'wrong summary', html: c.el('#screen-results').outerHTML, records: c.records() });
     c.click('#btn-retry-same-bottom'); fresh(c); structure(c); eq(passageState(c), initial, 'Lower retry preserves ID/title/prose/cues/choice wording');
@@ -265,17 +324,26 @@ function main() {
     c.home(); eq(c.selection(), homeSelection, 'Practice return restores Home term/topic/count controls');
     eq(c.d.querySelectorAll('#mistake-list .mistake-start[data-topic="conditionals"]').length, 0, 'Completed conditionals Home practice action gone'); c.close();
   });
-  suite('Hidden accepted forms through three isolated actual input-mode fixtures', () => {
-    for (const [i, alt] of [[5, "don't finish"], [7, 'was'], [11, "doesn't raise"]]) {
+  suite(P + 'Hidden accepted forms through isolated actual input-mode fixtures', () => {
+    for (const [i, alt] of cfg.hidden) {
       eq(fixture.blanks[i].alternatives, [alt], 'Independent hidden accepted form exact');
       // A separate production select DOM proves absence, without forcing a select value.
       let c = makeDOM(); c.start(); fresh(c); structure(c); ok(![...c.el('#passage-body .blank-select[data-index="' + i + '"]').options].some(o => o.value === alt), 'Hidden form absent from production selects'); c.home('#passage-quit'); c.close();
       c = makeDOM({ inputMode: true }); c.start(); fresh(c); structure(c); const values = keys(); values[i] = alt;
-      finish(c, values, 12, 'hidden blank-' + (i + 1) + ': ' + alt); pending(c, 12); report.coverage.hiddenAlternatives.push({ blank: i + 1, value: alt, earned: 12 }); c.close();
+      finish(c, values, 12, 'hidden blank-' + (i + 1) + ': ' + alt); pending(c, 12); report.coverage.hiddenAlternatives.push({ exercise: cfg.n, blank: i + 1, value: alt, earned: 12 }); c.close();
     }
-    eq(report.coverage.hiddenAlternatives.length, 3, 'All three hidden variants tested using real input events');
+    eq(report.coverage.hiddenAlternatives.filter(r => r.exercise === cfg.n).length, cfg.hidden.length, 'All hidden variants tested using real input events');
   });
-  suite('Fixture unchanged', () => eq(hash(fs.readFileSync(fixturePath)), report.fixtureHash, 'Independent fixture preserved'));
+  suite(P + 'Fixture unchanged', () => eq(hash(fs.readFileSync(fixturePath)), fixtureHash, 'Independent fixture preserved'));
+}
+function main() {
+  ok(output.startsWith('/tmp/') && output.endsWith('.json'), 'Evidence writes restricted to temporary JSON');
+  ({ JSDOM, VirtualConsole } = require('jsdom'));
+  report.runtime = { node: process.version, jsdom: require('jsdom/package.json').version };
+  source = Object.fromEntries(files.map(f => [f, fs.readFileSync(path.join(repo, f), 'utf8')]));
+  report.hashes = Object.fromEntries(files.map(f => [f, hash(source[f])]));
+  runProduction();
+  CONFIGS.forEach(runExercise);
 }
 try { main(); }
 catch (e) { report.failures.push({ suite: 'setup', message: e.message, stack: e.stack }); console.error('FAIL setup: ' + e.message); }

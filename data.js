@@ -1002,6 +1002,190 @@ const GRAMMAR_DATA = {
             },
             " Signal No. 8 by tomorrow morning, I'll see you at school, with my calculator!"
           ]
+        },
+        {
+          "id": "conditionals-p-002",
+          "title": "Exercise 2: Yellow House Sports Day",
+          "instructions": "Complete the following conversation with the correct forms of the verbs in brackets. The first one has been done as an example. (12 marks)",
+          "segments": [
+            "Mr Chan: Good morning, Yellow House! Our Sports Day is next Friday at Wan Chai Sports Ground. If you e.g. want (want) to join the 4 x 100m relay team, please sign up with me by Wednesday.\n\nHoi Yan: I'd love to, Mr Chan, but I'm not very fast. If I ",
+            {
+              "prompt": "(be)",
+              "answer": "were",
+              "distractors": [
+                "been",
+                "being",
+                "would being"
+              ],
+              "alternatives": [
+                "was"
+              ],
+              "displayAlternatives": [],
+              "showPrompt": true,
+              "explanation": "Use 'were'. Hoi Yan is not as fast as Marcus, so this Type 2 sentence imagines an unreal situation: if + were, then would + base verb."
+            },
+            " as fast as Marcus, I would sign up straight away.\n\nMarcus: Come on, Hoi Yan! You're faster than you think. If you ",
+            {
+              "prompt": "(not try)",
+              "answer": "do not try",
+              "distractors": [
+                "are not try",
+                "not tried",
+                "will not trying"
+              ],
+              "alternatives": [
+                "don't try"
+              ],
+              "displayAlternatives": [],
+              "showPrompt": true,
+              "explanation": "Use 'do not try'. This Type 1 sentence is about a real possibility, so the if-clause uses the present simple negative: you do not + try."
+            },
+            ", you'll never know.\n\nMr Chan: Marcus is right. Remember, if runners ",
+            {
+              "prompt": "(train)",
+              "answer": "train",
+              "distractors": [
+                "training",
+                "would training",
+                "will trained"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+              "showPrompt": true,
+              "explanation": "Use 'train'. Mr Chan is stating a general fact about the body, so this Type 0 sentence uses the present simple in both clauses."
+            },
+            " regularly, their speed improves. That's simply how the body works.\n\nHoi Yan: OK, I'll give it a go. But what ",
+            {
+              "prompt": "(happen)",
+              "answer": "would happen",
+              "distractors": [
+                "happen",
+                "is happen",
+                "would happened"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+              "showPrompt": true,
+              "explanation": "Use 'would happen'. Hoi Yan imagines dropping the baton ('if I dropped'), so this Type 2 question uses would + the base verb."
+            },
+            " if I dropped the baton in the final? I'd be so embarrassed!\n\nMarcus: Don't worry. If we ",
+            {
+              "prompt": "(practise)",
+              "answer": "practise",
+              "distractors": [
+                "practising",
+                "will practising",
+                "would practised"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+              "showPrompt": true,
+              "explanation": "Use 'practise'. This is a real plan with the result 'you won't drop it', so the Type 1 if-clause uses the present simple."
+            },
+            " passing the baton every day after school, you won't drop it on the big day.\n\nMr Chan: Good idea. And always warm up before practice. If you skip your warm-up, your muscles ",
+            {
+              "prompt": "(get)",
+              "answer": "get",
+              "distractors": [
+                "getting",
+                "got",
+                "will getting"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+              "showPrompt": true,
+              "explanation": "Use 'get': 'That's true for every athlete' shows a general truth, so Type 0 uses the present simple. 'Muscles' is plural, so do not add -s."
+            },
+            " stiff and you can easily get hurt. That's true for every athlete.\n\nHoi Yan: Got it. Mr Chan, ",
+            {
+              "prompt": "(we / still have)",
+              "answer": "will we still have",
+              "distractors": [
+                "are we still have",
+                "will we still having",
+                "would we still had"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+              "showPrompt": true,
+              "explanation": "Use 'will we still have' to ask about a real possibility on Sports Day (Type 1). Put 'will' before 'we' and use the base verb 'have'."
+            },
+            " Sports Day if it rains heavily that day?\n\nMr Chan: It depends. If the Observatory ",
+            {
+              "prompt": "(issue)",
+              "answer": "issues",
+              "distractors": [
+                "issuing",
+                "will issuing",
+                "would issued"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+              "showPrompt": true,
+              "explanation": "Use 'issues'. This Type 1 if-clause uses the present simple for a real possibility, and the singular subject 'the Observatory' takes an -s verb."
+            },
+            " a Red or Black Rainstorm Warning that morning, the school will postpone it. A light shower is fine, though.\n\nMarcus: But if it rains, the track ",
+            {
+              "prompt": "(become)",
+              "answer": "becomes",
+              "distractors": [
+                "become",
+                "became",
+                "will becoming"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+              "showPrompt": true,
+              "explanation": "Use 'becomes': 'It happens every time' shows a general truth, so Type 0 fits here. 'The track' is singular, so add -s to 'become'."
+            },
+            " slippery. It happens every time!\n\nMr Chan: That's why everyone must wear proper running shoes with a good grip.\n\nMarcus: Honestly, I really want to win the overall championship this year. If Green House ",
+            {
+              "prompt": "(not have)",
+              "answer": "did not have",
+              "distractors": [
+                "was not have",
+                "not having",
+                "would not had"
+              ],
+              "alternatives": [
+                "didn't have"
+              ],
+              "displayAlternatives": [],
+              "showPrompt": true,
+              "explanation": "Use 'did not have'. Green House really has many strong athletes, so Marcus imagines the opposite: Type 2 uses if + past simple."
+            },
+            " so many strong athletes, we would have a much better chance.\n\nHoi Yan: Haha, if I were in Green House, I ",
+            {
+              "prompt": "(not worry)",
+              "answer": "would not worry",
+              "distractors": [
+                "would not worried",
+                "not worrying",
+                "will not worrying"
+              ],
+              "alternatives": [
+                "wouldn't worry"
+              ],
+              "displayAlternatives": [],
+              "showPrompt": true,
+              "explanation": "Use 'would not worry'. 'If I were in Green House' is imaginary, so this Type 2 result uses would not + the base verb."
+            },
+            " about losing at all!\n\nMr Chan: Winning isn't everything. If you all ",
+            {
+              "prompt": "(do)",
+              "answer": "do",
+              "distractors": [
+                "done",
+                "will doing",
+                "would did"
+              ],
+              "alternatives": [],
+              "displayAlternatives": [],
+              "showPrompt": true,
+              "explanation": "Use 'do'. This Type 1 if-clause uses the present simple for a real possibility, with 'I'll be proud' in the main clause."
+            },
+            " your best and cheer loudly for your teammates, I'll be proud of Yellow House no matter what."
+          ]
         }
       ]
     }

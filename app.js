@@ -872,7 +872,7 @@
           const reportLines = part.trim().split('\n');
           const isReportMeta = reportLines.length >= 2 && reportLines.every(line => /^(To|From|Date|Subject):\s+.+$/.test(line.trim()));
           const sectionMatch = part.trim().match(/^(\d+)\.\s+(.+)$/);
-          const speakerMatch = part.match(/^((?:(?:Mr|Mrs|Ms|Miss)\s+)?[A-Z][a-z]+):\s*/);
+          const speakerMatch = part.match(/^((?:(?:Mr|Mrs|Ms|Miss)\s+)?[A-Z][a-z]+(?:\s[A-Z][a-z]+)?):\s*/);
           if (isReportMeta) {
             const meta = document.createElement('div');
             meta.className = 'report-meta';

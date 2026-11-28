@@ -616,6 +616,31 @@ test('Conditional distractor update invalidates only its edited passage and reta
   assert.deepEqual(next.list(), expected, 'Full marks remove only the current Conditional reference');
 });
 
+test('Adding Conditional Exercise 2 keeps every saved reference and records the new passage on its own', () => {
+  const before = load(execFileSync('git', ['show', 'cfc7d93:data.js'], { cwd: root, encoding: 'utf8' }));
+  const old = harness(before);
+  for (const [term, topics] of Object.entries(before)) for (const [topicKey, topic] of Object.entries(topics)) {
+    for (const item of topic.exercises || topic.questions || []) {
+      const max = topic.type === 'passage' ? item.segments.filter(b => typeof b === 'object').length : topic.type === 'builder' ? 3 : item.timeCorrect?.length ? 3 : 2;
+      old.api.record(term, topicKey, item, 0, max);
+      const current = (production[term][topicKey].exercises || production[term][topicKey].questions).find(x => x.id === item.id);
+      assert.ok(current, 'No stable item may disappear when an exercise is added');
+      assert.equal(JSON.stringify(current), JSON.stringify(item), 'Existing item unchanged: ' + item.id);
+    }
+  }
+  assert.deepEqual(before['First Term'].conditionals.exercises.map(e => e.id), ['conditionals-p-001']);
+  assert.deepEqual(production['First Term'].conditionals.exercises.map(e => e.id), ['conditionals-p-001', 'conditionals-p-002']);
+  const next = restore(production, snapshot(old));
+  assert.deepEqual(next.list(), old.list(), 'Every saved reference survives, including Conditional Exercise 1');
+  for (const record of next.list()) assert.ok(next.api.resolve(record), 'Saved reference still resolves: ' + record.id);
+  const item = production['First Term'].conditionals.exercises[1];
+  next.api.record('First Term', 'conditionals', item, 10, 12);
+  const saved = next.list().find(record => record.id === item.id);
+  assert.equal(saved.type, 'passage'); assert.equal(saved.earned, 10); assert.equal(saved.max, 12);
+  assert.equal(next.api.resolve(saved).item.id, item.id, 'Exercise 2 resolves for whole-passage practice');
+  next.api.record('First Term', 'conditionals', item, 12, 12);
+  assert.deepEqual(next.list(), old.list(), 'Full marks remove only Exercise 2');
+});
 let passed = 0;
 const start = Date.now();
 for (const { label, run } of tests) {
